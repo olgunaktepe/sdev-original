@@ -18,27 +18,45 @@ Use Claude Code with the `/propose-fix` command:
 /propose-fix The listings page shows wrong date format for timestamps older than 30 days
 ```
 
-### 2. Review Fix Proposals
+### 2. Review the Code
 
-All proposed fixes are stored in the `/fixes` directory with a standardized format that includes:
+**All code must pass review before sharing.** Use the `/review-code` command:
 
-- Problem description
-- Root cause analysis
-- Code changes (before/after)
-- Testing steps
+```
+/review-code [paste your code here]
+```
 
-### 3. Implement
+The reviewer will:
+- Check for forbidden patterns (type hints, namespaces, verbose syntax)
+- Verify correct style (single-line conditionals, compact loops)
+- Reject code that's too complex or over-engineered
+- Approve only code that matches the original developer's style
 
-The original developer can review proposals and implement them directly into the live platform.
+### 3. Fix Violations
+
+If code is rejected:
+1. Read the violation list
+2. Fix each issue
+3. Re-run `/review-code`
+4. Repeat until approved
+
+### 4. Share with Developer
+
+Only **APPROVED** fixes should be shared with the original developer.
+
+All proposed fixes are stored in the `/fixes` directory with a standardized format.
 
 ## Files
 
 | File | Purpose |
 |------|---------|
-| `CLAUDE.md` | Agent instructions for code style |
+| `CLAUDE.md` | Main agent instructions |
 | `STYLE_GUIDE.md` | Detailed coding patterns with examples |
+| `RULES.md` | Strict rejection rules checklist |
 | `/fixes/` | Directory of proposed fixes |
-| `/.claude/commands/` | Custom slash commands |
+| `/.claude/commands/propose-fix.md` | Fix proposal command |
+| `/.claude/commands/review-code.md` | Code review command |
+| `/.claude/agents/code-reviewer.md` | Reviewer agent config |
 
 ## Coding Style
 

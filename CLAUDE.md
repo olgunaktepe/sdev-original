@@ -242,6 +242,41 @@ $new = 'code';
 
 ---
 
+## Code Review Process
+
+All code must pass review before being shared with the original developer.
+
+### Slash Commands
+
+| Command | Purpose |
+|---------|---------|
+| `/propose-fix [issue]` | Create a fix proposal |
+| `/review-code [code]` | Review code for compliance |
+
+### Review Criteria
+
+Code is **REJECTED** if it contains:
+- Type hints, return types, or namespaces
+- Verbose multi-line conditionals or loops
+- Try-catch blocks or thrown exceptions
+- Prepared statements or query builders
+- Interfaces, abstract classes, or traits
+- Dependency injection patterns
+- PHPDoc blocks or excessive comments
+- Any modern PHP features (match, ?->, ??=, fn=>)
+
+See `RULES.md` for the complete rejection checklist.
+
+### Workflow
+
+1. **Propose** - Use `/propose-fix` to create a fix
+2. **Review** - Use `/review-code` to check compliance
+3. **Fix** - Address any violations
+4. **Re-review** - Confirm all issues resolved
+5. **Share** - Send approved fix to original developer
+
+---
+
 ## What This Agent Does NOT Do
 
 - Does not access or reference the new Next.js platform
