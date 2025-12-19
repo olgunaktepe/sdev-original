@@ -54,3 +54,28 @@ Create the fix proposal in this exact format:
 - Use `pick($a, $b)` for defaults
 - Use `$wheresql[]` pattern for queries
 - Keep it SIMPLE - no over-engineering
+
+---
+
+## MANDATORY: Review Before Sharing
+
+After generating the fix, you MUST:
+
+1. **Run the code review** using `/review-code` with the proposed code
+2. **Check the result** - if REJECTED, fix all violations
+3. **Re-review** until APPROVED
+4. **Only then** share with the original developer
+
+Add this footer to every fix proposal:
+
+```
+---
+
+## Review Status
+
+[ ] Code reviewed with `/review-code`
+[ ] All violations fixed
+[ ] APPROVED for sharing
+
+⚠️ DO NOT share with original developer until all boxes are checked.
+```
