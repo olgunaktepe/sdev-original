@@ -4,93 +4,95 @@ Create a GitHub Pull Request for an approved fix, ready to share with the origin
 
 **Fix to document:** $ARGUMENTS
 
+## Workflow Order
+
+**Important:** We deploy and verify BEFORE creating a PR. No point sharing a broken fix.
+
+1. Apply code changes to main
+2. Commit to main
+3. Deploy to Railway test server
+4. Verify fix works in browser
+5. Only then create PR for original developer
+
 ## Instructions
 
-1. Locate the approved fix file in `/fixes/approved/`
-2. Parse the fix content to extract file paths and code changes
-3. Create a new Git branch for the fix
-4. Apply the code changes from the fix file
-5. Commit with a descriptive message
-6. Push and create a Pull Request
-7. Move the fix file to `/fixes/implemented/`
+### Step 1: Parse Fix Content
 
-## Workflow
-
-### Step 1: Find the Fix
-
-Search for the fix file in `/fixes/approved/` matching the argument.
-If no argument provided, list all available approved fixes.
-
-### Step 2: Parse Fix Content
-
-Extract from the fix file:
+Extract from the fix proposal:
 - **File(s)** to modify
 - **Lines** to change
 - **BEFORE** code block
 - **AFTER** code block
 - **Testing** instructions
 
-### Step 3: Create Branch
+### Step 2: Apply Changes
 
-```bash
-git checkout main
-git pull origin main
-git checkout -b fix/YYYY-MM-DD-description
-```
-
-Use the fix filename (without .md) as the branch description.
-
-### Step 4: Apply Changes
-
-Use the Edit tool to apply the AFTER code from the fix file.
+Use the Edit tool to apply the AFTER code.
 Match the exact lines specified in the fix.
 
-### Step 5: Commit
+### Step 3: Commit to Main
 
 ```bash
 git add <modified-files>
 git commit -m "$(cat <<'EOF'
-Fix: <title from fix file>
+Fix: <title from fix>
 
-<Problem description from fix file>
+<Problem description>
 
-Solution: <solution description from fix file>
+Solution: <solution description>
 
 🤖 Generated with [Claude Code](https://claude.com/claude-code)
 
 Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>
 EOF
 )"
+git push origin main
 ```
 
-### Step 6: Push and Create PR
+### Step 4: Deploy to Railway
 
 ```bash
+railway up --detach
+```
+
+Wait for deployment to complete (~60 seconds).
+
+### Step 5: Verify Fix Works
+
+1. Navigate to the affected page in browser
+2. Test the fix according to testing instructions
+3. Use Chrome DevTools to verify CSS/JS changes if needed
+4. **If fix doesn't work:** Debug, fix, recommit, redeploy
+5. **If fix works:** Proceed to create PR
+
+### Step 6: Create PR for Original Developer
+
+Only after verification succeeds:
+
+```bash
+git checkout -b fix/YYYY-MM-DD-description
 git push -u origin fix/YYYY-MM-DD-description
 
 gh pr create --title "Fix: <title>" --body "$(cat <<'EOF'
 ## Summary
 
-<Problem and solution from fix file>
+<Problem and solution description>
 
-## Changes
+## File to Modify
 
-- **File:** `<path/to/file.php>`
-- **Lines:** X-Y
+`<path/to/file.php>`
 
-## Code Change
+## Code Changes
 
-```php
-// BEFORE
-<old code>
-
-// AFTER
-<new code>
-```
+<Detailed code changes with BEFORE/AFTER blocks>
 
 ## Testing
 
-<Testing instructions from fix file>
+<Testing instructions>
+
+## Verified
+
+✅ Tested on Railway: <URL>
 
 ---
 
@@ -99,34 +101,32 @@ EOF
 )"
 ```
 
-### Step 7: Update Fix Status
+### Step 7: Return to Main
 
 ```bash
 git checkout main
-git mv fixes/approved/<fix-file>.md fixes/implemented/<fix-file>.md
-git commit -m "Move to implemented: <fix-file>"
-git push
 ```
 
 ## Output
 
 Return:
-- Branch name
-- PR URL
+- Deployment URL
+- Verification status
+- PR URL (only if verified)
 - PR number
 - Files modified
-- Next step: Use `/deploy-fix <PR-number>` to deploy to Railway
 
 ## Example
 
 ```
-/document-fix 2024-12-19-date-format-fix
+/document-fix sticky-columns
 
 Output:
-✅ Branch: fix/2024-12-19-date-format-fix
-✅ PR: https://github.com/olgunaktepe/sdev-original/pull/5
-✅ Files: src/php/lib/deal.lib.php
-✅ Status: Ready for review
+✅ Committed: Fix sticky columns in listingsDev
+✅ Deployed: https://sdev-original-production.up.railway.app
+✅ Verified: Sticky columns working in browser
+✅ PR: https://github.com/olgunaktepe/sdev-original/pull/1
+✅ Files: src/template/listingsDev/index.phtml
 
-Next: /deploy-fix 5
+Share PR link with original developer.
 ```
