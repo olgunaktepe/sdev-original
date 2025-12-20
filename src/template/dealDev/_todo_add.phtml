@@ -1,0 +1,49 @@
+<?php
+    $id = $_REQUEST['templateData']['id'];
+    $task = mysql_fetch_assoc(mysql_query("SELECT * FROM deals_tasks WHERE id='{$id}'"));
+    if($task)$task = formatTask($task);    
+?>
+<? if($id && !$task):?>
+<div class="alert alert-danger">Unexpected Error</div>
+<? else:?>
+<form>    
+    <input type="hidden" name="action" value="createTodoTask">    
+    <input type="hidden" name="listing_id" value="{{lId}}">   
+    <input type="hidden" name="id" value="{{id}}">   
+    <div class="row">
+        <div class="col-sm-12">                        
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" name="title" value="<?=$task->title?>">
+            </div>
+        </div>
+        <? if($id) :?>
+        <div class="col-sm-12">                        
+            <div class="form-group">
+            <div class="checkbox checkbox-primary">			
+                <input id="todoclosecheckbox" type="checkbox" name="closed" value="1" class=" pointer" <?=($task->closed)?'checked':''?>>		
+                <label for="todoclosecheckbox" class=" pointer">Mark as complete</label>		 	
+            </div>	
+            </div>
+        </div>
+        <? endif; ?>
+        <div class="col-sm-12">                        
+            <div class="form-group">
+                <label>Tags</label>                
+                <input type="text" class="form-control" name="tags" value="<?=($task->tags)?implode(",",$task->tags):''?>">
+            </div>
+        </div>
+        <div class="col-sm-12">                        
+            <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control" rows="6" name="description"><?=$task->description?></textarea>
+            </div>
+        </div>  
+        <? if($id):?>
+        <div class="col-sm-12">                                    
+            <a href="#" class="text-danger todo-remove-a" data-id="{{id}}">Remove this task</a>            
+        </div>     
+        <? endif; ?>
+    </div>        
+</form>
+<?endif;?>

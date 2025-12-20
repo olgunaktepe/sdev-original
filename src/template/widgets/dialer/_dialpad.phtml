@@ -1,0 +1,17 @@
+<!-- begin dialer keypad -->
+<div class="theme-panel-content  dialpad-panel hidden" id="dialer-keypad" data-type="dialpad">    
+    <ul class="nav nav-tabs tabs-bordered nav-justified">
+        <li class="nav-item"><a href="#phone" data-toggle="tab" class="nav-link active">Phone</a></li>
+        <li class="nav-item"><a href="#sms" data-toggle="tab" class="nav-link">SMS</a></li>
+        <li class="nav-item"><a href="#email" data-toggle="tab" class="nav-link">Email</a></li>                                
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade show active" id="phone">                                    
+            <? include mapTemplate('widgets::dialer::_dialpad_phone'); ?>
+        </div>
+        <div class="tab-pane fade " id="sms">
+            <? include mapTemplate('widgets::dialer::_dialpad_sms'); ?>
+        </div>
+        <div class="tab-pane fade " id="email"> Coming Soon! </div>                                
+    </div>
+</div><!--/.dialer keypad-->

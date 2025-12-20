@@ -1,0 +1,45 @@
+<div class="widget-bms">
+	<a href="#" class="btn btn-primary bms-a">Benchmarks Tool</a>		
+
+
+	<script id="template-zhvi" type="x-handlebars">
+		<div class="col-sm-6 zhvi-summary">
+			<table class="table">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Median</th>
+						<th>Min</th>
+						<th>Max</th>
+						<th>Avg</th>
+<?/*						
+						<th>Peak-Trough</th>
+						<th>Peak-Current</th>
+						<th>Trough-Current</th>
+*/?>						
+					</tr>
+				</thead>
+				<tbody>
+				{{#each this}}
+				<tr>
+					<td>{{@key}}</td>
+					<td>{{median}}% {{#if median_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor median_delta}}}{{/xIf}}{{/if}}</td>
+					<td>{{min}}% {{#if min_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor min_delta}}}{{/xIf}}{{/if}}</td>
+					<td>{{max}}% {{#if max_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor max_delta}}}{{/xIf}}{{/if}}</td>					
+					<td>{{average}}% {{#if average_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor average_delta}}}{{/xIf}}{{/if}}</td>
+<?/*
+					<td>{{#xIf @key "==" "Zip"}}-{{else}}{{peak_trough}}% {{#if peak_troughh_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor peak_trough_delta}}}{{/xIf}}{{/if}}{{/xIf}}</td>
+					<td>{{#xIf @key "==" "Zip"}}-{{else}}{{peak_curr}}% {{#if peak_curr_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor peak_curr_delta}}}{{/xIf}}{{/if}}{{/xIf}}</td>
+					<td>{{#xIf @key "==" "Zip"}}-{{else}}{{trough_curr}}% {{#if trough_curr_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor trough_curr_delta}}}{{/xIf}}{{/if}}{{/xIf}}</td>
+*/?>					
+				</tr>
+				{{/each}}
+				</tbody>
+			</table>
+    	</div>
+    	<div class="col-sm-6 bms-zhvi-chart">
+    	</div>    
+	</script>
+
+
+</div>

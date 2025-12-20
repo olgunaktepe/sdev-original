@@ -1,0 +1,25 @@
+
+<div class="row widget-phone_manager">    
+    <div class="col-sm-3 mb-1">        
+    <div class="row">
+        <? if($_SESSION['user']->type_id <= 2): ?>    
+            <div class="col-sm-12 mb-1">
+            <? include mapTemplate('widgets::phone_manager::numbers'); ?>            
+            </div>
+        <? endif; ?>
+            <div class="col-sm-12 mb-1">                
+                <? include mapTemplate('widgets::phone_manager::contactbook'); ?>                            
+            </div>
+        </div>                        
+    </div>
+    <div class="col-sm-9">
+        <div class="row">
+            <div class="col-sm-12 mb-1">
+                <? include mapTemplate('widgets::phone_manager::active'); ?>            
+            </div>
+            <div class="col-sm-12 mb-1">
+                <? include mapTemplate('widgets::phone_manager::log'); ?>            
+            </div>
+        </div>        
+    </div>    
+</div>

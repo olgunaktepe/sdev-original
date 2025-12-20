@@ -1,0 +1,29 @@
+<div class="topbar-main">
+		<div class="container-fluid">
+		<div class="logo">                        
+			<a href="<?=$GLOBALS['system']['href_base']?>" class="logo">
+				<span class="logo-small"><i class="mdi mdi-radar"></i></span>
+				<span class="logo-large"><i class="mdi mdi-radar"></i> <?=$GLOBALS['site']['title']?></span>
+			</a>  
+		</div>     				              
+		
+		<div class="menu-extras topbar-custom">
+			<ul class="list-inline float-right mb-0">
+				<li class="menu-item list-inline-item">			
+					<a class="navbar-toggle nav-link">
+						<div class="lines">
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+					</a>
+					<!-- End mobile menu toggle-->
+				</li>
+				
+				<? includeWidget('alerts::~top');?>		        														
+				<a href="<?=$GLOBALS['system']['href_base']?>logout" class="text-white"><i class="mdi mdi-logout"></i> <span>Logout</span></a>				
+			</ul>
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div>

@@ -1,0 +1,126 @@
+
+<script id="template-zip-selector" type="x-Handlebars">
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label>Zip Code</label>
+			<select class="form-control zip-selector-select">
+				{{#each items}}
+					<option value="{{this}}">{{this}}</option>
+				{{/each}}
+			</select>
+		</div>
+	</div>
+</script>
+<script id="template-widget-overall-summary" type="x-Handlebars">
+	<div class="col-sm-6">
+		<h3 class="text-inverse counter m-t-10">{{formatNumber sample_size}}</h3>
+		<p class="text-muted text-nowrap m-b-10">Sample Size</p>
+	</div>
+	<div class="col-sm-6">
+		<h3 class="text-inverse counter m-t-10">{{formatNumber filtered_size}} ({{formatNumber filtered_p 2}}%)</h3>
+		<p class="text-muted text-nowrap m-b-10">Filtered Size</p>
+	</div>
+	<div class="col-sm-6">
+		<h3 class="text-inverse counter m-t-10">{{formatNumber live}}</h3>
+		<p class="text-muted text-nowrap m-b-10">Live Listings</p>
+	</div>	
+	<div class="col-sm-6">
+		<h3 class="text-inverse counter m-t-10">{{formatNumber expired}} ({{formatNumber expired_p 2}}%)</h3>
+		<p class="text-muted text-nowrap m-b-10">Expired Listings</p>
+	</div>
+</script>
+<script id="template-widget-summary" type="x-Handlebars">
+<div class="row">
+<div class="col-sm-8">	
+	<ul class="list-inline m-t-10 mb-0">
+		{{#each items}}
+			<li>
+                <h5 class="text-muted font-13 m-t-10">{{label}}</h5>
+                <h4 class="m-b-0 font-15">
+					{{value}}
+					<span class="text-muted font-13">{{subvalue}}</span>
+				</h4>				
+            </li>
+		{{/each}}
+	</ul>
+</div>
+<div class="col-sm-4" style="display: flex;">	
+	<div style="align-self: flex-end;">
+		<a href="#" class="btn btn-sm btn-block btn-secondary">View Excluded</a>
+		<a href="#" class="btn btn-sm btn-block btn-danger">View Missing Values</a>
+	</div>
+</div>
+</div>
+</script>
+<script id="template-zhvi" type="x-handlebars">
+		<div class="col-sm-6 zhvi-summary">
+			<table class="table">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Median</th>
+						<th>Min</th>
+						<th>Max</th>
+						<th>Avg</th>
+<?/*						
+						<th>Peak-Trough</th>
+						<th>Peak-Current</th>
+						<th>Trough-Current</th>
+*/?>						
+					</tr>
+				</thead>
+				<tbody>
+				{{#each this}}
+				<tr>
+					<td>{{@key}}<br><div class="text-sm text-muted">{{title}}</div></td>
+					<td>{{data.median}}<br>{{#if data.median_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor data.median_delta}}}{{/xIf}}{{/if}}</td>
+					<td>{{data.min}}<br>{{#if data.min_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor data.min_delta}}}{{/xIf}}{{/if}}</td>
+					<td>{{data.max}}<br>{{#if data.max_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor data.max_delta}}}{{/xIf}}{{/if}}</td>					
+					<td>{{data.average}}<br>{{#if data.average_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor data.average_delta}}}{{/xIf}}{{/if}}</td>
+<?/*
+					<td>{{#xIf @key "==" "Zip"}}-{{else}}{{peak_trough}}% {{#if peak_troughh_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor peak_trough_delta}}}{{/xIf}}{{/if}}{{/xIf}}</td>
+					<td>{{#xIf @key "==" "Zip"}}-{{else}}{{peak_curr}}% {{#if peak_curr_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor peak_curr_delta}}}{{/xIf}}{{/if}}{{/xIf}}</td>
+					<td>{{#xIf @key "==" "Zip"}}-{{else}}{{trough_curr}}% {{#if trough_curr_delta}}{{#xIf @key "!=" "Zip"}}{{{formatNumberColor trough_curr_delta}}}{{/xIf}}{{/if}}{{/xIf}}</td>
+*/?>					
+				</tr>
+				{{/each}}
+				</tbody>
+			</table>
+    	</div>
+    	<div class="col-sm-6">
+			<div class="bm-widget-chart">
+			</div>
+    	</div>    
+</script>
+
+<script id="template-markets" type="x-handlebars">	
+		<select class="form-control bg-light markets-select" style="position: absolute; top: 8px; right: 30px; max-width: 350px;">
+			{{#each this}}			
+			<option value="{{@key}}">{{ucwords @key}}</option>			
+			{{/each}}
+		</select>	
+		{{#each this}}	
+		<div class="markets-data-container mt-5" data-type="{{@key}}" style="display:none">			
+			<table class="dataTable table w-100">
+				<thead>
+				<tr>
+					<th></th>
+					{{#each cols}}				
+					<th>{{title}} ({{distance}} miles)</th>
+					{{/each}}
+				</tr>				
+				</thead>
+				<tbody>
+				{{#each data}}
+					<tr>
+						<td>{{@key}}</td>
+						{{#each this}}
+						<td>{{this}}</td>
+						{{/each}}
+					</tr>
+				{{/each}}
+				</tbody>
+			</table>
+		</div>
+		{{/each}}
+</script>

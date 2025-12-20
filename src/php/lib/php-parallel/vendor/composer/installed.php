@@ -1,0 +1,41 @@
+<?php return array(
+    'root' => array(
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'type' => 'library',
+        'install_path' => __DIR__ . '/../../',
+        'aliases' => array(),
+        'reference' => NULL,
+        'name' => '__root__',
+        'dev' => true,
+    ),
+    'versions' => array(
+        '__root__' => array(
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../../',
+            'aliases' => array(),
+            'reference' => NULL,
+            'dev_requirement' => false,
+        ),
+        'cheprasov/php-parallel' => array(
+            'pretty_version' => '1.2.0',
+            'version' => '1.2.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../cheprasov/php-parallel',
+            'aliases' => array(),
+            'reference' => '5473371a95df375c8ed4c1f18e6d5f845ccbce9e',
+            'dev_requirement' => false,
+        ),
+        'cheprasov/php-redis-client' => array(
+            'pretty_version' => '1.10.0',
+            'version' => '1.10.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../cheprasov/php-redis-client',
+            'aliases' => array(),
+            'reference' => 'c3594e0bbc8ee1bc2c11c889ce5dfa0d3b8a6f9a',
+            'dev_requirement' => false,
+        ),
+    ),
+);

@@ -1,0 +1,39 @@
+<?php
+	$sid = $_REQUEST['templateData']['sid'];
+	$tags = $twilio->getLogTags($sid);		
+	$listing = $twilio->getLogListing($sid);		
+?>
+<? if(!$sid): ?>
+<div class="alert alert-danger">Unable to find call!</div>
+<? else: ?>
+<form>																
+	<input type="hidden" name="action" value="updateTags"/>					
+	<input type="hidden" name="sid" value="<?=$sid?>"/>					
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="form-group">
+				<label class="strong">Enter Call Tags</label>
+				<div>
+					<input class="tagsinput" type="text" name="tags" value="<?=$tags->tags_str?>" placeholder="add tags"/>
+				</div>
+			</div>			
+		</div>
+		
+		<div class="col-sm-12">
+			<div class="form-group">
+				<label class="strong">Assign to listing</label>				
+				<input class="form-control listing-autocomplete">							
+			</div>			
+		</div>		
+		<div class="col-sm-12 listing-autocomplete-res">
+			<? if($listing->id) :?>
+			<div>
+				<h4><input type="checkbox" name="lId" value="<?=$listing->id?>" checked/> <?=$listing->title?></h4>
+				<div><b>ID: </b><?=$listing->id?></div>				
+				<hr>			
+			</div>
+			<? endif; ?>
+		</div>
+	</div>			    
+</form>	
+<? endif; ?>

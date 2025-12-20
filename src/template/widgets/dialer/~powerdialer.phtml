@@ -1,0 +1,150 @@
+<div class="theme-panel dialer-container widget-dialer powerdialer">
+
+	<input type="hidden" class="token" value="" />
+	<input class="tocall form-control input-sm" type="text" placeholder="Enter number...">
+    <input type="hidden" class="userId" value="<?php echo $_SESSION['user']->id; ?>" />
+	
+    <a href="javascript:;" data-click="theme-panel-expand" class="theme-collapse-btn status-icon hidden" data-status="default"><i class="fa fa-phone default"></i><i class="fa fa-refresh fa-spin busy"></i><i class="fa fa-warning error"></i></a>             
+
+<div class="row" id="dialer-keypad">    
+    
+		<div class="col-sm-4">
+			<div class="row">
+				<div class="col-sm-6">
+					
+					<div class="dialer-section text-center">
+						<div class="section-title text-bold m-b-5">Dialer Controls</div>
+						
+						<div class="no-number-assigned"></div>
+						<script id="template-no_number" type="text/x-handlebars-template"><div class="row"><div class="col-xs-12 p-r-0"><label class="label col-xs-12 label-danger">You can't make any calls!<br>(No Phone Number Assigned!)</label></div></div></script>												    						  
+						    
+						<label class="label col-xs-12 label-success status"></label>
+						<select class="form-control callerId input-sm" data-style="btn-white">
+						                <option value="">Select Caller</option>
+						                <option value="PA">Joe Crump</option>
+						                <option value="CT">User 2</option>
+						                <option value="NY">User 3</option>
+						                <option value="MD">User 4</option>
+						                <option value="VA">User 5</option>
+						</select>						 
+						<button class="btn btn-success btn-sm btn-block call" id="dial-btn"><i class="fa fa-phone"></i></button>
+						    
+																						
+						
+						
+						<a href="#" class="btn btn-primary btn-xs campaign-start-a"><i class="fa fa-play"></i> Start</a>
+						<a href="#" class="btn btn-warning btn-xs campaign-pause-a" disabled><i class="fa fa-pause"></i> Pause</a>
+						<a href="#" class="btn btn-danger btn-xs campaign-stop-a" disabled><i class="fa fa-stop"></i> Stop</a>
+					</div>
+				</div>
+			
+				<div class="col-sm-6">
+					<div class="dialer-section text-center">
+						<div class="section-title text-bold m-b-5">Call Status</div>
+						<a href="#" class="btn btn-danger btn-xs status-a m-b-5" data-status="fax">Fax Machine</a>
+						<a href="#" class="btn btn-danger btn-xs status-a m-b-5" data-status="fax">Bad Number</a>
+						<a href="#" class="btn btn-warning btn-xs status-a m-b-5" data-status="busy">Busy Signal</a>
+						<a href="#" class="btn btn-warning btn-xs status-a m-b-5" data-status="noanswer">No Answer</a>						
+						<a href="#" class="btn btn-success btn-xs status-a m-b-5" data-status="anwer">Live Answer</a>
+					</div>														
+				</div>
+			</div>	
+		</div>
+		<div class="col-sm-4">	
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="dialer-section text-center">
+						<div class="section-title text-bold m-b-5">Voicemail</div>
+						<select class="form-control input-sm m-b-5">
+							<option>Message 1</option>
+							<option>Message 2</option>
+							<option>Message 3</option>
+						</select>
+						<a href="#" class="btn btn-primary btn-xs btn-block lead-skip-a">Leave Voicemail</a>						
+					</div>
+				</div>
+				
+				<div class="col-sm-6">
+					<div class="dialer-section text-center">
+						<div class="section-title text-bold m-b-5">Transfer</div>
+						<input type="text" class="form-control input-sm m-b-5" placeholder="Enter transfer phone number">
+						<a href="#" class="btn btn-primary btn-xs btn-block lead-skip-a">Transfer Call</a>						
+					</div>
+				</div>
+			</div>										
+		</div>
+								
+		<div class="col-sm-4">				
+			<div class="row">
+				
+				<div class="col-sm-6">										
+					<div class="dialer-section text-center">
+						<div class="section-title text-bold m-b-5">Current Lead</div>
+						<div class="m-b-5">John Smith - (323) 715 - 8388</div>
+						<a href="#" class="btn btn-primary btn-xs lead-a"><i class="fa fa-user"></i> Go to details page</a>										
+					</div>
+				</div>
+				<div class="col-sm-6">			
+					<div class="dialer-section text-center">
+						<div class="section-title text-bold m-b-5">Next Lead</div>
+						<div class="m-b-5">John2 Smith2 - (323) 715 - 8388</div>
+						<a href="#" class="btn btn-danger btn-xs lead-skip-a"><i class="fa fa-fast-forward"></i> Skip</a>										
+					</div>
+				</div>								
+										
+				
+				
+				
+				
+				
+								
+				<div class="col-sm-6 hidden">
+					<a href="#" class="btn btn-primary dial-play" data-cmd="playMessage" data-audio-message="https://api.twilio.com/2010-04-01/Accounts/AC5be3d63f75a08925bce0c261761e115e/Recordings/RE06b497e583f6d95fdfe0bb8f38ff4db1">Play Message</a>
+					<a href="#" class="btn btn-primary transfer-message-a" data-cmd="hangupMessage" data-audio-message="https://api.twilio.com/2010-04-01/Accounts/AC5be3d63f75a08925bce0c261761e115e/Recordings/RE06b497e583f6d95fdfe0bb8f38ff4db1">Transfer Message</a>
+				</div>				
+				
+			</div>																		
+		</div>
+	</div>
+
+	
+	
+	
+
+	<?=includeTemplate('widgets::dialer::_incoming');?>
+    <?=includeTemplate('widgets::dialer::_outbound');?>
+	<?=includeTemplate('widgets::dialer::_incall');?>
+			
+	<?=includeTemplate('widgets::dialer::_callerId');?>		
+	<?=includeTemplate('widgets::dialer::_callerId_busy');?>		
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+    </div>
+</div><!-- end dialer main panel -->

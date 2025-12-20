@@ -1,0 +1,47 @@
+<?php 
+?>
+<table class="listings-table table sortable">
+					<thead>
+						<tr>					
+							<th class="listings-sort" data-sort="created_on" data-sort-type="date">Title</th>					
+							<th class="listings-sort" data-sort="main_img" data-sort-type="default">Image</th>
+							<th class="listings-sort" data-sort="zipcode" data-sort-type="default">Address</th>
+							<th class="listings-sort" data-sort="price" data-sort-type="num">Price</th>
+							<th class="listings-sort" data-sort="sqft" data-sort-type="num">
+								<label>Size</label>
+								<select class="form-control input-sm">
+									<option value="sqft" data-sort-type="num">Sqft</option>									
+									<option value="buildings_sqft" data-sort-type="num">Bldg Sqft</option>
+								</select>
+							</th>
+							<th class="listings-sort" data-sort="price_per_sqft" data-sort-type="num">
+								<label>Price/Sqft</label>
+								<select class="form-control input-sm">
+									<option value="price_per_sqft" data-sort-type="num">Price/Acre</option>									
+									<option value="building_price_per_sqft_rounded" data-sort-type="num">Price/Bldg Sqft</option>
+								</select>
+							</th>
+							<th class="listings-sort" data-sort="far" data-sort-type="num">FAR</th>					
+							<th class="listings-sort" data-sort="category" data-sort-type="default">
+								<label>Category</label>
+								<select class="form-control input-sm">
+									<option value="price_per_sqft" data-sort-type="default">category</option>									
+									<option value="lease_exp" data-sort-type="num">Lease exp.</option>
+								</select>
+							</th>										
+							<th class="listings-sort" data-sort="noi" data-sort-type="num">
+								<label>NOI</label>
+								<select class="form-control input-sm">
+									<option value="noi" data-sort-type="num">NOI</option>									
+									<option value="cap_rate" data-sort-type="num">CAP Rate</option>
+									<option value="building_rent_rate" data-sort-type="num">Rent Rate</option>
+								</select>
+							</th>
+							<th class="listings-sort" data-sort="score" data-sort-type="num">
+								<label>Score</label>								
+							</th>
+						</tr>
+					</thead>										
+					<tbody  class="test-res-container">
+					</tbody>
+</table>

@@ -1,0 +1,52 @@
+<?php
+    $todoId = $_REQUEST['templateData']['todoId'];
+    list($todoTitle) = mysql_fetch_array(mysql_query("SELECT title FROM deals_tasks WHERE id='{$todoId}'"));    
+?>
+<form>    
+    <input type="hidden" name="action" value="createUpdate">    
+    <input type="hidden" name="listing_id" value="{{id}}">   
+    <input type="hidden" name="todo_id" value="{{todoId}}">   
+    <div class="row">
+        <? if($todoId): ?>
+        <div class="col-sm-12">                        
+            <div class="form-group">
+                <label>Todo Task</label>
+                <input type="text" class="form-control" value="<?=$todoTitle?>" readonly disabled>
+            </div>
+        </div>
+        <? endif;?> 
+        <div class="col-sm-12">                        
+            <div class="form-group">
+                <label>Title</label>
+                <input type="text" class="form-control" name="title">
+            </div>
+        </div>        
+        <div class="col-sm-12">                        
+            <div class="form-group">
+                <label>Type</label>                
+    		    <selectadd key="deals_updates.type" name="type" theme="primary" default-value="" placeholder="Select a type, or create a new one..." class="required">      		   
+            </div>
+        </div>
+        <div class="col-sm-12">                        
+            <div class="form-group">
+                <label>Content</label>
+                <textarea class="form-control" rows="6" name="description"></textarea>
+            </div>
+        </div> 
+        
+        <div class="col-sm-12">                        
+            <div class="form-group">
+                <label>Attach Files</label>
+                <div class="updates-dropzone-uploader">
+                    <div class="updates-fileupload-dropzone dz-clickable fileupload-dropzone border text-center border-radius-lg flex">
+                        <input type="file" name="file[]" multiple>								
+                        <div class="message upload-trigger updates-fileupload-dropzone-trigger">Drop files here to upload</div>
+                    </div> 
+                    <div class="fileupload-preview-container updates-dropzone-preview-container">
+                    </div>                               
+                </div>       
+
+            </div>
+        </div>                   
+    </div>        
+</form>

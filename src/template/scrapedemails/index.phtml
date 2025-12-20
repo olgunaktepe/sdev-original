@@ -1,0 +1,126 @@
+<style>
+.wrap>.container{ width: 90%!important; max-width: 90%!important; }
+h3{ margin-top: 0!important; }
+#crowd-elements-loading-dimmer{ display: none!important; }
+</style>
+<div class="page-scrapedemails">	
+	<div class="row card-box">
+		<div class="col-sm-12">
+			<div class="ibox-content m-b-sm border-bottom">
+				<h3>Filters</h3>   
+            	<hr>  
+				<form class="search-form">
+				<input type="hidden" name="action" value="loadEmails">
+				<div class="row">								
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">Query</label>
+							<input type="text" class="form-control" name="filter[title]" value="">						
+						</div>
+					</div>						
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">Date</label>
+							<input type="text" class="form-control daterangepicker" data-type="advanced" name="filter[date]">						
+						</div>
+					</div>	
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">Status</label>
+							<select class="form-control"  name="filter[status]">
+								<option value="">All</option>
+								<option value="pending">Pending</option>
+								<option value="ready">Ready</option>
+								<option value="requeued">Requeued</option>
+								<option value="error">Error</option>
+							</select>												
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="form-group">
+							<label class="control-label">&nbsp;</label>
+							<a href="#" class="btn btn-block btn-primary search-a"><i class="fa fa-search"></i> Search</a>
+						</div>
+					</div>	
+							
+				</div>				
+				</form>
+			</div>
+		</div>
+	</div>	
+	
+	<div class="row card-box hidden">
+        <div class="col-lg-12">
+			<div class="ibox-content m-b-sm">
+				<div class="row"><div class="col-lg-12"><h3>Emails Stats</h3><hr></div></div>
+				<div class="row summary-container">																
+				</div>
+			</div>
+		</div>
+	</div>	
+	
+	<div class="row card-box">
+        <div class="col-lg-12">
+            <div class="ibox-content m-b-sm ">             	     
+            	<h3>Emails</h3>   
+            	<hr>                      
+				<table class="table emails-container">
+                        <thead>
+                            <tr>																								
+								<th data-orderable="true">From</th>
+								<th data-orderable="true">Subject</th>								
+								<th data-orderable="true" data-default-sort="desc">Timestamp</th>
+								<th data-orderable="true">Status</th>
+								<th data-orderable="false"></th>																								
+                            </tr>
+                        </thead>
+                        <tbody>	                        				
+                        </tbody>
+				</table>                
+            </div>
+        </div>
+    </div>
+		
+	<script id="template-summary" type="x-handlebars">	
+		{{#each stats.scrapes}}	
+		<div class="col-lg-6 m-b-30">				
+			<h5 class="m-b-0">{{@key}}</h5>
+			<div class="row">
+			{{#each this}}								
+				<div class="col-sm-3">
+					<div class="text-muted font-16">{{@key}}</div>
+					<h4 class="mb-0">{{this}}</h4>						
+				</div> 					                                     																	
+			{{/each}}
+			</div>
+		</div>	
+		{{/each}}	
+	</script>
+	
+
+	<script id="template-emails-item" type="x-handlebars">
+		<tr data-id="{{id}}" data-remote-id="{{remote_id}}" class="emails-item">
+			<td>{{email}}</td>			
+			<td>{{subject}}</td>										
+			<td nowrap>{{timestamp}}</td>
+            <td>{{mturk_status}}</td>			
+			<td class="text-right" nowrap>				
+				<a href="#" class="btn btn-sm btn-info view-mturk-a" title="View Details"><i class="fa fa-eye"></i></a>														
+			</td>
+		</tr>
+	</script>
+	<script id="template-empty" type="x-handlebars">
+		<tr>
+			<td>No cards found!</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>			
+			<td></td>			
+			<td></td>			
+			<td></td>			
+		</tr>
+	</script>
+</div>
+
+

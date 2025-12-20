@@ -1,0 +1,44 @@
+<div class="theme-panel dialer-container widget-dialer">	
+	<input type="hidden" class="token" value="" />
+    <input type="hidden" class="userId" value="<?php echo $_SESSION['user']->id; ?>" />
+	
+    <a href="javascript:;" class="dialer-toggle status-icon text-dark" data-status="default">
+		<i class="fa fa-warning default"></i>
+		<i class="fa fa-phone ready"></i>
+		<i class="fa fa-refresh fa-spin busy"></i>
+		<i class="fa fa-warning err"></i>
+	</a>
+           
+    <?=includeTemplate('widgets::dialer::_incoming');?>
+    <?=includeTemplate('widgets::dialer::_outbound');?>
+	<?=includeTemplate('widgets::dialer::_incall');?>
+	<?=includeTemplate('widgets::dialer::_dialpad');?>		
+	<?=includeTemplate('widgets::dialer::_callerId');?>		
+	<?=includeTemplate('widgets::dialer::_callerId_busy');?>	
+	<?=includeTemplate('widgets::dialer::_call_summary');?>	
+	
+	<script id="dialpad-buy-search-res" type="x-handlebars">		
+		{{#if id}}
+        	<h3>{{number}}</h3>
+			<div>Location: {{city}}, {{state}}</div>		
+			<div class="btn btn-success dialpad-buy-res-a" data-id="{{id}}"><i class="fa fa-dollar"></i> Buy & Configure</div>
+		{{else}}
+			<div class="alert alert-danger">Unexpected Error</div>
+		{{/if}}
+	</script>
+
+	<script id="template-autocomplete-res" type="x-handlebars">		
+		{{#each items}}
+		<div>
+			<h4><input type="checkbox" name="lId" value="{{id}}"/> {{title}}</h4>
+			<div><b>ID: </b>{{id}}</div>
+			<div><b>Address: </b>{{address}}, {{city}}, {{state}} {{zip}}</div>			
+			<hr>
+			
+		</div>
+		{{else}}
+			<div>No results found</div>
+		{{/each}}
+	</script>
+
+</div><!-- end dialer main panel -->

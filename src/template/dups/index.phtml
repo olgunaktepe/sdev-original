@@ -1,0 +1,303 @@
+<div class="page-dups">
+	<div class="row">
+		<div class="col-sm-3">			
+
+			<div class="ibox-content m-b-sm border-bottom card-box">
+				<h3 class="">Test Settings</h3>
+
+				<div class="form-group">
+					<label class="control-label">Deal ID</label>
+					<input type="text" class="form-control test-input" value="6248497">
+				</div>				
+				<div class="form-group">					
+					<a href="#" class="btn btn-block btn-primary test-a">Test Listing</a>
+				</div>				
+			</div>
+
+			<div class="ibox-content m-b-sm border-bottom card-box config-container">
+				
+			</div>
+
+		</div>
+		<div class="col-sm-9">
+			<div class="row card-box">
+				<div class="col-lg-12">
+					<div class="ibox-content m-b-sm "> 	
+						<a href="#" class="btn btn-primary pull-right dups-search-a"><i class="fa fa-refresh"></i></a>      					
+						<h3>Entries</h3>   
+						<hr>   
+						<form class="dups-form">
+							<input type="hidden" name="action" value="loadDups">
+							<div class="form-group mr-3">
+								<label>Type</label>
+								<select class="form-control" name="filter[type]">										
+									<option value="">All</option>
+									<option value="lease">Lease</option>
+									<option value="sale">Sale</option>
+								</select>
+							</div>
+						</form>                   
+						<table class="table dups-container table-row-colors">
+								<thead>
+									<tr>																								
+										<th data-orderable="true" width="10%" data-default-sort="desc">Timestamp</th>
+										<th data-orderable="true">Listing 1</th>
+										<th data-orderable="true">Listing 2</th>
+										<th data-orderable="true">Distance</th>
+										<th data-orderable="true">Match</th>
+										<th data-orderable="false">Scores</th>										
+									</tr>
+								</thead>
+								<tbody>	                        				
+								</tbody>
+						</table>                
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+
+	<script id="template-dups-item" type="x-handlebars">	
+		<tr>
+			<td>{{timestamp_ago}}</td>
+			<td>
+				<div  style="width:225px; height: 140px; overflow: hidden;"><img src="{{ref.main_img}}" style="width:100%; height: auto;"></div>
+				<div style="width:260px; white-space: normal;">{{ref.title}}</div>
+				<div>Listing ID: {{ref.id}}</div>														
+				<div>Source: {{#if ref.url}}<a href="{{ref.url}}" target="_blank">{{ref.source}}</a>{{else}}{{ref.source}}{{/if}}</div>		
+				<a class="btn btn-info bbtn-sm" target="_blank" href="/site/deal3?id={{ref.id}}">View Details</a>							
+				<div style="max-width:260px; white-space: normal;">{{ref.address}}, {{ref.city}}, {{ref.state}} {{ref.zipcode}}</div>
+				<div class="badge badge-sm badge-primary">Created {{ref.created_on}}</div><br>
+				<div class="badge badge-sm badge-primary">Scraped {{ref.scraped_on}}</div>							
+			</td>
+			<td>
+				<div  style="width:225px; height: 140px; overflow: hidden;"><img src="{{dup.main_img}}" style="width:100%; height: auto;"></div>
+				<div style="width:260px; white-space: normal;">{{dup.title}}</div>
+				<div>Listing ID: {{dup.id}}</div>														
+				<div>Source: {{#if dup.url}}<a href="{{dup.url}}" target="_blank">{{dup.source}}</a>{{else}}{{dup.source}}{{/if}}</div>		
+				<a class="btn btn-info bbtn-sm" target="_blank" href="/site/deal3?id={{dup.id}}">View Details</a>							
+				<div style="max-width:260px; white-space: normal;">{{dup.address}}, {{dup.city}}, {{dup.state}} {{dup.zipcode}}</div>
+				<div class="badge badge-sm badge-primary">Created {{dup.created_on}}</div><br>
+				<div class="badge badge-sm badge-primary">Scraped {{dup.scraped_on}}</div>							
+			</td>
+			<td>{{formatNumber distance_feet 2}} ft</td>
+			<td>
+				{{#if dup}}
+					<div class="badge badge-success badge-sm">Matched</div>
+				{{else}}
+					<div class="badge badge-danger badge-sm">Not Matched</div>
+				{{/if}}
+				<div>Overall Score: {{score}}%</div>
+				<div>Decision Reason: {{reason}}</div>							
+			</td>
+			<td>								
+				<table class="table">									
+
+					{{#each data.scores}}
+					{{#xIf this "!=" "na"}}
+					<tr><td>{{@key}}</td><td>{{#xIf this "==" "na"}}-{{else}}{{formatNumber this 2}}%{{/xIf}}</td></tr>
+					{{/xIf}}
+					{{/each}}
+				</table>
+			</td>			
+		</tr>
+	</script>
+
+
+	<script id="template-listing-item" type="x-handlebars">	
+					<tr class="location-card">								
+						<td nowrap>															
+							<div class="" style="white-space: nowrap" nowrap>								
+								<a href="#" class="btn btn-link btn-lg p-1 flag-a {{#xIf status "==" "Favorites"}}text-danger flag-on{{else}}text-muted{{/xIf}}" data-type="Favorites"><i class="fa fa-heart"></i></a>
+								<a href="#" class="btn btn-link btn-lg p-1 flag-a {{#xIf status "==" "Potential Buy"}}text-success flag-on{{else}}text-muted{{/xIf}}" data-type="Potential Buy"><i class="fa fa-thumbs-up"></i></a>
+								<a href="#" class="btn btn-link btn-lg p-1 flag-a {{#xIf status "==" "Bad Deal"}}text-warning flag-on{{else}}text-muted{{/xIf}}" data-type="Bad Deal"><i class="fa fa-thumbs-down"></i></a>
+							</div>
+
+							<div>Listing ID: {{id}}</div>
+							<h4 class="text-danger">{{status}}</h4>	
+							<div style="width:260px; white-space: normal;">{{title}}</div>
+							<div>Source: {{#if url}}<a href="{{url}}" target="_blank">{{source}}</a>{{else}}{{source}}{{/if}}</div>		
+							<a class="btn btn-info bbtn-sm" target="_blank" href="/site/deal3?id={{id}}">View Details</a>
+						</td>						
+						<td><div  style="width:225px; height: 140px; overflow: hidden;"><img src="{{main_img}}" style="width:100%; height: auto;"></div></td>
+						<td nowrap>							
+							<div style="max-width:260px; white-space: normal;">{{address}}, {{city}}, {{state}} {{zipcode}}</div>
+							<div class="badge badge-sm badge-primary">Created {{created_on}}</div><br>
+							<div class="badge badge-sm badge-primary">Scraped {{scraped_on}}</div>
+							
+						</td>						
+						<td data-sort="{{stripNumber price}}" nowrap>
+							<div>${{price}}</div>
+						</td>
+						<td data-sort="{{stripNumber sqft}}" nowrap>
+							<div>{{formatNumber sqft}} Sqft</div>
+							<div>{{acres}} Acres</div>
+							<div>{{formatNumber buildings_sqft}} Building Sqft</div>
+						</td>
+						<td data-sort="{{stripNumber price_per_sqft}}" nowrap>
+							<div class="hidden">${{price_per_sqft}} /sqft</div>
+							<div>${{price_per_acres}} /acre</div>							
+							<div>${{building_price_per_sqft_rounded}} /bldg sqft</div>							
+						</td>												
+						<td data-sort="{{stripNumber far}}" nowrap>{{far}}</td>						
+						<td>
+							{{category}}
+							{{#xIf lease_exp ">" 0}}<div class="badge badge-info badge-sm">Lease expires in {{lease_exp}} years</div>{{/xIf}}
+						</td>
+						<td data-sort="{{stripNumber noi}}" nowrap>
+							<div>{{#if noi}}${{noi}}{{else}}-{{/if}}</div>
+							<div>{{#if cap_rate}}{{cap_rate}}%{{else}}-{{/if}}</div>
+							<div>{{#if building_rent_rate}}${{building_rent_rate}} psf{{else}}-{{/if}}</div>
+						</td>
+						<td data-sort="{{stripNumber dupInfo.score}}" nowrap>
+							{{#if dupInfo}}
+								{{#xIf dupInfo.match ">" "0"}}
+									<div class="badge badge-success badge-sm">Matched</div>
+								{{else}}
+									<div class="badge badge-danger badge-sm">Not Matched</div>
+								{{/xIf}}
+								<div>Overall Score: {{dupInfo.score}}%</div>
+								<div>Decision Reason: {{dupInfo.reason}}</div>							
+								<div>Distance: {{dupInfo.distance}}</div>							
+								<hr>
+								<table class="table">									
+									{{#each dupInfo.scores}}
+									{{#xIf this "!=" "na"}}
+									<tr><td>{{@key}}</td><td>{{#xIf this "==" "na"}}-{{else}}{{this 2}}%{{/xIf}}</td></tr>
+									{{/xIf}}
+									{{/each}}
+								</table>
+							{{else}}
+								Reference Listing.
+							{{/if}}
+							
+						</td>
+					</tr>				
+	</script>
+
+
+	<script id="template-config" type="x-handlebars">
+				<a href="#" class="btn btn-success pull-right config-save-a" style="{{#if save_pending}}{{else}}display:none{{/if}}"><i class="fa fa-save"></i> Save Changes</a>
+				<h3>Deduplication Settings</h3>
+            	<hr>
+
+				<h4 style="text-decoration: underline">Auto match rules:</h4>
+				{{#each auto_match}}
+					{{#each conditions}}
+						<div><a class="text-danger config-remove-a" href="#" data-type="match" data-key="{{this.[0]}}_{{this.[1]}}_{{this.[2]}}"><i class="fa fa-times"></i></a> <b>{{this.[0]}}</b> {{this.[1]}} <b class="text-success">{{this.[2]}}</b></div>					
+						<div>{{#if @last}}{{else}}{{../../mode}}{{/if}}</div>						
+					{{/each}}
+					<a href="#" class="btn btn-sm btn-outline-dark mt-2 config-add-a" data-type="match"><i class="fa fa-plus"></i> Add Condition</a>
+				{{/each}}
+				<br>
+				<hr>
+				<h4 style="text-decoration: underline">Auto mismatch rules:</h4>
+				{{#each auto_mismatch}}
+					{{#each conditions}}
+						<div><a class="text-danger config-remove-a" href="#" data-type="mismatch" data-key="{{this.[0]}}_{{this.[1]}}_{{this.[2]}}"><i class="fa fa-times"></i></a> <b>{{this.[0]}}</b> {{this.[1]}} <b class="text-success">{{this.[2]}}</b></div>					
+						<div>{{#if @last}}{{else}}{{../../mode}}{{/if}}</div>						
+					{{/each}}
+					<a href="#" class="btn btn-sm btn-outline-dark mt-2 config-add-a" data-type="mismatch"><i class="fa fa-plus"></i> Add Condition</a>
+				{{/each}}
+			
+				<br>
+				<hr>
+
+				<h4 style="text-decoration: underline">Data point weights:</h4>
+				{{#each weights}}
+					<div><b>{{@key}}: </b><input type="number" class="form-control inline-block" step="1" min="0" max="100" style="width: 100px" name="weights[{{@key}}]" value="{{this}}"></div>					
+				{{/each}}
+
+				<br>
+				<hr>
+				<h4 style="text-decoration: underline">Global Settings:</h4>				
+				<div><b>Search Radius: </b><input type="number" class="form-control inline-block" step="0.1" style="width: 100px" name="radius" value="{{radius}}"> miles</div>				
+				<div><b>Matching Score Threshold: </b><input type="number" class="form-control inline-block" step="1" min="0" max="100" style="width: 100px" name="threshold" value="{{threshold}}">%</div>				
+
+
+
+	<div class="col-sm-6">
+        <div class="filter-query-data mb-3">
+			{{#if filter.proximity}}
+			<div class="form-inline mb-2">
+				<div class="form-group mr-3">
+					<label>Proximity</label>		
+				</div>
+				<div class="form-group mr-3">
+					<input type="number" class="form-control filter-query-proximity-value" value="0.5"> (miles)
+				</div>
+			</div>
+			{{/if}}
+			{{#if filter.market_type}}			
+			<div class="form-inline mb-2">
+				<div class="form-group mr-3">
+					<label>Type</label>		
+				</div>
+				<div class="form-group mr-3">
+					<select class="form-control filter-query-market-type-value">
+						<option value="retail">Retail</option>
+						<option value="industrial">Industrial</option>
+						<option value="office">Office</option>
+						<option value="multifamily">Multifamily</option>
+						<option value="student">Student</option>
+						<option value="hospitality">Hospitality</option>
+					</select>
+				</div>
+			</div>
+			{{/if}}		
+	</script>
+	
+
+	
+	
+		
+	<script id="template-summary" type="x-handlebars">	
+		{{#each stats.scrapes}}	
+		<div class="col-lg-6 m-b-30">				
+			<h5 class="m-b-0">{{@key}}</h5>
+			<div class="row">
+			{{#each this}}								
+				<div class="col-sm-3">
+					<div class="text-muted font-16">{{@key}}</div>
+					<h4 class="mb-0">{{this}}</h4>						
+				</div> 					                                     																	
+			{{/each}}
+			</div>
+		</div>	
+		{{/each}}	
+	</script>
+	
+	
+	<script id="template-listings-item" type="x-handlebars">
+		<tr data-id="{{id}}" data-remote-id="{{remote_id}}" class="listings-item">
+			<td><a href="{{url}}" target="_blank">{{title}}</a></td>			
+			<td>{{status}}</td>							
+			<td>{{source}}</td>
+			<td nowrap>{{timestamp}}</td>
+			<td>
+				{{#if score}}
+					{{#if score.locationScore}}
+						{{score.locationScore}}
+					{{else}}
+						0
+					{{/if}}
+					<a href="#" class="btn btn-xs btn-primary score-a" title="View Details" data-lng="{{lng}}" data-lat="{{lat}}"><i class="fa fa-eye"></i></a>
+				{{else}}
+					-
+				{{/if}}
+			</td>																						
+			<td>{{images_count}}</td>																					
+			<td>{{updates_count}}</td>
+			<td>{{last_seen_ago}}</td>
+			<td class="text-right" nowrap>
+				<a href="#" class="btn btn-sm btn-primary updates-a" title="View Updates"><i class="fa fa-bar-chart-o"></i></a>
+				<a href="#" class="btn btn-sm btn-info view-a" title="View Details"><i class="fa fa-eye"></i></a>														
+			</td>
+		</tr>
+	</script>
+
+
+</div>
+
+

@@ -19,3 +19,34 @@ Thumbs.db
 *.key
 credentials*
 secrets*
+
+# Source code - sensitive files
+src/settings.php
+src/settings.local.php
+src/router.local.php
+src/.htaccess
+src/php.ini
+
+# API keys and credentials
+src/php/lib/gmail/*.json
+src/php/lib/AWS/mturk.lib.php
+src/python/assitant.py
+
+# Documentation with secrets (regenerate without secrets)
+src/QUICK_REFERENCE.md
+src/SECURITY_ASSESSMENT.md
+src/SESSION_SUMMARY.md
+
+# Source code - large/binary files
+src/test.webm
+src/*.docx
+
+# Source code - generated documentation
+src/Documentation-Word/
+src/.serena/
+
+# Railway
+.railway/
+
+# Docker local settings
+docker/settings.*.local.php

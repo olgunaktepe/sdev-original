@@ -1,0 +1,17 @@
+
+<?php
+
+?>
+
+<? if(!$_REQUEST['listingId']): ?>
+<div class="alert alert-danger">Unexpected Error</a>
+<? else: ?>
+<div class="row widget-phone_manager" data-listing-id="<?=$_REQUEST['listingId']?>">   
+    <div class="col-sm-12 mb-1">
+        <? include mapTemplate('widgets::phone_manager::active'); ?>            
+    </div>
+    <div class="col-sm-12 mb-1">
+        <? include mapTemplate('widgets::phone_manager::log'); ?>            
+    </div>    
+</div>
+<? endif; ?>

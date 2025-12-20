@@ -252,6 +252,8 @@ All code must pass review before being shared with the original developer.
 |---------|---------|
 | `/propose-fix [issue]` | Create a fix proposal |
 | `/review-code [code]` | Review code for compliance |
+| `/document-fix [fix-name]` | Create GitHub PR for approved fix |
+| `/deploy-fix [PR-number]` | Deploy to Railway test server |
 
 ### Review Criteria
 
@@ -273,7 +275,25 @@ See `RULES.md` for the complete rejection checklist.
 2. **Review** - Use `/review-code` to check compliance
 3. **Fix** - Address any violations
 4. **Re-review** - Confirm all issues resolved
-5. **Share** - Send approved fix to original developer
+5. **Document** - Use `/document-fix` to create GitHub PR
+6. **Deploy** - Use `/deploy-fix` to push to Railway test server
+7. **Share** - Share PR link with original developer
+
+### Railway Test Environment
+
+**URL:** https://sdev-original-test.up.railway.app
+
+Test fixes on Railway before sharing with the original developer:
+```bash
+# Deploy current main branch
+/deploy-fix
+
+# Deploy specific PR
+/deploy-fix 5
+
+# Check status
+/deploy-fix status
+```
 
 ---
 

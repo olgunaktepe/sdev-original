@@ -1,0 +1,5 @@
+{
+    "require": {
+        "cheprasov/php-parallel": "^1.2"
+    }
+}

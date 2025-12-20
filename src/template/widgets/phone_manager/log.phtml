@@ -1,0 +1,318 @@
+<?
+function getFilterTypes(){
+	$items = [];
+	$q = mysql_query("SELECT DISTINCT type FROM twilio_log");
+	while(list($r) = mysql_fetch_array($q))$items[] = $r;
+	return $items;
+}
+function getFilterStatus(){
+	$items = [];
+	$q = mysql_query("SELECT DISTINCT status FROM twilio_log");
+	while(list($r) = mysql_fetch_array($q))$items[] = $r;
+	return $items;
+}
+function getFilterListings(){
+	$items = [];
+	$q = mysql_query("SELECT DISTINCT listing_id FROM twilio_log");
+	while(list($r) = mysql_fetch_array($q)){
+        if(!$r)continue;
+        list($title) = mysql_fetch_array(mysql_query("SELECT title FROM listings WHERE id='{$r}'"));
+        if(!$title)continue;
+        $items[] = (object)['title'=>$title, 'id'=>$r];
+    }
+	return $items;
+}
+
+?>
+<div class="card-box m-0"  style="overflow-x: auto">           
+<h4 class="text-dark header-title m-t-0">Call Log</h4>
+
+<form class="log-search-form">
+    <input type="hidden" name="action" value="loadLog"/>
+
+    <div class="row">	
+        <div class="col-sm-3">
+			<div class="form-group">
+				<label class="control-label">Date</label>
+				<input type="text" class="form-control daterangepicker" data-type="advanced" name="filter[timestamp]">						
+			</div>
+		</div>								
+		<div class="col-sm-3">
+			<div class="form-group">
+				<label class="control-label">From/To</label>
+				<input type="text" class="form-control" name="filter[fromto]" value="">						
+			</div>
+		</div>             				
+		<div class="col-sm-3">
+			<div class="form-group">
+				<label class="control-label">Type</label>
+					<select class="form-control"  name="filter[type]">
+						<option value="">All</option>
+						<? foreach(getFilterTypes() as $r): ?>
+                            <option value="<?=$r?>"><?=ucwords($r)?></option>
+                        <? endforeach;?>
+					</select>												
+			</div>
+	    </div>
+        <div class="col-sm-3">
+			<div class="form-group">
+				<label class="control-label">Status</label>
+					<select class="form-control"  name="filter[status]">
+						<option value="">All</option>
+						<? foreach(getFilterStatus() as $r): ?>
+                            <option value="<?=$r?>"><?=ucwords($r)?></option>
+                        <? endforeach;?>
+					</select>												
+			</div>
+	    </div>
+
+        <? if($_REQUEST['listingId']): ?>
+            <input type="hidden" name="filter[listing_id]" value="<?=$_REQUEST['listingId']?>"/>
+        <? else: ?>
+        <div class="col-sm-3">
+			<div class="form-group">
+				<label class="control-label">Listing</label>
+					<select class="form-control"  name="filter[listing_id]">
+						<option value="">All</option>
+						<? foreach(getFilterListings() as $r): ?>
+                            <option value="<?=$r->id?>"><?=$r->title?></option>
+                        <? endforeach;?>
+					</select>												
+			</div>
+	    </div>	
+        <? endif; ?>
+        
+        <div class="col-sm-3">
+            <div class="form-group">
+                <label class="control-label">&nbsp;</label>
+                <div><a href="#" class="btn btn-primary log-search-a"><i class="fa fa-search"></i> Search</a></div>		
+            </div>		
+        </div>		
+	</div>    
+</form>
+
+<table class="table mb-0 table-responsive log-container">
+    <thead>
+        <tr>
+            <th data-orderable="true">Date</th>
+            <th data-orderable="true">Status</th>            
+            <th data-orderable="true">Type</th>
+            <th data-orderable="true">User</th>
+            <th data-orderable="true">From</th>
+            <th data-orderable="true">To</th>            
+            <th data-orderable="true">Duration</th>            
+            <th data-orderable="true">Content</th>
+            <th data-orderable="false">Listing</th>            
+            <th data-orderable="false"></th>
+        </tr>
+    </thead>
+    <tbody>        
+    </tbody>
+</table>
+
+<script id="template-log-item" type="x-handlebars">
+<tr class="log-item" data-id="{{id}}">
+    <td nowrap>        
+        {{timestamp}}
+        <br>        
+        {{#xIf new ">" "0"}}
+            <button class="badge badge-success cursor-pointer badge-sm log-read-a">New</button>
+        {{/xIf}}
+        <div class="badge badge-secondary badge-sm">{{timestamp_ago}}</div>
+    </td>
+    <td  class="{{#xIf direction '==' 'inbound'}}{{#xIf type '==' 'call'}}{{#xIf status '==' 'no-answer'}}text-danger{{/xIf}}{{/xIf}}{{/xIf}}" nowrap>{{ucwords status}}</td>
+    <td  class="{{#xIf direction '==' 'inbound'}}{{#xIf type '==' 'call'}}{{#xIf status '==' 'no-answer'}}text-danger{{/xIf}}{{/xIf}}{{/xIf}}" nowrap>        
+        {{#xIf type '==' 'call'}}            
+            {{#xIf direction '==' 'inbound'}}<span class="material-symbols-outlined">phone_callback</span>{{else}}<span class="material-symbols-outlined">phone_forwarded</span>{{/xIf}}
+        {{else}}
+            {{#xIf direction '==' 'inbound'}}<span class="material-symbols-outlined">call_received</span>{{else}}<span class="material-symbols-outlined">call_made</span>{{/xIf}}
+        {{/xIf}}
+        
+        
+        {{ucwords direction}} {{ucwords type}}
+
+        {{#if conf_id}} 
+        <br>
+        <div class="badge badge-info badge-sm">Conference Room</div>
+        {{/if}}
+
+
+    </td>
+    <td nowrap>{{#if user}}<i class="fa fa-user"></i> {{user.username}}{{else}}-{{/if}}</td>
+    <td nowrap>
+        {{#if caller_ids.sender}}
+            {{#if caller_ids.sender.local}}
+                {{#xIf caller_ids.sender.local.0.own '==' '1'}}
+                    <div class="font-bold">{{caller_ids.sender.local.0.name}}</div>
+                {{else}}
+                    <a href="#" class="font-bold log-convo-a" data-key="{{target}}|{{sender}}">{{caller_ids.sender.local.0.name}}</a>
+                {{/xIf}}
+                <div class="text-sm text-muted" style="font-size: 12px;">{{caller_ids.sender.local.0.company}}</div>
+            {{else}}
+                {{#xIf caller_ids.sender.local.0.own '==' '1'}}
+                    <div class="font-bold">{{formatPhoneNumber sender}}</div>
+                {{else}}
+                    <a href="#" class="font-bold log-convo-a" data-key="{{target}}|{{sender}}">{{formatPhoneNumber sender}}</a>
+                {{/xIf}}
+            {{/if}}
+            {{#if caller_ids.sender.remote}}
+                <div>{{caller_ids.sender.remote.0.name}}</div>
+                <div class="text-sm text-muted" style="font-size: 12px;">{{caller_ids.sender.remote.0.company}}</div>
+                <div class="text-sm text-muted" style="font-size: 12px;">{{caller_ids.sender.remote.0.carrier}} ({{caller_ids.sender.remote.0.type}})</div>
+            {{/if}}
+        {{else}}
+            {{formatPhoneNumber sender}}
+        {{/if}}        
+    </td>
+    <td nowrap>
+    {{#if caller_ids.target}}
+            {{#if caller_ids.target.local}}
+                {{#xIf caller_ids.target.local.0.own '==' '1'}}
+                    <div class="font-bold">{{caller_ids.target.local.0.name}}</div>
+                {{else}}
+                    <a href="#" class="font-bold log-convo-a" data-key="{{target}}|{{sender}}">{{caller_ids.target.local.0.name}}</a>
+                {{/xIf}}                
+                <div class="text-sm text-muted" style="font-size: 12px;">{{caller_ids.target.local.0.company}}</div>
+            {{else}}
+                {{#xIf caller_ids.target.local.0.own '==' '1'}}
+                    <div class="font-bold">{{formatPhoneNumber target}}</div>
+                {{else}}
+                    <a href="#" class="font-bold log-convo-a" data-key="{{target}}|{{sender}}">{{formatPhoneNumber target}}</a>
+                {{/xIf}}                
+            {{/if}}
+            {{#if caller_ids.target.remote}}
+                <div>{{caller_ids.target.remote.0.name}}</div>
+                <div class="text-sm text-muted" style="font-size: 12px;">{{caller_ids.target.remote.0.company}}</div>
+                <div class="text-sm text-muted" style="font-size: 12px;">{{caller_ids.target.remote.0.carrier}} ({{caller_ids.target.remote.0.type}})</div>
+            {{/if}}
+        {{else}}
+            {{formatPhoneNumber target}}
+        {{/if}}   
+    </td>
+    <td nowrap>
+        {{#xIf duration '>' '0'}}{{duration}}{{else}}-{{/xIf}}
+    </td>    
+    <td>        
+        {{#if recording_sid}}
+        <div>
+            <button class="btn btn-sm btn-default log-play-a" title="Play Recording" data-sid="{{recording_sid}}"><i class="fa fa-play"></i></button>                         
+            <? if($_SESSION['user']->type_id == 1):?>                                       
+            <a href="#" class="btn btn-link text-danger log-delete-recording-a" data-sid="{{recording_sid}}" title="Delete Recording" ><i class="fa fa-times"></i></a>            
+            <? endif; ?>
+        </div>
+        {{else}}
+            {{#if content}}
+                <div class="hidden log-sms-content-full">{{content}}</div>
+                {{content_preview}}
+                {{#xIf content_preview "==" content}}
+                {{else}}
+                    <a href="#" class="log-sms-more-a">View More</a>
+                {{/xIf}}
+            {{else}}
+                -                            
+            {{/if}}
+
+            {{#if media}}
+            <div style="display: flex;">
+            {{#each media}}
+            <a href="#" data-fancybox="smsgallery{{../id}}" data-src="{{this}}" class="inline-block pull-left mr-4">
+                <img src="{{this}}" width="50px;" height="auto" />
+            </a>
+            {{/each}}
+            </div>
+            {{/if}}            
+        {{/if}}
+    </td>
+    <td width="30%">
+        {{#if listing}}
+        <div>
+            <a href="/site/deal3?id={{listing.id}}">{{listing.title}}<br>{{listing.full_address}}</a>
+        </div>
+        {{else}}
+            {{#if autotag_listings}}                
+                {{#each autotag_listings}}
+                <div>
+                    <a href="/site/deal3?id={{id}}">{{title}}<br>{{full_address}}</a>
+                </div>
+                {{/each}}
+                <div class="badge badge-sm badge-warning"><i class="fa fa-tag"></i> Auto-tagged</div>
+            {{/if}}
+        {{/if}}
+        {{#each tags.tags}}
+            <div class="badge badge-sm badge-info">{{this}}</div>
+        {{/each}}
+    </td>    
+    <td nowrap>                
+        <button class="btn btn-sm btn-default log-convo-a" title="View Conversation" data-key="{{target}}|{{sender}}"><i class="fa fa-comments"></i></button>        
+        <button class="btn btn-sm btn-default log-tag-a" title="Tag Entry" data-id="{{remote_id}}"><i class="fa fa-tag"></i></button>                                                
+    </td>
+</tr>
+</script>
+
+<script id="template-convo-details" type="x-handlebars">
+<div>
+{{#each remote_numbers}}
+    <a href="#" class="btn btn-primary btn-sm pull-right convo-call-a" data-from="{{../own_number.number}}" data-to="{{number}}" data-listing-id="">Click to call</a>
+    <h2 class="font-bold text-center">{{formatPhoneNumber number}}</h2>
+    <h4 class="header-title">Caller ID</h4>
+    {{#if remote}}
+        <div class="mb-1"><strong>Name:</strong> <span class="m-l-15">{{remote.0.name}}</span></div>
+        <div class="mb-1"><strong>Company:</strong> <span class="m-l-15">{{remote.0.company}}</span></div>
+        <div class="mb-1"><strong>Carrier:</strong> <span class="m-l-15">{{remote.0.carrier}}</span></div>
+        <div class="mb-1"><strong>Type:</strong> <span class="m-l-15">{{remote.0.type}}</span></div>
+    {{/if}}
+    {{#if local}}
+        <hr>
+        <h4 class="header-title">Contact Book</h4>
+        {{#each local}}
+            <div class="mb-1"><strong>Source:</strong> <span class="m-l-15">{{source}}</span></div>
+            <div class="mb-1"><strong>Name:</strong> <span class="m-l-15">{{name}}</span></div>
+            <div class="mb-1"><strong>Company:</strong> <span class="m-l-15">{{company}}</span></div>
+            <div class="mb-1"><strong>Listing:</strong> <span class="m-l-15"><a href="/site/deal3?id={{listing_id}}" target="_blank">{{listing_title}}</a></span></div>
+            <hr>
+        {{/each}}
+    {{/if}}
+{{/each}}    
+</div>    
+</script>
+
+<script id="template-convo-msg" type="x-handlebars">
+<div class="convo-desk {{#xIf direction '==' 'inbound'}}alt{{/xIf}}">
+    <div class="panel">
+        <div class="panel-body">
+            <span class="arrow{{#xIf direction '==' 'inbound'}}-alt{{/xIf}}"></span>                        
+            <p class="convo-date text-muted"><small>{{timestamp_ago}}</small></p>
+            {{#if user}}<div class="convo-user"><i class="fa fa-user"></i> {{user.username}}</div>{{/if}}
+
+            {{#xIf type '==' 'call'}}                    
+                <div class="mb-3 {{#xIf direction '==' 'inbound'}}{{#xIf type '==' 'call'}}{{#xIf status '==' 'no-answer'}}text-danger{{/xIf}}{{/xIf}}{{/xIf}}">
+                    <div class="convo-icon">{{#xIf direction '==' 'inbound'}}<span class="material-symbols-outlined">phone_callback</span>{{else}}<span class="material-symbols-outlined">phone_forwarded</span>{{/xIf}}</div>
+                    {{ucwords direction}} {{ucwords type}} - {{ucwords status}}
+                </div>                
+            {{/xIf}}                        
+            {{#if conf_id}}                 
+                <div class="badge badge-info badge-sm">Conference Room</div>
+            {{/if}}            
+
+            {{#if content}}
+                <p>{{{content}}}</p>                                                       
+            {{/if}}
+            {{#if recording_sid}}
+                <div><b>Recording:</b> <button class="btn btn-sm btn-default log-play-a" title="Play Recording" data-sid="{{recording_sid}}"><i class="fa fa-play"></i></button></div>                
+            {{else}}            
+            {{#if media}}
+                <div style="display: flex;">
+                {{#each media}}
+                    <a href="#" data-fancybox="smsgallery{{../id}}" data-src="{{this}}" class="inline-block pull-left mr-4">
+                        <img src="{{this}}" width="50px;" height="auto" />                        
+                    </a>                    
+                {{/each}}
+                </div>
+            {{/if}}            
+            {{/if}}            
+        </div>
+    </div>
+</div>    
+</script>
+
+</div>

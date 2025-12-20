@@ -1,0 +1,29 @@
+<?php 
+
+$dl = new Deal();
+
+$scores = $dl->getScoreKeys();
+$ops = ['equal','not_equal','less','less_or_equal','greater','greater_or_equal'];
+
+?>
+<form>
+
+<div class="form-inline" style="justify-content: center;">		
+	<div class="form-group mr-3">
+		<select class="form-control" name="score" required>	
+			<? foreach($scores as $s): ?>
+				<option value="<?=$s?>"><?=$s?></option>
+			<? endforeach; ?>					
+		</select>
+	</div>
+	<div class="form-group mr-3">
+		<select class="form-control" name="op" required>
+			<? foreach($ops as $s): ?>
+				<option value="<?=$s?>"><?=$s?></option>
+			<? endforeach; ?>					
+		</select>
+	</div>
+	<div class="form-group mr-3">
+		<input type="number" class="form-control" name="value" value="" required>
+	</div>		
+</form>

@@ -1,0 +1,30 @@
+<div class="row">
+
+    <div class="col-sm-12">
+        <label class="form-label">From:</label>
+        <select class="form-control dialpad-callerid-selector" data-style="btn-white">
+            <option value="">Select Caller ID...</option>
+        </select>
+    </div>
+
+    <div class="col-sm-12">
+        <label class="form-label">To:</label>
+        <div class="dialer-input-cont">
+            <input class="dialpad-tosms form-control" type="text" placeholder="Enter number...">
+        </div>
+    </div>
+
+    <div class="col-sm-12 dialpad-tosms-listing-id" style="display: none">
+        <div class="alert alert-primary mt-2">Sent SMS will be assigned to current listing</div>
+    </div>
+
+    <div class="col-sm-12 mt-4">
+        <label class="form-label">Message:</label>
+        <textarea rows="6" class="form-control dialpad-sms-body"></textarea>
+        <div class="w-100 text-right"><span class="dialpad-sms-counter">0</span>/1600</div>
+    </div>    
+    
+    <div class="col-sm-12 mt-4">
+        <button class="btn btn-success btn-block dialpad-sms-send-a"><i class="fa fa-send"></i> Send</button>
+    </div>    
+</div>

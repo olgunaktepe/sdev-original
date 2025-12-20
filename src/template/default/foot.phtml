@@ -1,0 +1,116 @@
+<!-- --------------------------- js Defaults ---------------------------  -->
+<script src="<?=$GLOBALS['system']['theme_base']?>js/jquery.min.js"></script>
+<script src="<?=$GLOBALS['system']['theme_base']?>js/popper.min.js"></script><!-- Popper for Bootstrap --><!-- Tether for Bootstrap -->
+<script src="<?=$GLOBALS['system']['theme_base']?>js/bootstrap.min.js"></script>
+<script src="<?=$GLOBALS['system']['theme_base']?>js/waves.js"></script>
+<script src="<?=$GLOBALS['system']['theme_base']?>js/jquery.slimscroll.js"></script>
+<script src="<?=$GLOBALS['system']['theme_base']?>js/jquery.scrollTo.min.js"></script>
+
+<!-- Counter Up  -->
+<script src="<?=$GLOBALS['system']['theme_base']?>../../plugins/waypoints/lib/jquery.waypoints.min.js"></script>
+<script src="<?=$GLOBALS['system']['theme_base']?>../../plugins/counterup/jquery.counterup.min.js"></script>
+
+<!--Morris Chart-->
+<script src="<?=$GLOBALS['system']['theme_base']?>../../plugins/morris/morris.min.js"></script>
+<script src="<?=$GLOBALS['system']['theme_base']?>../../plugins/raphael/raphael-min.js"></script>
+
+<!-- Page js  -->
+<script src="<?=$GLOBALS['system']['theme_base']?>pages/jquery.dashboard.js"></script>
+
+<!-- Custom main Js -->
+<script src="<?=$GLOBALS['system']['theme_base']?>js/jquery.core.js"></script>
+<script src="<?=$GLOBALS['system']['theme_base']?>js/jquery.app.js"></script>
+
+<script src="/js/lib/class.js"></script>
+<script src="/js/lib/handlebars.js"></script>
+<script src="/js/lib/moment.js"></script>
+
+<script src="/js/lib/moment.js"></script>
+
+<script src="<?=$GLOBALS['system']['theme_base']?>../../plugins/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+<script src="/js/lib/jquery.xeditable.js"></script>
+
+
+<script src="/js/index.js?<?=filemtime($GLOBALS['system']['js_path'].'/index.js')?>"></script>
+
+<!-- --------------------------- js Libs ---------------------------  -->
+<script src="/js/lib/less.min.js"></script>											<!-- THIS NEEDS TO BE REMOVED ON PRODUCTION  -->
+<script src="/js/lib/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/js/lib/chosen/chosen.jquery.js"></script>
+
+<!-- Toastr -->
+<script src="/js/lib/toastr/toastr.min.js"></script>
+
+<script src="/js/lib/dataTables/jquery.dataTables.js"></script>
+<script src="/js/lib/dataTables/dataTables.bootstrap.js"></script>
+
+<script src="/js/lib/switchery/switchery.js"></script>
+
+
+<script src="/js/lib/datepicker/bootstrap-datepicker.js"></script>
+<script src="/js/lib/daterangepicker/daterangepicker.js"></script>
+
+<script src="/js/lib/jasny/jasny-bootstrap.min.js"></script>
+
+<script src="<?=$GLOBALS['system']['theme_base']?>../../plugins/jquery-circliful/js/jquery.circliful.min.js"></script>
+
+<!-- Jquery Validate -->
+<script src="/js/lib/validate/jquery.validate.min.js"></script>
+
+<script src="/js/lib/select2/select2.min.js"></script>
+
+<script src="/js/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+
+<script src="/js/lib/clipboard.min.js"></script>
+
+<script src="/js/lib/notify.js"></script>
+
+<script src="/js/class/modals.js?v1"></script>
+
+<script src="/js/lib/bootstrap3-typeahead.min.js"></script>
+<script src="/js/lib/renderjson/renderjson.js"></script>
+
+<script src="/js/lib/ion-rangeslider/ion.rangeSlider.min.js"></script>
+
+<script src="/js/lib/gridstack/gridstack-h5.js"></script>
+
+<script src="/js/lib/jQuery-QueryBuilder/dist/js/query-builder.standalone.js"></script>
+<script src="/js/lib/interact.js"></script>
+
+<script src="//www.gstatic.com/charts/loader.js"></script>
+
+<script src="/js/lib/sortable/sortable.js"></script>
+<script src="/js/lib/jstree/jstree.min.js"></script>
+
+<script src="/js/lib/freeze-table.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/pako/1.0.3/pako.min.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAgrQzLsz6rJLRXKsHMXaEOQRh46av3HWA&libraries=places,geometry"></script>
+<script src="https://unpkg.com/@googlemaps/markerclusterer/dist/index.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+
+
+<script src="/php/lib/twilio/node_modules/@twilio/voice-sdk/dist/twilio.min.js"></script>
+
+
+<script src="/js/lib/blueimp/node_modules/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+<script src="/js/lib/blueimp/node_modules/blueimp-file-upload/js/jquery.fileupload.js"></script>
+<script src="/js/lib/blueimp/node_modules/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
+<script src="/js/lib/blueimp/node_modules/blueimp-file-upload/js/jquery.fileupload-validate.js"></script>
+<script src="/js/lib/blueimp/node_modules/blueimp-file-upload/js/jquery.fileupload-image.js"></script>
+<script src="/js/lib/blueimp/node_modules/blueimp-file-upload/js/jquery.fileupload-video.js"></script>
+<script src="/js/lib/blueimp/node_modules/blueimp-file-upload/js/jquery.fileupload-ui.js"></script>
+
+
+<?php if($pagedata['js'] || $pagedata['js_default']) :?>
+<? foreach(array_merge($pagedata['js'],$pagedata['js_default']) as $js): ?>
+	<script src="<?=$js?>"></script>
+<? endforeach; ?>
+<?php endif; ?>
+
+</body>
+</html>

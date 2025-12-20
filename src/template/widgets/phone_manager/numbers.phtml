@@ -1,0 +1,52 @@
+<div class="card-box">       
+    <a href="#" class="btn btn-sm btn-primary numbers-buy-a pull-right"><i class="fa fa-plus"></i> Buy New Number</a>
+<h4 class="text-dark header-title m-t-0">Phone Numbers</h4>
+
+<form class="numbers-search-form hidden">
+    <input type="hidden" name="action" value="loadNumbers"/>
+    <a href="#" class="btn btn-primary numbers-search-a">Search</a>
+</form>
+
+<table class="table mb-0 table-responsive numbers-container">
+    <thead>
+        <tr>
+            <th data-orderable="true">Title</th>
+            <th data-orderable="true">Phone Number</th>                                    
+            <th data-orderable="false">Call Tags</th>            
+        </tr>
+    </thead>
+    <tbody>        
+    </tbody>
+</table>
+
+<script id="template-numbers-item" type="x-handlebars">
+<tr class="numbers-item" data-id="{{id}}">
+    <td nowrap>
+        {{title_preview}}
+        {{#xIf active "==" "1"}}<div class="badge badge-success">Active</div>{{else}}<div class="badge badge-danger">Inactive</div>{{/xIf}}
+        <div class="mt-3">
+            <button class="btn btn-sm btn-default numbers-edit-a" title="Edit Phone Number"><i class="fa fa-pencil"></i></button>                                
+            {{#xIf active "==" "1"}}                                
+                <a href="#" class="btn btn-white btn-info text-white record-a hidden" title="Edit Voicemail Message"><i class="fa fa-volume-up"></i></a>
+                <a href="#" data-type="syv" class="hidden btn btn-sm numbers-toggle-a btn-sm {{#xIf stv "==" "1"}}btn-white btn-success active{{else}}btn-outline-secondary{{/xIf}}" title="Toggle Straight to Voicemail"><i class="fa fa-phone-square"></i></a>
+                <a href="#" class="btn btn-sm {{#if forward}}btn-white btn-success{{else}}btn-outline-secondary{{/if}} numbers-forward-a" title="Forward Number"><i class="fa fa-share"></i></a>
+                <button class="btn btn-sm btn-default numbers-assign-a" title="Assign Number"><i class="fa fa-link"></i></button>
+                <a href="#" data-type="record" class="btn btn-sm numbers-toggle-a btn-sm {{#xIf record "==" "1"}}btn-white btn-success active{{else}}btn-outline-secondary{{/xIf}} toggle-record-a" title="Toggle Recordings"><i class="fa fa-dot-circle-o"></i></a>
+                <a href="#" data-type="transcribe" class="hidden btn btn-sm numbers-toggle-a  btn-sm {{#xIf transcribe "==" "1"}}btn-white btn-success active{{else}}btn-outline-secondary{{/xIf}} toggle-transcribe-a" title="Toggle Transcription"><i class="fa fa-list"></i></a>            
+            {{/xIf}}		
+        </div>
+
+    </td>
+    <td nowrap>
+        {{formatPhoneNumber number}}
+        {{#if forward}}<div class="text-xs  text-danger"><i class="fa fa-share"></i> to {{formatPhoneNumber forward}}</div>{{/if}}
+        {{#if assigned_type}}<div class="text-xs text-warning"><i class="fa fa-link"></i> to {{assigned_type.title}}</div>{{/if}}
+    </td>        
+    <td>
+    {{#each call_tags}}
+        <div class="badge badge-sm badge-info">{{this}}</div>
+    {{/each}}
+    </td>
+</tr>
+</script>
+</div>

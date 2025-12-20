@@ -1,0 +1,26 @@
+<?php 
+$page = $GLOBALS['menu']->getCurrentPage();
+$crumbs = $GLOBALS['menu']->getCrumbs();
+
+?>
+<div class="row hidden">
+	<div class="col-sm-12">
+		<div class="page-title-box">
+			<div class="btn-group pull-right">
+				<ol class="breadcrumb hide-phone p-0 m-0">
+					<? foreach($crumbs as $k=>$title): ?>
+					<li class="breadcrumb-item <?=($k=='#')?'active':''?>">
+						<? if($k=='#'): ?>
+						<?=$title?>
+						<? else: ?>
+						<a href="<?=$k?>"><?=$title?></a>
+						<? endif; ?>
+					</li>
+					<? endforeach; ?>						
+				</ol>
+			</div>
+			<h4 class="page-title"><?=$page->title?></h4>
+		</div>
+	</div>
+</div>
+<br>

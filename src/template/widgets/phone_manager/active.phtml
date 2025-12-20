@@ -1,0 +1,106 @@
+<?
+?>
+<div class="card-box">   
+<a href="#" class="btn btn-sm pull-right btn-sm btn-primary active-refresh-a" title="Refresh"><i class="fa fa-refresh"></i></a>
+<div class="text-sm pull-right mr-2 text-muted active-ts-label"></div>        
+<h4 class="text-dark header-title m-t-0">Active/Recent Conversations</h4>
+
+<table class="table mb-0 table-responsive">
+    <thead>
+        <tr>
+            <th data-orderable="true">Date</th>
+            <th data-orderable="true">Status</th>             
+            <th data-orderable="true">Type</th>
+            <th data-orderable="true">User</th>           
+            <th data-orderable="true">From</th>
+            <th data-orderable="true">To</th>            
+            <th data-orderable="true">Duration</th>            
+            <th data-orderable="true">Content</th>
+            <th data-orderable="false">Listing</th>            
+            <th data-orderable="false"></th>
+        </tr>
+    </thead>
+    <tbody class="active-container">        
+    </tbody>
+</table>
+
+<script id="template-active-item" type="x-handlebars">
+<tr class="active-item" data-id="{{id}}">
+    <td nowrap>        
+        {{timestamp}}
+        <br>        
+        {{#xIf new ">" "0"}}
+            <button class="badge badge-success cursor-pointer badge-sm log-read-a">New</button>
+        {{/xIf}}
+        <div class="badge badge-secondary badge-sm">{{timestamp_ago}}</div>
+    </td>
+    <td nowrap>{{status}}</td>
+    <td nowrap>{{direction}} {{type}}</td>
+    <td nowrap>{{#if user}}<i class="fa fa-user"></i> {{user.username}}{{else}}-{{/if}}</td>
+    <td nowrap>
+        {{#if caller_ids.sender}}
+            {{#if caller_ids.sender.local}}
+                <div class="font-bold">{{caller_ids.sender.local.0.name}}</div>
+                <div class="text-sm text-muted" style="font-size: 12px;">{{caller_ids.sender.local.0.company}}</div>
+            {{else}}
+                <div class="font-bold">{{formatPhoneNumber sender}}</div>
+            {{/if}}
+            {{#if caller_ids.sender.remote}}
+                <div>{{caller_ids.sender.remote.0.name}}</div>
+                <div class="text-sm text-muted" style="font-size: 12px;">{{caller_ids.sender.remote.0.company}}</div>
+                <div class="text-sm text-muted" style="font-size: 12px;">{{caller_ids.sender.remote.0.carrier}} ({{caller_ids.sender.remote.0.type}})</div>
+            {{/if}}
+        {{else}}
+            {{formatPhoneNumber sender}}
+        {{/if}}        
+    </td>
+    <td nowrap>
+    {{#if caller_ids.target}}
+            {{#if caller_ids.target.local}}
+                <div class="font-bold">{{caller_ids.target.local.0.name}}</div>
+                <div class="text-sm text-muted" style="font-size: 12px;">{{caller_ids.target.local.0.company}}</div>
+            {{else}}
+                <div class="font-bold">{{formatPhoneNumber target}}</div>
+            {{/if}}
+            {{#if caller_ids.target.remote}}
+                <div>{{caller_ids.target.remote.0.name}}</div>
+                <div class="text-sm text-muted" style="font-size: 12px;">{{caller_ids.target.remote.0.company}}</div>
+                <div class="text-sm text-muted" style="font-size: 12px;">{{caller_ids.target.remote.0.carrier}} ({{caller_ids.target.remote.0.type}})</div>
+            {{/if}}
+        {{else}}
+            {{formatPhoneNumber target}}
+        {{/if}}   
+    </td>
+    <td nowrap>
+        {{#xIf duration '>' '0'}}{{duration}}{{else}}-{{/xIf}}
+    </td>    
+    <td>        
+        {{#if recording_sid}}
+            <button class="btn btn-sm btn-default log-play-a" title="Play Recording" data-sid="{{recording_sid}}"><i class="fa fa-play"></i></button>                                        
+        {{else}}
+            {{#if content}}
+                <div class="hidden log-sms-content-full">{{content}}</div>
+                {{content_preview}}
+                {{#xIf content_preview "==" content}}
+                {{else}}
+                    <a href="#" class="log-sms-more-a">View More</a>
+                {{/xIf}}
+            {{else}}
+                -                            
+            {{/if}}
+        {{/if}}
+    </td>
+    <td width="30%">
+        <div>
+            <a href="/site/deal3?id={{listing_id}}">{{listing_title_preview}}</a>            
+        </div>
+        {{#each tags.tags}}
+            <div class="badge badge-sm badge-info">{{this}}</div>
+        {{/each}}
+    </td>    
+    <td nowrap>                
+        <a href="#" class="btn btn-sm btn-outline-secondary" title="Join Call">Join Call</a>                
+    </td>
+</tr>
+</script>
+</div>

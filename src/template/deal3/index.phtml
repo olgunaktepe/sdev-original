@@ -1,0 +1,657 @@
+
+<style>
+.wrapper>.container-fluid{ max-width: 100%!important; }
+	.grid-stack {  
+}
+
+.grid-stack-item-content {
+  color: #2c3e50;  
+  background-color: white;
+}
+
+.grid-stack-item-removing {
+  opacity: 0.5;
+}
+.card-box{
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+</style>
+
+<div class="page-deal" data-listing-id="<?=$_GET['id'];?>">	
+
+<? if($_SESSION['user']->username == 'admin' && 1==0): ?>	
+	<?include mapTemplate('deal3::index_nogrid_beta');?>
+<? else: ?> 
+<?includeWidget('dialer')?>
+<?include mapTemplate('deal3::index_nogrid');?>
+<? endif; ?>
+
+
+<script id="template-timeline" type="x-handlebars">
+<div class="row">
+<div class="col-sm-12">
+<div class="timeline">
+	{{#each events}}	
+		{{#xIf type "==" "title"}}
+			<article class="timeline-item alt">
+				<div class="text-right">
+					<div class="time-show first">
+                    	<a href="#" class="btn btn-primary w-lg">Today</a>
+                    </div>
+                </div>
+            </article>
+		{{else}}
+			<article class="timeline-item {{alt}}">
+                <div class="timeline-desk">
+                    <div class="panel">
+                        <div class="panel-body">
+                            <span class="arrow"></span>
+                            <span class="timeline-icon"></span>
+                            <h4 class="text-success">{{timestamp_ago}}</h4>
+                            <p class="timeline-date text-muted"><small>{{timestamp}}</small></p>
+							<h6 class="{{#if alt}}text-right{{else}}{{/if}}">{{title}}</h6>
+                            <p>{{{description}}}</p>
+                        </div>
+                    </div>
+                </div>
+            </article>
+		{{/xIf}}	
+	{{/each}}
+</div>
+</div>
+</div>
+</script>				
+
+<script id="template-summary" type="x-handlebars">
+<div class="col-sm-6">		
+	<div class="widget-simple-chart text-center card-box row mt-0">		
+		<div class="versions-container pull-right inline-block" style="position: absolute;right: 7px; top: 6px; border-bottom: 2px dashed;" data-type="listing_info"></div>		
+		<div class="col-sm-12 text-left"><h4 class="m-t-0 mb-2 header-title"><b>Price</b></h4></div>
+		<div class="col-sm-4 hidden">
+			<h3 class="text-inverse counter m-t-10">${{standerized.price_per_sqft}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Price Per Sqft</p>
+		</div>
+		<div class="col-sm-6">
+			<h3 class="text-inverse counter m-t-10">${{standerized.price_per_acres}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Price Per Acre</p>
+		</div>
+		<div class="col-sm-6">
+			<h3 class="text-inverse counter m-t-10">${{standerized.building_price_per_sqft_rounded}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Price Per Building Sqft</p>
+		</div>		
+	</div>	
+</div>
+
+<div class="col-sm-6">
+	<div class="widget-simple-chart text-center card-box row mt-0"> 		
+		<div class="versions-container pull-right inline-block" style="position: absolute;right: 7px; top: 6px; border-bottom: 2px dashed; " data-type="listing_info"></div>		
+
+		<div class="col-sm-12 text-left"><h4 class="m-t-0 mb-2 header-title"><b>NOI</b></h4></div>   
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{standerized.cap_rate}}%</h3>
+			<p class="text-muted text-nowrap m-b-10">CAP Rate</p>
+		</div>
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">${{standerized.noi}}</h3>
+			<p class="text-muted text-nowrap m-b-10">NOI</p>
+		</div>		
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">${{standerized.building_rent_rate}}</h3>
+			<p class="text-muted text-nowrap m-b-10">psf</p>
+		</div>		
+	</div>	
+</div>
+
+
+<div class="col-sm-6">
+	<div class="widget-simple-chart text-center card-box row mt-0  pt-2 pb-2"> 
+		<div class="col-sm-12 text-left"><h4 class="m-t-0 mb-2 header-title"><b>Zillow</b></h4></div>   
+		<div class="col-sm-6">
+			<h3 class="text-inverse counter m-t-10">{{#if zillow.zhvi}}${{formatNumber zillow.zhvi.data.zip.value}}{{else}}-{{/if}}</h3>
+			{{#if zillow.zhvi.data.zip.trends}}				
+				<h4 class="mb-0 text-{{#xIf zillow.zhvi.data.zip.trends.10.delta "<" "0"}}danger{{else}}success{{/xIf}}">						
+					%{{formatCurrency zillow.zhvi.data.zip.trends.10.p}} <span class="fa {{#xIf zillow.zhvi.data.zip.trends.10.delta "<" "0"}}fa-level-down{{else}}fa-level-up{{/xIf}}"></span>
+				</h4>				
+			{{/if}}
+
+			<p class="text-muted text-nowrap m-b-10">Zip Home Value</p>
+		</div>
+		<div class="col-sm-6">
+			<h3 class="text-inverse counter m-t-10">{{#if zillow.zori}}${{formatNumber zillow.zori.data.zip.value}}{{else}}-{{/if}}</h3>
+			{{#if zillow.zori.data.zip.trends}}				
+				<h4 class="mb-0 text-{{#xIf zillow.zori.data.zip.trends.10.delta "<" "0"}}danger{{else}}success{{/xIf}}">						
+					%{{formatCurrency zillow.zori.data.zip.trends.10.p}} <span class="fa {{#xIf zillow.zori.data.zip.trends.10.delta "<" "0"}}fa-level-down{{else}}fa-level-up{{/xIf}}"></span>
+				</h4>				
+			{{/if}}
+			<p class="text-muted text-nowrap m-b-10">Zip Rental Index</p>
+		</div>				
+	</div>	
+</div>
+
+
+
+<div class="col-sm-6">
+	<div class="widget-simple-chart text-center card-box row mt-0  pt-2 pb-2"> 
+		<div class="col-sm-12 text-left"><h4 class="m-t-0 mb-2 header-title"><b>Census</b></h4></div>   
+		<div class="col-sm-6">
+			<h3 class="text-inverse counter m-t-10">{{#if census.income}}${{formatNumber census.income.data.zip.value}}{{else}}-{{/if}}</h3>
+			{{#if census.income.data.zip.trends}}				
+				<h4 class="mb-0 text-{{#xIf census.income.data.zip.trends.10.delta "<" "0"}}danger{{else}}success{{/xIf}}">						
+					%{{formatCurrency census.income.data.zip.trends.10.p}} <span class="fa {{#xIf census.income.data.zip.trends.10.delta "<" "0"}}fa-level-down{{else}}fa-level-up{{/xIf}}"></span>
+				</h4>				
+			{{/if}}
+
+			<p class="text-muted text-nowrap m-b-10">Zip Median Income</p>
+		</div>
+		<div class="col-sm-6">
+			<h3 class="text-inverse counter m-t-10">{{#if census.population}}{{formatNumber census.population.data.zip.value}}{{else}}-{{/if}}</h3>
+			{{#if census.population.data.zip.trends}}				
+				<h4 class="mb-0 text-{{#xIf census.population.data.zip.trends.10.delta "<" "0"}}danger{{else}}success{{/xIf}}">						
+					%{{formatCurrency census.population.data.zip.trends.10.p}} <span class="fa {{#xIf census.population.data.zip.trends.10.delta "<" "0"}}fa-level-down{{else}}fa-level-up{{/xIf}}"></span>
+				</h4>				
+			{{/if}}
+			<p class="text-muted text-nowrap m-b-10">Zip Population</p>
+		</div>				
+	</div>	
+</div>
+
+<div class="col-sm-6">
+	<div class="widget-simple-chart text-center card-box row mt-0"> 		
+		<div class="versions-container pull-right inline-block" style="position: absolute; right: 7px; top: 6px; border-bottom: 2px dashed;" data-type="listing_info"></div>		
+		<div class="col-sm-12 text-left">
+			<h4 class="m-t-0 mb-2 header-title pull-left m-t-2"><b>Market NOI</b></h4>
+		</div>   	
+		<div class="col-sm-12">	
+			<div class="row">
+				<div class="col-sm-4" data-type="retail">
+					<h3 class="text-inverse counter m-t-10">{{#if advanced.retail.market_cap_rate}}{{advanced.retail.market_cap_rate}}%{{else}}-{{/if}}</h3>
+					<p class="text-muted text-nowrap m-b-10">Retail CAP Rate</p>
+				</div>
+				<div class="col-sm-4" data-type="retail">
+					<h3 class="text-inverse counter m-t-10">{{#if advanced.retail.market_noi}}${{advanced.retail.market_noi}}{{else}}-{{/if}}</h3>
+					<p class="text-muted text-nowrap m-b-10">Retail NOI</p>
+				</div>
+				<div class="col-sm-4" data-type="retail">
+					<h3 class="text-inverse counter m-t-10">{{#if advanced.retail.market_noi}}${{advanced.retail.market_rent_rate}}{{else}}-{{/if}}</h3>
+					<p class="text-muted text-nowrap m-b-10">Retail psf</p>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-12">	
+			<div class="row">
+				<div class="col-sm-4" data-type="industrial">
+					<h3 class="text-inverse counter m-t-10">{{#if advanced.industrial.market_cap_rate}}{{advanced.industrial.market_cap_rate}}%{{else}}-{{/if}}</h3>
+					<p class="text-muted text-nowrap m-b-10">Industrial CAP Rate</p>
+				</div>
+				<div class="col-sm-4" data-type="industrial">
+					<h3 class="text-inverse counter m-t-10">{{#if advanced.industrial.market_noi}}${{advanced.industrial.market_noi}}{{else}}-{{/if}}</h3>
+					<p class="text-muted text-nowrap m-b-10">Industrial NOI</p>
+				</div>
+				<div class="col-sm-4" data-type="industrial">
+					<h3 class="text-inverse counter m-t-10">{{#if advanced.industrial.market_noi}}${{advanced.industrial.market_rent_rate}}{{else}}-{{/if}}</h3>
+					<p class="text-muted text-nowrap m-b-10">Industrial psf</p>
+				</div>	
+			</div>
+		</div>
+		<div class="col-sm-12">	
+			<div class="row">
+				<div class="col-sm-4" data-type="office">
+					<h3 class="text-inverse counter m-t-10">{{#if advanced.office.market_cap_rate}}{{advanced.office.market_cap_rate}}%{{else}}-{{/if}}</h3>
+					<p class="text-muted text-nowrap m-b-10">Office CAP Rate</p>
+				</div>
+				<div class="col-sm-4" data-type="office">
+					<h3 class="text-inverse counter m-t-10">{{#if advanced.office.market_noi}}${{advanced.office.market_noi}}{{else}}-{{/if}}</h3>
+					<p class="text-muted text-nowrap m-b-10">Office NOI</p>
+				</div>
+				<div class="col-sm-4" data-type="office">
+					<h3 class="text-inverse counter m-t-10">{{#if advanced.office.market_noi}}${{advanced.office.market_rent_rate}}{{else}}-{{/if}}</h3>
+					<p class="text-muted text-nowrap m-b-10">Office psf</p>
+				</div>	
+			</div>
+		</div>
+		<div class="col-sm-12">	
+			<div class="row">
+				<div class="col-sm-4" data-type="hospitality">
+					<h3 class="text-inverse counter m-t-10">{{#if advanced.hospitality.market_cap_rate}}{{advanced.hospitality.market_cap_rate}}%{{else}}-{{/if}}</h3>
+					<p class="text-muted text-nowrap m-b-10">Hospitality CAP Rate</p>
+				</div>
+				<div class="col-sm-4" data-type="hospitality">
+					<h3 class="text-inverse counter m-t-10">{{#if advanced.hospitality.market_noi}}${{advanced.hospitality.market_noi}}{{else}}-{{/if}}</h3>
+					<p class="text-muted text-nowrap m-b-10">Hospitality NOI</p>
+				</div>
+				<div class="col-sm-4" data-type="hospitality">
+					<h3 class="text-inverse counter m-t-10">{{#if advanced.hospitality.market_noi}}${{advanced.hospitality.market_rent_rate}}{{else}}-{{/if}}</h3>
+					<p class="text-muted text-nowrap m-b-10">Hospitality psf</p>
+				</div>	
+			</div>
+		</div>			
+	</div>	
+</div>
+
+
+<div class="col-sm-6">
+	<div class="widget-simple-chart text-center card-box row mt-0"> 		
+		<div class="versions-container pull-right inline-block" style="position: absolute;right: 7px; top: 6px; border-bottom: 2px dashed;" data-type="listing_info"></div>		
+		<div class="col-sm-12 text-left"><h4 class="m-t-0 mb-2 header-title"><b>Submarket NOI</b></h4></div>   
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{#if advanced.retail.submarket_cap_rate}}{{advanced.retail.submarket_cap_rate}}%{{else}}-{{/if}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Retail CAP Rate</p>
+		</div>
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{#if advanced.retail.submarket_noi}}${{advanced.retail.submarket_noi}}{{else}}-{{/if}}</h3>
+			<p class="text-muted text-nowrap m-b-10"Retail NOI</p>
+		</div>
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{#if advanced.retail.submarket_rent_rate}}${{advanced.retail.submarket_rent_rate}}{{else}}-{{/if}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Retail psf</p>
+		</div>
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{#if advanced.industrial.submarket_cap_rate}}{{advanced.industrial.submarket_cap_rate}}%{{else}}-{{/if}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Industrial CAP Rate</p>
+		</div>
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{#if advanced.industrial.submarket_noi}}${{advanced.industrial.submarket_noi}}{{else}}-{{/if}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Industrial NOI</p>
+		</div>
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{#if advanced.industrial.submarket_rent_rate}}${{advanced.industrial.submarket_rent_rate}}{{else}}-{{/if}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Industrial psf</p>
+		</div>
+		
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{#if advanced.office.submarket_cap_rate}}{{advanced.office.submarket_cap_rate}}%{{else}}-{{/if}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Office CAP Rate</p>
+		</div>
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{#if advanced.office.submarket_noi}}${{advanced.office.submarket_noi}}{{else}}-{{/if}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Office NOI</p>
+		</div>
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{#if advanced.office.submarket_rent_rate}}${{advanced.office.submarket_rent_rate}}{{else}}-{{/if}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Office psf</p>
+		</div>
+
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{#if advanced.hospitality.submarket_cap_rate}}{{advanced.hospitality.submarket_cap_rate}}%{{else}}-{{/if}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Hospitality CAP Rate</p>
+		</div>
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{#if advanced.hospitality.submarket_noi}}${{advanced.hospitality.submarket_noi}}{{else}}-{{/if}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Hospitality NOI</p>
+		</div>
+		<div class="col-sm-4">
+			<h3 class="text-inverse counter m-t-10">{{#if advanced.hospitality.submarket_rent_rate}}${{advanced.hospitality.submarket_rent_rate}}{{else}}-{{/if}}</h3>
+			<p class="text-muted text-nowrap m-b-10">Hospitality psf</p>
+		</div>
+
+	</div>	
+</div>
+
+
+
+
+
+
+</script>
+	<script id="template-markets" type="x-handlebars">	
+		<select class="form-control bg-light markets-select" style="position: absolute; top: 8px; right: 30px; max-width: 250px;">
+			{{#each this}}
+			<option value="{{id}}">{{type}} - {{name}}</option>
+			{{/each}}
+		</select>	
+		{{#each this}}	
+		<div class="market-data-container" data-id="{{id}}" style="display: none">
+			<h3 class="text-primary counter font-bold mt-0 hidden">{{name}}</h3>		
+			<table class="table">
+				{{#each data}}
+					<tr>
+						<td>{{@key}}</td>
+						<td>{{this}}</td>
+					</tr>
+				{{/each}}
+			</table>
+		</div>
+		{{/each}}
+	</script>
+
+	<script id="template-submarkets" type="x-handlebars">	
+	<select class="form-control bg-light submarkets-select" style="position: absolute; top: 8px; right: 30px; max-width: 250px;">
+			{{#each this}}
+			<option value="{{id}}">{{type}} - {{name}}</option>
+			{{/each}}
+		</select>	
+		{{#each this}}		
+		<div class="submarket-data-container" data-id="{{id}}" style="display: none">
+			<h3 class="text-primary counter font-bold mt-0 hidden">{{name}}</h3>				
+			<table class="table">
+					{{#each data}}
+						<tr>
+							<td>{{@key}}</td>
+							<td>{{this}}</td>
+						</tr>
+					{{/each}}
+			</table>	
+		</div>
+		{{/each}}
+	</script>
+
+
+	<script id="template-walkscore" type="x-handlebars">
+		<h4 class="m-t-0 mb-2 header-title"><b>Walk Scores</b></h4>
+		<div class="row">
+			<div class="col-sm-6 text-center">
+				<h3 class="text-primary counter font-bold mt-0">{{walk.walkscore}}</h3>
+				<div class="text-muted text-sm">{{walk.description}}</div>
+                <p class="mb-0">Walk Score</p>
+			</div>		
+			<div class="col-sm-6 text-center">
+				<h3 class="text-primary counter font-bold mt-0">{{transit.transit_score}}</h3>
+				<div class="text-muted text-sm">{{transit.summary}}</div>
+                <p class="mb-0">Transit Score</p>
+			</div>		                            
+        </div>	
+	</script>
+
+	<script id="template-greatschools" type="x-handlebars">
+		<h4 class="m-t-0 mb-2 header-title"><b>School Scores</b></h4>
+		<div class="row">
+			<div class="col-sm-3 text-center">
+				<h3 class="text-primary counter font-bold mt-0">{{formatCurrency proximity_1}}</h3>				
+                <p class="mb-0">Avg score (1 mile)</p>
+			</div>					   
+			<div class="col-sm-3 text-center">
+				<h3 class="text-primary counter font-bold mt-0">{{formatCurrency proximity_3}}</h3>				
+                <p class="mb-0">Avg score (3 miles)</p>
+			</div>					   
+			<div class="col-sm-3 text-center">
+				<h3 class="text-primary counter font-bold mt-0">{{formatCurrency proximity_5}}</h3>				
+                <p class="mb-0">Avg score (5 miles)</p>
+			</div>					   
+			<div class="col-sm-3 text-center">
+				<h3 class="text-primary counter font-bold mt-0">{{formatCurrency closest}}</h3>				
+                <p class="mb-0">Closest Score</p>
+			</div>					   
+        </div>	
+	</script>
+
+	<script id="template-listing-gallery" type="x-handlebars">		
+	<h4 class="m-t-0 mb-2 header-title"><b>Gallery</b></h4>
+	<div style="display: flex; overflow-x: auto; height: 100%;">
+		{{#each images_urls}}
+      		<a href="#" data-fancybox="gallery" data-src="{{this}}" class="inline-block pull-left mr-4">
+        		<img height="100%" src="{{this}}" />
+      		</a>
+		{{else}}
+			No Images!
+		{{/each}}
+	</div>
+	</script>
+
+	<script id="template-listing-agents" type="x-handlebars">		
+        <h4 class="m-t-0 mb-2 header-title"><b>Agents</b></h4>
+		<div class="inbox-widget" style="height: 100%; overflow: auto;">
+				{{#each agents}}
+				<a href="#">					
+					<div class="inbox-item">						
+						<p class="inbox-item-author">{{name}}</p>
+						<p class="inbox-item-text">{{company}}</p>
+						<p class="inbox-item-date text-dark">P: {{phone}}<br>{{email}}</p>
+					</div>
+				</a>
+				{{else}}
+					<div>No Agents Found!</div>
+				{{/each}}                                
+        </div>                        
+	</script>
+
+	
+	<script id="template-listing-poi" type="x-handlebars">		        
+		<div class="inbox-widget" style="height: 170px; overflow: auto;">
+			{{#each items}}				
+				<div class="inbox-item">						
+					<p class="inbox-item-author">{{title}} - {{formatCurrency distance}} miles</p>
+					<p class="inbox-item-text">{{address}}, {{city}}, {{state}} {{zip}}</p>
+					<div class="badge badge-sm badge-primary">{{type}}</div>					
+					<div class="badge badge-sm badge-primary">{{subtype}}</div>					
+					<div class="badge badge-sm badge-primary">{{stories}} Stories</div>					
+				</div>
+			</a>
+			{{else}}
+				<div>No entries Found!</div>
+			{{/each}}                                
+        </div>                        
+	</script>
+
+	<script id="template-listing-leaseinfo" type="x-handlebars">	
+			<div class="row">
+				<div class="col-sm-4 text-center">
+					<div class="text-inverse counter m-t-10">${{formatCurrency avg_rate}}</div>
+					<p class="text-muted text-nowrap m-b-10">Avg Rate</p>
+				</div>
+				<div class="col-sm-4 text-center">
+					<div class="text-inverse counter m-t-10">${{formatCurrency min_rate}}</div>
+					<p class="text-muted text-nowrap m-b-10">Min Rate</p>
+				</div>
+				<div class="col-sm-4 text-center">
+					<div class="text-inverse counter m-t-10">${{formatCurrency max_rate}}</div>
+					<p class="text-muted text-nowrap m-b-10">Max Rate</p>
+				</div>
+			</div>    
+			<hr>   		
+			<table class="table">
+				<tr>
+					<th>Title</th>
+					<th>Type</th>
+					<th>Sqft</th>
+					<th>Rate</th>
+					<th>Status</th>
+					<th>Timestamp</th>
+				</tr>
+			{{#each spaces}}				
+				<tr>
+					<td class="text-xs">
+						<a href="{{parent_url}}" target="_blank">{{#if title}}{{title}}{{else}}N/A{{/if}}</a><br>
+					</td>
+					<td class="text-xs">
+						{{category}}<br>
+						{{subtype}}<br>
+						{{lease_type}}
+					</td>					
+					<td class="text-xs">{{formatNumber avl_sqft}} Sqft</td>
+					<td class="text-xs">${{rate}}/SF/YR</td>					
+					<td class="text-xs">{{status}}</td>					
+					<td class="text-xs">
+						{{created_on}}<br>
+						{{last_update}}
+					</td>
+				</tr>
+			</a>
+			{{else}}
+				<tr>
+					<td colspan="4">No entries Found!</td>
+				</tr>
+			{{/each}}                                
+		</table>
+	</script>
+
+	<script id="template-listing-info" type="x-handlebars">
+	    <div class="member-card"> 			
+            <div class="">							
+				<div class="versions-container relative pull-right inline-block" style="border-bottom: 2px dashed;" data-type="listing_info"></div>				
+                <h4 class="m-t-0 mb-3 header-title"><b>{{title}}</b></h4>
+            </div>                             
+            <div class="text-left">
+				<div class="mb-1"><strong>Type:</strong> <span class="m-l-15">{{type}}</span></div>
+                <div class="mb-1"><strong>Address:</strong> <span class="m-l-15">{{address}}, {{city}}, {{state}} {{zipcode}}</span></div>
+                <div class="mb-1"><strong>Geocoded Address:</strong><span class="m-l-15">{{geocoded}}</span></div>
+                <div class="mb-1"><strong>Source:</strong> <span class="m-l-15">{{source}} - <a href="{{url}}" target="_blank"><i class="fa fa-link"></i></a></span></div>
+				<div class="mb-1"><strong>Remote ID:</strong> {{remote_id}}</div>
+                <div class="mb-1"><strong>Type :</strong> <span class="m-l-15">{{category}}</span></div>
+				<div class="mb-1"><strong>Subtype :</strong> <span class="m-l-15">{{subtype}}</span></div>
+				<div class="mb-1"><strong>Price :</strong> <span class="m-l-15">${{price}}</span></div>
+				<div class="mb-1"><strong>Lease Rate:</strong> <span class="m-l-15">${{lease_rent}}/SF/YR</span></div>
+				<div class="mb-1"><strong>Sqft :</strong> <span class="m-l-15">{{formatNumber sqft}} Sqft / {{acres}} Acres</span></div>
+				<div class="mb-1"><strong>Buildings Size :</strong> <span class="m-l-15">{{formatNumber buildings_sqft}} Sqft</span></div>
+				<div class="mb-1"><strong>FAR:</strong><span class="m-l-15">{{far}}</span></div>                
+				<div class="mb-1"><strong>Description :</strong> <span class="m-l-15"><br>{{{description}}}</span></div>
+            </div>			
+        </div>
+	</script>
+	<script id="template-versions-item" type="x-handlebars">	            
+	<div class="pull-right">
+		<label>{{activeSource}}</label>							
+		<div class="btn-group">
+            <button type="button" class="btn btn-sm btn-outlie-primary dropdown-toggle " data-toggle="dropdown" aria-expanded="false">{{count}} <span class="caret"></span></button>
+            <div class="dropdown-menu" style="width: 500px; height: 400px; overflow-y: auto; overflow-x: hidden">
+				{{#each items}}					
+					<h4 class="text-center">{{@key}}</h4>
+					<hr>
+					{{#each this}}						
+						<h5>{{title}}<h5>
+						<div class="dropdown-item ml-3" href="#">
+							<i class="fa fa-chevron-right"></i> Latest Version - {{timestamp}}
+							<a href="#" class="pull-right versions-view-a" data-id="{{id}}" data-local-id="{{localId}}">View</a>
+							{{#xIf editable '==' '1'}}<a href="#" class="pull-right versions-edit-a" style="border-right: 1px solid black; margin-right: 8px; padding-right: 10px;" data-id="{{localId}}">Edit</a>{{/xIf}}
+						</div>
+						{{#each updates}}
+						<div class="dropdown-item ml-3" href="#">
+							<i class="fa fa-chevron-right"></i> Version {{@index}} - {{timestamp}}
+							<a href="#" class="pull-right versions-view-a" data-id="{{id}}">View</a>							
+						</div>
+						{{/each}}						
+					{{/each}}
+					<hr>
+				{{/each}}				                				
+				<a class="dropdown-item versions-add-a" href="#"><i class="fa fa-edit"></i> Create New Version</a>
+            </div>
+        </div>
+	</div>	
+	</script>
+	<script id="template-listing-flags" type="x-handlebars">	            
+		<div class="row">
+			<div class="col-sm-4 text-center">
+				<a href="#" class="btn btn-link p-1 flag-a {{#xIf heart "==" "1"}}text-danger{{else}}text-muted{{/xIf}}" data-type="heart" style="font-size: 37px;"><i class="fa fa-heart"></i></a>
+			</div>
+			<div class="col-sm-4 text-center">
+				<a href="#" class="btn btn-link p-1 flag-a {{#xIf up "==" "1"}}text-success{{else}}text-muted{{/xIf}}" data-type="up" style="font-size: 37px;"><i class="fa fa-thumbs-up"></i></a>
+			</div>
+			<div class="col-sm-4 text-center">
+				<a href="#" class="btn btn-link p-1 flag-a {{#xIf down "==" "1"}}text-warning{{else}}text-muted{{/xIf}}" data-type="down" style="font-size: 37px;"><i class="fa fa-thumbs-down"></i></a>
+			</div>
+		</div>	        
+	</script>
+	<script id="template-gmaps-map-places-summary" type="x-handlebars">
+		<div>Detected Businesses: <b>{{total}}</b></div>
+		<div>Closure Rate: <b>{{formatNumber closure_rate}}%</b> <div class="badge badge-success badge-sm">{{open}} Open</div><div class="badge badge-danger badge-sm">{{closed}} Closed</div></div>
+		<div>{{#each types}}<div class="badge badge-secondary badge-sm mr-1">{{#each this}}{{this}} {{/each}}</div>{{/each}}</div>		
+	</script>	
+	<script id="template-gmaps-map-places-list" type="x-handlebars">
+	<table class="table">
+		<tr>
+			<th>Address</th>			
+			<th>Name</th>
+			<th>Type</th>			
+		</tr>
+		{{#each items}}
+		<tr>
+			<td>
+				<div class="text-sm">{{vicinity}}</div>
+				<div class="badge badge-sm badge-info">{{type}}</div>
+			</td>
+			<td>				
+				{{name}}
+			</td>
+			<td>
+				<div><img src="{{icon}}" style="width: 15px;"> {{types.[0]}}</div>
+				<div class="badge badge-sm badge-{{#xIf business_status "==" "OPERATIONAL"}}success{{else}}danger{{/xIf}}">{{business_status}}</div>
+			</td>
+		</tr>
+		{{/each}}
+	</table>
+	</script>
+
+	<script id="template-gmaps-map-oa-summary" type="x-handlebars">
+		<div>Detected Addresses: <b>{{summary.total}}</b></div>
+		<div>Avg Value: <b>${{summary.avg_value}}</b></div>
+		<div>Avg Sqft: <b>{{formatNumber summary.avg_sqft}}</b></div>
+		<div>Avr Price/sqft: <b>${{summary.avg_price}}</b></div>
+	</script>	
+	<script id="template-gmaps-map-oa-list" type="x-handlebars">
+	<table class="table">
+		<tr>
+			<th>Address</th>			
+			<th>Size</th>
+			<th>Value</th>			
+		</tr>
+		{{#each items}}
+		<tr>
+			<td>
+				<div class="text-sm">{{address}}</div>
+				<div class="badge badge-sm badge-info">{{type}}</div>
+			</td>
+			<td>{{formatNumber sqft}}</td>
+			<td>
+				<div>${{formatCurrency value}}</div>
+				<div class="badge badge-sm badge-info">${{formatNumber price_sqft}}/sqft</div>
+			</td>
+		</tr>
+		{{/each}}
+	</table>
+	</script>
+	<script id="template-graph-summary" type="x-handlebars">
+				<div class="inline-block-full">
+					<div class="btn-group pull-right" role="group">		
+						{{#each types}}
+							<button type="button" data-mode="{{this}}" class="btn log-mode-a btn-light">{{this}}</button>
+						{{/each}}													
+					</div>
+				
+					<a href="#" class="btn btn-sm btn-primary log-refresh-a hidden" data-domain="{{domain}}"><i class="fa fa-refresh"></i></a>
+					<h3 class="pull-left">{{title}}</h3>				
+				</div>
+				<div class="widget-chart text-center">                                	                                	
+					<div  class="log-chart" style="height: 150px;"></div>
+				</div>
+
+				<div class="row text-center">
+					<div class="col-sm-12">
+						<div class="badge badge-primary">{{loc}}</div>
+					</div>						
+				</div>
+				<div class="text-center row">
+					{{#each trends}}
+					<div class="col-sm-3">
+						<h5 class="text-muted font-16 m-t-20">{{title}} Trend</h5>						
+						<h4 class="mb-0 text-{{#xIf delta "<" "0"}}danger{{else}}success{{/xIf}}">						
+						%{{formatCurrency p}} <span class="fa {{#xIf delta "<" "0"}}fa-level-down{{else}}fa-level-up{{/xIf}}"></span>
+						</h4>
+						<div class="text-xs text-muted">{{#xIf delta ">" "0"}}+{{/xIf}}${{formatCurrency delta}}</div>
+					</div>
+					{{else}}
+					<div class="col-sm-2">
+						<h5 class="text-muted font-16 m-t-20"><span class="text-white ">AAAAA</span></h5>						
+						<h4 class="mb-0 text-white">AAAA</h4>
+					</div>
+					{{/each}}					 					
+				</div>							
+	</script>
+
+	<script id="template-listing-updates-item" type="x-handlebars">
+		<tr data-id="{{id}}" data-listing-id="{{remote_id}}" class="updates-item">
+			<td>{{timestamp}}</td>
+			<td>{{operation}}</td>			
+			<td nowrap><small>{{path}}</small></td>							
+			<td>{{value_old}}</td>
+			<td>{{value_new}}</td>																								
+			<td class="text-right" nowrap>																
+			</td>
+		</tr>
+	</script>
+
+	
+
+	
+</div>
+
+

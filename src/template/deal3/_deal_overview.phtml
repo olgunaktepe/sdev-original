@@ -1,0 +1,157 @@
+<div class="row">
+	<div class="col-sm-3">
+		<div class="listing-flags-container card-box m-0 p-0 hidden" style="width: 100%;  height: 62px"></div>							
+		<div class="listing-gallery card-box m-1" style="width: 100%;  height: 437px"></div>					
+		<div class="listing-info-container card-box m-1 " style="width: 100%;  height: 555px; overflow-y: auto;"></div>			
+		
+		
+		<div class="card-box m-0" style="height: 339px; overflow-y: auto;" >
+			<h4 class="m-t-0 mb-2 header-title"><b>Lease Info</b></h4>			
+			<div class="listing-leaseinfo-container"></div>	
+		</div>	
+
+	</div>
+	<div class="col-sm-6">
+		<div class="row">
+			<div class="col-sm-12">		
+				<div class="row summary-container">                    
+				</div>				
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12">	
+				<div class="row">
+					<div class="col-lg-6  p-0 widget-chart">	
+						<div class="widget-bg-color-icon card-box  m-0 fadeInDown animated log-container zillow-container zillow-1-container">								
+						</div>
+					</div>
+
+					<div class="col-lg-6  p-0 widget-chart">	
+						<div class="widget-bg-color-icon card-box  m-0 fadeInDown animated log-container zillow-container zillow-2-container">								
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12">	
+				<div class="row">
+					<div class="col-lg-6 p-0 widget-chart">	
+						<div class="widget-bg-color-icon card-box m-0 fadeInDown animated log-container census-container census-1-container">								
+						</div>
+					</div>
+
+					<div class="col-lg-6 p-0 widget-chart">	
+						<div class="widget-bg-color-icon card-box m-0 fadeInDown animated log-container census-container census-2-container">								
+						</div>
+					</div>
+				</div>		
+			</div>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="card-box">
+			<div>Last Cache: <b><span class="bold cache-label"></span></b></div>
+			<a href="#" class="btn btn-primary btn-block cache-refresh-a"><i class="fa fa-refresh"></i> Refresh Cache</a>
+		</div>
+		<div class="card-box">
+			<h4 class="m-t-0 mb-2 header-title"><b>Map View</b></h4>
+			<div class="gmaps-map" style="width: 100%; height: 400px"></div>			
+		</div>
+			
+		<div class="walkscore-container card-box"></div>	
+
+		<div class="greatschools-container card-box"></div>	
+				
+		<div class="card-box">
+			<h4 class="m-t-0 mb-2 header-title"><b>Street View</b></h4>
+			<div class="gmaps-street" style="width: 100%; height: 400px"></div>			
+		</div>		
+	</div>
+</div>
+
+<div class="row">
+	<hr>
+</div>
+
+<div class="row">
+
+	<div class="col-sm-3">
+		<div class="card-box m-0" style="height: 286px;" >
+			<label class="pull-right m-t-3">Found: <span class="listing-poi-count-label">0</span></label>
+			<h4 class="m-t-0 mb-2 header-title"><b>Points Of Interest</b></h4>
+			<form class="listing-poi-form">
+				<input type="hidden" name="action" value="loadPoi">
+				<input type="hidden" name="listing_id" value="<?=$_GET['id'];?>">
+
+				<div class="form-inline mb-2">
+					<div class="form-group">
+						<label class="text-sm">Distance</label>		
+						<input type="number" class="form-control input-sm" name="distance" value="0.5">
+					</div>
+					<div class="form-group hidden">		
+						<label>Proximity</label>		
+						<input type="number" class="form-control filter-query-proximity-value" value="0.5">			
+					</div>
+					<div class="form-group">
+						<a href="#" class="btn btn-sm btn-primary listing-poi-search-a"><i class="fa fa-search"></i></a>		
+					</div>
+				</div>			
+			</form>	
+			<hr>
+			<div class="listing-poi-container"></div>	
+		</div>	
+	</div>			
+	<div class="col-sm-3">
+		<div class="card-box relative ">
+			<h4 class="m-t-0 mb-2 header-title"><b>Market Stats</b></h4>
+			<div class="markets-container m-0" style="height: 500px; overflow: auto"></div>			
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="card-box relative ">
+			<h4 class="m-t-0 mb-2 header-title"><b>Submarket Stats</b></h4>
+			<div class="submarkets-container m-0" style="height: 500px; overflow: auto"></div>			
+		</div>
+	</div>
+
+	<div class="col-sm-3">
+		<div class="card-box">
+			<div>
+				<a href="#" class="btn btn-primary btn-sm pull-right listing-updates-a" data-id="<?=$_GET['id'];?>">View Update Logs</a>
+				<h4 class="m-t-0 mb-2 header-title"><b>Timeline</b></h4>	
+			</div>
+			<br>		
+			<div class="timeline-container m-0" style="height: 500px; overflow-y: auto; overflow-x: hidden"></div>			
+		</div>	
+	</div>
+
+	<div class="col-sm-3">
+		<div class="listing-agents-container card-box m-0" style="height: 500px;"></div>			
+	</div>			
+	
+	<div class="col-sm-3">
+		<div class="card-box">
+			<a href="#" class="btn btn-sm btn-primary pull-right gmaps-map-oa-a">Analyze Map Homes</a>		
+			<h4 class="m-t-0 mb-2 header-title"><b>Residential Analyzer</b></h4>				
+			<div class="gmaps-map-oa-summary">
+
+			<br><br>
+			Click button to view results...
+			<br><br>
+
+			</div>					
+			<div class="gmaps-map-oa-list" style="height: 410px;overflow: auto;"></div>		
+		</div>
+	</div>
+	<div class="col-sm-3">	
+		<div class="card-box">	
+			<a href="#" class="btn btn-sm btn-primary pull-right gmaps-map-places-a">Analyze Map Businesses</a>		
+			<h4 class="m-t-0 mb-2 header-title"><b>Business Analyzer</b></h4>				
+			<div class="gmaps-map-places-summary">
+				<br><br>
+				Click button to view results...
+				<br><br>
+			</div>					
+			<div class="gmaps-map-places-list" style="height: 410px;overflow: auto;"></div>		
+		</div>
+	</div>
+</div>	

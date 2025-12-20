@@ -1,0 +1,20 @@
+<?php include 'header.phtml'?> 
+  <tr>
+    <td colspan="2">
+    	<p>Hello <?=$data['first_name']?>,</p>
+    	<p>Your login information for <a href="<?=$GLOBALS['site']['url']?>"><?=$GLOBALS['site']['title']?></a> is as follows:</p>
+    	<p>
+    		Username: <b><?=$data['crm_username']?></b><br> 
+    		Password: <b><?=$data['crm_password']?></b>
+    	</p>    	
+    </td>
+  </tr> 
+  <?php if($data['message']): ?> 
+  <tr>
+    <td height="33" colspan="2"><p style="font-size: 18px; font-weight: bold;">Message from the account holder: </p></td>
+  </tr>
+  <tr>
+    <td colspan="2"><p><?=$data['message']?></p></td>
+  </tr> 
+  <?php endif; ?> 
+ <?php include 'footer.phtml'?>

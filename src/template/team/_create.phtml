@@ -1,0 +1,76 @@
+<?php
+	if($_REQUEST['templateData']){
+		$id = (int)$_REQUEST['templateData']['id'];		
+		$agent = new stdClass();
+		if($id){ 
+			$agent = getAgent($id);					
+		}
+		$settings = $agent->settings;
+	}			
+	$types = getTypes();
+?>
+<form class="validateSubmitForm innerAll half">																
+	<input type="hidden" name="action" value="save"/>		
+	<input type="hidden" name="id" value="<?=$agent->id?>"/>
+	<? if($agent->id):?>
+		<div class="pull-left text-danger small"><b>This user has to logout and log back in for the changes to take effect.</b></div>
+	<? endif; ?>
+	<div class="text-right small">* are required fields.</div>				
+
+	<div class="row">
+		<div class="col-sm-6">
+			<div class="form-group">
+				<label class="strong">Username *</label>
+				<input type="text" class="form-control span8" name="crm_username" value="<?=$agent->username?>" required>
+			</div>
+			<div class="form-group">
+				<label class="strong">First Name *</label>
+				<input type="text" class="form-control span8" name="first_name" value="<?=$agent->first_name?>" required>										
+			</div>			
+			<div class="form-group">
+				<label class="strong">Phone Number</label>
+				<input type="text" class="form-control span8 inputmask-phone" name="phone" value="<?=$agent->phone?>">										
+			</div>
+			<div class="form-group">
+				<label class="strong">Status</label>
+				<div>
+					<input name="status" value="1" type="checkbox" class="js-switch" <?=(!isset($agent) || $agent->status)?'checked':''?>>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="strong">IP</label>
+				<input type="text" class="form-control" name="ip_whitelist" value="<?=$agent->ip_whitelist?>">										
+			</div>									
+		</div>
+		<div class="col-sm-6">			
+			<div class="form-group">
+				<label class="strong">Password *</label>
+				<input type="text" class="form-control span8" name="password" value="<?=$agent->password?>" required>
+			</div>	
+			<div class="form-group">
+				<label class="strong">Last Name *</label>
+				<input type="text" class="form-control span8" name="last_name" value="<?=$agent->last_name?>" required>
+			</div>				
+			<div class="form-group">
+				<label class="strong">Email</label>
+				<input type="text" class="form-control span8 email" name="email" value="<?=$agent->email?>">										
+			</div>	
+			
+			
+			<div class="form-group">
+				<label class="strong">Type</label>
+				<select class="form-control" name="type_id">
+					<? if($agent->type_id == 1): ?>
+						<option value="1">Admin</option>
+					<? else: ?>
+						<? foreach($types as $t): ?>
+						<option value="<?=$t->id?>" <?=($t->id==$agent->type_id)?'selected':''?>><?=$t->title?></option>
+						<? endforeach; ?>
+					<?endif;?>
+				</select>				
+			</div>			
+
+		</div>		
+	</div>		
+
+</form>	

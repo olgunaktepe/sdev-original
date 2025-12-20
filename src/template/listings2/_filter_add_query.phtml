@@ -1,0 +1,24 @@
+<?
+    $filters = Filters::buildFilterConfig();  
+    
+    $groups = [];
+    foreach($filters as $f){   
+        $groups[$f['optgroup']][] = $f;
+    }            
+    //t($groups);
+?>
+ <div class="form-group">
+    <label>Select Filter</label>
+    <select class="form-control filter-query-selector">
+        <? foreach($groups as $label=>$g): ?>
+        <optgroup label="<?=$label?>">
+            <? foreach($g as $f): ?>
+            <option value="<?=$f['id']?>" data-type="<?=$f['type']?>"><?=$f['label']?></option>
+            <? endforeach; ?>
+        </optgroup>
+        <? endforeach; ?>
+    </select>
+</div>
+
+<div class="row filter-query-item">    
+</div>

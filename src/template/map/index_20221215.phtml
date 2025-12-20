@@ -1,0 +1,386 @@
+<style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+
+	  #query-builder .group-conditions .btn{
+		  opacity: 0.4;
+		  cursor: pointer;
+	  }
+	  #query-builder .group-conditions .btn:hover{
+		  opacity: 1;		  
+	  }
+	  #query-builder .group-conditions .btn.active{
+		  opacity: 1;
+	  }
+	  #query-builder .group-conditions .btn.disabled{
+			opacity: 0.1!important;
+	  }
+
+</style>
+
+<div class="page-map">	
+	<form>
+	<div class="row card-box">
+		<div class="col-sm-4">
+			<div class="ibox-content m-b-sm border-bottom">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">Type</label>
+							<select class="form-control" name="filter[type]">
+								<option value="">All types...</option>
+	  							<option value="sale">Sale</option>
+								<option value="lease">Lease</option>
+								<option value="expired_sale">Expired Sale</option>
+							    <option value="expired_lease">Exipred Lease</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="col-sm-8">
+						<div class="form-group">
+							<label class="control-label">Map Center</label>
+							<input type="text" class="form-control center-input" name="center" placeholder="Enter an address or zip code">						
+						</div>
+					</div>
+					
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">Remote ID</label>
+							<input type="text" class="form-control" name="filter[remote_id]" placeholder="Listing remote ID">						
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">Scrape Date</label>
+							<input type="text" class="form-control daterangepicker" value="<?=date('m/d/Y',strtotime("-1 day"));?> - <?=date('m/d/Y',strtotime("-1 day"));?>" name="filter[date]" placeholder="Search for text">						
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">Source</label>
+							<select class="form-control select2" name="filter[source][]" multiple>
+								<option value="">All sources...</option>
+								<option value="crexi.com">crexi.com</option>
+								<option value="lease-crexi.com">lease-crexi.com</option>
+								<option value="commercialexchange.com">commercialexchange.com</option>
+								<option value="century21.com">Century 21</option>
+								<option value="email">Email</option>
+								<option value="import">Import</option>
+							</select>							
+						</div>
+					</div>
+
+					<div class="col-sm-12">
+						<a href="#" class="btn btn-block btn-primary locations-view-a m-b-10">View Listings</a>
+					</div>
+
+				</div>	
+				<div class="row">		
+					<div class="col-sm-12">
+						<div style="height: 500px; width: 100%;" id="map-canvas"></div>
+						<hr>
+					</div>
+				</div>
+				<div class="row">		
+					<div class="col-sm-2">						
+	  					<label class="mt-2">Rental Rates</label>
+					</div>
+					<div class="col-sm-4">
+						<input type="text" class="form-control daterangepicker rental-date" value="<?=date('m/d/Y',strtotime("-60 day"));?> - <?=date('m/d/Y',strtotime("-1 day"));?>">						
+					</div>													
+					<div class="col-sm-6">
+						<a href="#" class="btn btn-sm btn-primary rental-a"><i class="fa fa-refresh"></i></a>
+						<div class="rental-res float-right "></div>
+					</div>				
+					<div class="col-sm-12">						
+						<hr>
+					</div>
+				</div>
+				<div class="row">	
+					<div class="col-sm-12 mb-3">						
+						<a href="#" class="btn btn-primary float-right filter-a"><i class="fa fa-search"></i> Apply</a>
+						<a href="#" class="btn btn-success mr-3 float-right filter-save-a">Save Filter</a>
+						<a href="#" class="btn btn-danger mr-3 float-right filter-remove-a hidden">Delete Filter</a>
+						<div class="pull-right float-right mr-5"><? includeWidget('bms::~button'); ?></div>
+						<h3>Filter Builder</h3>						
+					</div>
+					<div class="col-sm-12">
+						<select class="form-control filter-select">
+	  						<option value="">Select from saved filters...</option>
+						</select>
+					</div>
+																
+
+    				<div id="query-builder" class="col-sm-12"></div>  								
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-8">	
+			<div class="row stats-container pb-5">
+			</div>				
+			<div style="overflow: auto;height: 800px;">
+				<div class="row">
+					<div class="col-sm-12 text-right">					
+						<a href="#" class="btn btn-success pull-right m-l-10 export-a"><i class="fa fa-download"></i> CSV Export</a>
+						
+						<a href="#" class="btn btn-primary pull-right m-l-10 add-a"><i class="fa fa-plus"></i> Add Listing</a>
+						<a href="#" class="btn btn-link sample-a">Download Sample File</a>
+						<div class="fileupload fileupload-new pull-right m-r-10 fileupload-listings">																			
+							<div class="text-center actions">
+								<span href="#" class="btn btn-warning btn-file btn btn-primary"><i class="fa fa-fw fa-upload"></i> Import Listings<span class="fileupload-new"></span><input type="file"></span>										
+							</div>
+							<a href="#" class="btn btn-success btn-block uploading uploading-listings" style="display: none;"><i class="fa fa-fw fa-spinner fa-spin"></i> Uploading, Please wait...</a>							
+						</div>				
+
+
+					</div>
+				</div>		
+				<table class="table sortable">
+					<thead>
+						<tr>					
+							<th>Title</th>					
+							<th>Address</th>
+							<th>Price</th>
+							<th>Size</th>
+							<th>Price/Sqft</th>					
+							<th>FAR</th>					
+							<th>Category</th>										
+							<th>NOI/Cap</th>
+							<th>Market NOI/Cap</th>
+							<th>Submarket NOI/Cap</th>
+							<th>Filters</th>
+							<? /*
+							<th>Decription</th>
+							<th></th>					
+							*/ ?>
+						</tr>
+					</thead>
+
+					<tbody  class="locations-container">
+					</tbody>
+				</table>
+					
+
+			</div>		
+		</div>
+	</div>
+	</form>
+
+	<script id="template-upload" type="x-handlebars">
+		<h2 class="text-success"><i class="fa fa-check"></i> <b>{{ok}}</b> Successfully Imported </h2>
+		<h2 class="text-danger"><i class="fa fa-times"></i> <b>{{errors}}</b> Not imported </h2>		
+	</script>
+	<script id="template-rental-res" type="x-handlebars">
+		<span class="text-bold pull-right bold">${{formatCurrency stats.average}}/sf/year - {{stats.count}} Listings</span>
+	</script>
+	<script id="template-export-filter" type="x-handlebars">
+	<div class="row">
+		<div class="col-sm-4">
+			<a href="#" class="pull-right select-all">Select All</a>
+			<h4>Select Results Set:</h4>
+			<hr>
+			<div style="height: 500px; overflow-y: auto; overflow-x: hidden;">
+				<? foreach(['valid','invalid','err','err_valid'] as $type): ?>
+				<div class="form-group row">
+					<div class="offset-3 col-9">
+						<div class="checkbox checkbox-primary" style="cursor:pointer">							
+							<input id="filter<?=$type?>" type="checkbox" name="type[]" value="<?=$type?>">
+							<label for="filter<?=$type?>"><? if($type == 'err'): ?>Error<?elseif($type == 'err_valid'):?>Matching with error<?else:?><?=$type?><?endif;?> ({{stats.<?=$type?>}} listings)</label>
+						</div>
+					</div>
+				</div>	  		
+				<? endforeach; ?>
+			</div>	  	
+		</div>
+		<div class="col-sm-8">
+			<a href="#" class="pull-right select-all">Select All</a>
+			<h4>Select Additional Export Fields: (optional)</h4>
+			<hr>
+			<div style="height: 500px; overflow-y: auto; overflow-x: hidden;">
+				{{#each fields}}
+				<div class="form-group row">
+					<div class="offset-3 col-9">
+						<div class="checkbox checkbox-primary" style="cursor:pointer">
+							<input id="filter{{id}}" type="checkbox" name="filter[]" value="{{field}}_-_{{optgroup}} - {{label}}">
+							<label for="filter{{id}}">{{optgroup}} - {{label}}</label>
+						</div>
+					</div>
+				</div>	  		
+				{{/each}}
+			</div>	  		
+		</div>
+	</div>	
+	</script>
+
+	<script id="template-stats" type="x-handlebars">	
+		<div class="col-sm-12">
+			<div><b>Total Found: {{total}}</b></div>
+			<div class="progress m-1">
+				<div class="progress-bar" role="progressbar" style="width: {{progress}}%;">{{formatNumber progress}}%</div>
+			</div>
+		</div>
+		<div class="col-sm-3 text-center">
+			<h3 class="text-success counter font-bold mt-0">{{formatNumber valid}}</h3>			
+            <p class="mb-0">Matching Listings</p>
+			<a href="#" class="btn btn-sm text-success stats-view-a" data-type="valid">View Listings</a>
+			<a href="#" class="btn btn-sm text-secondary stats-hide-a" data-type="valid">Hide Listings</a>
+		</div>		
+		<div class="col-sm-3 text-center">
+			<h3 class="text-secondary counter font-bold mt-0">{{formatNumber invalid}}</h3>			
+            <p class="mb-0">Excluded Listings</p>
+			<a href="#" class="btn btn-sm text-success stats-view-a" data-type="invalid">View Listings</a>
+			<a href="#" class="btn btn-sm text-secondary stats-hide-a" data-type="invalid">Hide Listings</a>
+		</div>		
+		<div class="col-sm-3 text-center">
+			<h3 class="text-danger counter font-bold mt-0">{{formatNumber err}}</h3>			
+            <p class="mb-0">Error Listings</p>
+			<a href="#" class="btn btn-sm text-success stats-view-a" data-type="err">View Listings</a>
+			<a href="#" class="btn btn-sm text-secondary stats-hide-a" data-type="err">Hide Listings</a>
+		</div>		
+		<div class="col-sm-3 text-center">
+			<h3 class="text-warning counter font-bold mt-0">{{formatNumber err_valid}}</h3>			
+            <p class="mb-0">Matching w/ error Listings</p>
+			<a href="#" class="btn btn-sm text-success stats-view-a" data-type="err_valid">View Listings</a>
+			<a href="#" class="btn btn-sm text-secondary stats-hide-a" data-type="err_valid">Hide Listings</a>
+		</div>		
+	</script>
+	
+	<script id="template-location-card" type="x-handlebars">		
+		
+				{{#each items}}
+					<tr class="location-card" data-valid="{{valid}}" data-err="{{err}}" data-invalid="{{invalid}}" data-err_valid="{{err_valid}}" data-id="{{id}}">								
+						<td>
+							<div class="" style="white-space: nowrap" nowrap>								
+								<a href="#" class="btn btn-link p-1 flag-a {{#xIf flags.heart "==" "1"}}text-danger{{else}}text-muted{{/xIf}}" data-type="heart"><i class="fa fa-heart"></i></a>
+								<a href="#" class="btn btn-link p-1 flag-a {{#xIf flags.up "==" "1"}}text-success{{else}}text-muted{{/xIf}}" data-type="up"><i class="fa fa-thumbs-up"></i></a>
+								<a href="#" class="btn btn-link p-1 flag-a {{#xIf flags.down "==" "1"}}text-warning{{else}}text-muted{{/xIf}}" data-type="down"><i class="fa fa-thumbs-down"></i></a>
+							</div>
+							{{title}}
+							<div><a href="{{url}}" target="_blank">{{source}}</a></div>
+							<div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Actions <span class="caret"></span></button>
+                                <div class="dropdown-menu">
+									<a class="dropdown-item" target="_blank" href="/site/deal3?id={{id}}">View Deals Details</a>
+                                    <a class="dropdown-item" href="#">Email Deal</a>
+									<a class="dropdown-item" href="#">Send to CRM</a>
+                                </div>
+                            </div>
+						</td>						
+						<td>{{address}}, {{city}}, {{state}} {{zipcode}}</td>						
+						<td data-sort="{{stripNumber price}}" nowrap>
+							<div>${{price}}</div>
+						</td>
+						<td data-sort="{{stripNumber sqft}}" nowrap>
+							<div>{{formatNumber sqft}} Sqft</div>
+							<div>{{acres}} Acres</div>
+							<div>{{formatNumber buildings_sqft}} Building Sqft</div>
+						</td>
+						<td data-sort="{{stripNumber price_per_sqft}}" nowrap>
+							<div>${{price_per_sqft}} /sqft</div>
+							<div>${{price_per_acres}} /acre</div>							
+							<div>${{building_price_per_sqft}} /bldg sqft</div>							
+						</td>												
+						<td data-sort="{{stripNumber far}}" nowrap>{{far}}</td>						
+						<td>
+							{{category}}
+							{{#xIf lease_exp ">" 0}}<div class="badge badge-info badge-sm">Lease expires in {{lease_exp}} years</div>{{/xIf}}
+						</td>
+						<td data-sort="{{stripNumber noi}}" nowrap>
+							<div>{{#if noi}}${{noi}}{{else}}-{{/if}}</div>
+							<div>{{#if cap_rate}}{{cap_rate}}%{{else}}-{{/if}}</div>
+							<div>{{#if building_rent_rate}}${{building_rent_rate}} psf{{else}}-{{/if}}</div>
+						</td>
+						<td data-sort="{{stripNumber advanced.market_noi}}" nowrap>
+							<div>{{#if advanced.market_noi}}${{advanced.market_noi}}{{else}}-{{/if}}</div>
+							<div>{{#if advanced.market_cap_rate}}{{advanced.market_cap_rate}}%{{else}}-{{/if}}</div>
+							<div>{{#if advanced.market_rent_rate}}${{advanced.market_rent_rate}} psf{{else}}-{{/if}}</div>
+						</td>
+						<td data-sort="{{stripNumber advanced.submarket_noi}}" nowrap>
+							<div>{{#if advanced.submarket_noi}}${{advanced.submarket_noi}}{{else}}-{{/if}}</div>
+							<div>{{#if advanced.submarket_cap_rate}}{{advanced.submarket_cap_rate}}%{{else}}-{{/if}}</div>
+							<div>{{#if advanced.submarket_rent_rate}}${{advanced.submarket_cap_rate}} psf{{else}}-{{/if}}</div>
+						</td>
+						<td>
+	  						{{#each filters}}
+							  <div class="badge badge-sm badge-{{color}}">{{label}}: {{value}}</div>
+							{{/each}}
+
+						</td>
+						<? /*
+						<td>{{{description_preview}}}</td>
+						<td class="{{color}}" style="width: 3px"></td>						
+						*/ ?>
+					</tr>
+				{{/each}}
+			
+	</script>
+
+	
+	<script id="template-location-card-old" type="x-handlebars">
+	<div class="col-sm-12 location-card" data-id="{{item.id}}">
+		<div class="portlet" style="height: 400px;overflow: auto;">
+			<div class="portlet-heading location-card-header bg-primary">
+				<h3 class="portlet-title text-sm">
+					<img src="/images/markers/{{item.source}}.png" style="width: 25px; height: 25px"/>
+					<a href="/site/deal3?id={{item.id}}" target="_blank">{{item.title}}</a>
+				</h3>
+                <div class="portlet-widgets"></div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="panel-collapse collapse show">
+				<div class="portlet-body">
+
+	  				<div class="row">
+	  					<div class="col-sm-4">
+						  	<div class="mb-1"><strong>Address:</strong> <span class="m-l-15">{{item.address}}, {{item.city}}, {{item.state}} {{item.zipcode}}</span></div>                		                			                			
+							<div class="mb-1"><strong>Price :</strong> <span class="m-l-15">${{item.price}}</span></div>
+							<div class="mb-1"><strong>Size :</strong> <span class="m-l-15">{{formatNumber item.sqft}} Sqft / {{item.acres}} Acres</span></div>							
+							<hr>
+							<div class="mb-1"><strong>Price / sqft:</strong> <span class="m-l-15">${{item.price_per_sqft}}</span></div>
+                			<div class="mb-1"><strong>Price / acre:</strong><span class="m-l-15">${{item.price_per_acres}}</span></div>                
+							<div class="mb-1"><strong>FAR:</strong><span class="m-l-15">{{item.far}}</span></div>                
+							<hr>
+							<div class="location-filter-values"></div>
+						</div>
+						<div class="col-sm-4">
+                			<div class="mb-1"><strong>Source :</strong> <span class="m-l-15">{{item.source}} - <a href="{{item.url}}" target="_blank"><i class="fa fa-link"></i></a></span></div>                			
+							<div class="mb-1"><strong>Type :</strong> <span class="m-l-15">{{item.category}}</span></div>
+							<div class="mb-1"><strong>Buildings Size :</strong> <span class="m-l-15">{{formatNumber item.buildings_sqft}} Sqft</span></div>							
+							<hr>
+							<div style="overflow: hidden; height: 204px;">
+								<img style="width: 100%; height: auto;" src="{{item.main_img}}">
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div style="height: 315px; overflow: auto">
+								{{{item.description}}}
+							</div>
+						</div>
+					</div>
+
+
+				
+					<div class="text-left">
+                		
+            		</div>
+
+				</div>
+			</div>
+		</div>		
+	</script>
+
+	<script id="template-infowindow" type="x-handlebars">
+		<div><a href="{{url}}" target="_blank">{{title}}</a></div>
+		<div>{{source}}</div>
+		<div>{{distance}}</div>	
+		<div>{{timestamp}}</div>
+	</script>
+
+</div>
+

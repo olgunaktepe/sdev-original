@@ -1,0 +1,12 @@
+<script id="template-callerId" type="text/x-handlebars-template">
+	{{#if lead}}
+		<p class="text-center">{{lead.first_name}} {{lead.last_name}}</p>
+		<p class="text-center">
+			{{lead.source}}
+			{{#if lead.is_seller}}<span class="badge badge-info">Seller</span>{{/if}}
+			{{#if lead.is_buyer}}<span class="badge badge-warning">Buyer</span>{{/if}}
+		</p>
+	{{else}}
+		<p class="text-center">No caller ID info found!</p>
+	{{/if}}
+</script>

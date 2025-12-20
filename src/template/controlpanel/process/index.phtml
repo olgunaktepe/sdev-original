@@ -1,0 +1,22 @@
+<div class="page-process">
+
+	<table class="table">
+	<?php foreach($count as $k=>$v): ?>	
+		<tr>		
+			<td><?=$k?></td>
+			<td><?=$v?></td>		
+		</tr>	
+	<?php endforeach; ?>
+	</table>
+	
+	<table class="table">
+	<?php foreach($list as $r): ?>	
+		<tr>
+			<?php foreach($r as $v):?>
+			<td><?=$v?></td>
+			<?php endforeach; ?>
+		</tr>	
+	<?php endforeach; ?>
+	</table>
+	
+</div>

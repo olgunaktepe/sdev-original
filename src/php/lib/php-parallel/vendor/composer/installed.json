@@ -1,0 +1,102 @@
+{
+    "packages": [
+        {
+            "name": "cheprasov/php-parallel",
+            "version": "1.2.0",
+            "version_normalized": "1.2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cheprasov/php-parallel.git",
+                "reference": "5473371a95df375c8ed4c1f18e6d5f845ccbce9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cheprasov/php-parallel/zipball/5473371a95df375c8ed4c1f18e6d5f845ccbce9e",
+                "reference": "5473371a95df375c8ed4c1f18e6d5f845ccbce9e",
+                "shasum": ""
+            },
+            "require": {
+                "cheprasov/php-redis-client": "^1.4",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.*"
+            },
+            "time": "2016-07-27T21:26:30+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "Parallel\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Cheprasov",
+                    "email": "cheprasov.84@ya.ru"
+                }
+            ],
+            "description": "The class allows you to run multiple operations parallel in different processes and send results to the main process. Useful if you need to run multiple independent operations simultaneously, instead of sequential execution, or if you run several independent queries, for example, queries to different data bases",
+            "homepage": "http://github.com/cheprasov/php-parallel",
+            "support": {
+                "issues": "https://github.com/cheprasov/php-parallel/issues",
+                "source": "https://github.com/cheprasov/php-parallel/tree/v1.2.0"
+            },
+            "install-path": "../cheprasov/php-parallel"
+        },
+        {
+            "name": "cheprasov/php-redis-client",
+            "version": "1.10.0",
+            "version_normalized": "1.10.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cheprasov/php-redis-client.git",
+                "reference": "c3594e0bbc8ee1bc2c11c889ce5dfa0d3b8a6f9a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cheprasov/php-redis-client/zipball/c3594e0bbc8ee1bc2c11c889ce5dfa0d3b8a6f9a",
+                "reference": "c3594e0bbc8ee1bc2c11c889ce5dfa0d3b8a6f9a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "cheprasov/php-extra-mocks": "^1.0.0",
+                "phpunit/phpunit": "4.8.*"
+            },
+            "time": "2020-06-20T13:05:24+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-0": {
+                    "RedisClient\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexander Cheprasov",
+                    "email": "acheprasov84@gmail.com"
+                }
+            ],
+            "description": "Php client for Redis. It is a fast, fully-functional and user-friendly client for Redis, optimized for performance. RedisClient supports the latest versions of Redis starting from 2.6 to 6.0",
+            "homepage": "http://github.com/cheprasov/php-redis-client",
+            "support": {
+                "issues": "https://github.com/cheprasov/php-redis-client/issues",
+                "source": "https://github.com/cheprasov/php-redis-client/tree/v1.10.0"
+            },
+            "install-path": "../cheprasov/php-redis-client"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

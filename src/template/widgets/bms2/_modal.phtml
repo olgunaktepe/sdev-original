@@ -1,0 +1,43 @@
+<div>
+	<input type="hidden" name="action" value="getBm"/>	
+	<div class="row">	
+        <div class="col-sm-3">
+			<div class="form-group">
+				<label>Zip Code</label>
+				<input type="text" class="form-control" name="zip" value="">
+			</div>
+		</div>
+
+		<div class="col-sm-3">
+			<div class="form-group">
+				<label>Type</label>
+				<select class="form-control select2" name="types[]" multiple>
+					<option value="zhvi" selected>ZHVI</option>					
+                    <option value="">More Coming Soon...</option>					
+				</select>
+			</div>
+		</div>
+		<div class="col-sm-3">
+			<div class="form-group">
+				<label>Levels</label>
+				<select class="form-control select2" name="levels[]" multiple>					
+					<option value="city" selected>City</option>					
+                    <option value="county" selected>County</option>					
+                    <option value="metro" selected>Metro</option>					
+                    <option value="state" selected>State</option>					
+                    <option value="national" selected>National</option>					
+				</select>
+			</div>
+		</div>
+        <div class="col-sm-2">
+			<div class="form-group">
+				<label>&nbsp;</label>
+                <a href="#" class="btn btn-primary btn-block bms-get-a">Generate</a>
+            </div>		
+        </div>		
+    </div>		
+</div>
+
+
+<div class="bms-zhvi-container row">    
+</div>

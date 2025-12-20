@@ -1,0 +1,35 @@
+<?php
+    $filters = getFilters(false);    
+?>
+<form>
+    <input type="hidden" name="action" value="filterSave"/>
+
+    <div class="form-group">
+        <label>Overwrite existing filter</label>
+        <select class="form-control" name="overwrite_id">
+            <option value="">Do not overwrite</option>
+            <? foreach($filters as $f): ?>
+            <option value="<?=$f->id?>"><?=$f->title?> - <?=$f->username?></option>
+            <? endforeach; ?>
+        </select>
+    </div>
+
+    <hr>
+    <div class="form-group">
+        <label>Or create a new one</label>        
+    </div>
+    
+
+    <div class="form-group">
+        <label>Type</label>
+        <select class="form-control" name="type">
+            <option value="filter">Filter</option>
+            <option value="subquery">Subquery</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" name="title" value="" placeholder="Enter title...">
+    </div>
+</form>

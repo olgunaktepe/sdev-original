@@ -1,0 +1,57 @@
+<?php 
+	$id = $_REQUEST['templateData']['id'];		
+	
+	list($hitId,$data) = mysql_fetch_array(mysql_query("SELECT mturk_id,mturk_details FROM emails WHERE id='$id'"));	
+	$data = json_decode($data);
+	#t($data);
+		
+	if($hitId){
+	    $mturk = new mTurk();
+	    $hit = $mturk->getHit($hitId);
+	    $res = $mturk->getHitResults(array('HITId'=>$hitId));	    
+	}
+	//`t($res);
+	$html = $hit['HIT']['Question'];
+	
+	$headers = array();
+	$workers = $data->workers;	
+	if($workers){
+	    foreach($workers[0]->answer->Answer as $a) $headers[] = $a->QuestionIdentifier;	        	   
+	}	    
+	
+	$table = array();
+	foreach($workers as $w){
+	    $row = array();	   
+        foreach($headers as $h){	    	        
+	        $answers = $w->answer->Answer;
+	        $a = reset(array_filter($answers,function($e) use ($h){ return $e->QuestionIdentifier == $h; }));	        
+	        $row[] = $a->FreeText;
+	    }
+	    $table[] = $row;
+	}	
+?>
+
+<form class="details-form">	
+	<input type="hidden" name="action" value="loadDetails">
+	<input type="hidden" name="id" value="{{id}}">
+
+	<div class="row">
+	<div class="col-sm-12" style="overflow:auto">
+		<table class="table">
+		<tr>
+			<?php foreach($headers as $h): ?>
+			<th><?=$h?></th>
+			<?php endforeach; ?>
+		</tr>
+		<?php foreach($table as $row): ?>
+		<tr>
+			<?php foreach($row as $v): ?>
+			<td><?=$v?></td>
+			<?php endforeach; ?>
+		</tr>
+		<?php endforeach; ?>
+		</table>
+	</div>		
+	</div>
+</form>
+<div class="details-container"><?=$html?></div>

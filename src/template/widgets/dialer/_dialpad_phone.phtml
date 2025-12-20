@@ -1,0 +1,122 @@
+<div class="row">
+        <div class="col-sm-12 p-r-0">
+            <label class="badge col-sm-12 badge-success dialpad-status">Ready</label>
+        </div>
+    </div>
+
+    <div class="row m-b-10">
+        <div class="col-sm-7 p-r-0">
+            <select class="form-control dialpad-callerid-selector" data-style="btn-white">
+                <option value="">Select Caller ID...</option>
+            </select>
+        </div><!--/.col 8-->
+        <? if($_SESSION['user']->type_id <= 2): ?>
+        <div class="col-sm-5">
+            <a href="#" class="btn btn-outline-primary btn-sm dialpad-buy-a"><i class="fa fa-plus"></i> Buy Phone #</a>
+            <div class="dropdown">
+                <div class="call-history-container"></div>
+                <script id="template-call-history" type="text/x-handlebars-template">
+                    <button class="btn btn-white btn-block dropdown-toggle" type="button" data-toggle="dropdown"><i class="fa fa-history"></i> <span class="caret"></span></button>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        {{#call_history}}
+                            <li><a data-number="{{number}}" class="dial-a">{{number}}</a></li>
+                        {{/call_history}}
+                    </ul>
+                </script>
+            </div><!--/.dropdown-->
+        </div><!--/.col 4-->
+        <? endif; ?>
+    </div><!--/.row-->
+
+    <div class="row m-0 keypad-wrapper">
+
+        <div class="dialer-input-wrapper">
+            <div class="country-code-cont hidden">
+                <select class="selectpicker form-control m-0" data-style="btn-white" data-size="6">
+                    <option value="">United States (+1)</option>
+                    <option value="PA">Afghanistan (+93)</option>
+                    <option value="CT">Albania (+335)</option>
+                    <option value="NY">Algeria (+213)</option>
+                    <option value="MD">American Samoa (+1684)</option>
+                    <option value="VA">Andorra (+376)</option>
+                    <option value="VA">000000000</option>
+                    <option value="VA">000000000</option>
+                </select>
+            </div><!--/.country-code-cont-->
+
+            <div class="dialer-input-cont">
+                <input class="dialpad-tocall form-control" type="text" placeholder="Enter number...">
+            </div><!--/.dialer-input-cont-->
+        </div><!--/.dialer-input-wrapper-->
+        
+    </div><!--/.keypad-wrapper-->
+
+    <div class="row m-0 keypad-wrapper dialpad">
+        <a href="javascript:;" class="dialer-key col-sm-4 border-left-1 border-top-1 dial-digit" data-digit="1">
+            <h3 class="m-t-0 m-b-5">1</h3>
+            <p class="m-0">&nbsp;</p>
+        </a><!--/.col 4-->
+        <a href="javascript:;" class="dialer-key col-sm-4 border-left-1 border-top-1 dial-digit" data-digit="2">
+            <h3 class="m-t-0 m-b-5">2</h3>
+            <p class="m-0">ABC</p>
+        </a><!--/.col 4-->
+        <a href="javascript:;" class="dialer-key col-sm-4 border-left-1 border-right-1 border-top-1 dial-digit" data-digit="3">
+            <h3 class="m-t-0 m-b-5">3</h3>
+            <p class="m-0">DEF</p>
+        </a><!--/.col 4-->
+    </div>
+
+    <div class="row m-0 keypad-wrapper dialpad">
+        <a href="javascript:;" class="dialer-key col-sm-4 border-left-1 border-top-1 dial-digit" data-digit="4">
+            <h3 class="m-t-0 m-b-5">4</h3>
+            <p class="m-0">GHI</p>
+        </a><!--/.col 4-->
+        <a href="javascript:;" class="dialer-key col-sm-4 border-left-1 border-top-1 dial-digit" data-digit="5">
+            <h3 class="m-t-0 m-b-5">5</h3>
+            <p class="m-0">JKL</p>
+        </a><!--/.col 4-->
+        <a href="javascript:;" class="dialer-key col-sm-4 border-left-1 border-right-1 border-top-1 dial-digit" data-digit="6">
+            <h3 class="m-t-0 m-b-5">6</h3>
+            <p class="m-0">MNO</p>
+        </a><!--/.col 4-->
+    </div><!--/.keypad-wrapper-->
+
+    <div class="row m-0 keypad-wrapper dialpad">
+        <a href="javascript:;" class="dialer-key col-sm-4 border-left-1 border-top-1 dial-digit" data-digit="7">
+            <h3 class="m-t-0 m-b-5">7</h3>
+            <p class="m-0">PQRS</p>
+        </a><!--/.col 4-->
+        <a href="javascript:;" class="dialer-key col-sm-4 border-left-1 border-top-1 dial-digit" data-digit="8">
+            <h3 class="m-t-0 m-b-5">8</h3>
+            <p class="m-0">TUV</p>
+        </a><!--/.col 4-->
+        <a href="javascript:;" class="dialer-key col-sm-4 border-left-1 border-right-1 border-top-1 dial-digit" data-digit="9">
+            <h3 class="m-t-0 m-b-5">9</h3>
+            <p class="m-0">WXYZ</p>
+        </a><!--/.col 4-->
+    </div><!--/.keypad-wrapper-->
+
+    <div class="row m-0 keypad-wrapper dialpad">
+        <a href="javascript:;" class="dialer-key col-sm-4 border-left-1 border-top-1 border-bottom-1 dial-digit" data-digit="*">
+            <h3 class="m-t-0 m-b-5">*</h3>
+            <p class="m-0">&nbsp;</p>
+        </a><!--/.col 4-->
+        <a href="javascript:;" class="dialer-key col-sm-4 border-left-1 border-top-1 border-bottom-1 dial-digit" data-digit="0">
+            <h3 class="m-t-0 m-b-5">0</h3>
+            <p class="m-0">+</p>
+        </a><!--/.col 4-->
+        <a href="javascript:;" class="dialer-key col-sm-4 border-left-1 border-right-1 border-top-1 border-bottom-1 dial-digit" data-digit="#">
+            <h3 class="m-t-0 m-b-5">#</h3>
+            <p class="m-0">&nbsp;</p>
+        </a><!--/.col 4-->
+    </div><!--/.keypad-wrapper-->
+
+    <div class="row m-t-10">
+        <div class="col-sm-9 p-r-0">
+            <button class="btn btn-success btn-block call" id="dial-btn"><i class="fa fa-phone"></i></button>
+        </div><!--/.col 9-->
+
+        <div class="col-sm-3">
+            <button class="btn btn-white btn-block erase-digit-a"><i class="fa fa-arrow-left"></i></button>
+        </div><!--/.col 3-->
+    </div><!--/.row-->

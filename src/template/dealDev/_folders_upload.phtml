@@ -1,0 +1,22 @@
+<?php
+?>
+<form>    
+    <input type="hidden" name="action" value="foldersUpload">    
+    <input type="hidden" name="listing_id" value="{{id}}">   
+    <input type="hidden" name="folder" value="{{folder}}">               
+        <div class="col-sm-12">                        
+            <div class="form-group">
+                <label>Attach Files</label>
+                <div class="folders-dropzone-uploader">
+                    <div class="folders-fileupload-dropzone dz-clickable fileupload-dropzone border text-center border-radius-lg flex">
+                        <input type="file" name="file[]" multiple>								
+                        <div class="message upload-trigger folders-fileupload-dropzone-trigger">Drop files here to upload</div>
+                    </div> 
+                    <div class="fileupload-preview-container folders-dropzone-preview-container">
+                    </div>                               
+                </div>       
+
+            </div>
+        </div>                            
+    </div>        
+</form>

@@ -1,0 +1,41 @@
+<?php	
+    $twilio = new Twilio();
+	$sid = $_REQUEST['templateData']['sid'];		
+    
+    $number = $twilio->getNumberBySid($sid);    
+?>
+<? if(!$number->id): ?>
+    <div class="alert alert-danger">Number not found!</div>
+<? else: ?>    
+<form class="validateSubmitForm innerAll half">																
+	<input type="hidden" name="action" value="updateNumber"/>		
+	<input type="hidden" name="sid" value="<?=$sid?>"/>		
+
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="form-group">
+				<label class="strong">Phone Number</label>
+				<input type="text" class="form-control" value="<?=$number->number?>" readonly>
+			</div>
+			<div class="form-group">
+				<label class="strong">Friendly Name</label>
+				<input type="text" class="form-control span8" name="title" value="<?=$number->title?>" required>										
+			</div>	
+                        
+			<div class="form-group">				
+				<input name="record" value="1" type="checkbox" class="js-switch" <?=($number->record)?'checked':''?>>				
+                <label class="strong">Record calls</label>				
+			</div>									
+
+            <div class="form-group">				
+				<input name="transcribe" value="1" type="checkbox" class="js-switch" <?=($number->transcribe)?'checked':''?>>				
+                <label class="strong">Transcribe calls</label>				
+			</div>									
+		</div>		
+	</div>	
+    
+    <hr>
+    <a href="#" class="text-danger text-right dialpad-number-release-a" data-sid="<?=$sid?>">Release this number</a>
+				
+</form>	
+<? endif; ?>

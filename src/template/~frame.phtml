@@ -1,0 +1,12 @@
+<header id="topnav">
+<? includeTemplate('default::topbar'); ?>
+<? includeTemplate('default::topnav'); ?>
+</header>
+
+<div class="wrapper">
+	<div class="container-fluid">
+        <? includeTemplate('default::breadcrumbs'); ?>		
+		<? include $pagedata['content']; ?>		   
+	</div>
+</div>
+<? includeTemplate('default::footer'); ?>

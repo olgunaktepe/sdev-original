@@ -1,0 +1,664 @@
+<style>
+      html, body, #map-canvas {
+        height: 100%;
+        margin: 0px;
+        padding: 0px
+      }
+
+	  #query-builder .group-conditions .btn{
+		  opacity: 0.4;
+		  cursor: pointer;
+	  }
+	  #query-builder .group-conditions .btn:hover{
+		  opacity: 1;		  
+	  }
+	  #query-builder .group-conditions .btn.active{
+		  opacity: 1;
+	  }
+	  #query-builder .group-conditions .btn.disabled{
+			opacity: 0.1!important;
+	  }
+
+	  .listings-table thead th:nth-child(1),
+	  .listings-table tbody td:nth-child(1){position:sticky;left:0;background:#fff;z-index:2;}
+	  .listings-table thead th:nth-child(2),
+	  .listings-table tbody td:nth-child(2){position:sticky;left:200px;background:#fff;z-index:2;}
+	  .listings-table thead th:nth-child(3),
+	  .listings-table tbody td:nth-child(3){position:sticky;left:425px;background:#fff;z-index:2;}
+	  .listings-table thead th:nth-child(1),
+	  .listings-table thead th:nth-child(2),
+	  .listings-table thead th:nth-child(3){background:#6c757d;z-index:3;}
+	  .listings-table tbody tr:hover td:nth-child(1),
+	  .listings-table tbody tr:hover td:nth-child(2),
+	  .listings-table tbody tr:hover td:nth-child(3){background:#f5f5f5;}
+
+</style>
+
+
+<div class="page-listings">	
+	<form>
+	<div class="row">
+		<div class="col-sm-4 filters-size-container">
+			<div class="ibox-content m-b-sm border-bottom">
+				<div class="row  card-box">
+					<div class="col-sm-12 mb-3">												
+						<h3>Search Parameters</h3>						
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">Type</label>
+							<select class="form-control" name="filter[type]">
+								<option value="">All types...</option>
+	  							<option value="sale" selected>Sale</option>
+								<option value="lease">Lease</option>
+								<option value="expired_sale">Expired Sale</option>
+							    <option value="expired_lease">Exipred Lease</option>
+							</select>
+						</div>
+					</div>
+					
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">Remote ID</label>
+							<input type="text" class="form-control" name="filter[remote_id]" placeholder="Listing remote ID">						
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">Scrape Date</label>
+							<input type="text" class="form-control daterangepicker" value="<?=date('m/d/Y',strtotime("-1 day"));?> - <?=date('m/d/Y',strtotime("-1 day"));?>" name="filter[date]" placeholder="Search for text">						
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">Source</label>
+							<select class="form-control select2" name="filter[source][]" multiple>								
+								<option value="loopnet.com">loopnet.com</option>
+								<option value="crexi.com">crexi.com</option>
+								<option value="lease-crexi.com">lease-crexi.com</option>
+								<option value="commercialexchange.com">commercialexchange.com</option>
+								<option value="century21.com">Century 21</option>
+								<option value="email">Email</option>
+								<option value="import">Import</option>
+							</select>							
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label class="control-label">Status</label>
+							<select class="form-control select2" name="filter[status][]" multiple>								
+								<option value="">All Status</option>
+								<? foreach(getDealStatus() as $s): ?>
+								<option value="<?=$s?>"><?=$s?></option>
+								<? endforeach; ?>
+							</select>							
+						</div>
+					</div>
+
+					<div class="col-sm-4">
+						<label class="control-label">&nbsp;</label>
+						<a href="#" class="btn btn-block btn-primary locations-view-a m-b-10"><i class="fa fa-search"></i> Search Listings</a>
+					</div>
+
+				</div>
+		
+
+				<div class="row  card-box">	
+					<div class="col-sm-12 mb-3">												
+						<div class="float-right"><? includeWidget('bms::~button'); ?></div>
+						<div class="float-right"><a href="#" class="btn btn-primary mr-3">Rental Rates</a></div>
+						<h3>Toolbox</h3>						
+					</div>
+					<div class="col-sm-6">												
+						
+
+						<div class="row mt-4 hidden">		
+							<div class="col-sm-2">						
+								<label class="mt-2">Rental Rates</label>
+							</div>
+							<div class="col-sm-4">
+								<input type="text" class="form-control daterangepicker rental-date" value="<?=date('m/d/Y',strtotime("-60 day"));?> - <?=date('m/d/Y',strtotime("-1 day"));?>">						
+							</div>													
+							<div class="col-sm-6">
+								<a href="#" class="btn btn-sm btn-primary rental-a"><i class="fa fa-refresh"></i></a>
+								<div class="rental-res float-right "></div>
+							</div>											
+						</div>
+						
+					</div>	
+					<div class="col-sm-6">									
+						
+					</div>	
+				</div>	
+
+				<div class="row card-box">	
+					<div class="col-sm-12 mb-3">												
+						<a href="#" class="btn btn-secondary mr-3 float-right filter-load-a"><i class="fa fa-download"></i> Load Filter</a>
+						<a href="#" class="btn btn-success mr-3 float-right filter-save-a"><i class="fa fa-save"></i> Save Filter</a>
+						<a href="#" class="btn btn-primary mr-3 float-right filter-add-a"><i class="fa fa-plus""></i> Add Query</a>
+						<h3>Filters</h3>						
+					</div>
+					<div class="col-sm-12">												
+						<a href="#" class="btn btn-link pull-right filter-reset-a"><i class="fa fa-eraser"></i> Reset Filters</a>
+					</div>
+					<div class="col-sm-12 filter-container">
+					</div> 																    				 								
+				</div>
+
+			
+				
+				
+			</div>
+		</div>
+		<div class="col-sm-8 locations-size-container">	
+			<div class="card-box">
+			<div class="absolute" style="right: 18px;top: 6px;z-index: 999;">
+				<a href="#" class="btn btn-sm btn-outline-secondary locations-size-a" data-size="larger"><i class="fa fa-chevron-left"></i> </a>
+				<a href="#" class="btn btn-sm btn-outline-secondary locations-size-a" data-size="smaller"><i class="fa fa-chevron-right"></i> </a>
+			</div>
+			<div class="row stats-container pb-5">
+			</div>				
+			<div class="locations-scrollable-container" style="overflow: auto;height: 800px;">
+				<div class="row">
+					<div class="col-sm-12 text-right">					
+						<a href="#" class="btn btn-success pull-right m-l-10 export-a"><i class="fa fa-download"></i> CSV Export</a>
+						
+						<a href="#" class="btn btn-primary pull-right m-l-10 add-a"><i class="fa fa-plus"></i> Add Listing</a>
+						<a href="#" class="btn btn-link sample-a">Download Sample File</a>
+						<div class="fileupload fileupload-new pull-right m-r-10 fileupload-listings">																			
+							<div class="text-center actions">
+								<span href="#" class="btn btn-warning btn-file btn btn-primary"><i class="fa fa-fw fa-upload"></i> Import Listings<span class="fileupload-new"></span><input type="file"></span>										
+							</div>
+							<a href="#" class="btn btn-success btn-block uploading uploading-listings" style="display: none;"><i class="fa fa-fw fa-spinner fa-spin"></i> Uploading, Please wait...</a>							
+						</div>				
+
+
+					</div>
+				</div>		
+				<table class="listings-table table sortable">
+					<thead>
+						<tr>					
+							<th class="listings-sort" data-sort="created_on" data-sort-type="date">Title</th>					
+							<th class="listings-sort" data-sort="main_img" data-sort-type="default">Image</th>
+							<th class="listings-sort" data-sort="zipcode" data-sort-type="default">Address</th>
+							<th class="listings-sort" data-sort="price" data-sort-type="num">Price</th>
+							<th class="listings-sort" data-sort="sqft" data-sort-type="num">
+								<label>Size</label>
+								<select class="form-control input-sm">
+									<option value="sqft" data-sort-type="num">Sqft</option>									
+									<option value="buildings_sqft" data-sort-type="num">Bldg Sqft</option>
+								</select>
+							</th>
+							<th class="listings-sort" data-sort="price_per_sqft" data-sort-type="num">
+								<label>Price/Sqft</label>
+								<select class="form-control input-sm">
+									<option value="price_per_sqft" data-sort-type="num">Price/Acre</option>									
+									<option value="building_price_per_sqft_rounded" data-sort-type="num">Price/Bldg Sqft</option>
+								</select>
+							</th>
+							<th class="listings-sort" data-sort="far" data-sort-type="num">FAR</th>					
+							<th class="listings-sort" data-sort="category" data-sort-type="default">
+								<label>Category</label>
+								<select class="form-control input-sm">
+									<option value="price_per_sqft" data-sort-type="default">category</option>									
+									<option value="lease_exp" data-sort-type="num">Lease exp.</option>
+								</select>
+							</th>										
+							<th class="listings-sort" data-sort="noi" data-sort-type="num">
+								<label>NOI</label>
+								<select class="form-control input-sm">
+									<option value="noi" data-sort-type="num">NOI</option>									
+									<option value="cap_rate" data-sort-type="num">CAP Rate</option>
+									<option value="building_rent_rate" data-sort-type="num">Rent Rate</option>
+								</select>
+							</th>
+							<th class="listings-sort" data-sort="advanced.retail.market_noi" data-sort-type="num">
+								<label>Retail Market NOI</label>
+								<select class="form-control input-sm">
+									<option value="advanced.retail.market_noi" data-sort-type="num">Retail Market NOI</option>									
+									<option value="advanced.retail.market_cap_rate" data-sort-type="num">Retail Market CAP Rate</option>
+									<option value="advanced.retail.market_rent_rate" data-sort-type="num">Retail Market Rent Rate</option>
+								</select>
+							</th>
+							<th class="listings-sort" data-sort="advanced.retail.submarket_noi" data-sort-type="num">
+								<label>Retail Submarket NOI</label>
+								<select class="form-control input-sm">
+									<option value="advanced.retail.submarket_noi" data-sort-type="num">Retail Submarket NOI</option>									
+									<option value="advanced.retail.submarket_cap_rate" data-sort-type="num">Retail Submarket CAP Rate</option>
+									<option value="advanced.retail.submarket_rent_rate" data-sort-type="num">Retail Submarket Rent Rate</option>
+								</select>
+							</th>	
+							<th class="listings-sort" data-sort="advanced.industrial.market_noi" data-sort-type="num">
+								<label>Industrial Market NOI</label>
+								<select class="form-control input-sm">
+									<option value="advanced.industrial.market_noi" data-sort-type="num">Industrial Market NOI</option>									
+									<option value="advanced.industrial.market_cap_rate" data-sort-type="num">Industrial Market CAP Rate</option>
+									<option value="advanced.industrial.market_rent_rate" data-sort-type="num">Industrial Market Rent Rate</option>
+								</select>
+							</th>
+							<th class="listings-sort" data-sort="advanced.industrial.submarket_noi" data-sort-type="num">
+								<label>Industrial Submarket NOI</label>
+								<select class="form-control input-sm">
+									<option value="advanced.industrial.submarket_noi" data-sort-type="num">Industrial Submarket NOI</option>									
+									<option value="advanced.industrial.submarket_cap_rate" data-sort-type="num">Industrial Submarket CAP Rate</option>
+									<option value="advanced.industrial.submarket_rent_rate" data-sort-type="num">Industrial Submarket Rent Rate</option>
+								</select>
+							</th>							
+							<th>Filters</th>
+							<? /*
+							<th>Decription</th>
+							<th></th>					
+							*/ ?>
+						</tr>
+					</thead>										
+					<tbody  class="locations-container">
+					</tbody>
+				</table>
+			</div>
+			</div>		
+		</div>
+	</div>
+	</form>
+
+	<script id="template-upload" type="x-handlebars">
+		<h2 class="text-success"><i class="fa fa-check"></i> <b>{{ok}}</b> Successfully Imported </h2>
+		<h2 class="text-danger"><i class="fa fa-times"></i> <b>{{errors}}</b> Not imported </h2>		
+	</script>
+	<script id="template-rental-res" type="x-handlebars">
+		<span class="text-bold pull-right bold">${{formatCurrency stats.average}}/sf/year - {{stats.count}} Listings</span>
+	</script>
+	<script id="template-export-filter" type="x-handlebars">
+	<div class="row">
+		<div class="col-sm-4">
+			<a href="#" class="pull-right select-all">Select All</a>
+			<h4>Select Results Set:</h4>
+			<hr>
+			<div style="height: 500px; overflow-y: auto; overflow-x: hidden;">
+				<? foreach(['valid','invalid','err','err_valid'] as $type): ?>
+				<div class="form-group row">
+					<div class="offset-3 col-9">
+						<div class="checkbox checkbox-primary" style="cursor:pointer">							
+							<input id="filter<?=$type?>" type="checkbox" name="type[]" value="<?=$type?>">
+							<label for="filter<?=$type?>"><? if($type == 'err'): ?>Error<?elseif($type == 'err_valid'):?>Matching with error<?else:?><?=$type?><?endif;?> ({{stats.<?=$type?>}} listings)</label>
+						</div>
+					</div>
+				</div>	  		
+				<? endforeach; ?>
+			</div>	  	
+		</div>
+		<div class="col-sm-8">
+			<a href="#" class="pull-right select-all">Select All</a>
+			<h4>Select Additional Export Fields: (optional)</h4>
+			<hr>
+			<div style="height: 500px; overflow-y: auto; overflow-x: hidden;">
+				{{#each fields}}
+				<div class="form-group row">
+					<div class="offset-3 col-9">
+						<div class="checkbox checkbox-primary" style="cursor:pointer">
+							<input id="filter{{id}}" type="checkbox" name="filter[]" value="{{field}}_-_{{optgroup}} - {{label}}">
+							<label for="filter{{id}}">{{optgroup}} - {{label}}</label>
+						</div>
+					</div>
+				</div>	  		
+				{{/each}}
+			</div>	  		
+		</div>
+	</div>
+	<div class="row">	
+
+	</div>
+	</script>
+
+	<script id="template-stats" type="x-handlebars">	
+		<div class="col-sm-12">
+			<div><b>Total Found: {{total}}</b> - {{speed}} listings/second - Elapsed: {{elapsed}} seconds</div>
+			<div class="progress m-1">
+				<div class="progress-bar" role="progressbar" style="width: {{progress}}%;">{{formatNumber progress}}%</div>
+			</div>
+		</div>
+		<div class="col-sm-3 text-center">
+			<h3 class="text-success counter font-bold mt-0">{{formatNumber valid}}</h3>			
+            <p class="mb-0">Matching Listings</p>
+			<a href="#" class="btn btn-sm text-success stats-view-a" data-type="valid">View Listings</a>
+			<a href="#" class="btn btn-sm text-secondary stats-hide-a" data-type="valid">Hide Listings</a>
+		</div>		
+		<div class="col-sm-3 text-center">
+			<h3 class="text-secondary counter font-bold mt-0">{{formatNumber invalid}}</h3>			
+            <p class="mb-0">Excluded Listings</p>
+			<a href="#" class="btn btn-sm text-success stats-view-a" data-type="invalid">View Listings</a>
+			<a href="#" class="btn btn-sm text-secondary stats-hide-a" data-type="invalid">Hide Listings</a>
+		</div>		
+		<div class="col-sm-3 text-center">
+			<h3 class="text-danger counter font-bold mt-0">{{formatNumber err}}</h3>			
+            <p class="mb-0">Error Listings</p>
+			<a href="#" class="btn btn-sm text-success stats-view-a" data-type="err">View Listings</a>
+			<a href="#" class="btn btn-sm text-secondary stats-hide-a" data-type="err">Hide Listings</a>
+		</div>		
+		<div class="col-sm-3 text-center">
+			<h3 class="text-warning counter font-bold mt-0">{{formatNumber err_valid}}</h3>			
+            <p class="mb-0">Matching w/ error Listings</p>
+			<a href="#" class="btn btn-sm text-success stats-view-a" data-type="err_valid">View Listings</a>
+			<a href="#" class="btn btn-sm text-secondary stats-hide-a" data-type="err_valid">Hide Listings</a>
+		</div>		
+	</script>
+	
+	<script id="template-location-card" type="x-handlebars">
+					<tr class="location-card" data-valid="{{valid}}" data-err="{{err}}" data-invalid="{{invalid}}" data-err_valid="{{err_valid}}" data-id="{{id}}">								
+						<td nowrap>	
+							{{#xIf new '==' '1'}}<div class="badge badge-info">New Listing</div>{{/xIf}}			
+							<div class="" style="white-space: nowrap" nowrap>								
+								<a href="#" class="btn btn-link btn-lg p-1 flag-a {{#xIf status "==" "Favorites"}}text-danger flag-on{{else}}text-muted{{/xIf}}" data-type="Favorites"><i class="fa fa-heart"></i></a>
+								<a href="#" class="btn btn-link btn-lg p-1 flag-a {{#xIf status "==" "Potential Buy"}}text-success flag-on{{else}}text-muted{{/xIf}}" data-type="Potential Buy"><i class="fa fa-thumbs-up"></i></a>
+								<a href="#" class="btn btn-link btn-lg p-1 flag-a {{#xIf status "==" "Bad Deal"}}text-warning flag-on{{else}}text-muted{{/xIf}}" data-type="Bad Deal"><i class="fa fa-thumbs-down"></i></a>
+							</div>
+
+							<h4 class="text-danger">{{status}}</h4>	
+							<div style="width:200px; white-space: normal;">{{title}}</div>
+							<div>Source: {{#if url}}<a href="{{url}}" target="_blank">{{source}}</a>{{else}}{{source}}{{/if}}</div>
+							<div class="btn-group">
+                                <button type="button" class="btn btn-secondary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Actions <span class="caret"></span></button>
+                                <div class="dropdown-menu">
+									<a class="dropdown-item" target="_blank" href="/site/deal3?id={{id}}">View Deals Details</a>
+                                    <a class="dropdown-item" href="#">Email Deal</a>
+									<a class="dropdown-item" href="#">Send to CRM</a>
+                                </div>
+                            </div>
+						</td>						
+						<td><div  style="width:225px; height: 140px; overflow: hidden;"><img src="{{main_img}}" style="width:100%; height: auto;"></div></td>
+						<td nowrap>							
+							<div style="max-width:260px; white-space: normal;">{{address}}, {{city}}, {{state}} {{zipcode}}</div>
+							<div class="badge badge-sm badge-primary">Created {{created_on}}</div><br>
+							<div class="badge badge-sm badge-primary">Scraped {{scraped_on}}</div>
+							
+						</td>						
+						<td data-sort="{{stripNumber price}}" nowrap>
+							<div>${{price}}</div>
+						</td>
+						<td data-sort="{{stripNumber sqft}}" nowrap>
+							<div>{{formatNumber sqft}} Sqft</div>
+							<div>{{acres}} Acres</div>
+							<div>{{formatNumber buildings_sqft}} Building Sqft</div>
+						</td>
+						<td data-sort="{{stripNumber price_per_sqft}}" nowrap>
+							<div class="hidden">${{price_per_sqft}} /sqft</div>
+							<div>${{price_per_acres}} /acre</div>							
+							<div>${{building_price_per_sqft_rounded}} /bldg sqft</div>							
+						</td>												
+						<td data-sort="{{stripNumber far}}" nowrap>{{far}}</td>						
+						<td>
+							{{category}}
+							{{#xIf lease_exp ">" 0}}<div class="badge badge-info badge-sm">Lease expires in {{lease_exp}} years</div>{{/xIf}}
+						</td>
+						<td data-sort="{{stripNumber noi}}" nowrap>
+							<div>{{#if noi}}${{noi}}{{else}}-{{/if}}</div>
+							<div>{{#if cap_rate}}{{cap_rate}}%{{else}}-{{/if}}</div>
+							<div>{{#if building_rent_rate}}${{building_rent_rate}} psf{{else}}-{{/if}}</div>
+						</td>
+						<td data-sort="{{stripNumber advanced.market_noi}}" nowrap>
+							<div>{{#if advanced.retail.market_noi}}${{advanced.retail.market_noi}}{{else}}-{{/if}}</div>
+							<div>{{#if advanced.retail.market_cap_rate}}{{advanced.retail.market_cap_rate}}%{{else}}-{{/if}}</div>
+							<div>{{#if advanced.retail.market_rent_rate}}${{advanced.retail.market_rent_rate}} psf{{else}}-{{/if}}</div>
+						</td>
+						<td data-sort="{{stripNumber advanced.submarket_noi}}" nowrap>
+							<div>{{#if advanced.retail.submarket_noi}}${{advanced.retail.submarket_noi}}{{else}}-{{/if}}</div>
+							<div>{{#if advanced.retail.submarket_cap_rate}}{{advanced.retail.submarket_cap_rate}}%{{else}}-{{/if}}</div>
+							<div>{{#if advanced.retail.submarket_rent_rate}}${{advanced.retail.submarket_rent_rate}} psf{{else}}-{{/if}}</div>
+						</td>
+						<td data-sort="{{stripNumber advanced.market_noi}}" nowrap>
+							<div>{{#if advanced.industrial.market_noi}}${{advanced.industrial.market_noi}}{{else}}-{{/if}}</div>
+							<div>{{#if advanced.industrial.market_cap_rate}}{{advanced.industrial.market_cap_rate}}%{{else}}-{{/if}}</div>
+							<div>{{#if advanced.industrial.market_rent_rate}}${{advanced.industrial.market_rent_rate}} psf{{else}}-{{/if}}</div>
+						</td>
+						<td data-sort="{{stripNumber advanced.submarket_noi}}" nowrap>
+							<div>{{#if advanced.industrial.submarket_noi}}${{advanced.industrial.submarket_noi}}{{else}}-{{/if}}</div>
+							<div>{{#if advanced.industrial.submarket_cap_rate}}{{advanced.industrial.submarket_cap_rate}}%{{else}}-{{/if}}</div>
+							<div>{{#if advanced.industrial.submarket_rent_rate}}${{advanced.industrial.submarket_rent_rate}} psf{{else}}-{{/if}}</div>
+						</td>
+						<td>
+	  						{{#each filters}}
+							  <div class="badge badge-sm badge-{{color}}">{{label}}: {{value}}</div>
+							{{/each}}
+
+						</td>
+						<? /*
+						<td>{{{description_preview}}}</td>
+						<td class="{{color}}" style="width: 3px"></td>						
+						*/ ?>
+					</tr>
+				
+			
+	</script>
+
+	
+	<script id="template-location-card-old" type="x-handlebars">
+	<div class="col-sm-12 location-card" data-id="{{item.id}}">
+		<div class="portlet" style="height: 400px;overflow: auto;">
+			<div class="portlet-heading location-card-header bg-primary">
+				<h3 class="portlet-title text-sm">
+					<img src="/images/markers/{{item.source}}.png" style="width: 25px; height: 25px"/>
+					<a href="/site/deal3?id={{item.id}}" target="_blank">{{item.title}}</a>
+				</h3>
+                <div class="portlet-widgets"></div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="panel-collapse collapse show">
+				<div class="portlet-body">
+
+	  				<div class="row">
+	  					<div class="col-sm-4">
+						  	<div class="mb-1"><strong>Address:</strong> <span class="m-l-15">{{item.address}}, {{item.city}}, {{item.state}} {{item.zipcode}}</span></div>                		                			                			
+							<div class="mb-1"><strong>Price :</strong> <span class="m-l-15">${{item.price}}</span></div>
+							<div class="mb-1"><strong>Size :</strong> <span class="m-l-15">{{formatNumber item.sqft}} Sqft / {{item.acres}} Acres</span></div>							
+							<hr>
+							<div class="mb-1"><strong>Price / sqft:</strong> <span class="m-l-15">${{item.price_per_sqft}}</span></div>
+                			<div class="mb-1"><strong>Price / acre:</strong><span class="m-l-15">${{item.price_per_acres}}</span></div>                
+							<div class="mb-1"><strong>FAR:</strong><span class="m-l-15">{{item.far}}</span></div>                
+							<hr>
+							<div class="location-filter-values"></div>
+						</div>
+						<div class="col-sm-4">
+                			<div class="mb-1"><strong>Source :</strong> <span class="m-l-15">{{item.source}} - <a href="{{item.url}}" target="_blank"><i class="fa fa-link"></i></a></span></div>                			
+							<div class="mb-1"><strong>Type :</strong> <span class="m-l-15">{{item.category}}</span></div>
+							<div class="mb-1"><strong>Buildings Size :</strong> <span class="m-l-15">{{formatNumber item.buildings_sqft}} Sqft</span></div>							
+							<hr>
+							<div style="overflow: hidden; height: 204px;">
+								<img style="width: 100%; height: auto;" src="{{item.main_img}}">
+							</div>
+						</div>
+						<div class="col-sm-4">
+							<div style="height: 315px; overflow: auto">
+								{{{item.description}}}
+							</div>
+						</div>
+					</div>
+
+
+				
+					<div class="text-left">
+                		
+            		</div>
+
+				</div>
+			</div>
+		</div>		
+	</script>
+
+	<script id="template-infowindow" type="x-handlebars">
+		<div><a href="{{url}}" target="_blank">{{title}}</a></div>
+		<div>{{source}}</div>
+		<div>{{distance}}</div>	
+		<div>{{timestamp}}</div>
+	</script>
+
+
+	<script id="template-filter-search-res-view" type="x-handlebars">
+	<a href="#" data-id="{{id}}" class="btn btn-link text-danger pull-right absolute filter-delete-a" style="top:-11px; right:0;"><i class="fa fa-trash"></i> Delete Filter</a>
+	{{#each groups}}		
+		<div class="card-box widget-user">                					
+			<h4 class="m-t-0 mb-3 header-title"><b>{{label}}</b></h4>			
+			{{#each items}}
+			<div>				
+				{{#xIf proximity ">" "0"}}<div class="mb-1"><strong>Proximity:</strong> <span class="m-l-15">{{proximity}}</span> Miles</div>{{/xIf}}
+				<div class="mb-1"><strong>Operation:</strong> <span class="m-l-15">{{op}}</span></div>				
+				{{#xIf value.length ">" "1"}}<div class="mb-1"><strong>Mode:</strong> <span class="m-l-15">{{#xIf mode '==' 'and'}}Match ALL entries{{else}}Match ANY entry{{/xIf}}</span></div>{{/xIf}}
+				<div class="mb-1"><strong>Values:</strong> <span class="m-l-15">{{#each value}}<div class="badge badge-primary mr-2">{{this}}</div>{{/each}}</span></div>						                             			
+				{{#if @last}}{{else}}<hr>{{/if}}
+			</div>
+			{{/each}}
+        </div>
+		{{else}}
+		No filters
+	{{/each}}	
+	</script>
+	<script id="template-filter-search-res-item" type="x-handlebars">	
+	{{#each items}}
+		<tr>		
+			<td style="max-width: 342px; white-space: initial;"><a href="#" class="btn btn-link filter-search-res-view-a" data-id="{{id}}">{{title}}</a></td>
+			<td>{{username}}</td>
+			<td>{{type}}<br><div class="badge badge-secondary">{{count}} filters</div></td>		 			
+			<td>
+				<a href="#" class="btn btn-sm btn-primary filter-search-res-view-a" data-id="{{id}}">Preview</a>
+				<a href="#" class="btn btn-sm btn-success filter-search-res-add-a" data-id="{{id}}"><i class="fa fa-plus"></i> Add</a>
+			</td>
+		</tr>		
+	{{else}}
+		<tr><td colspan="4">No matching filters found</td></tr>
+	{{/each}}
+	</script>
+	<script id="template-filter-item" type="x-handlebars">
+		{{#each groups}}		
+		<div class="card-box widget-user">                					
+			<h4 class="m-t-0 mb-3 header-title"><b>{{label}}</b></h4>			
+			{{#each items}}
+			<div style="{{#xIf disabled '==' '1'}}opacity: 0.5{{/xIf}}">
+				{{#if title}}<div class="badge badge-secondary">Subquery: {{title}}</div>{{/if}}
+				<a href="#" class="btn btn-danger btn-sm pull-right filter-remove-a" data-key="{{key}}">Delete Filter</a>
+
+				{{#xIf disabled '==' '1'}}
+					<a href="#" class="btn btn-secondary btn-sm mr-2 pull-right filter-enable-a" data-key="{{key}}">Enable Filter</a>						
+				{{else}}
+					<a href="#" class="btn btn-secondary btn-sm mr-2 pull-right filter-disable-a" data-key="{{key}}">Disable Filter</a>						
+				{{/xIf}}
+
+				{{#xIf proximity ">" "0"}}<div class="mb-1"><strong>Proximity:</strong> <span class="m-l-15">{{proximity}}</span> Miles</div>{{/xIf}}
+				<div class="mb-1"><strong>Operation:</strong> <span class="m-l-15">{{op}}</span></div>				
+				{{#xIf value.length ">" "1"}}<div class="mb-1"><strong>Mode:</strong> <span class="m-l-15">{{#xIf mode '==' 'and'}}Match ALL entries{{else}}Match ANY entry{{/xIf}}</span></div>{{/xIf}}
+				<div class="mb-1"><strong>Values:</strong> <span class="m-l-15">{{#each value}}<div class="badge badge-primary mr-2">{{this}}</div>{{/each}}</span></div>						                             			
+				{{#if @last}}{{else}}<hr>{{/if}}
+			</div>
+			{{/each}}
+        </div>
+		{{else}}
+		No filters
+		{{/each}}	
+	</script>
+	<script id="template-filter-query-item" type="x-handlebars">
+	<div class="col-sm-6">
+        <div class="filter-query-data mb-3">
+			{{#if filter.proximity}}
+			<div class="form-inline mb-2">
+				<div class="form-group mr-3">
+					<label>Proximity</label>		
+				</div>
+				<div class="form-group mr-3">
+					<input type="number" class="form-control filter-query-proximity-value" value="0.5"> (miles)
+				</div>
+			</div>
+			{{/if}}			
+			<div class="form-inline">		
+				<div class="form-group mr-3">
+					<label>{{filter.label}}</label>		
+				</div>
+				<div class="form-group mr-3">
+					<select class="form-control filter-query-input-selector">
+						{{#each filter.operators}}
+						<option>{{this}}</option>
+						{{/each}}
+					</select>
+				</div>
+
+				<div class="form-group mr-3">
+					<select class="form-control filter-query-input-type-selector">						
+						<option value="">User-defined Value</option>
+						<option value="relative">Relative Value</option>
+						<option value="calc">Calculated Value</option>
+					</select>
+				</div>
+				
+				<div class="form-group mr-3 filter-query-input-type-container" data-type="">
+					<div class="filter-query-input-container op_is_empty op_is_not_empty op_is_null op_is_not_null" style="display: none">
+					</div>
+					<div class="filter-query-input-container op_between op_not_between" style="display: none">
+						<div class="form-inline">		
+							<div class="form-group mr-3"><input class="form-control filter-query-option-value1" type="{{filter.input}}"></div>
+							<div class="form-group mr-3">-</div>
+							<div class="form-group mr-3"><input class="form-control filter-query-option-value2" type="{{filter.input}}"></div>
+						</div>
+					</div>
+					<div class="filter-query-input-container op_default" style="display: none">
+						<input type="{{filter.input}}" class="form-control filter-query-option-value"/>
+					</div>			
+				</div>
+
+				<div class="form-group mr-3 filter-query-input-type-container" data-type="relative" style="display: none">
+					<div class="filter-query-input-container op_is_empty op_is_not_empty op_is_null op_is_not_null" style="display: none"></div>
+					<div class="filter-query-input-container op_between op_not_between" style="display: none">
+						<div class="form-inline">		
+							<select class="form-control filter-query-relative-option-value1">{{#each relativeGroups}}<optgroup label="{{@key}}">{{#each this}}<option value="{{id}}" data-type="{{type}}">{{label}}</option>{{/each}}</optgroup>{{/each}}</select>
+							<div class="form-group mr-3">x <input class="form-control filter-query-relative-option-value-multiplier1" type="{{filter.input}}"> (Multiplier)</div>
+						</div>
+						<div class="form-group mr-3">AND</div>
+						<div class="form-inline">		
+							<select class="form-control filter-query-relative-option-value2">{{#each relativeGroups}}<optgroup label="{{@key}}">{{#each this}}<option value="{{id}}" data-type="{{type}}">{{label}}</option>{{/each}}</optgroup>{{/each}}</select>
+							<div class="form-group mr-3">x <input class="form-control filter-query-relative-option-value-multiplier2" type="{{filter.input}}"> (Multiplier)</div>
+						</div>						
+					</div>
+					<div class="filter-query-input-container op_default" style="display: none">
+						<div class="form-inline">									
+							<select class="form-control filter-query-relative-option-value">{{#each relativeGroups}}<optgroup label="{{@key}}">{{#each this}}<option value="{{id}}" data-type="{{type}}">{{label}}</option>{{/each}}</optgroup>{{/each}}</select>
+							<div class="form-group mr-3">x <input class="form-control filter-query-relative-option-value-multiplier" type="{{filter.input}}"> (Multiplier)</div>
+						</div>			
+					</div>			
+				</div>
+
+				<div class="form-group">
+					<a href="#" class="btn btn-sm btn-block btn-primary filter-query-option-add"><i class="fa fa-plus"></i> Add</a>
+				</div>
+			</div>
+        </div>        
+        <h4>Possible Values<h4>
+        <div class="filter-query-options-container">
+			<select class="form-control filter-query-options-select" style="height: 358px;" multiple>
+				{{#each options}}
+				<option value="{{value}}">{{label}}</option>
+				{{else}}
+				<option value="">No data found!</option>
+				{{/each}}
+			</select>
+        </div>
+    </div>
+    <div class="col-sm-6">        
+        <div class="form-inline">
+			<div class="form-check mr-4">
+				<h4>Selected Values</h4>
+			</div>
+            <div class="form-check mr-4">
+                <input class="form-check-input" type="radio" name="query-op" id="flexRadioDefault1" value="and">
+                <label class="form-check-label" for="flexRadioDefault1">Match ALL entries</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="query-op" id="flexRadioDefault2" value="or" checked>
+                <label class="form-check-label" for="flexRadioDefault2">Match ANY entries</label>
+            </div>                         
+        </div>
+        <select class="form-control mt-3 filter-query-options-selected" style="height: 400px;" multiple>			
+		</select>
+    </div>			
+	</script>
+
+
+</div>
+

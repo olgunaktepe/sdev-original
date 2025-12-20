@@ -1,0 +1,26 @@
+<?php 
+	$rId = $_REQUEST['templateData']['rId'];		
+	$updates = getListingUpdates($rId);	
+		
+?>
+<form class="details-form">	
+	<input type="hidden" name="action" value="loadDetails">
+	<input type="hidden" name="id" value="{{id}}">
+
+	<div class="row">
+	<div class="col-sm-12">
+		<div class="form-group">
+			<label>Versions</label>				
+			<select class="form-control" name="patch">				
+				<option value="">Latest Version</option>
+				<?php if($updates):?>
+				<?php foreach($updates as $u): ?>
+				<option value="<?=$u->id?>"><?=$u->timestamp?> - <?=$u->diff_count?> changes</option>
+				<?php endforeach; ?>
+				<?php endif; ?>
+			</select>										
+		</div>
+	</div>		
+	</div>
+</form>
+<div class="details-container"></div>

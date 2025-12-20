@@ -1,0 +1,115 @@
+<div class="row">
+	<div class="col-sm-3">				
+		<div class="phones-container card-box mb-1">     
+			
+		</div>		
+
+
+		<div class="card-box m-0 w-100 height-400 mb-1">
+			<a href="#" class="btn btn-primary btn-sm pull-right contacts-contractors-find-a"><i class="fa fa-search"></i> Find Contractor</a> 							
+			<a href="#" class="btn btn-outline-primary btn-sm pull-right mr-2 contacts-create-a"><i class="fa fa-plus"></i> Create Contact</a> 							
+			<h4 class="m-t-0 mb-2 header-title"><b>Contacts</b></h4>
+			<div class="inbox-widget contacts-container h-100 overflow-y-auto">
+			</div>
+		</div>					
+	</div>
+	<div class="col-sm-9">
+		<? includeWidget('phone_manager::~listing',['listingId'=>$_GET['id']]); ?>
+	</div>
+
+</div>
+
+<script id="template-contacts" type="x-handlebars">
+		<ul class="nav nav-tabs tabs-bordered nav-justified">
+	        <li class="nav-item"><a href="#contactsagents" data-toggle="tab" class="nav-link active">Agents</a></li>
+        	<li class="nav-item"><a href="#contactsvendors" data-toggle="tab" class="nav-link">Vendors</a></li>
+        	<li class="nav-item hidden"><a href="#contactsother" data-toggle="tab" class="nav-link">Other</a></li> 
+    	</ul>
+    	<div class="tab-content">
+	        <div class="tab-pane fade show active" id="contactsagents"> 
+				{{#each agents}}				
+					<div class="row">						
+						<div class="col-sm-12">
+							<h4>{{name}}</h4>
+						</div>
+						<div class="col-sm-6">							
+							<p class="text-muted">{{company}}</p>
+							<div><b>Type:</b> {{type}}</div>
+							<div><b>Specialty:</b> {{stats.specialty}}</div>
+							<div><b>Active:</b> {{stats.active}} Listings <div class="badge badge-secondary">${{formatNumber stats.active_value}}</div></div>
+							<div><b>Sold:</b> {{stats.sold}} Listings <div class="badge badge-secondary">${{formatNumber stats.sold_value}}</div></div>						
+
+						</div>
+						<div class="col-sm-6">
+							{{#each entries}}
+								<div class="inbox-item-date text-dark">
+									{{ucwords type}}: 
+									{{#xIf type '==' 'phone'}}
+										<a href="#" class="dial-btn-a" data-number="{{value}}">{{formatPhoneNumber value}}</a>
+										<a href="#" class="btn btn-icon btn-outline-primary btn-sm sms-btn-a" data-number="{{value}}"><i class="fa fa-envelope"></i></a>
+									{{else}}
+										{{value}}
+									{{/xIf}}
+								</div>
+								{{/each}}
+						</div>
+					</div>												
+					<hr>		
+				{{else}}
+					<div>No Contacts Found!</div>
+				{{/each}}                                               	
+        	</div>
+        	<div class="tab-pane fade " id="contactsvendors">
+				{{#each vendors}}				
+					<div class="row">						
+						<div class="col-sm-12">							
+							<h4>{{name}} <a href="#" class="btn-link contacts-edit-a inline-block small" data-id="{{id}}"><i class="fa fa-edit"></i></a></h4>							
+						</div>
+						<div class="col-sm-6">							
+							<p class="text-muted">{{company}}</p>
+							<div><b>Type:</b> {{type}}</div>
+							<div><b>Notes:</b> {{data.notes}}</div>							
+						</div>
+						<div class="col-sm-6">
+							{{#each entries}}
+								<div class="inbox-item-date text-dark">
+									{{ucwords type}}: 
+									{{#xIf type '==' 'phone'}}
+										<a href="#" class="dial-btn-a" data-number="{{value}}">{{formatPhoneNumber value}}</a>
+										<a href="#" class="btn btn-icon btn-outline-primary btn-sm sms-btn-a" data-number="{{value}}"><i class="fa fa-envelope"></i></a>
+									{{else}}
+										{{value}}
+									{{/xIf}}
+								</div>
+								{{/each}}
+						</div>
+					</div>												
+					<hr>		
+				{{else}}
+					<div>No Contacts Found!</div>
+				{{/each}}				
+        	</div>
+        	<div class="tab-pane fade " id="contactsother">
+				<div>No Contacts Found!</div>
+			</div>                                
+    	</div>		                                        
+</script>
+
+<script id="template-phones" type="x-handlebars">
+	<a href="#" class="btn btn-primary btn-sm pull-right hidden">Assign Number</a> 							
+	<a href="#" class="btn btn-outline-primary btn-sm pull-right mr-2 hidden"><i class="fa fa-plus"></i> Buy Number</a> 							
+	<h4 class="m-t-0 mb-2 header-title"><b>Assigned Phone Numbers</b></h4>	
+
+	{{#each phones}}
+		<div>{{number}}</div>
+	{{else}}
+		<div class="w-100">No assigned phone numbers.</div>              
+	{{/each}}
+	<hr>
+	<button class="btn btn-icon btn-sm waves-effect waves-light btn-outline-secondary m-b-5 pull-right phones-settings-a"> <i class="fa fa-gear"></i> </button>
+	<h4>Phone Settings</h4>
+	<div class="mb-1"><strong>Route Incoming Calls:</strong> <span class="m-l-15">{{switch settings.incoming_calls 'voicemail,phone,agent' 'Voicemail,Phone Number,Agent,Default'}}</span></div>
+	<div class="mb-1"><strong>Route Incoming SMS:</strong> <span class="m-l-15">{{switch settings.incoming_sms 'phone' 'Phone,Detault'}}</span></div>
+	<div class="mb-1"><strong>Record:</strong> <span class="m-l-15">{{switch settings.record '1,-1' 'On,Off,Detault'}}</span></div>
+	<div class="mb-1"><strong>Transcribe:</strong> <span class="m-l-15">{{switch settings.transcribe '1,-1' 'On,Off,Detault'}}</span></div>
+</script>

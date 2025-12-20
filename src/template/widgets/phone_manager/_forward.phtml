@@ -1,0 +1,25 @@
+<?php
+    $twilio = new Twilio();
+    $id = $_REQUEST['templateData']['id'];
+
+    if($id){
+        $number = $twilio->getNumber($id);
+    }
+?>
+<form>																
+	<input type="hidden" name="action" value="forwardNumber"/>					
+    <input type="hidden" name="id" value="{{id}}"/>					
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="form-group">
+				<label class="strong">Phone Number:</label>
+				<input type="text" class="form-control" name="number" value="<?=$number->forward?>" required>
+			</div>			
+		</div>	
+	</div>			
+    <? if($number->forward): ?>
+    <div class="row">
+        <a href="#" class="text-danger text-sm col-sm-12 numbers-froward-cancel-a" data-id="{{id}}"><i class="fa fa-times"></i> Cancel forwarding</a>
+    </div>			
+    <? endif; ?>
+</form>	

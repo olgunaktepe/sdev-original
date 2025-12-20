@@ -1,0 +1,20 @@
+<div>
+	<div  class="card-box">
+		<ul class="nav nav-pills navtab-bg nav-justified">
+			<li class="main-nav-item nav-item"><a href="#overview" data-toggle="tab" aria-expanded="true" class="nav-link active">Deal Overview</a></li>
+			<li class="main-nav-item nav-item"><a href="#work" data-toggle="tab" aria-expanded="false" class="nav-link">Workstation</a></li>				
+			<li class="main-nav-item nav-item"><a href="#comms" data-toggle="tab" aria-expanded="false" class="nav-link">Comms</a></li>				
+		</ul>
+	</div>
+	<div class="main-tab-content tab-content">
+		<div class="main-tab-pane tab-pane fade show active" id="overview"> 
+			<? include mapTemplate('deal3::_deal_overview'); ?>                                   
+		</div>
+		<div class="main-tab-pane tab-pane fade" id="comms">        
+			<? include mapTemplate('deal3::_deal_comms'); ?>                                   
+		</div>
+		<div class="main-tab-pane tab-pane fade" id="work">        
+			<? include mapTemplate('deal3::_deal_work'); ?>                                   
+		</div>        
+	</div>
+</div>

@@ -1,0 +1,45 @@
+<?php
+    $id = $_REQUEST['templateData']['id'];
+    $lId = $_REQUEST['templateData']['lId'];
+    $type = $_REQUEST['templateData']['type'];    
+    
+    $deal = $dl->getDeal($lId);            
+    $editable = [];
+    if($id){
+        $version = $dl->getVersionData($id);        
+        foreach($version->data as $k=>$v)$editable[] = $k;
+        $deal = $dl->applyVersion($deal,$version);
+    }
+    $fields = getVersionFields($type,$deal);   
+    
+?>
+<? if(!$fields): ?>
+<div class="alert alert-danger">Unexpected Error</div>
+<? else: ?>
+<form>
+    <input type="hidden" name="action" value="createVersion">
+    <input type="hidden" name="id" value="{{id}}">
+    <input type="hidden" name="listing_id" value="{{lId}}">
+    <div class="row">
+    <? foreach($fields as $f): ?>
+        <div class="col-sm-6">
+            <div class="form-group">        
+                <div class="checkbox checkbox-secondary pull-right version-inherit-a">			
+                    <input id="versioninput<?=$f->key?>" type="checkbox" class="pointer" <?=in_array($f->key,$editable)?'':'checked'?>>		
+                    <label for="versioninput<?=$f->key?>" class=" pointer">Inherit</label>		 	
+                </div>	
+                <label><?=$f->label?></label>
+                <input type="<?=$f->type?>" data-key="data[<?=$f->key?>]" name="<?=in_array($f->key,$editable)?'data['.$f->key.']':''?>" class="form-control" step="any" data-value="<?=$f->value?>" value="<?=$f->value?>" <?=in_array($f->key,$editable)?'':'disabled readonly'?>>
+            </div>            
+        </div>
+    <? endforeach; ?>
+    </div>
+</form>
+<? if($id>0): ?>
+<div class="row">
+    <div class="col-sm-12">
+        <a href="#" class="text-danger versions-remove-a" data-id="{{id}}"><i class="fa fa-times"></i> click here to DELETE this version</a>
+    </div>
+</div>
+<? endif; ?>
+<? endif; ?>

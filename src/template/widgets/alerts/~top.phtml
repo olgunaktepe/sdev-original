@@ -1,0 +1,84 @@
+<li class="list-inline-item dropdown notification-list widget-alerts">
+	<a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+		<i class="mdi mdi-bell noti-icon"></i>
+		<span class="badge badge-pink noti-icon-badge list-count">0</span>
+	</a>
+	
+	<div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg" aria-labelledby="Preview">                                    
+		<div class="dropdown-item noti-title">
+			<h5 class="font-16"><span class="badge badge-danger float-right list-count">0</span>Notification</h5>
+		</div>
+		
+		<div class="list"></div>
+		
+		<a href="javascript:void(0);" class="dropdown-item notify-item notify-all hidden">View All</a>
+	</div>
+
+
+
+<script id="template-list-item" type="x-handlebars">
+{{#each items}}
+<a href="javascript:void(0);" class="dropdown-item notify-item list-read-a"  data-id="{{id}}">
+	<div class="notify-icon bg-{{color}}"><i class="fa {{icon}} fa-fw"></i></div>
+	<p class="notify-details">{{title}} <small class="text-muted">{{formatTimeAgo timestamp}}</small></p>
+</a>
+
+{{/each}}
+<li class="divider"></li>
+<li><div class="text-center link-block"><a href="#" class="full-a"><strong>See All Alerts</strong> <i class="fa fa-angle-right"></i></a></div></li>
+</script>
+<script id="template-list-error" type="x-handlebars"><li><div class="alert alert-danger text-center">An error occured</div></li></script>
+<script id="template-list-empty" type="x-handlebars">
+</script>
+
+</li>
+
+<?php /*		
+		
+
+<li class="dropdown widget-alerts">
+	<a class="dropdown-toggle count-info" data-toggle="dropdown" href="#"><i class="fa fa-bell"></i><span class="label label-primary list-count">0</span></a>
+	<ul class="dropdown-menu dropdown-alerts list">						
+</ul>
+
+
+
+
+
+<script id="template-full-item" type="x-handlebars">
+<div class="stream full-item" data-id="{{id}}">
+	<div class="stream-badge"><i class="fa {{icon}} bg-{{color}}"></i></div>
+	<div class="stream-panel">
+		<div class="stream-info">
+			<a href="#">								
+				<span>{{title}}</span>
+				<span class="date">{{formatTimeAgo timestamp}}</span>
+			</a>
+			<a href="#" class="btn btn-danger btn-xs pull-right full-remove-a"><i class="fa fa-times"></i></a>
+		</div>
+		{{#if event}}			
+		<div class="event-container gray-bg">
+			<div class="small event-name"><strong>{{event.name}}</strong></div>											
+			<div class="small event-date text-muted">{{event.date}}</div>
+			<div class="small">{{event.venue}}</div>			
+		</div>
+		{{/if}}
+		{{#if inventory}}			
+		<div class="inventory-container lazur-bg">
+			<div>Qty: {{inventory.num}}, Section: {{inventory.section}}, Row: {{inventory.row}}, Seat: {{inventory.seat_min}} - {{inventory.seat_max}}</div>
+		</div>
+		{{/if}}
+		{{#if group}}
+		<div class="group-container bg-warning">
+			<div class="small"><strong>{{group.title}}</strong></div>														
+		</div>
+		{{/if}}
+		{{description}}		
+	</div>
+</div>
+</script>
+<script id="template-full-error" type="x-handlebars"><div class="alert alert-danger text-center">An error occured</div></script>
+<script id="template-full-empty" type="x-handlebars"><div class="alert alert-warning text-center">No alerts</div></script>
+
+</li>
+*/?>

@@ -1,0 +1,47 @@
+<?php
+    $id = $_REQUEST['templateData']['id'];
+    $settings = Deal::getListingPhoneSettings($id);
+?>
+<form>    
+    <input type="hidden" name="action" value="savePhoneSettings">  
+    <input type="hidden" name="id" value="{{id}}">  
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-group mb-3">
+                <label>Route Incoming Calls</label>
+                <select class="form-control" name="incoming_calls">
+                    <option value="">Revert to phone number default settings</option>
+                    <option value="voicemail" <?=($settings->incoming_calls=='voicemail')?'selected':''?>>Send to voicemail</option>
+                    <option value="phone" <?=($settings->incoming_calls=='phone')?'selected':''?>>Send to phone number</option>
+                    <option value="agent" <?=($settings->incoming_calls=='agent')?'selected':''?>>Send to agent desktop</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label>Route Incoming SMS</label>
+                <select class="form-control" name="incoming_sms">
+                    <option value="">Revert to phone number default settings</option>
+                    <option value="phone" <?=($settings->incoming_sms=='phone')?'selected':''?>>Send to phone number</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label>Record</label>
+                <select class="form-control" name="record">
+                    <option value="">Revert to phone number default settings</option>
+                    <option value="1" <?=($settings->record=='1')?'selected':''?>>Record Calls</option>
+                    <option value="-1" <?=($settings->record=='-1')?'selected':''?>>Do Not Record Calls</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label>Transcribe</label>
+                <select class="form-control" name="transcribe">
+                    <option value="">Revert to phone number default settings</option>
+                    <option value="1" <?=($settings->transcribe=='1')?'selected':''?>>Transcribe Calls</option>
+                    <option value="-1" <?=($settings->transcribe=='-1')?'selected':''?>>Do Not Transcribe Calls</option>
+                </select>
+            </div>
+            
+        </div>
+    </div>
+
+         
+</form>

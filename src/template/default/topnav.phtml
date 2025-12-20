@@ -1,0 +1,30 @@
+<div class="navbar-custom">
+	<div class="container-fluid">
+		<div id="navigation">                        
+			<ul class="navigation-menu">
+								
+			<? foreach($GLOBALS['menu']->getMenu() as $k=>$menu): ?>
+				<? if($menu['admin'] && $_SESSION['user']->type_id != 1) continue; ?>				
+				<li class="has-submenu <?= ($k == $REQUEST->request)?'active':'';?>">
+					<? if( count($GLOBALS['menu']->getSubMenu($k))>0 ): ?>
+						<a href="#"><i class="<?= $menu['icon']; ?>"></i> <span class="nav-label"><?= $menu['title']; ?></span></a>												
+						<ul class="submenu">
+							<? foreach( $menu['submenu'] as $subk => $submenu ): ?>
+								<? if($submenu['admin'] && $_SESSION['user']->type_id != 1) continue; ?>
+								<? if($submenu['biz'] && $_SESSION['user']->type_id > 2) continue; ?>
+								<li class="<?= ($k == $REQUEST->request)?'active':'';?>">
+									<a href="<?= $GLOBALS['system']['href_base'].$k.$subk; ?>" class=""><i class="<?= $submenu['icon']; ?>"></i><span><?= $submenu['title']; ?></span></a>
+								</li>
+							<? endforeach; ?>																
+						</ul>
+					<? else: ?>						
+						<a href="<?= $GLOBALS['system']['href_base'].$k; ?>" class=""><i class="<?= $menu['icon']; ?>"></i><span><?= $menu['title']; ?></span> <? if($menu['beta']): ?><div class="badge badge-info">Beta</div><? endif; ?></a>
+						
+					<? endif; ?>					
+				</li>
+			<? endforeach; ?>
+			                         
+			</ul>                        
+		</div>
+	</div>
+</div>        

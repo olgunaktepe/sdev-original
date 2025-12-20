@@ -1,0 +1,40 @@
+<?php
+    $twilio = new Twilio();
+    $id = $_REQUEST['templateData']['id'];
+
+    $number = false;
+    if($id){
+        $number = $twilio->getNumber($id);
+    }
+    else{
+        $number = (object)[];
+    }
+?>
+<form>																
+	<input type="hidden" name="action" value="updateNumber"/>					
+    <input type="hidden" name="id" value="{{id}}"/>					
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="form-group">
+				<label class="strong">Title:</label>
+				<input type="text" class="form-control" name="title" value="<?=$number->title?>" required>
+			</div>			
+		</div>
+        <div class="col-sm-12">
+			<div class="form-group">
+				<label class="strong">Auto Tag Calls:</label>
+				<div>
+					<input class="tagsinput" type="text" name="call_tags" value="<?=implode(",",$number->call_tags)?>" placeholder="add tags"/>
+				</div>
+			</div>			
+		</div>
+        <div class="col-sm-12">
+			<div class="form-group">
+				<label class="strong">Voicemail Message:</label>
+				<div>
+					<textarea class="form-control" rows="6" name="voicemail_text"><?=$number->voicemail_text?></textarea>
+				</div>
+			</div>			
+		</div>		
+	</div>			    
+</form>	

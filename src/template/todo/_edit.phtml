@@ -1,0 +1,89 @@
+<?php 
+	$id = $_REQUEST['templateData']['id'];
+	$item = loadTodo($id,false);	
+	$event = (object)$item->event;	
+	$sale = (object)$item->sale;
+
+?>
+
+
+<?php if(!$item): ?>
+<div class="alert alert-danger">Missing info!</div>
+<?php endif; ?>
+<form>
+<input type="hidden" name="action" value="saveTodo"/>
+<input type="hidden" name="id" value="{{id}}"/>
+
+<div class="row">
+	<div class="col-sm-4">		
+		<div style="position: relative">					
+			<h4>Order Info:</h4>
+			<hr>
+			<div class="form-group">				
+				Section: <b><?=$sale->section?></b><br>
+				Row: <b><?=$sale->row?></b><br>
+				Seats:  <b><?=$sale->seats?></b><br>
+				QTY: <b><?=$sale->qty?></b><br>
+				Portal: <b><?=$sale->portal?></b><br>
+				Order ID: <b><?=$sale->portal_remote_id?></b><br>
+				Status: <b><?=$sale->status?></b><br>
+				Transfer: <b><?=$sale->status_transfer?></b><br>
+				Listed Listings: <b><?=$item->listed?></b><br>
+				Notes: <?=$sale->notes?><br>				
+				<hr>
+				Processed By: <b><?=$sale->processed_user?></b><br>
+				Transferred By: <b><?=$sale->manual_confirm_user?></b><br>
+				
+			</div>
+		</div>
+		<div style="position: relative">					
+			<h4>Event Info:</h4>
+			<hr>
+			Event: <a href="<?=$event->url?>" target="_blank"><?=$event->title?></a><br>
+			Date: <b><?=$event->date?></b><br>
+		</div>	
+		<br>
+		<div style="position: relative">					
+			<h4>Added Charges:</h4>
+			<hr>
+			<?php foreach($item->charges as $c): ?>
+			<div><?=$c->amount?>: <?=$c->description?></div>
+			<?php endforeach; ?>
+			<div>Total: <b><?=$item->charges_total?></b></div>
+		</div>		
+			
+	</div>
+	<div class="col-sm-8">
+		<div class="form-group">
+			<label><?=$item->title?></label>
+		</div>
+		<div class="form-group">
+			<label>Reversed Charges:</label>
+			<input class="form-control" name="refunded" value="<?=$item->refunded?>" placeholder="Enter the amount of the reversed charges">				
+		</div>
+		<div class="form-group">
+			<label>Notes: </label>
+			<textarea name="notes" rows="6" class="form-control notes"><?=$item->notes?></textarea>			
+		</div>		
+		<div class="form-group">
+			<label>Updates: </label>
+			<ul class="list-group no-margn todo-list" style="height: 280px;overflow: auto; width: 100%;" id="todo-list">
+				<?php foreach($item->updates as $u):?>			
+				<li class="list-group-item">								
+					<div><label><?=$u->username?> - <?=$u->ago?> - <?=$u->timestamp?></label></div>					
+					<textarea class="form-control" rows="3"><?=$u->message?></textarea>									
+				</li>				
+				<?php endforeach; ?>		
+			</ul>	
+		</div>	
+		 	
+										
+	</div>
+	
+	
+</div>
+</form>
+<? if($_SESSION['user']->type_id==1): ?>
+<div class="btn btn-danger close-a" href="#" data-id="{{id}}" style="position: absolute; bottom: -51px;">Close Task</div>
+<?php endif; ?>
+

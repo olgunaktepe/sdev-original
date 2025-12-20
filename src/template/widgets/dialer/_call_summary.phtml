@@ -1,0 +1,21 @@
+<div class="theme-panel-content dialpad-panel" style="display: none" data-type="summary">
+  		<h5 class="text-center f-s-18 m-t-20 to-label">Call Summary</h5>
+        <div class="text-center">Direction: {{#xIf _direction '==' 'OUTGOING'}}Outgoing{{else}}Incoming{{/xIf}}</div>  
+        <div class="text-center">From: {{#xIf _direction '==' 'OUTGOING'}}{{formatPhoneNumber customParameters.From}}{{else}}{{formatPhoneNumber parameters.From}}{{/xIf}}</div>
+        <div class="text-center">To: {{#xIf _direction '==' 'OUTGOING'}}{{formatPhoneNumber customParameters.To}}{{else}}{{formatPhoneNumber parameters.To}}{{/xIf}}</div>
+        <div class="text-center">Duration: {{timerDuration}}</div>
+        
+        <div class="caller-dp text-center m-b-10"><hr></div><!--/.caller-dp-->
+                        
+        <div class="row m-b-20">
+            <div class="col-sm-12">
+                <button class="btn btn-primary btn-sm btn-block dialpad-tag-call-a" data-sid="{{parameters.CallSid}}"><i class="fa fa-plus"></i> Add Tags</button>
+            </div>
+            <div class="col-sm-12">
+                <hr>
+            </div>
+            <div class="col-sm-12">
+                <button class="btn btn-white btn-block dialpad-summary-close-a">Close Summary</button>
+            </div>
+        </div><!--./row-->        
+</div><!-- /.call in progress content -->

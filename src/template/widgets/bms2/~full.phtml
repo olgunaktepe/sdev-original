@@ -1,0 +1,559 @@
+
+<div class="widget-bms2">    
+<div class="row">
+    <div class="col-sm-4">           
+        <form class="">
+            <input type="hidden" name="action" value="search">
+            <div class="row  card-box">
+                <div class="col-sm-12">												
+                    <h3>Search Parameters</h3>	
+					<hr>					
+                </div>
+
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="control-label">Area Center</label>
+						<input type="text" class="form-control map-center-input" name="center" placeholder="Enter an address or zip code">						
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="control-label">Area Size (Miles)</label>
+						<input type="text" class="map-radius-range range">
+					</div>
+				</div>
+				
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="control-label">Scrape Date</label>
+						<input type="text" class="form-control daterangepicker" value="<?=date('m/d/Y',strtotime("-7 day"));?> - <?=date('m/d/Y',strtotime("-1 day"));?>" name="filter[date]" placeholder="Search for text">						
+					</div>
+				</div>
+				
+				<div class="col-sm-6">
+					<label class="control-label">&nbsp;</label>
+                    <a href="#" class="btn btn-primary btn-block search-a"><i class="fa fa-search"></i> Search</a>
+                </div>
+
+				<div class="col-sm-12">
+					<div class="map-area-size-label"></div>
+					<div style="height: 500px; width: 100%;" id="map-canvas"></div>
+				</div>
+<? /*                
+                <? $filters = ['standerized.category']; ?>
+                <? foreach($filters as $fId): ?>
+                    <? $filter = Filters::getFilterData($fId); ?>
+                    <? if(!$filter)continue;?>
+                    <div class="col-sm-12">
+					    <div class="form-group">
+    						<label class="control-label"><?=$filter->filter['label']?></label>
+						    <select class="form-control select2" name="filter[<?=$filter->filter['id']?>][]" multiple>								
+                                <? foreach($filter->options as $r): ?>
+							    <option value="<?=$r['value']?>"><?=$r['label']?></option>
+                                <? endforeach; ?>
+						    </select>							
+					    </div>
+				    </div>
+                <? endforeach; ?>
+*/?>
+
+            </div>					        
+        </form>					     
+    </div>      
+	
+	
+	<div class="col-sm-4">
+		<div class="ibox-content m-b-sm border-bottom filters-form">
+			<div class="row card-box">
+				<div class="col-sm-12">												
+					<h3>Global Filters</h3>	
+					<hr>					
+				</div>			
+
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label class="control-label">Source</label>
+						<select class="form-control select2 filters-input" name="sources" multiple>								
+							<option value="loopnet.com">loopnet.com</option>
+							<option value="crexi.com">crexi.com</option>
+							<option value="lease-crexi.com">lease-crexi.com</option>
+							<option value="commercialexchange.com">commercialexchange.com</option>
+							<option value="century21.com">Century 21</option>
+							<option value="email">Email</option>
+							<option value="import">Import</option>
+						</select>							
+					</div>
+				</div>
+									
+				<div class="col-sm-6">
+					<div class="form-group">
+						<div class="checkbox checkbox-secondary pull-right">			
+							<input id="filter.type" name="category_exclude" value="1" type="checkbox" class="pointer filters-input">		
+							<label for="filter.type" class=" pointer">Exclude</label>		 	
+						</div>
+						<label class="control-label">Property Type</label>
+						<input type="text" class="form-control filters-input" value="" name="category" placeholder="Ex: Office, land, multi">						
+					</div>
+				</div>
+
+				<div class="col-sm-6">
+					<div class="form-group">                        
+						<label class="control-label">Price</label>
+						<div class="flex-row">
+							<div class="mr-1"><input class="form-control filters-input" type="number" name="price_min"></div>
+							<div class="mr-1 mt-2">-</div>
+							<div class=""><input class="form-control filters-input" type="number" name="price_max"></div>
+						</div>						
+					</div>
+				</div>
+
+				<div class="col-sm-6">
+					<div class="form-group">                        
+						<label class="control-label">Land Size (Acres)</label>
+						<div class="flex-row">
+							<div class="mr-1"><input class="form-control filters-input" type="number" name="acres_min"></div>
+							<div class="mr-1 mt-2">-</div>
+							<div class=""><input class="form-control filters-input" type="number" name="acres_max"></div>
+						</div>						
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">                        
+						<label class="control-label">Building Size (Sqft)</label>
+						<div class="flex-row">
+							<div class="mr-1"><input class="form-control filters-input" type="number" name="building_sqft_min"></div>
+							<div class="mr-1 mt-2">-</div>
+							<div class=""><input class="form-control filters-input" type="number" name="building_sqft_max"></div>
+						</div>						
+					</div>
+				</div>
+
+				<div class="col-sm-6">
+					<div class="form-group">                        
+						<label class="control-label">FAR</label>
+						<div class="flex-row">
+							<div class="mr-1"><input class="form-control filters-input" type="number" name="far_min"></div>
+							<div class="mr-1 mt-2">-</div>
+							<div class=""><input class="form-control filters-input" type="number" name="far_max"></div>
+						</div>						
+					</div>
+				</div>
+
+				<div class="col-sm-12"><hr></div>
+
+				<div class="col-sm-6">
+					<div class="row zip-select-container"></div>
+				</div>
+				<div class="col-sm-6">
+					<div class="row overall-summary-container"></div>
+				</div>
+
+			</div>
+		
+			<div class="row card-box">
+				<div class="col-sm-12">												
+					<h3>New/Expired Listings Timeline</h3>	
+					<hr>					
+				</div>	
+				<div class="col-sm-12 scrapes-chart" style="height: 150px;">		
+				</div>
+			</div>
+					
+		</div>                
+	</div>
+
+	<div class="col-sm-4">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox-content m-b-sm border-bottom">
+					<div class="row card-box">
+						<div class="col-sm-12">												
+							<h3>Listing Types</h3>	
+							<hr>					
+						</div>			
+
+						<div class="col-sm-12">
+							<div class="chart cat-chart" style="height:250px; width: 100%"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<div class="ibox-content m-b-sm border-bottom">
+					<div class="row card-box">
+						<div class="col-sm-12">												
+							<h3>Sources</h3>	
+							<hr>					
+						</div>			
+
+						<div class="col-sm-12">
+							<div class="chart source-chart" style="height:250px; width: 100%"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+
+    <div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box widget-box stats-widget" data-key="stats-prices">
+			        <a href="#" class="btn btn-sm btn-primary pull-right hidden"><i class="fa fa-gear"></i></a>		
+			        <h4 class="m-t-0 mb-2 header-title"><b>Price Chart</b></h4>	
+					
+					<div class="row">
+            			<div class="col-sm-8">			
+			        		<div class="chart stats-widget-chart"></div>
+						</div>
+						<div class="col-sm-4">	
+							<div class="form-group">
+                                <labelclass="control-label">Min/Max</label>
+                                <div class="m-b-2"><input type="text" class="stats-widget-range range"></div>
+								<div class="flex-row">
+									<div class="mr-1"><input class="form-control stats-widget-range-from" step=10000 type="number"></div>
+									<div class="mr-1 mt-2">-</div>
+									<div class=""><input class="form-control stats-widget-range-to" step=10000 type="number"></div>
+								</div>	
+                            </div>
+
+							<div class="form-group">
+								<div class="checkbox checkbox-secondary pull-right">			
+                            		<input id="range.disable" type="checkbox" class="pointer stats-widget-outlier-ranger-disable">		
+                            		<label for="range.disable" class="pointer">Disable</label>
+                        		</div>
+                                <labelclass="control-label">Graph Smoothing %</label>
+                                <div class="m-b-10"><input type="text" class="stats-widget-outlier-range range"></div>
+                            </div>
+
+							<div class="form-group hidden">
+                                <labelclass="control-label">Bucket Size</label>
+                                <div class="m-b-10"><input type="text" class="stats-widget-bucket-range range"></div>
+                            </div>
+
+							<div class="stats-widget-summary">								
+							</div>							
+						</div>
+					</div>
+
+
+		        </div>
+	        </div>       
+        </div>       
+    </div> 
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box widget-box stats-widget" data-key="stats-sqft">
+			        <a href="#" class="btn btn-sm btn-primary pull-right hidden"><i class="fa fa-gear"></i></a>		
+			        <h4 class="m-t-0 mb-2 header-title"><b>Building Sqft Chart</b></h4>	
+					
+					<div class="row">
+            			<div class="col-sm-8">			
+			        		<div class="chart stats-widget-chart"></div>
+						</div>
+						<div class="col-sm-4">	
+							<div class="form-group">
+                                <labelclass="control-label">Min/Max</label>
+                                <div class="m-b-2"><input type="text" class="stats-widget-range range"></div>
+								<div class="flex-row">
+									<div class="mr-1"><input class="form-control stats-widget-range-from" step=10000 type="number"></div>
+									<div class="mr-1 mt-2">-</div>
+									<div class=""><input class="form-control stats-widget-range-to" step=10000 type="number"></div>
+								</div>	
+                            </div>
+
+							<div class="form-group">
+								<div class="checkbox checkbox-secondary pull-right">			
+                            		<input id="range.disablesqft" type="checkbox" class="pointer stats-widget-outlier-ranger-disable">		
+                            		<label for="range.disablesqft" class="pointer">Disable</label>
+                        		</div>
+                                <labelclass="control-label">Graph Smoothing %</label>
+                                <div class="m-b-10"><input type="text" class="stats-widget-outlier-range range"></div>
+                            </div>
+
+							<div class="form-group hidden">
+                                <labelclass="control-label">Bucket Size</label>
+                                <div class="m-b-10"><input type="text" class="stats-widget-bucket-range range"></div>
+                            </div>
+
+							<div class="stats-widget-summary">								
+							</div>							
+						</div>
+					</div>
+		        </div>
+	        </div>       
+        </div>       
+    </div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box widget-box stats-widget" data-key="stats-dom">
+			        <a href="#" class="btn btn-sm btn-primary pull-right hidden"><i class="fa fa-gear"></i></a>		
+			        <h4 class="m-t-0 mb-2 header-title"><b>DOM Chart</b></h4>	
+					
+					<div class="row">
+            			<div class="col-sm-8">			
+			        		<div class="chart stats-widget-chart"></div>
+						</div>
+						<div class="col-sm-4">	
+							<div class="form-group">
+                                <labelclass="control-label">Min/Max</label>
+                                <div class="m-b-2"><input type="text" class="stats-widget-range range"></div>
+								<div class="flex-row">
+									<div class="mr-1"><input class="form-control stats-widget-range-from" step=10000 type="number"></div>
+									<div class="mr-1 mt-2">-</div>
+									<div class=""><input class="form-control stats-widget-range-to" step=10000 type="number"></div>
+								</div>	
+                            </div>
+
+							<div class="form-group">
+								<div class="checkbox checkbox-secondary pull-right">			
+                            		<input id="range.disabledom" type="checkbox" class="pointer stats-widget-outlier-ranger-disable">		
+                            		<label for="range.disabledom" class="pointer">Disable</label>
+                        		</div>
+                                <labelclass="control-label">Graph Smoothing %</label>
+                                <div class="m-b-10"><input type="text" class="stats-widget-outlier-range range"></div>
+                            </div>
+
+							<div class="form-group hidden">
+                                <labelclass="control-label">Bucket Size</label>
+                                <div class="m-b-10"><input type="text" class="stats-widget-bucket-range range"></div>
+                            </div>
+
+							<div class="stats-widget-summary">								
+							</div>							
+						</div>
+					</div>
+		        </div>
+	        </div>       
+        </div>       
+    </div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box widget-box stats-widget" data-key="stats-acres">
+			        <a href="#" class="btn btn-sm btn-primary pull-right hidden"><i class="fa fa-gear"></i></a>		
+			        <h4 class="m-t-0 mb-2 header-title"><b>Acres Chart</b></h4>	
+					
+					<div class="row">
+            			<div class="col-sm-8">			
+			        		<div class="chart stats-widget-chart"></div>
+						</div>
+						<div class="col-sm-4">	
+							<div class="form-group">
+                                <labelclass="control-label">Min/Max</label>
+                                <div class="m-b-2"><input type="text" class="stats-widget-range range"></div>
+								<div class="flex-row">
+									<div class="mr-1"><input class="form-control stats-widget-range-from" step=10000 type="number"></div>
+									<div class="mr-1 mt-2">-</div>
+									<div class=""><input class="form-control stats-widget-range-to" step=10000 type="number"></div>
+								</div>	
+                            </div>
+
+							<div class="form-group">
+								<div class="checkbox checkbox-secondary pull-right">			
+                            		<input id="range.disable-acres" type="checkbox" class="pointer stats-widget-outlier-ranger-disable">		
+                            		<label for="range.disable-acres" class="pointer">Disable</label>
+                        		</div>
+                                <labelclass="control-label">Graph Smoothing %</label>
+                                <div class="m-b-10"><input type="text" class="stats-widget-outlier-range range"></div>
+                            </div>
+
+							<div class="form-group hidden">
+                                <labelclass="control-label">Bucket Size</label>
+                                <div class="m-b-10"><input type="text" class="stats-widget-bucket-range range"></div>
+                            </div>
+
+							<div class="stats-widget-summary">								
+							</div>							
+						</div>
+					</div>
+		        </div>
+	        </div>       
+        </div>       
+    </div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box widget-box stats-widget" data-key="stats-far">
+			        <a href="#" class="btn btn-sm btn-primary pull-right hidden"><i class="fa fa-gear"></i></a>		
+			        <h4 class="m-t-0 mb-2 header-title"><b>FAR Chart</b></h4>	
+					
+					<div class="row">
+            			<div class="col-sm-8">			
+			        		<div class="chart stats-widget-chart"></div>
+						</div>
+						<div class="col-sm-4">	
+							<div class="form-group">
+                                <labelclass="control-label">Min/Max</label>
+                                <div class="m-b-2"><input type="text" class="stats-widget-range range"></div>
+								<div class="flex-row">
+									<div class="mr-1"><input class="form-control stats-widget-range-from" step=10000 type="number"></div>
+									<div class="mr-1 mt-2">-</div>
+									<div class=""><input class="form-control stats-widget-range-to" step=10000 type="number"></div>
+								</div>	
+                            </div>
+
+							<div class="form-group">
+								<div class="checkbox checkbox-secondary pull-right">			
+                            		<input id="range.disable-far" type="checkbox" class="pointer stats-widget-outlier-ranger-disable">		
+                            		<label for="range.disable-far" class="pointer">Disable</label>
+                        		</div>
+                                <labelclass="control-label">Graph Smoothing %</label>
+                                <div class="m-b-10"><input type="text" class="stats-widget-outlier-range range"></div>
+                            </div>
+
+							<div class="form-group hidden">
+                                <labelclass="control-label">Bucket Size</label>
+                                <div class="m-b-10"><input type="text" class="stats-widget-bucket-range range"></div>
+                            </div>
+
+							<div class="stats-widget-summary">								
+							</div>							
+						</div>
+					</div>
+		        </div>
+	        </div>       
+        </div>       
+    </div>
+
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box">			        
+			        <h4 class="m-t-0 mb-2 header-title"><b>Zillow Home Value Index Growth - Trends - 10 Years</b></h4>
+					<div class="row zhvi-trends-container">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box">			        
+			        <h4 class="m-t-0 mb-2 header-title"><b>Zillow Home Value Index - Latest Values</b></h4>											
+					<div class="row zhvi-current-container">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box">			        
+			        <h4 class="m-t-0 mb-2 header-title"><b>Zillow Observed Rent Index Growth - Trends - 10 Years</b></h4>
+					<div class="row zori-trends-container">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box">			        
+			        <h4 class="m-t-0 mb-2 header-title"><b>Zillow Observed Rent Index - Latest Values</b></h4>											
+					<div class="row zori-current-container">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box">			        
+			        <h4 class="m-t-0 mb-2 header-title"><b>Census Median Income - Trends - 10 Years</b></h4>
+					<div class="row income-trends-container">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box">			        
+			        <h4 class="m-t-0 mb-2 header-title"><b>Census Median Income - Latest Values</b></h4>											
+					<div class="row income-current-container">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box">			        
+			        <h4 class="m-t-0 mb-2 header-title"><b>Census Population - Trends - 10 Years</b></h4>
+					<div class="row pop-trends-container">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box">			        
+			        <h4 class="m-t-0 mb-2 header-title"><b>Census Population - Latest Values</b></h4>											
+					<div class="row pop-current-container">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box">			        
+			        <h4 class="m-t-0 mb-2 header-title"><b>Markets</b></h4>											
+					<div class="markets-widget markets-container w-100">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-sm-6"> 
+        <div class="row">
+            <div class="col-sm-12">
+		        <div class="card-box">			        
+			        <h4 class="m-t-0 mb-2 header-title"><b>Submarkets</b></h4>											
+					<div class="markets-widget submarkets-container w-100">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		
+	<? includeTemplate('widgets::bms2::_templates'); ?>
+</div>
+</div>
+

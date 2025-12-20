@@ -1,0 +1,162 @@
+<div class="page-controlpanel">
+	
+	<div class="row">			
+		<div class="col-lg-3 widget-chart">	
+			<div class="widget-bg-color-icon card-box fadeInDown animated log-container crexi-container">				
+			</div>
+		</div>
+
+		<div class="col-lg-3 widget-chart">	
+			<div class="widget-bg-color-icon card-box fadeInDown animated log-container ce-container">								
+			</div>
+		</div>
+
+		<div class="col-lg-3 widget-chart">	
+			<div class="widget-bg-color-icon card-box fadeInDown animated log-container century-container">				
+			</div>
+		</div>
+		
+		<div class="col-lg-3 widget-chart">	
+			<div class="widget-bg-color-icon card-box fadeInDown animated log-container loopnet-container">				
+			</div>
+		</div>
+	</div>
+
+	<div class="row">			
+		<div class="col-lg-4 widget-chart">	
+			<div class="widget-bg-color-icon card-box fadeInDown animated sources-container">				
+			</div>			
+		</div>
+		<div class="col-lg-8 widget-chart">	
+			<div class="widget-bg-color-icon card-box fadeInDown animated weeklyscrape-container">				
+			</div>			
+		</div>
+	</div>
+	<div class="row">			
+		<div class="col-lg-8">	
+			<div class="widget-bg-color-icon card-box fadeInDown animated ping-container">				
+			</div>			
+		</div>		
+	</div>
+
+
+	<script id="template-ping" type="x-handlebars">
+				<div class="btn-group pull-right" role="group">					
+					<button type="button" data-range="0" class="btn ping-mode-a btn-light">All Time</button>
+					<button type="button" data-range="30" class="btn ping-mode-a btn-light">30 days</button>										
+					<button type="button" data-range="7" class="btn ping-mode-a btn-light">7 days</button>										
+					<button type="button" data-range="1" class="btn ping-mode-a btn-light">Yesterday</button>										
+				</div>
+
+				<div class="btn-group pull-right mr-5" role="group">					
+					<button type="button" data-type="0" class="btn ping-mode-a btn-light">All</button>
+					<button type="button" data-type="Sale" class="btn ping-mode-a btn-light">Sale</button>										
+					<button type="button" data-type="Lease" class="btn ping-mode-a btn-light">Lease</button>															
+				</div>
+				
+				<a href="#" class="btn btn-sm btn-primary ping-refresh-a"><i class="fa fa-refresh"></i></a>
+				<h3 class="pull-left">Listings Ping Stats</h3>				
+				<table class="table">
+					<tr>
+						<th>Source</td>
+						<th>Checked</td>
+						<th>Expired</td>
+						<th>Alive</td>
+					</tr>
+					{{#each items}}
+					<tr>
+						<td>{{source}}</td>
+						<td>{{formatNumber checked}}</td>
+						<td>{{formatNumber expired}} ({{expired_p}}%)</td>
+						<td>{{formatNumber alive}} ({{alive_p}}%)</td>
+					</tr>
+					{{/each}}
+					<tr>
+						<td><b>Total</b></td>
+						<td><b>{{formatNumber total.checked}}</b></td>
+						<td><b>{{formatNumber total.expired}} ({{total.expired_p}}%)</b></td>
+						<td><b>{{formatNumber total.alive}} ({{total.alive_p}}%)</b></td>
+					</tr>
+				</table>	
+				<div class="text-right row mt-1"><div class="col-sm-12">* Listings scraped before 10/01/2022 have not been checked</div></div>										
+	</script>
+	<script id="template-weeklyscrape" type="x-handlebars">
+				<div class="btn-group pull-right hidden" role="group">					
+					<button type="button" data-range="0" class="btn weeklyscrape-mode-a btn-light">All Time</button>
+					<button type="button" data-range="30" class="btn weeklyscrape-mode-a btn-light">30 days</button>										
+					<button type="button" data-range="7" class="btn weeklyscrape-mode-a btn-light">7 days</button>										
+				</div>
+				
+				<a href="#" class="btn btn-sm btn-primary weeklyscrape-refresh-a"><i class="fa fa-refresh"></i></a>
+				<h3 class="pull-left">Weekly Scrapes Log</h3>				
+				<div class="widget-chart text-center">                                	                                	
+					<div class="weeklyscrape-chart log-chart" style="height: 476px;"></div>
+				</div>					
+	</script>
+
+	<script id="template-sources" type="x-handlebars">
+				<div class="btn-group pull-right" role="group">					
+					<button type="button" data-range="0" class="btn sources-mode-a btn-light">All Time</button>
+					<button type="button" data-range="30" class="btn sources-mode-a btn-light">30 days</button>										
+					<button type="button" data-range="7" class="btn sources-mode-a btn-light">7 days</button>										
+				</div>
+				
+				<a href="#" class="btn btn-sm btn-primary sources-refresh-a"><i class="fa fa-refresh"></i></a>
+				<h3 class="pull-left">Listings</h3>				
+				<div class="widget-chart text-center">                                	                                	
+					<div class="sources-chart" style="height: 300px;"></div>
+				</div>	
+				
+				<div class="text-center row">
+					{{#each summaryData}}
+					<div class="col-sm-4">
+						<h5 class="text-muted font-16 m-t-20">{{title}}</h5>						
+						<h4 class="mb-0" style="color: {{color}}">						
+						{{formatNumber value}}						
+						</h4>
+						<div class="text-sm text-warning">{{formatNumber pending}} pending</div>
+						<div class="text-sm text-info">{{formatNumber pending_cahce}} no-cache</div>						
+					</div>
+					{{else}}
+					<div class="col-sm-2">
+						<h5 class="text-muted font-16 m-t-20"><span class="text-white ">AAAAA</span></h5>						
+						<h4 class="mb-0 text-white">AAAA</h4>
+					</div>
+					{{/each}}					 					
+				</div>		
+				<div class="text-right row mt-1"><div class="col-sm-12">* Listings scraped before 10/01/2022 have not been cached</div></div>		
+	</script>
+
+	<script id="template-log" type="x-handlebars">
+				<div class="btn-group pull-right" role="group">					
+					<button type="button" data-mode="traffic" data-domain="{{domain}}" class="btn log-mode-a btn-light">Traffic Log</button>
+					<button type="button" data-mode="scrapes"  data-domain="{{domain}}" class="btn log-mode-a btn-light">Scrape Log</button>										
+				</div>
+				
+				<a href="#" class="btn btn-sm btn-primary log-refresh-a" data-domain="{{domain}}"><i class="fa fa-refresh"></i></a>
+				<h3 class="pull-left">{{title}}</h3>				
+				<div class="widget-chart text-center">                                	                                	
+					<div  class="log-chart" style="height: 150px;"></div>
+				</div>
+
+				<div class="text-center row">
+					{{#each summaryData}}
+					<div class="col-sm-2">
+						<h5 class="text-muted font-16 m-t-20">{{title}}</h5>						
+						<h4 class="mb-0" style="color: {{color}}">
+						{{#if text}}
+							{{text}}
+						{{else}}
+							{{formatNumber value}}
+						{{/if}}
+						</h4>
+					</div>
+					{{else}}
+					<div class="col-sm-2">
+						<h5 class="text-muted font-16 m-t-20"><span class="text-white ">AAAAA</span></h5>						
+						<h4 class="mb-0 text-white">AAAA</h4>
+					</div>
+					{{/each}}					 					
+				</div>							
+	</script>		
+</div>

@@ -1,0 +1,176 @@
+<div class="page-todos card-box" style="overflow: auto">
+
+	<div class="row">
+		<div class="col-sm-12">
+			<div class="ibox-content m-b-sm btodo-bottom">
+				<form class="search-form">
+				<input type="hidden" name="action" value="loadTodos">
+				<div class="row">													
+					<div class="col-sm-2 hidden">
+						<div class="form-group">
+							<label class="control-label">Title</label>
+							<input type="text" class="form-control" name="filter[title]">						
+						</div>
+					</div>	
+					<div class="col-sm-2 hidden">
+						<div class="form-group">
+							<label class="control-label">Event Id</label>
+							<input type="text" class="form-control" name="filter[event_remote_id]">						
+						</div>
+					</div>	
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label class="control-label">Event Date</label>
+							<input type="text" class="form-control daterangepicker" name="filter[edate]">						
+						</div>
+					</div>
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label class="control-label">Order Id</label>
+							<input type="text" class="form-control" name="filter[order_id]">						
+						</div>
+					</div>	
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label class="control-label">Source</label>													
+							<select class="form-control" name="filter[source]">								
+									<option value="">All...</option>
+									<?foreach(getSources() as $s):?>
+									<option value="<?=$s?>"><?=$s?></option>
+									<?endforeach;?>
+								</select>														
+							</div>
+						</div>
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label class="control-label">Need to list</label>
+							<select class="form-control" name="filter[needtolist]">								
+								<option value="0">All</option>
+								<option value="1">Need to list only</option>
+							</select>						
+						</div>
+					</div>	
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label class="control-label">Refunded</label>
+							<select class="form-control" name="filter[refunded]">
+								<option value=""></option>
+								<option value="1">Yes</option>
+								<option value="-1">No</option>
+							</select>						
+						</div>
+					</div>	
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label class="control-label">Closed</label>
+							<select class="form-control" name="filter[status]">
+								<option value=""></option>
+								<option value="1">Yes</option>
+								<option value="0" selected>No</option>
+							</select>						
+						</div>
+					</div>	
+					<div class="col-sm-2">
+						<div class="form-group">
+							<label class="control-label">&nbsp;</label>
+							<a href="#" class="btn btn-block btn-primary search-a"><i class="fa fa-search"></i> Search</a>
+						</div>
+					</div>				
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	
+	<div class="row">
+        <div class="col-lg-12">
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">														
+				</div>
+                <div class="ibox-content">
+                    <table class="table todos-container">
+                        <thead>
+                            <tr>																
+								<th data-orderable="true" data-default-sort="desc">Timestamp</th>
+								<th data-orderable="true">Title</th>
+								<th data-orderable="true">Event </th>
+								<th data-orderable="true">Source</th>								
+								<th data-orderable="true">Order</th>																
+								<th data-orderable="true">Order Date</th>
+								<th data-orderable="true">Order Status</th>								
+								<th data-orderable="true">Transfer Status</th>
+								<th data-orderable="false">Listed</th>
+								<th data-orderable="true">Closed</th>																						
+								<th data-orderable="false">Charges</th>
+								<th data-orderable="true">Recovered $</th>
+								<th data-orderable="false"></th>																								
+                            </tr>
+                        </thead>
+                        <tbody>	                        				
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+	
+	<script id="template-todos-item" type="x-handlebars">
+		<tr data-id="{{id}}" class="todo-item">
+			<td>{{timestamp_ago}}</td>			
+			<td>{{title}}</td>
+			<td width="20%">				
+				<a href="{{event.url}}" target="_blank" class="">{{event.title}}</a><br>
+				<small>{{event.date}}</small>						
+			</td>	
+			<td>{{source}}</td>		
+			<td>{{sale.portal_remote_id}}</td>
+			<td>{{sale.timestamp_ago}}</td>																	
+			<td>
+				{{#if sale.processed_user}}
+					{{#xIf sale.status "==" "Processed"}}
+						<div class="badge badge-success"><i class="fa fa-check"></i> {{sale.status}}</div>
+					{{else}}
+						{{sale.status}}
+					{{/xIf}}
+				{{else}}
+					Not processed
+				{{/if}}				
+				<br>
+				{{#if sale.processed_user}}<div href="#" class="btn btn-xs btn-default small"><i class="fa fa-user"></i> {{sale.processed_user}}</div>{{/if}}
+			</td>
+			<td nowrap>
+				{{#if sale.status_transfer}}
+					{{#xIf sale.status_transfer "==" "Success"}}
+						<div class="badge badge-success">Transferred</div>
+					{{else}}
+						<div class="badge badge-danger">{{sale.status_transfer}}</div>
+					{{/xIf}}
+					<br>
+					{{#if sale.manual_confirm_user_id}}<div href="#" class="btn btn-xs btn-default small"><i class="fa fa-user"></i> {{sale.manual_confirm_user}}</div>{{/if}}
+				{{else}}
+					-
+				{{/if}}
+			</td>
+			<td>{{listed}}</td>			
+			<td>{{#xIf closed "==" "1"}}<div class="badge badge-success">Yes</div>{{else}}<div class="badge badge-danger">No</div>{{/xIf}}</td>
+			<td><span class="text text-danger">${{charges_total}}</span></td>
+			<td><span class="text text-success">${{refunded}}</span></td>
+			<td class="text-right" nowrap style="position: relative;">	
+				<a href="#" class="btn btn-sm btn-primary edit-a"><i class="fa fa-edit"></i></a>
+			</td>
+		</tr>
+	</script>
+	<script id="template-empty" type="x-handlebars">
+		<tr>
+			<td>No todos found!</td>
+			<td></td>
+			<td></td>
+			<td></td>
+			<td></td>			
+			<td></td>			
+			<td></td>			
+			<td></td>			
+		</tr>
+	</script>
+	
+</div>

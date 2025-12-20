@@ -1,0 +1,22 @@
+<!--/.outgoing call panel-->
+    <div class="theme-panel-content dialpad-panel" style="display:none" data-type="outbound">
+  		<h5 class="text-center f-s-18 m-t-20 tocurrent">{{formatPhoneNumber To}}</h5>
+        <p class="text-center">No contact info</p>
+        
+        <div class="caller-dp text-center m-b-10">
+        
+          <div class="hi-icon-wrap hi-icon-effect-8">
+	          <i class="hi-icon fa fa-phone"></i>
+          </div>
+        
+        </div><!--/.caller-dp-->
+        
+        <p class="text-center f-s-14 m-b-20">Outgoing Call</p>
+        <div class="row m-b-20">
+            <div class="col-sm-12">
+            	<button class="btn btn-danger btn-block dialpad-hangup-a"><i class="fa fa-phone"></i></button>
+            </div><!--/.col 12-->
+        </div><!--./row-->
+        
+        <?=includeTemplate('widgets::dialer::_call_actions');?>
+    </div><!--/.outgoing call content-->

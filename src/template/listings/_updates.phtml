@@ -1,0 +1,72 @@
+<?php 
+	$id = $_REQUEST['templateData']['id'];
+	$updates = getListingUpdates($id);	
+?>
+
+<?php if(!$updates):?>
+<div class="alert alert-danger text-center">No Updates!</div>
+<?php else:?>
+<div class="row">
+<form class="updates-form">
+	<input type="hidden" name="action" value="loadUpdates">
+	<input type="hidden" name="id" value="{{id}}">
+	<div class="col-sm-3">
+		<div class="form-group">
+			<label>Update</label>				
+			<select class="form-control" name="filter[patch]">
+				<option value="">All Updates</option>
+				<?php foreach($updates as $u): ?>
+				<option value="<?=$u->id?>"><?=$u->timestamp?> - <?=$u->diff_count?> changes</option>
+				<?php endforeach; ?>
+			</select>										
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="form-group">
+			<label>Type</label>
+			<select class="form-control" name="filter[type]">
+				<option value="">All Changes</option>
+				<option value="add">Data Added</option>
+				<option value="remove">Data Removed</option>
+				<option value="replace">Values Changed</option>
+			</select>
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="form-group">
+			<label>Path</label>				
+			<input type="text" class="form-control" name="filter[path]" placeholder="Ex: /sale/price OR /price/">										
+		</div>
+	</div>
+	<div class="col-sm-3">
+		<div class="form-group">
+			<label>&nbsp;</label>
+			<a href="#" class="btn btn-block btn-primary updates-search-a"><i class="fa fa-search"></i> Search</a>
+		</div>
+	</div>
+</form>
+</div>
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="well">       
+			<h3>Listings</h3>   
+			<hr>                      
+			<table class="table updates-container">
+				<thead>
+					<tr>						
+						<th data-orderable="true">Date</th>								
+						<th data-orderable="true">Operation</th>
+						<th data-orderable="true">Path</th>								
+						<th data-orderable="true">Old Value</th>
+						<th data-orderable="true">New Value</th>																													
+						<th data-orderable="false"></th>																								
+					</tr>
+				</thead>
+				<tbody>	                        				
+				</tbody>
+			</table>                
+		</div>
+	</div>
+</div>
+<?php endif; ?>

@@ -1,0 +1,225 @@
+
+<style>
+.wrapper>.container-fluid{ max-width: 100%!important; }
+	.grid-stack {  
+}
+
+.grid-stack-item-content {
+  color: #2c3e50;  
+  background-color: white;
+}
+
+.grid-stack-item-removing {
+  opacity: 0.5;
+}
+.card-box{
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+</style>
+
+<div class="page-deal" data-listing-id="<?=$_GET['id'];?>">	
+
+<? if($_GET['grid']):?>
+	<?include mapTemplate('deal2::index_grid');?>
+<? else: ?>
+	<?include mapTemplate('deal2::index_nogrid');?>
+<?endif;?>
+
+
+	<script id="template-csmarkets" type="x-handlebars">
+		<h4 class="m-t-0 mb-2 header-title"><b>Markets Data</b></h4>
+		<div class="row">
+			<div class="col-sm-6 text-center">
+				<h3 class="text-primary counter font-bold mt-0">{{markets.[0].name}}</h3>				
+                <p class="mb-0">Market</p>
+			</div>		
+			<div class="col-sm-6 text-center">
+				<h3 class="text-primary counter font-bold mt-0">{{submarkets.[0].name}}</h3>				
+                <p class="mb-0">Submarket</p>
+			</div>		                            
+        </div>	
+	</script>
+
+
+	<script id="template-walkscore" type="x-handlebars">
+		<h4 class="m-t-0 mb-2 header-title"><b>Walk Scores</b></h4>
+		<div class="row">
+			<div class="col-sm-6 text-center">
+				<h3 class="text-primary counter font-bold mt-0">{{walk.walkscore}}</h3>
+				<div class="text-muted text-sm">{{walk.description}}</div>
+                <p class="mb-0">Walk Score</p>
+			</div>		
+			<div class="col-sm-6 text-center">
+				<h3 class="text-primary counter font-bold mt-0">{{transit.transit_score}}</h3>
+				<div class="text-muted text-sm">{{transit.summary}}</div>
+                <p class="mb-0">Transit Score</p>
+			</div>		                            
+        </div>	
+	</script>
+
+	<script id="template-listing-gallery" type="x-handlebars">		
+	<h4 class="m-t-0 mb-2 header-title"><b>Gallery</b></h4>
+	<div style="display: flex; overflow-x: auto; height: 100%;">
+		{{#each images_urls}}
+      		<a href="#" data-fancybox="gallery" data-src="{{this}}" class="inline-block pull-left mr-4">
+        		<img height="100%" src="{{this}}" />
+      		</a>
+		{{else}}
+			No Images!
+		{{/each}}
+	</div>
+	</script>
+	<script id="template-listing-agents" type="x-handlebars">		
+        <h4 class="m-t-0 mb-2 header-title"><b>Agents</b></h4>
+		<div class="inbox-widget nicescroll mx-box" style="overflow: hidden; outline: none;">
+				{{#each agents}}
+				<a href="#">					
+					<div class="inbox-item">						
+						<p class="inbox-item-author">{{name}}</p>
+						<p class="inbox-item-text">{{company}}</p>
+						<p class="inbox-item-date text-dark">P: {{phone}}<br>{{email}}</p>
+					</div>
+				</a>
+				{{else}}
+					<div>No Agents Found!</div>
+				{{/each}}                                
+        </div>                        
+	</script>
+	<script id="template-listing-info" type="x-handlebars">
+	    <div class="member-card"> 			
+
+            <div class="">
+				<div class="badge badge-secondary pull-right">{{type}}</div>
+                <h4 class="m-t-0 mb-3 header-title"><b>{{title}}</b></h4>
+            </div>                             
+            <div class="text-left">
+                <div class="mb-1"><strong>Address:</strong> <span class="m-l-15">{{address}}, {{city}}, {{state}} {{zipcode}}</span></div>
+                <div class="mb-1"><strong>Geocoded Address:</strong><span class="m-l-15">{{geocoded}}</span></div>
+                <div class="mb-1"><strong>Source :</strong> <span class="m-l-15">{{source}} - <a href="{{url}}" target="_blank"><i class="fa fa-link"></i></a></span></div>
+                <div class="mb-1"><strong>Type :</strong> <span class="m-l-15">{{category}}</span></div>
+				<div class="mb-1"><strong>Price :</strong> <span class="m-l-15">${{price}}</span></div>
+				<div class="mb-1"><strong>Size :</strong> <span class="m-l-15">{{formatNumber sqft}} Sqft / {{acres}} Acres</span></div>
+				<div class="mb-1"><strong>Buildings Size :</strong> <span class="m-l-15">{{formatNumber buildings_sqft}} Sqft</span></div>
+				<div class="mb-1"><strong>Notes :</strong> <span class="m-l-15"><br>{{description}}</span></div>
+            </div>
+			<hr>
+			<div class="text-left">
+                <div class="mb-1"><strong>Price / sqft:</strong> <span class="m-l-15">${{price_per_sqft}}</span></div>
+                <div class="mb-1"><strong>Price / acre:</strong><span class="m-l-15">${{price_per_acres}}</span></div>                
+				<div class="mb-1"><strong>FAR:</strong><span class="m-l-15">{{far}}</span></div>                
+            </div>
+			<hr>
+			<div class="">				
+                <h4 class="mb-3">Building</h4>
+            </div>                             
+            <div class="text-left">
+                <div class="mb-1"><strong>Title:</strong> <span class="m-l-15">{{parent.title}}</span></div>                
+                <div class="mb-1"><strong>Type :</strong> <span class="m-l-15">{{parent.type}}</span></div>
+				<div class="mb-1"><strong>Size :</strong> <span class="m-l-15">{{parent.acres}} Acres</span></div>				
+				<div class="mb-1"><strong>Zoning :</strong> <span class="m-l-15">{{parent.zoning}}</span></div>				
+            </div>
+
+        </div>
+	</script>
+	<script id="template-gmaps-map-places-summary" type="x-handlebars">
+		<div>Detected Businesses: <b>{{total}}</b></div>
+		<div>Closure Rate: <b>{{formatNumber closure_rate}}%</b> <div class="badge badge-success badge-sm">{{open}} Open</div><div class="badge badge-danger badge-sm">{{closed}} Closed</div></div>
+		<div>{{#each types}}<div class="badge badge-secondary badge-sm mr-1">{{#each this}}{{this}} {{/each}}</div>{{/each}}</div>		
+	</script>	
+	<script id="template-gmaps-map-places-list" type="x-handlebars">
+	<table class="table">
+		<tr>
+			<th>Address</th>			
+			<th>Name</th>
+			<th>Type</th>			
+		</tr>
+		{{#each items}}
+		<tr>
+			<td>
+				<div class="text-sm">{{vicinity}}</div>
+				<div class="badge badge-sm badge-info">{{type}}</div>
+			</td>
+			<td>				
+				{{name}}
+			</td>
+			<td>
+				<div><img src="{{icon}}" style="width: 15px;"> {{types.[0]}}</div>
+				<div class="badge badge-sm badge-{{#xIf business_status "==" "OPERATIONAL"}}success{{else}}danger{{/xIf}}">{{business_status}}</div>
+			</td>
+		</tr>
+		{{/each}}
+	</table>
+	</script>
+
+	<script id="template-gmaps-map-oa-summary" type="x-handlebars">
+		<div>Detected Addresses: <b>{{summary.total}}</b></div>
+		<div>Avg Value: <b>${{summary.avg_value}}</b></div>
+		<div>Avg Sqft: <b>{{formatNumber summary.avg_sqft}}</b></div>
+		<div>Avr Price/sqft: <b>${{summary.avg_price}}</b></div>
+	</script>	
+	<script id="template-gmaps-map-oa-list" type="x-handlebars">
+	<table class="table">
+		<tr>
+			<th>Address</th>			
+			<th>Size</th>
+			<th>Value</th>			
+		</tr>
+		{{#each items}}
+		<tr>
+			<td>
+				<div class="text-sm">{{address}}</div>
+				<div class="badge badge-sm badge-info">{{type}}</div>
+			</td>
+			<td>{{formatNumber sqft}}</td>
+			<td>
+				<div>${{formatCurrency value}}</div>
+				<div class="badge badge-sm badge-info">${{formatNumber price_sqft}}/sqft</div>
+			</td>
+		</tr>
+		{{/each}}
+	</table>
+	</script>
+	<script id="template-graph-summary" type="x-handlebars">
+				<div class="inline-block-full">
+					<div class="btn-group pull-right" role="group">		
+						{{#each types}}
+							<button type="button" data-mode="{{this}}" class="btn log-mode-a btn-light">{{this}}</button>
+						{{/each}}													
+					</div>
+				
+					<a href="#" class="btn btn-sm btn-primary log-refresh-a hidden" data-domain="{{domain}}"><i class="fa fa-refresh"></i></a>
+					<h3 class="pull-left">{{title}}</h3>				
+				</div>
+				<div class="widget-chart text-center">                                	                                	
+					<div  class="log-chart" style="height: 150px;"></div>
+				</div>
+
+				<div class="row text-center">
+					<div class="col-sm-12">
+						<div class="badge badge-primary">{{loc}}</div>
+					</div>						
+				</div>
+				<div class="text-center row">
+					{{#each trends}}
+					<div class="col-sm-3">
+						<h5 class="text-muted font-16 m-t-20">{{title}} Trend</h5>						
+						<h4 class="mb-0 text-{{#xIf delta "<" "0"}}danger{{else}}success{{/xIf}}">						
+						%{{formatCurrency p}} <span class="fa {{#xIf delta "<" "0"}}fa-level-down{{else}}fa-level-up{{/xIf}}"></span>
+						</h4>
+						<div class="text-xs text-muted">{{#xIf delta ">" "0"}}+{{/xIf}}${{formatCurrency delta}}</div>
+					</div>
+					{{else}}
+					<div class="col-sm-2">
+						<h5 class="text-muted font-16 m-t-20"><span class="text-white ">AAAAA</span></h5>						
+						<h4 class="mb-0 text-white">AAAA</h4>
+					</div>
+					{{/each}}					 					
+				</div>							
+	</script>
+
+
+	
+</div>
+
+
