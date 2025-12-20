@@ -1,0 +1,17 @@
+Options -Indexes
+AddType application/x-httpd-php .phtml
+
+RewriteEngine On
+
+########## CMS REWRITE RULES ##########
+RewriteRule ^(site|admin|public|store|phantomjs)/(js|css|images|fonts|assets|uploads|data|snapshots)/(.*)$ $2/$3 [QSA,L]
+
+RewriteRule ^admin/ajax/(.*)$ dispatch.php?_request=$1&_type=ajax&_admin=1 [QSA,L]
+RewriteRule ^admin/(.*)$ dispatch.php?_request=$1&_type=page&_admin=1 [QSA,L]
+
+RewriteRule ^site/ajax/(.*)$ dispatch.php?_request=$1&_type=ajax [QSA,L]
+RewriteRule ^site/(.*)/ajax/(.*)$ dispatch.php?_request=$2&_type=ajax [QSA,L]
+RewriteRule ^widget/(.*)$ dispatch.php?_request=$1&_type=widget [QSA,L]
+RewriteRule ^util/(.*)$ dispatch.php?_request=$1&_type=util [QSA,L]
+RewriteRule ^site/(.*)$ dispatch.php?_request=$1&_type=page [QSA,L]
+RewriteRule ^public/(.*)$ public/$1 [QSA,L]

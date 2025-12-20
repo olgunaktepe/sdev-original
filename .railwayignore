@@ -1,0 +1,40 @@
+# Large template folder - not needed for deployment
+Minton_v10.1.0/
+
+# Config files - use Railway versions
+src/php.ini
+src/.htaccess
+
+# Git and IDE
+.git/
+.gitignore
+.DS_Store
+.idea/
+.vscode/
+
+# Documentation
+*.md
+STYLE_GUIDE.md
+README.md
+RULES.md
+
+# Claude configuration (not needed in container)
+.claude/
+
+# Fixes folder (not needed in container)
+fixes/
+
+# Python scripts (not needed for PHP app)
+src/python/
+src/playwright/
+src/phantomjs/
+src/node/
+src/perl/
+
+# Documentation folders
+src/Documentation-Word/
+src/.serena/
+
+# Test files
+src/test.webm
+src/*.docx

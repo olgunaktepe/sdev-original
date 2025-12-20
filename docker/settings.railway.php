@@ -65,3 +65,6 @@ $GLOBALS['pages']['public']					= array('login','resetpassword');
 $GLOBALS['superusers'] = array(1);
 $GLOBALS['SETTINGS'] = array();
 $GLOBALS['DEFAULTS'] = array();
+
+##########################Railway Test Environment
+$GLOBALS['bypass_ipblock'] = true;
