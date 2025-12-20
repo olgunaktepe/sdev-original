@@ -194,6 +194,7 @@ CREATE TABLE IF NOT EXISTS deals_data (
   listing_id INT,
   status VARCHAR(50),
   default_versions LONGTEXT COMMENT 'JSON versions',
+  data LONGTEXT COMMENT 'JSON deal data',
   timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   INDEX idx_listing_id (listing_id),
   UNIQUE KEY unique_deals_data (listing_id)
