@@ -345,9 +345,9 @@
 	</div>
 	</script>
 
-	<script id="template-stats" type="x-handlebars">	
+	<script id="template-stats" type="x-handlebars">
 		<div class="col-sm-12">
-			<div><b>Total Found: {{total}}</b> - {{speed}} listings/second - Elapsed: {{elapsed}} seconds</div>
+			<div><b>Total Loaded: {{total}}</b> {{#if hasMore}}<button class="btn btn-sm btn-primary load-more-btn ml-2">Load More</button>{{/if}}</div>
 			<div class="progress progress-bar-container m-1">
 				<div class="progress-bar" role="progressbar" style="width: {{progress}}%;">{{formatNumber progress}}%</div>
 			</div>

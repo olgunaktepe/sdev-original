@@ -129,10 +129,11 @@ $(document).ready(function () {
 	var filters = [];
 	var activeFilterChunks = [];
 	var searchParams = '';
-	var benchmark;	
+	var benchmark;
 	var sortedListingsIndex;
 	var locContainerSize = 8;
 	var initDone = false;
+	var paginationState = {page: 0, perpage: 1000, hasMore: true, loading: false, sortCol: 'created_on', sortDir: 'desc'};
 
     init();
     bind();
@@ -195,9 +196,10 @@ $(document).ready(function () {
 
 		container.on('change.bs.fileinput',selectors.upload, function(e){ importListings(e); });	
 		
-		container.on('click',selectors.listingsSort, function(e){ e.preventDefault(); sortListings($(this)); });	
-		container.on('click',selectors.listingsSortSelect, function(e){ e.stopPropagation(); e.preventDefault(); });	
-		container.on('change',selectors.listingsSortSelect, function(e){ sortListingsSelect($(this)); });	
+		container.on('click',selectors.listingsSort, function(e){ e.preventDefault(); sortListings($(this)); });
+		container.on('click',selectors.listingsSortSelect, function(e){ e.stopPropagation(); e.preventDefault(); });
+		container.on('change',selectors.listingsSortSelect, function(e){ sortListingsSelect($(this)); });
+		container.on('click','.load-more-btn', function(e){ e.preventDefault(); loadMoreLocations(); });
     }
 	
 	function centerMap(){
@@ -1261,69 +1263,24 @@ $(document).ready(function () {
 		//sortListings(header);
 	}
 	const getValue = (path, obj) => path.split('.').reduce((acc, c) => acc && acc[c], obj);
-	function sortListings(header){		
+	function sortListings(header){
 		if(!header)return false;
-		console.log(header);
 
-		//var oldDir = (header.hasClass('dir-d'))?'dir-d':'dir-u';
-	
-		var sortable = [];				
 		if(header == 'default'){
-			var col = 'created_on';
-			var type = 'date';
-			var dir = 'desc';
+			paginationState.sortCol = 'created_on';
+			paginationState.sortDir = 'desc';
 		}
-		else{			
+		else{
 			var col = header.attr('data-sort');
-			var type = header.attr('data-sort-type');
 			var dir = (header.hasClass('dir-d'))?'asc':'desc';
+			paginationState.sortCol = col;
+			paginationState.sortDir = dir;
+			container.find(selectors.listingsSort).removeClass('dir-d dir-u');
+			header.addClass((dir == 'desc')?'dir-d':'dir-u');
 		}
-		//console.log(header);
-		//console.log(col);
-		//console.log(type);
-		//console.log(dir);
-		
-		
-		for(id in listings){			
-			var listing = listings[id];		
-			var value = getValue(col,listing)
-			//console.log(value);
-			
-			if(!$.defined(value))value = '';			
-			if(type == 'num' && typeof value != 'number'){
-				value = parseFloat(value.replace(/[^0-9\.\-]/g,''));
-				if(isNaN(value))value = 0;
-			}			
-			sortable.push([id, value]);			
-		}
-		sortable.sort(function(a, b) {
-			if(type == 'date'){
-				if(dir == 'asc')
-					return new Date(a[1]) - new Date(b[1]);
-				else
-					return new Date(b[1]) - new Date(a[1]);
-			}
-			else if(type == 'num'){
-				if(dir == 'asc')
-					return a[1] - b[1];
-				else
-					return b[1] - a[1];
-			}
-			else{
-				if(dir == 'asc')
-					return a[1].localeCompare(b[1]);
-				else
-					return b[1].localeCompare(a[1]);
-				
-			}			
-		});
-		
-		sortedListingsIndex = sortable;
 
-		setTimeout(function(){			
-			showCardsPage(0);
-		},50);
-		
+		searchParams = '';
+		search();
 	}
 	function filterCards(){
 		var c = container.find(selectors.locContainer);
@@ -1455,7 +1412,11 @@ $(document).ready(function () {
 		var forceSearch = false;
 
 		var data = container.find('form').serializeObject();
-		data.action = 'getLocations';
+		data.action = 'getLocationsPaginated';
+		data.page = 0;
+		data.perpage = paginationState.perpage;
+		data.sortCol = paginationState.sortCol;
+		data.sortDir = paginationState.sortDir;
 
 		// Default bounds for continental US if map not loaded
 		var defaultBounds = {ne: {lat: 49.384358, lng: -66.885444}, sw: {lat: 24.396308, lng: -125.000000}};
@@ -1501,42 +1462,101 @@ $(document).ready(function () {
 					
 		listingIds = [];
 		listings = [];
+		paginationState.page = 0;
+		paginationState.hasMore = true;
+		paginationState.loading = false;
 		c.html('loading...');
 		btn.button('loading');
-				
+
 		$.post(script,data,function(res){
 			var json = false;
-			try {json = JSON.parse(res);} catch (e) {json = false;}			
+			try {json = JSON.parse(res);} catch (e) {json = false;}
 			if(!json){ $.error("Unexpected Error Occured"); return; }
 
 
 			btn.button('reset');
 			if(json.error){ $.error(json.error); }
 			else{
-				var newListings = [];
-				/*
-				$.each(json.items,function(k,el){					
-					listingIds.push(el.id);		
-					if(el.new == 1) newListings.push(el.id);		
-				});				
-				*/
 				$.each(json.formatted,function(k,el){
-					listingIds.push(el.id);		
-					//if(newListings.indexOf(el.id)>=0)el.new = 1;										
+					listingIds.push(el.id);
 					listings[el.id] = el;
 				});
-				newListings = [];
+
+				paginationState.page = json.page;
+				paginationState.hasMore = json.hasMore;
+				paginationState.loading = false;
 
 				var sc = container.find(selectors.statsContainer);
 				var html = Handlebars.compile(container.find(selectors.templates.stats).html());
-				sc.html(html({'total':json.formatted.length,'speed':0, 'elapsed': 0}));
+				sc.html(html({'total':listingIds.length,'speed':0, 'elapsed': 0, 'hasMore': json.hasMore}));
 				c.html('No filters applied...');
-				
-				sortListings('default');
+
 				createMarkers();
-				filterListings();				
+				filterListings();
   			}
-		});	
+		});
+	}
+	function loadMoreLocations(){
+		if(!paginationState.hasMore || paginationState.loading)return;
+		paginationState.loading = true;
+
+		var data = container.find('form').serializeObject();
+		data.action = 'getLocationsPaginated';
+		data.page = paginationState.page + 1;
+		data.perpage = paginationState.perpage;
+		data.sortCol = paginationState.sortCol;
+		data.sortDir = paginationState.sortDir;
+
+		var defaultBounds = {ne: {lat: 49.384358, lng: -66.885444}, sw: {lat: 24.396308, lng: -125.000000}};
+		var defaultCenter = {lat: 39.8097343, lng: -98.5556199};
+		var center, bounds, NECorner, SWCorner;
+		try {
+			center = (map && typeof map.getCenter === 'function') ? map.getCenter() : null;
+			bounds = (map && typeof map.getBounds === 'function') ? map.getBounds() : null;
+		} catch(e) {
+			center = null;
+			bounds = null;
+		}
+		if (!center) center = defaultCenter;
+		NECorner = (bounds && bounds.getNorthEast) ? bounds.getNorthEast() : defaultBounds.ne;
+		SWCorner = (bounds && bounds.getSouthWest) ? bounds.getSouthWest() : defaultBounds.sw;
+		var neLat = (NECorner.lat && typeof NECorner.lat === 'function') ? NECorner.lat() : NECorner.lat;
+		var neLng = (NECorner.lng && typeof NECorner.lng === 'function') ? NECorner.lng() : NECorner.lng;
+		var swLat = (SWCorner.lat && typeof SWCorner.lat === 'function') ? SWCorner.lat() : SWCorner.lat;
+		var swLng = (SWCorner.lng && typeof SWCorner.lng === 'function') ? SWCorner.lng() : SWCorner.lng;
+		var centerLat = (center.lat && typeof center.lat === 'function') ? center.lat() : center.lat;
+		var centerLng = (center.lng && typeof center.lng === 'function') ? center.lng() : center.lng;
+		data.box = {'lat1':neLat, 'lng1':neLng, 'lat2':swLat, 'lng2':swLng};
+		data.center = {'lat':centerLat,'lng':centerLng};
+
+		container.find('.load-more-btn').text('Loading...').prop('disabled', true);
+
+		$.post(script,data,function(res){
+			var json = false;
+			try {json = JSON.parse(res);} catch (e) {json = false;}
+			if(!json){ $.error("Unexpected Error"); paginationState.loading = false; return; }
+
+			if(json.error){ $.error(json.error); paginationState.loading = false; return; }
+
+			$.each(json.formatted,function(k,el){
+				if(!listings[el.id]){
+					listingIds.push(el.id);
+					listings[el.id] = el;
+				}
+			});
+
+			paginationState.page = json.page;
+			paginationState.hasMore = json.hasMore;
+			paginationState.loading = false;
+
+			var sc = container.find(selectors.statsContainer);
+			var html = Handlebars.compile(container.find(selectors.templates.stats).html());
+			sc.html(html({'total':listingIds.length,'speed':0, 'elapsed': 0, 'hasMore': json.hasMore}));
+
+			createMarkers();
+			filterCards();
+			renderVisibleMarkers();
+		});
 	}
 	function renderVisibleMarkers(){
 		// Skip if map not loaded
