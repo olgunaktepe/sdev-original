@@ -19,19 +19,6 @@
 			opacity: 0.1!important;
 	  }
 
-	  .listings-table thead th:nth-child(1),
-	  .listings-table tbody td:nth-child(1){position:sticky;left:0;background:#fff;z-index:2;}
-	  .listings-table thead th:nth-child(2),
-	  .listings-table tbody td:nth-child(2){position:sticky;left:200px;background:#fff;z-index:2;}
-	  .listings-table thead th:nth-child(3),
-	  .listings-table tbody td:nth-child(3){position:sticky;left:425px;background:#fff;z-index:2;}
-	  .listings-table thead th:nth-child(1),
-	  .listings-table thead th:nth-child(2),
-	  .listings-table thead th:nth-child(3){background:#6c757d;z-index:3;}
-	  .listings-table tbody tr:hover td:nth-child(1),
-	  .listings-table tbody tr:hover td:nth-child(2),
-	  .listings-table tbody tr:hover td:nth-child(3){background:#f5f5f5;}
-
 </style>
 
 
@@ -356,7 +343,7 @@
 							</div>
 
 							<h4 class="text-danger">{{status}}</h4>	
-							<div style="width:200px; white-space: normal;">{{title}}</div>
+							<div style="width:260px; white-space: normal;">{{title}}</div>
 							<div>Source: {{#if url}}<a href="{{url}}" target="_blank">{{source}}</a>{{else}}{{source}}{{/if}}</div>
 							<div class="btn-group">
                                 <button type="button" class="btn btn-secondary dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-expanded="false">Actions <span class="caret"></span></button>
