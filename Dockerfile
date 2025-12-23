@@ -32,8 +32,9 @@ COPY docker/.htaccess /var/www/html/.htaccess
 COPY docker/ipblock.php /var/www/html/ipblock.php
 
 # Install Composer dependencies for libraries that need them
+# Note: AWS vendor is committed to git with full SDK (including Credentials)
+# Do NOT run composer install for AWS - it strips required files
 RUN cd /var/www/html/php/lib/twilio/voice-javascript-sdk-quickstart-php-main && composer install --no-dev --no-interaction --prefer-dist 2>/dev/null || true
-RUN cd /var/www/html/php/lib/AWS && composer install --no-dev --no-interaction --prefer-dist 2>/dev/null || true
 
 # Copy and set up entrypoint
 COPY docker/entrypoint.sh /entrypoint.sh
