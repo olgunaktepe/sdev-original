@@ -1006,7 +1006,7 @@ $(document).ready(function () {
 			//}
 		}
 
-		listingsStats = {'total': listingIds.length, 'chunks': listingIdsChunked.length, 'chunkSize': size, 'maxThreads': maxThreads,'valid':0, 'invalid':0, 'err':0, 'err_valid':0,'speed': 0};
+		listingsStats = {'total': listingIds.length, 'chunks': listingIdsChunked.length, 'chunkSize': size, 'maxThreads': maxThreads,'valid':0, 'invalid':0, 'err':0, 'err_valid':0,'speed': 0, 'totalInRange': listingsStats.totalInRange || 0};
 		statsHidden = {'valid': true, 'err': false, 'invalid': false, 'err_valid': false, 'filterOff': false};		
 		
 		loadStats(filters);
