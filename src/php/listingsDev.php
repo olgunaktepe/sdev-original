@@ -588,12 +588,13 @@ function getNestedVal($obj, $path){
 }
 function getLocations(){
     global $dl;
+    ini_set('memory_limit','512M');
 
     $bm = [];
 
     $filter = $_REQUEST['filter'];
-    $chunkSize = 250;
-    $resultLimit = 250;
+    $chunkSize = 1000;
+    $resultLimit = 1000;
     $filter['box'] = $_REQUEST['box'];
     $filter['center'] = $_REQUEST['center'];
 
