@@ -1,30 +1,60 @@
 # Propose a Fix for the Original Platform
 
-Analyze the issue described and propose a minimal fix that matches the original developer's coding style.
-
 **Issue:** $ARGUMENTS
+
+## Agent Execution
+
+You MUST use the Task tool to spawn an agent for this work. This saves context and ensures consistent enforcement of coding standards.
+
+```
+Task tool parameters:
+- subagent_type: "general-purpose"
+- description: "Propose fix for SDEV"
+- prompt: <see below>
+```
+
+## Agent Prompt
+
+Use this exact prompt for the agent:
+
+---
+
+**Task:** Propose a minimal fix for the SDEV PHP platform.
+
+**Issue to fix:** $ARGUMENTS
+
+**Working directory:** /Users/olgunaktepe/Desktop/sdev-original
 
 ## Instructions
 
-1. First, understand the issue completely
-2. Identify the file(s) that need to be changed
-3. Propose the SMALLEST possible change that solves the problem
-4. Write the fix in the exact style used in STYLE_GUIDE.md
+1. Read CLAUDE.md to understand the coding style requirements
+2. Investigate the issue - find the relevant file(s)
+3. Understand the root cause
+4. Write the SMALLEST possible fix in the original developer's style
+
+## Code Style Rules (MUST FOLLOW)
+
+- Single-line conditionals: `if(!$x)err("msg");`
+- Compact loops: `while($r = mysql_fetch_assoc($q))$items[] = (object)$r;`
+- No type hints, return types, or namespaces
+- No try-catch blocks
+- No PHPDoc comments
+- Use helpers: `err()`, `json()`, `sql()`, `pick()`
 
 ## Output Format
 
-Create the fix proposal in this exact format:
+Return this exact structure:
 
 ```markdown
 ## Fix: [Short Title]
 
 **File:** `/path/to/file.php`
 
-**Problem:** [One sentence describing what's broken]
+**Problem:** [One sentence]
 
-**Root Cause:** [One sentence explaining why it's broken]
+**Root Cause:** [One sentence]
 
-**Solution:** [One sentence describing the fix approach]
+**Solution:** [One sentence]
 
 ### Code Changes
 
@@ -34,48 +64,24 @@ Create the fix proposal in this exact format:
 [exact current code]
 
 // AFTER
-[your fixed code]
+[fixed code]
 ```
 
 ### Testing
 
-1. [Step to verify the fix]
+1. [Step to verify]
 2. [Expected result]
 
-### Notes
+### Review Status
 
-[Any important considerations for the original developer]
+[ ] Ready for `/review-code`
 ```
-
-## Style Reminders
-
-- No type hints or return types
-- Single-line conditionals: `if(!$x)err("msg");`
-- Use `pick($a, $b)` for defaults
-- Use `$wheresql[]` pattern for queries
-- Keep it SIMPLE - no over-engineering
 
 ---
 
-## MANDATORY: Review Before Sharing
+## After Agent Completes
 
-After generating the fix, you MUST:
-
-1. **Run the code review** using `/review-code` with the proposed code
-2. **Check the result** - if REJECTED, fix all violations
-3. **Re-review** until APPROVED
-4. **Only then** share with the original developer
-
-Add this footer to every fix proposal:
-
-```
----
-
-## Review Status
-
-[ ] Code reviewed with `/review-code`
-[ ] All violations fixed
-[ ] APPROVED for sharing
-
-⚠️ DO NOT share with original developer until all boxes are checked.
-```
+1. Review the agent's output
+2. Run `/review-code` on the proposed code
+3. If rejected, fix violations and re-review
+4. Only share with original developer after APPROVED

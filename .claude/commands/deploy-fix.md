@@ -1,133 +1,124 @@
-# Deploy Fix - Push to Railway Test Server
-
-Deploy approved fixes to the Railway test environment.
+# Deploy Fix - Deploy to Railway and Verify
 
 **Action:** $ARGUMENTS
 
-## Prerequisites
+## Agent Execution
 
-- Railway CLI installed: `npm install -g @railway/cli`
-- Railway project linked: `railway link`
-- GitHub CLI installed: `gh`
+You MUST use the Task tool to spawn an agent for deployment.
 
-## Instructions
+```
+Task tool parameters:
+- subagent_type: "general-purpose"
+- description: "Deploy and verify on Railway"
+- prompt: <see below>
+```
 
-### If PR number provided:
-Merge the PR and deploy to Railway.
+## Agent Prompt
 
-### If no argument:
-Deploy current main branch to Railway.
+Use this exact prompt for the agent:
 
-### If "status":
-Check current Railway deployment status.
+---
+
+**Task:** Deploy SDEV platform to Railway and verify the fix works.
+
+**Action:** $ARGUMENTS
+
+## Environment
+
+| Item | Value |
+|------|-------|
+| Working directory | `/Users/olgunaktepe/Desktop/sdev-original` |
+| Test repo | `olgunaktepe/sdev-original` |
+| Test URL | `https://sdev-original-test.up.railway.app` |
+| Prod repo | `gontham/sdev` (DO NOT TOUCH) |
+
+## Command Interpretation
+
+| Argument | Action |
+|----------|--------|
+| (empty) | Deploy current main and verify |
+| `status` | Check deployment status |
+| `logs` | View recent logs |
+| `verify` | Just verify (no deploy) |
 
 ## Workflow
 
-### Step 1: Check Railway Connection
+### For Default (Deploy and Verify):
+
+#### Step 1: Deploy to Railway
 
 ```bash
-railway status
-```
-
-If not linked, prompt user to run:
-```bash
-cd /Users/olgunaktepe/Desktop/sdev-original
-railway login
-railway link
-```
-
-### Step 2: Handle PR (if provided)
-
-```bash
-# Check PR status
-gh pr view <PR-number> --json state,mergeable,title
-
-# If mergeable, merge it
-gh pr merge <PR-number> --squash --delete-branch
-
-# Pull latest
 git checkout main
 git pull origin main
-```
-
-### Step 3: Deploy to Railway
-
-```bash
 railway up --detach
 ```
 
-Or for a specific service:
-```bash
-railway up --service sdev-original-test
-```
+Wait ~60 seconds for deployment.
 
-### Step 4: Monitor Deployment
+#### Step 2: Check Deployment Status
 
 ```bash
-# Check deployment status
 railway status
-
-# View logs (optional)
-railway logs --tail 50
-```
-
-### Step 5: Get Deployment URL
-
-```bash
 railway domain
 ```
 
-### Step 6: Verify Deployment
+#### Step 3: Verify Fix in Browser
 
-Test the deployed URL:
-- Check `/site/login` loads
-- Verify no PHP errors in logs
+1. Use Chrome DevTools MCP to navigate to: `https://sdev-original-test.up.railway.app`
+2. Navigate to the affected page
+3. Take a snapshot to verify the fix
+4. Check console for errors (use `list_console_messages`)
+5. Document what was tested and the result
 
-## Output
+### For Status:
 
-Return:
-- Deployment status (success/failure)
-- Railway deployment URL
-- Any errors encountered
-
-## Commands
-
-| Command | Action |
-|---------|--------|
-| `/deploy-fix` | Deploy current main branch |
-| `/deploy-fix 5` | Merge PR #5 and deploy |
-| `/deploy-fix status` | Check deployment status |
-| `/deploy-fix logs` | View recent deployment logs |
-| `/deploy-fix rollback` | Rollback to previous deployment |
-
-## Example
-
-```
-/deploy-fix 5
-
-Output:
-✅ PR #5 merged: Fix: Date format issue
-✅ Deploying to Railway...
-✅ Build completed in 45s
-✅ Health check passed
-✅ Deployment URL: https://sdev-original-test.up.railway.app
-
-Test: https://sdev-original-test.up.railway.app/site/login
-```
-
-## Rollback
-
-If deployment fails:
 ```bash
-railway rollback
+railway status
+railway domain
 ```
 
-## Environment Variables
+### For Logs:
 
-Railway auto-sets these from the MySQL service:
-- `MYSQLHOST`
-- `MYSQLPORT`
-- `MYSQLUSER`
-- `MYSQLPASSWORD`
-- `MYSQLDATABASE`
-- `RAILWAY_PUBLIC_DOMAIN`
+```bash
+railway logs --tail 100
+```
+
+### For Verify Only:
+
+Skip deployment, go directly to Step 3 (browser verification).
+
+## Output Format
+
+**If deployment and verification successful:**
+```
+✅ Deployed: https://sdev-original-test.up.railway.app
+✅ Status: Healthy
+✅ Verified: <what was tested>
+✅ Result: <working/not working>
+
+Next step: Run `/submit-fix` to create PR to prod.
+```
+
+**If verification failed:**
+```
+❌ Deployed: https://sdev-original-test.up.railway.app
+❌ Verification Failed: <what went wrong>
+❌ Console errors: <if any>
+
+Debug the issue, run `/test-fix` again, then `/deploy-fix` again.
+```
+
+**If deployment failed:**
+```
+❌ Deployment Failed: <error>
+❌ Logs: <relevant error logs>
+
+Suggested fix: <what to do>
+```
+
+---
+
+## After Agent Completes
+
+- If verified working: Run `/submit-fix` to create PR to `gontham/sdev`
+- If failed: Debug, run `/test-fix` with fixes, then `/deploy-fix` again

@@ -1,79 +1,73 @@
 # Review Code for Original Platform Compliance
 
-You are reviewing code to ensure it matches the original SDEV PHP platform coding style.
+**Code to review:** $ARGUMENTS
+
+## Agent Execution
+
+You MUST use the Task tool to spawn an agent for this review. This ensures consistent, thorough enforcement of coding standards.
+
+```
+Task tool parameters:
+- subagent_type: "general-purpose"
+- description: "Review SDEV code compliance"
+- prompt: <see below>
+```
+
+## Agent Prompt
+
+Use this exact prompt for the agent:
+
+---
+
+**Task:** Review PHP code for SDEV platform style compliance.
 
 **Code to review:** $ARGUMENTS
 
----
+**Working directory:** /Users/olgunaktepe/Desktop/sdev-original
 
-## Review Instructions
+## Review Checklist
 
-1. Read the code carefully
-2. Check EVERY rule in the checklist
-3. Be STRICT - the original developer does not tolerate AI bloat
-4. REJECT if any rules are violated
+### INSTANT REJECTION (if ANY found):
 
----
-
-## Quick Rejection Checklist
-
-Scan for these instant-rejection patterns:
-
-### PHP Syntax (REJECT if found)
+**Modern PHP Syntax:**
 - [ ] `function name(Type $param)` - type hints
 - [ ] `function name(): Type` - return types
 - [ ] `namespace` declarations
-- [ ] `use` statements
+- [ ] `use` statements for imports
 - [ ] `interface` or `abstract class`
 - [ ] `??=` or `?->` operators
 - [ ] `fn() =>` arrow functions
 - [ ] `match()` expressions
 - [ ] `#[Attribute]` syntax
 
-### Code Style (REJECT if found)
+**Verbose Code Style:**
 - [ ] Multi-line `if` blocks for simple checks
 - [ ] Multi-line `while` loops for simple fetches
 - [ ] Spaces inside parentheses `if ( $x )`
 - [ ] `try { } catch { }` blocks
 - [ ] `throw new Exception()`
 
-### Over-Engineering (REJECT if found)
-- [ ] Creating new classes
+**Over-Engineering:**
+- [ ] Creating new classes unnecessarily
 - [ ] Factory or repository patterns
 - [ ] Dependency injection
-- [ ] More than 3 new functions
+- [ ] More than 3 new functions for a simple fix
 - [ ] PHPDoc comment blocks
 - [ ] Excessive inline comments
 
----
-
-## Expected Patterns
-
-The code SHOULD use:
+### EXPECTED PATTERNS (should use):
 
 ```php
-// Error handling
 if(!$id)err("Not found");
-
-// Loops
 while($r = mysql_fetch_assoc($q))$items[] = (object)$r;
-
-// WHERE clauses
 $wheresql[] = "field='{$val}'";
-
-// Defaults
 $limit = ($limit)?$limit:100;
-
-// Responses
 json(['items'=>$items]);
-sql("INSERT INTO...");
 ```
 
----
+## Output Format
 
-## Output Your Review
-
-If ANY violation is found, output:
+**If ANY violation found:**
 
 ```
 ## REJECTED
@@ -84,10 +78,14 @@ If ANY violation is found, output:
    - Found: `[code]`
    - Should be: `[code]`
 
-**Fix these issues and resubmit.**
+2. **Line Y:** [description]
+   - Found: `[code]`
+   - Should be: `[code]`
+
+**Fix these issues and run `/review-code` again.**
 ```
 
-If ALL checks pass, output:
+**If ALL checks pass:**
 
 ```
 ## APPROVED
@@ -99,5 +97,12 @@ Code follows original platform style.
 - [x] Minimal complexity
 - [x] Uses existing helpers
 
-Ready for original developer review.
+Ready for `/document-fix` to create PR.
 ```
+
+---
+
+## After Agent Completes
+
+- If REJECTED: Fix the violations and run `/review-code` again
+- If APPROVED: Proceed to `/document-fix` to create the PR

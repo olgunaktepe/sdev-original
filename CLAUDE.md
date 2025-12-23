@@ -242,18 +242,65 @@ $new = 'code';
 
 ---
 
-## Code Review Process
+## Environments
 
-All code must pass review before being shared with the original developer.
+| Environment | Repository | URL | Purpose |
+|-------------|------------|-----|---------|
+| **Test** | `olgunaktepe/sdev-original` | https://sdev-original-test.up.railway.app | Testing fixes before submission |
+| **Production** | `gontham/sdev` | (original dev's server) | Live platform - READ ONLY |
 
-### Slash Commands
+## GitHub Accounts
 
-| Command | Purpose |
-|---------|---------|
-| `/propose-fix [issue]` | Create a fix proposal |
-| `/review-code [code]` | Review code for compliance |
-| `/document-fix [fix-name]` | Create GitHub PR for approved fix |
-| `/deploy-fix [PR-number]` | Deploy to Railway test server |
+| Account | Purpose | Auth |
+|---------|---------|------|
+| `olgunaktepe` | Test repo owner, default `gh` auth | `gh auth` (default) |
+| `GilesStevens` | Collaborator on `gontham/sdev`, PR submission | `GONTHAM_GITHUB_TOKEN` in `.env` |
+
+**CRITICAL:** We NEVER push directly to `gontham/sdev`. All changes go through PR for original developer approval.
+
+**Token location:** `/Users/olgunaktepe/Desktop/sdev-original/.env` (gitignored)
+
+---
+
+## Workflow Commands
+
+Each command spawns a dedicated agent to save context and ensure consistent enforcement.
+
+| Command | Agent | Purpose |
+|---------|-------|---------|
+| `/propose-fix [issue]` | "Propose fix for SDEV" | Research issue, write minimal fix |
+| `/review-code [code]` | "Review SDEV code compliance" | Check code against rejection rules |
+| `/test-fix [fix]` | "Apply fix to test repo" | Apply code changes → Commit to test repo |
+| `/deploy-fix [action]` | "Deploy and verify on Railway" | Deploy to Railway → Verify in browser |
+| `/submit-fix [fix]` | "Submit PR to prod" | Create PR to `gontham/sdev` |
+
+### Complete Workflow
+
+```
+┌─────────────────┐
+│  /propose-fix   │  Research issue, write minimal fix
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│  /review-code   │  Check compliance (REJECT/APPROVE)
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│   /test-fix     │  Apply code changes → Commit to test repo
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│  /deploy-fix    │  Deploy to Railway → Verify in browser
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│  /submit-fix    │  Create PR to gontham/sdev (READ-ONLY)
+└────────┬────────┘
+         ▼
+┌─────────────────┐
+│  Original Dev   │  Reviews and merges PR to production
+└─────────────────┘
+```
 
 ### Review Criteria
 
@@ -269,30 +316,17 @@ Code is **REJECTED** if it contains:
 
 See `RULES.md` for the complete rejection checklist.
 
-### Workflow
+### Deploy Commands
 
-1. **Propose** - Use `/propose-fix` to create a fix
-2. **Review** - Use `/review-code` to check compliance
-3. **Fix** - Address any violations
-4. **Re-review** - Confirm all issues resolved
-5. **Document** - Use `/document-fix` to create GitHub PR
-6. **Deploy** - Use `/deploy-fix` to push to Railway test server
-7. **Share** - Share PR link with original developer
-
-### Railway Test Environment
-
-**URL:** https://sdev-original-test.up.railway.app
-
-Test fixes on Railway before sharing with the original developer:
 ```bash
 # Deploy current main branch
 /deploy-fix
 
-# Deploy specific PR
-/deploy-fix 5
-
 # Check status
 /deploy-fix status
+
+# View logs
+/deploy-fix logs
 ```
 
 ---
