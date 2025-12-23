@@ -1261,69 +1261,54 @@ $(document).ready(function () {
 		//sortListings(header);
 	}
 	const getValue = (path, obj) => path.split('.').reduce((acc, c) => acc && acc[c], obj);
-	function sortListings(header){		
+	function sortListings(header){
 		if(!header)return false;
-		console.log(header);
 
-		//var oldDir = (header.hasClass('dir-d'))?'dir-d':'dir-u';
-	
-		var sortable = [];				
 		if(header == 'default'){
 			var col = 'created_on';
-			var type = 'date';
 			var dir = 'desc';
 		}
-		else{			
+		else{
 			var col = header.attr('data-sort');
-			var type = header.attr('data-sort-type');
 			var dir = (header.hasClass('dir-d'))?'asc':'desc';
+			container.find(selectors.listingsSort).removeClass('dir-d dir-u');
+			header.addClass(dir == 'desc' ? 'dir-d' : 'dir-u');
 		}
-		//console.log(header);
-		//console.log(col);
-		//console.log(type);
-		//console.log(dir);
-		
-		
-		for(id in listings){			
-			var listing = listings[id];		
-			var value = getValue(col,listing)
-			//console.log(value);
-			
-			if(!$.defined(value))value = '';			
-			if(type == 'num' && typeof value != 'number'){
-				value = parseFloat(value.replace(/[^0-9\.\-]/g,''));
-				if(isNaN(value))value = 0;
-			}			
-			sortable.push([id, value]);			
-		}
-		sortable.sort(function(a, b) {
-			if(type == 'date'){
-				if(dir == 'asc')
-					return new Date(a[1]) - new Date(b[1]);
-				else
-					return new Date(b[1]) - new Date(a[1]);
-			}
-			else if(type == 'num'){
-				if(dir == 'asc')
-					return a[1] - b[1];
-				else
-					return b[1] - a[1];
-			}
-			else{
-				if(dir == 'asc')
-					return a[1].localeCompare(b[1]);
-				else
-					return b[1].localeCompare(a[1]);
-				
-			}			
-		});
-		
-		sortedListingsIndex = sortable;
 
-		setTimeout(function(){			
-			showCardsPage(0);
-		},50);
-		
+		var data = container.find('form').serializeObject();
+		data.action = 'getLocations';
+		data.orderby = col;
+		data.orderdir = dir;
+
+		var bounds = (map && map.getBounds)?map.getBounds():null;
+		if(bounds){
+			data.box = {lat1: bounds.getNorthEast().lat(), lng1: bounds.getNorthEast().lng(), lat2: bounds.getSouthWest().lat(), lng2: bounds.getSouthWest().lng()};
+			data.center = {lat: map.getCenter().lat(), lng: map.getCenter().lng()};
+		}
+
+		var c = container.find(selectors.locContainer);
+		c.html('sorting...');
+
+		$.post(script, data, function(res){
+			var json = JSON.parse(res);
+			if(json.error){ $.error(json.error); return; }
+
+			listingIds = [];
+			listings = [];
+			sortedListingsIndex = null;
+
+			$.each(json.formatted, function(k, el){
+				listingIds.push(el.id);
+				listings[el.id] = el;
+			});
+
+			var sc = container.find(selectors.statsContainer);
+			var html = Handlebars.compile(container.find(selectors.templates.stats).html());
+			sc.html(html({total: json.formatted.length, totalInRange: json.totalInRange, speed: 0, elapsed: 0}));
+
+			createMarkers();
+			filterListings();
+		});
 	}
 	function filterCards(){
 		var c = container.find(selectors.locContainer);

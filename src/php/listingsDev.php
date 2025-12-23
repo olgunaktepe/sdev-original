@@ -562,27 +562,62 @@ function clusterByDistance($points, $maxDistance) {
     }
     return $clusters;
 }
-  
+function sortListingsArray($items, $col, $dir){
+    $sortable = [];
+    foreach($items as $id=>$item){
+        $val = getNestedVal($item, $col);
+        if(is_string($val))$val = (float)preg_replace('/[^0-9.\-]/','',$val);
+        if($col == 'created_on')$val = strtotime($val);
+        $sortable[$id] = $val;
+    }
+    if($dir == 'asc')asort($sortable);
+    else arsort($sortable);
+    $sorted = [];
+    foreach($sortable as $id=>$v)$sorted[$id] = $items[$id];
+    return $sorted;
+}
+function getNestedVal($obj, $path){
+    $keys = explode('.', $path);
+    $val = $obj;
+    foreach($keys as $k){
+        if(is_object($val) && isset($val->$k))$val = $val->$k;
+        else if(is_array($val) && isset($val[$k]))$val = $val[$k];
+        else return 0;
+    }
+    return $val;
+}
 function getLocations(){
     global $dl;
 
     $bm = [];
-    
-    $filter = $_REQUEST['filter'];    
-    $limit = 15*1000;
-    $offset = 0;   
+
+    $filter = $_REQUEST['filter'];
+    $limit = 50000;
+    $offset = 0;
+    $resultLimit = 1000;
     $filter['box'] = $_REQUEST['box'];
     $filter['center'] = $_REQUEST['center'];
 
-    $start = time();
-    $locations = loadLocations($filter,$limit,$offset);    
-    
-    $items = [];
-    foreach($locations as $l)$items[$l->id] = $l;    
+    $orderby = pick($_REQUEST['orderby'],'created_on');
+    $orderdir = ($_REQUEST['orderdir'] == 'asc')?'asc':'desc';
 
-    $formatted = [];    
+    $start = time();
+    $locations = loadLocations($filter,$limit,$offset);
+
+    $items = [];
+    foreach($locations as $l)$items[$l->id] = $l;
+
+    $formatted = [];
     foreach(standerizeListing($items) as $item)$formatted[$item->id] = $item;
-    $bm['query'] = (time()-$start);            
+    $bm['query'] = (time()-$start);
+
+    $totalInRange = count($formatted);
+    $formatted = sortListingsArray($formatted, $orderby, $orderdir);
+    $formatted = array_slice($formatted, 0, $resultLimit, true);
+
+    $slicedItems = [];
+    foreach($formatted as $id=>$f)if(isset($items[$id]))$slicedItems[$id] = $items[$id];
+    $items = $slicedItems;
 
     $clusters = [];
     if(count($items)<5000){
@@ -648,7 +683,7 @@ function getLocations(){
 
     //json(['items'=>$filteredItems, 'formatted'=>$filteredFormatted]);
     //json(['items'=>[], 'formatted'=>$filteredFormatted,'bm'=>$bm]);
-    json(['items'=>$filteredItems, 'formatted'=>$filteredFormatted,'bm'=>$bm]);
+    json(['items'=>$filteredItems, 'formatted'=>$filteredFormatted,'bm'=>$bm,'totalInRange'=>$totalInRange]);
     //json(['formatted'=>$filteredFormatted]);
 }
 function getDealStatus(){
