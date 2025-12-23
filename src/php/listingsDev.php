@@ -592,8 +592,7 @@ function getLocations(){
     $bm = [];
 
     $filter = $_REQUEST['filter'];
-    $limit = 5000;
-    $offset = 0;
+    $chunkSize = 1000;
     $resultLimit = 1000;
     $filter['box'] = $_REQUEST['box'];
     $filter['center'] = $_REQUEST['center'];
@@ -602,22 +601,26 @@ function getLocations(){
     $orderdir = ($_REQUEST['orderdir'] == 'asc')?'asc':'desc';
 
     $start = time();
-    $locations = loadLocations($filter,$limit,$offset);
 
-    $items = [];
-    foreach($locations as $l)$items[$l->id] = $l;
+    if($orderby == 'created_on'){
+        $dbOrder = "m.timestamp ".($orderdir == 'asc' ? 'ASC' : 'DESC');
+        $locations = loadLocations($filter,$resultLimit,0,$dbOrder);
 
-    $formatted = [];
-    foreach(standerizeListing($items) as $item)$formatted[$item->id] = $item;
+        $items = [];
+        foreach($locations as $l)$items[$l->id] = $l;
+
+        $formatted = [];
+        foreach(standerizeListing($items) as $item)$formatted[$item->id] = $item;
+
+        $totalInRange = getLocationCount($filter);
+    }
+    else{
+        $result = chunkedSort($filter,$orderby,$orderdir,$chunkSize,$resultLimit);
+        $items = $result['items'];
+        $formatted = $result['formatted'];
+        $totalInRange = $result['total'];
+    }
     $bm['query'] = (time()-$start);
-
-    $totalInRange = count($formatted);
-    $formatted = sortListingsArray($formatted, $orderby, $orderdir);
-    $formatted = array_slice($formatted, 0, $resultLimit, true);
-
-    $slicedItems = [];
-    foreach($formatted as $id=>$f)if(isset($items[$id]))$slicedItems[$id] = $items[$id];
-    $items = $slicedItems;
 
     $clusters = [];
     if(count($items)<5000){
@@ -770,19 +773,68 @@ function loadLocationSql($filter,$limit=0,$offset=0,$orderby=''){
 
     return $sql;
 }
-function loadLocations($filter,$limit=0,$offset=0,$orderby=''){    
+function loadLocations($filter,$limit=0,$offset=0,$orderby=''){
     $sql = loadLocationSql($filter,$limit,$offset,$orderby);
-    //t($sql);    
+    //t($sql);
     $q = mysql_query($sql);
     list($total) = mysql_fetch_array(mysql_query("SELECT FOUND_ROWS();"));
     //t($total);
 
     $items = array();
     while($r = mysql_fetch_assoc($q)){
-        $res = formatListing($r);        
+        $res = formatListing($r);
         $items[$r['id']] = $res;
     }
     return $items;
+}
+function getLocationCount($filter){
+    $sql = loadLocationSql($filter,0,0,'');
+    $sql = preg_replace('/SELECT SQL_CALC_FOUND_ROWS.*?FROM/s','SELECT COUNT(*) FROM',$sql);
+    $sql = preg_replace('/ORDER BY.*$/i','',$sql);
+    $sql = preg_replace('/LIMIT.*$/i','',$sql);
+    $q = mysql_query($sql);
+    if($q){
+        list($count) = mysql_fetch_array($q);
+        return (int)$count;
+    }
+    return 0;
+}
+function chunkedSort($filter,$orderby,$orderdir,$chunkSize,$resultLimit){
+    $sortedBuffer = [];
+    $totalCount = 0;
+    $offset = 0;
+    $allItems = [];
+
+    while(true){
+        $chunk = loadLocations($filter,$chunkSize,$offset,'');
+        if(empty($chunk))break;
+
+        $totalCount += count($chunk);
+
+        $standardized = standerizeListing($chunk);
+
+        foreach($standardized as $item){
+            $sortedBuffer[$item->id] = $item;
+            $allItems[$item->id] = $chunk[$item->id];
+        }
+
+        $sortedBuffer = sortListingsArray($sortedBuffer,$orderby,$orderdir);
+        if(count($sortedBuffer) > $resultLimit){
+            $keep = array_slice($sortedBuffer,0,$resultLimit,true);
+            foreach($sortedBuffer as $id=>$item)if(!isset($keep[$id]))unset($allItems[$id]);
+            $sortedBuffer = $keep;
+        }
+
+        $offset += $chunkSize;
+        if($offset > 50000)break;
+    }
+
+    $sortedBuffer = sortListingsArray($sortedBuffer,$orderby,$orderdir);
+
+    $finalItems = [];
+    foreach($sortedBuffer as $id=>$s)if(isset($allItems[$id]))$finalItems[$id] = $allItems[$id];
+
+    return ['items'=>$finalItems,'formatted'=>$sortedBuffer,'total'=>$totalCount];
 }
 
 
