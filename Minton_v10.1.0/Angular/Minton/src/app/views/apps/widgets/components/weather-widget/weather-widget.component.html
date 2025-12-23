@@ -1,0 +1,39 @@
+<div [ngClass]="['card', 'bg-' + item.variant, 'border-' + item.variant]">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="row align-items-center">
+          <div class="col-6 text-center">
+            <h1 class="display-4">
+              <i class="wi wi-day-sleet text-white"></i>
+            </h1>
+          </div>
+          <div class="col-6">
+            <div class="text-white">
+              <h2 class="text-white">
+                <b>{{ item.temp }}</b>
+              </h2>
+              <p>{{ item.clouds }}</p>
+              <p class="mb-0">{{ item.windSpeed }} - {{ item.humidity }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="row">
+          @for (forecast of item.forecast; track $index) {
+            <div class="col-4 text-center">
+              <h4 class="text-white mt-0">{{ forecast.day }}</h4>
+              <h3 class="my-3">
+                <i [ngClass]="['text-white', forecast.icon]"></i>
+              </h3>
+              <h4 class="text-white mb-0">
+                {{ forecast.temp }}<i class="wi wi-degrees"></i>
+              </h4>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+@{
+    var html_attributes = ViewBag.HTMLAttributes != null ? ViewBag.HTMLAttributes : "";
+    var body_class = ViewBag.BodyClass != null ? ViewBag.BodyClass : "";
+}
+
+<html lang="en" @html_attributes>
+
+<head>
+    @await Html.PartialAsync("~/Pages/Shared/Partials/_TitleMeta.cshtml")
+    @RenderSection("styles", false)
+    @await Html.PartialAsync("~/Pages/Shared/Partials/_HeadCSS.cshtml")
+</head>
+
+<body class="@body_class">
+    @RenderBody()
+
+    <script src="~/js/vendors.min.js"></script>
+    @RenderSection("scripts", required: false)
+    <script src="~/js/app.js"></script>
+    <script src="~/js/layout.js"></script>
+
+</body>
+
+</html>

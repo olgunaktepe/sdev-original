@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="header-title mb-3">Total Revenue</h4>
+
+    <div class="widget-chart text-center">
+      <div id="sparkline4" data-colors="#f672a7,#3bafda" class="text-center">
+        <apx-chart
+          [chart]="sparkline5Chart.chart!"
+          [series]="sparkline5Chart.series!"
+          [stroke]="sparkline5Chart.stroke!"
+          [grid]="sparkline5Chart.grid!"
+          [fill]="sparkline5Chart.fill!"
+          [colors]="sparkline5Chart.colors!"
+          [xaxis]="sparkline5Chart.xaxis!"
+          [yaxis]="sparkline5Chart.yaxis!"
+          [legend]="sparkline5Chart.legend!"
+          [tooltip]="sparkline5Chart.tooltip!"
+        />
+      </div>
+      <div class="row mt-3">
+        <div class="col-4">
+          <p class="text-muted font-15 mb-1 text-truncate">Target</p>
+          <h4>{{ currency }}943</h4>
+        </div>
+        <div class="col-4">
+          <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
+          <h4>{{ currency }}624</h4>
+        </div>
+        <div class="col-4">
+          <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
+          <h4>{{ currency }}904</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

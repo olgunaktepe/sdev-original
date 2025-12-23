@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Minton - Bootstrap 5 Admin & Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- App css -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <div class="content-page">
+            <div class="content">
+
+                <!-- Topbar Start -->
+                <div class="navbar-custom">
+                    <a href="index.html" class="logo text-center d-none d-md-inline-block mr-2">
+                        <span class="logo-lg">
+                            <img src="assets/images/logo-light.png" alt="" height="16">
+                        </span>
+                        <span class="badge badge-primary ml-3 font-18">Laravel</span>
+                    </a>
+
+                    <button type="button" class="btn btn-sm btn-dark d-inline-block d-lg-none button-menu-mobile">Menu</button>
+    
+                    <span class="badge badge-danger float-right">v10.1.0</span>
+                </div>
+                <!-- end Topbar -->
+
+                <!-- Start Content-->
+                <div class="container-fluid">
+
+                    <div class="page-wrapper">
+                        <div class="left-sidebar">
+                            <div class="slimscroll-menu">
+                                <div class="list-group list-group-transparent mb-0">
+
+                                    <span class="list-group-item disabled">
+                                        Getting Started
+                                    </span>
+
+                                    <a href="index.html" class="list-group-item list-group-item-action ">
+                                        <span class="mr-2">
+                                            <i class="mdi mdi-flag-variant-outline"></i>
+                                        </span>Introduction
+                                    </a>
+
+                                    <a href="setup.html" class="list-group-item list-group-item-action active">
+                                        <span class="mr-2">
+                                            <i class="mdi mdi-apps"></i>
+                                        </span>Setup
+                                    </a>
+
+                                    <span class="list-group-item disabled">
+                                        Customization
+                                    </span>
+
+                                    <a href="customization.html" class="list-group-item list-group-item-action ">
+                                        <span class="mr-2">
+                                            <i class="mdi mdi-square-edit-outline"></i>
+                                        </span>Layout & Themes
+                                    </a>
+
+
+                                    <span class="list-group-item disabled">
+                                        Other
+                                    </span>
+
+                                    <!-- <a href="plugins-uses.html" class="list-group-item list-group-item-action ">
+                                        <span class="mr-2">
+                                            <i class="mdi mdi-widgets"></i>
+                                        </span>How to use plugins
+                                    </a> -->
+
+                                    <a href="changelog.html" class="list-group-item list-group-item-action ">
+                                        <span class="mr-2">
+                                            <i class="mdi mdi-book-open-page-variant"></i>
+                                        </span>Changelog
+                                    </a>
+        
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end left-sidebar-->
+
+                        <div class="page-content">
+                            <div class="card">
+                                <div class="card-body">
+        
+                             
+                                      <h3 class="mb-2.5 text-base font-semibold">Prerequisites</h3>
+                                      <p class="mb-4 text-gray-800">Please follow below steps to install and setup all prerequisites:</p>
+        
+                                    <ul class="mt-3">
+                                        <li><a href="https://www.php.net/">PHP</a> &gt;= 8.1</li>
+                                        <li>BCMath PHP Extension</li>
+                                        <li>Ctype PHP Extension</li>
+                                        <li>Fileinfo PHP extension</li>
+                                        <li>JSON PHP Extension</li>
+                                        <li>Mbstring PHP Extension</li>
+                                        <li>OpenSSL PHP Extension</li>
+                                        <li>PDO PHP Extension</li>
+                                        <li>Tokenizer PHP Extension</li>
+                                        <li>XML PHP Extension</li>
+                                        <li class="">
+                                            <p class="my-2.5">Composer</p>
+                                            <p class="mb-3.5 text-gray-800">Make sure you have the Composer installed & running on your computer. If you already have installed Composer on your computer, you can skip this step.
+                                            <a href="https://getcomposer.org/" target="_blank" class="text-blue-500">Download
+                                              Composer</a></p>
+                                          </li>
+                                          <li class="">
+                                            <p class="my-2.5">Node.js</p>
+                                            <p class="mb-3.5 text-gray-800">In order to use build tools you will need to download
+                                              and install Node.js. If you do not have Node.js installed already,
+                                              you can get it by downloading the package installer from the
+                                              official website. Please download the stable version of Node.js
+                                              (LTS). <a href="https://nodejs.org/en/download" target="_blank" class="text-blue-500">Download
+                                              Node.js</a></p>
+                                          </li>
+                                    </ul>
+                                    
+                                    <div class="table-responsive mb-3">
+                                        <div class="p-6">
+                                             <h3 class="mb-2.5 text-base font-semibold mt-3">Installation</h3>
+        
+                                             <p class="text-gray-800">To setup, follow the below mentioned steps:
+                                             </p>
+                                             <p class="text-gray-800">You can run the following commands to
+                                                  run project locally
+                                                  or
+                                                  build for production use:</p>
+                                             <p class="text-gray-800">You can run this app using one of these
+                                                  package managers:
+                                                  <strong>Bun</strong>, <strong>Yarn</strong> or
+                                                  <strong>NPM</strong>
+                                             </p>
+                                             <h5 class="mt-3">
+                                                  Bun
+                                             </h5>
+                                             <table class="table mb-0">
+                                                  <thead>
+                                                       <tr class="border-bottom">
+                                                            <th style="width: 30%" class="my-2">
+                                                                 Command</th>
+                                                            <th>Description</th>
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                       <tr class="border-bottom my-2">
+                                                            <td>
+                                                                 <code>bun i</code>
+                                                            </td>
+                                                            <td>
+                                                                 This would install all required
+                                                                 dependencies in
+                                                                 <code>node_modules</code>
+                                                                 folder.
+                                                            </td>
+                                                       </tr>
+                                                       <tr class="border-bottom my-2">
+                                                            <td>
+                                                                 <code> bun  dev</code>
+                                                            </td>
+                                                            <td>
+                                                                 Runs the project locally, starts the development
+                                                                 server.
+                                                            </td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td>
+                                                                 <code>bun run  build</code>
+                                                            </td>
+                                                            <td>
+                                                                 It bundles with production mode. Your app is now
+                                                                 ready to be deployed.
+                                                            </td>
+                                                       </tr>
+                                                  </tbody>
+                                             </table>
+                                             <h5 class="mt-3">
+                                                  Yarn
+                                             </h5>
+                                             <table class="table mb-0">
+                                                  <thead>
+                                                       <tr class="border-bottom">
+                                                            <th style="width: 30%" class="my-2">
+                                                                 Command</th>
+                                                            <th>Description</th>
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                       <tr class="border-bottom my-2">
+                                                            <td>
+                                                                 <code>yarn</code>
+                                                            </td>
+                                                            <td>
+                                                                 This would install all required
+                                                                 dependencies in
+                                                                 <code>node_modules</code>
+                                                                 folder.
+                                                            </td>
+                                                       </tr>
+                                                       <tr class="border-bottom my-2">
+                                                            <td>
+                                                                 <code> yarn  dev</code>
+                                                            </td>
+                                                            <td>
+                                                                 Runs the project locally, starts the development
+                                                                 server.
+                                                            </td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td>
+                                                                 <code>yarn  build</code>
+                                                            </td>
+                                                            <td>
+                                                                 It bundles with production mode. Your app is now
+                                                                 ready to be deployed.
+                                                            </td>
+                                                       </tr>
+                                                  </tbody>
+        
+                                             </table>
+                                             <h5 class="mt-3">
+                                                  NPM
+                                             </h5>
+                                             <table class="table mb-0">
+                                                  <thead>
+                                                       <tr class="border-bottom">
+                                                            <th style="width: 30%" class="my-2">
+                                                                 Command</th>
+                                                            <th>Description</th>
+                                                       </tr>
+                                                  </thead>
+                                                  <tbody>
+                                                       <tr class="border-bottom my-2">
+                                                            <td>
+                                                                 <code>npm i </code>
+        
+                                                            </td>
+                                                            <td>
+                                                                 This would install all required
+                                                                 dependencies in
+                                                                 <code>node_modules</code>
+                                                                 folder.
+                                                            </td>
+                                                       </tr>
+                                                       <tr class="border-bottom my-2">
+                                                            <td>
+                                                                 <code>npm run   dev</code>
+                                                            </td>
+                                                            <td>
+                                                                 Runs the project locally, starts the development
+                                                                 server.
+                                                            </td>
+                                                       </tr>
+                                                       <tr>
+                                                            <td>
+                                                                 <code>npm run  build</code>
+                                                            </td>
+                                                            <td>
+                                                                 It bundles with production mode. Your app is now
+                                                                 ready to be deployed.
+                                                            </td>
+                                                       </tr>
+                                                  </tbody>
+                                             </table>
+        
+        
+                                             <div>
+        
+                                                  <p class="text-gray-600 text-base mt-3">
+                                                       To spin up the Laravel server, follow the below mentioned
+                                                       steps in a separate terminal:
+                                                  </p>
+        
+                                                  <table class="table mb-0">
+                                                       <thead>
+                                                            <tr class="border-bottom">
+                                                                 <th style="width: 30%" class="my-2">
+                                                                      Command</th>
+                                                                 <th>Description</th>
+                                                            </tr>
+                                                       </thead>
+                                                       <tbody>
+                                                            <tr class="border-bottom my-2">
+                                                                 <td>
+                                                                      <code>composer i</code>
+        
+                                                                 </td>
+                                                                 <td>
+                                                                      This would install all the required
+                                                                      dependencies in the
+                                                                      <code>vender</code>
+                                                                      folder.
+                                                                 </td>
+                                                                 </td>
+                                                            </tr>
+                                                            <tr class="border-bottom my-2">
+                                                                 <td>
+                                                                      <code> cp .env.example .env</code>
+                                                                 </td>
+                                                                 <td>
+                                                                      This will copy .env.example as .env file.
+                                                                 </td>
+                                                            </tr>
+                                                            <tr class="border-bottom my-2">
+                                                                 <td>
+                                                                      <code>php artisan key:generate</code>
+        
+                                                                 </td>
+                                                                 <td>
+                                                                      This will generate a unique key and write it
+                                                                      in your .env file
+                                                                 </td>
+                                                            </tr>
+                                                            <tr class="border-bottom my-2">
+                                                                 <td>
+                                                                      <code>  php artisan migrate</code>
+                                                                 </td>
+                                                                 <td>
+                                                                      This will executes all pending migrations to
+                                                                      database.
+                                                                 </td>
+                                                            </tr>
+                                                            <tr class="border-bottom my-2">
+                                                                <td>
+                                                                     <code>  php artisan db:seed</code>
+                                                                </td>
+                                                                <td>
+                                                                     This will seed damo user data into 
+                                                                     database.
+                                                                </td>
+                                                           </tr>
+                                                            <tr class="border-bottom my-2">
+                                                                 <td>
+                                                                      <code>  php artisan serve</code>
+                                                                 </td>
+                                                                 <td>
+                                                                      Runs the project locally, starts the
+                                                                      development server on
+                                                                      <code>http://127.0.0.1:8000</code>
+                                                                 </td>
+                                                            </tr>
+                                                       </tbody>
+                                                  </table>
+                                             </div>
+                                        </div> <!-- end card body -->
+                                   </div> <!-- end card -->
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- end page-wrapper-->
+                    </div>
+
+                </div>
+                <!-- content -->
+                <!-- Footer Start -->
+                <footer class="footer">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                2015 - 2021 © Minton - by Coderthemes
+                            </div>
+                            <div class="col-md-6">
+                                <div class="text-md-right footer-links d-none d-sm-block">
+                                    <a href="http://coderthemes.com/" target="_blank">About</a>
+                                    <a href="http://coderthemes.com/#contact" target="_blank">Support</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- end Footer -->
+
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- END wrapper -->
+
+        <script src="assets/js/app.min.js"></script>
+
+</body>
+
+</html>

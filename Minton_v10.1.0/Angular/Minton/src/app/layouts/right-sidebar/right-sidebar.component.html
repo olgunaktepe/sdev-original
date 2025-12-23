@@ -1,0 +1,39 @@
+<ngx-simplebar data-simplebar class="h-100">
+  <ul
+    ngbNav
+    #nav="ngbNav"
+    [activeId]="3"
+    class="nav nav-tabs nav-bordered nav-justified"
+    role="tablist"
+  >
+    <li [ngbNavItem]="1" class="nav-item">
+      <a ngbNavLink class="nav-link py-2" role="tab">
+        <i class="mdi mdi-message-text-outline d-block font-22 my-1"></i>
+      </a>
+      <ng-template ngbNavContent>
+        <sidebar-chat />
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="2" class="nav-item">
+      <a ngbNavLink class="nav-link py-2" role="tab">
+        <i class="mdi mdi-format-list-checkbox d-block font-22 my-1"></i>
+      </a>
+      <ng-template ngbNavContent>
+        <sidebar-task />
+      </ng-template>
+    </li>
+    <li [ngbNavItem]="3" class="nav-item">
+      <a ngbNavLink class="nav-link py-2" role="tab">
+        <i class="mdi mdi-cog-outline d-block font-22 my-1"></i>
+      </a>
+      <ng-template ngbNavContent>
+        <sidebar-theme-setting />
+      </ng-template>
+    </li>
+  </ul>
+
+  <div [ngbNavOutlet]="nav" class="tab-content pt-0"></div>
+</ngx-simplebar>
+
+<!-- Right bar overlay-->
+<div class="rightbar-overlay"></div>

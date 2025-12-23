@@ -1,0 +1,86 @@
+<div class="table-responsive">
+  <table class="table table-bordered table-centered mb-0">
+    <thead class="table-light">
+      <tr>
+        <th>Outlets</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Revenue</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ASOS Ridley Outlet - NYC</td>
+        <td>{{ currency }}139.58</td>
+        <td>
+          <div class="row align-items-center g-0">
+            <div class="col-auto">
+              <span class="me-2">27%</span>
+            </div>
+            <div class="col">
+              <ngb-progressbar type="danger" [value]="27" class="progress-sm" />
+            </div>
+          </div>
+        </td>
+        <td>{{ currency }}1,89,547</td>
+      </tr>
+      <tr>
+        <td>Marco Outlet - SRT</td>
+        <td>{{ currency }}149.99</td>
+        <td>
+          <div class="row align-items-center g-0">
+            <div class="col-auto">
+              <span class="me-2">71%</span>
+            </div>
+            <div class="col">
+              <ngb-progressbar
+                type="success"
+                [value]="71"
+                class="progress-sm"
+              />
+            </div>
+          </div>
+        </td>
+        <td>{{ currency }}87,245</td>
+      </tr>
+      <tr>
+        <td>Chairtest Outlet - HY</td>
+        <td>{{ currency }}135.87</td>
+        <td>
+          <div class="row align-items-center g-0">
+            <div class="col-auto">
+              <span class="me-2">82%</span>
+            </div>
+            <div class="col">
+              <ngb-progressbar
+                type="success"
+                [value]="82"
+                class="progress-sm"
+              />
+            </div>
+          </div>
+        </td>
+        <td>{{ currency }}5,87,478</td>
+      </tr>
+      <tr>
+        <td>Nworld Group - India</td>
+        <td>{{ currency }}159.89</td>
+        <td>
+          <div class="row align-items-center g-0">
+            <div class="col-auto">
+              <span class="me-2">42%</span>
+            </div>
+            <div class="col">
+              <ngb-progressbar
+                type="warning"
+                [value]="42"
+                class="progress-sm"
+              />
+            </div>
+          </div>
+        </td>
+        <td>{{ currency }}55,781</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

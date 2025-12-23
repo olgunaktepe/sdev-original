@@ -1,0 +1,28 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex justify-content-between">
+      <div>
+        <h5
+          class="text-muted fw-normal mt-0 text-truncate"
+          title="Campaign Sent"
+        >
+          {{ title }}
+        </h5>
+        <h3 class="my-2 py-1">
+          <span [countUp]="stats" [options]="counterOptions"></span>
+        </h3>
+        <p class="mb-0 text-muted">
+          <span class="text-{{ trend.variant }} me-2"
+            ><span [class]="trend.icon"></span> {{ trend.value }}</span
+          >
+          <span class="text-nowrap"> {{ trend.title }}</span>
+        </p>
+      </div>
+      <div class="avatar-sm">
+        <span class="avatar-title bg-soft-primary rounded">
+          <i class="{{ icon }} font-20 text-primary"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

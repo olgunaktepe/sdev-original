@@ -1,0 +1,42 @@
+<h6 class="fw-medium p-3 m-0 text-uppercase">Working Tasks</h6>
+<div class="px-2">
+  @for (item of workingTasks; track $index) {
+    <a href="javascript: void(0);" class="text-reset item-hovered d-block p-2">
+      <p class="text-muted mb-0">
+        {{ item.task }}<span class="float-end">{{ item.progress }}%</span>
+      </p>
+      <ngb-progressbar
+        class="mt-2"
+        [type]="item.variant"
+        [value]="item.progress"
+        style="height: 4px"
+      />
+    </a>
+  }
+</div>
+
+<h6 class="fw-medium px-3 mb-0 mt-4 text-uppercase">Upcoming Tasks</h6>
+
+<div class="p-2">
+  @for (item of upcomingTasks; track $index) {
+    <a href="javascript: void(0);" class="text-reset item-hovered d-block p-2">
+      <p class="text-muted mb-0">
+        {{ item.task }}<span class="float-end">{{ item.progress }}%</span>
+      </p>
+      <ngb-progressbar
+        class="mt-2"
+        [type]="item.variant"
+        [value]="item.progress"
+        style="height: 4px"
+      />
+    </a>
+  }
+</div>
+
+<div class="d-grid p-3 mt-2">
+  <a
+    href="javascript: void(0);"
+    class="btn btn-success waves-effect waves-light"
+    >Create Task</a
+  >
+</div>

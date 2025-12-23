@@ -1,0 +1,67 @@
+<app-page-title title="Product Detail" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="row justify-content-center">
+              <div class="col-xl-8">
+                <div
+                  id="product-carousel"
+                  class="carousel slide product-detail-carousel"
+                  data-bs-ride="carousel"
+                >
+                  <ngb-carousel
+                    #carousel="ngbCarousel"
+                    [interval]="5000"
+                    (slide)="onSlideChange($event)"
+                    [showNavigationIndicators]="false"
+                    fade
+                  >
+                    @for (slide of slides; track $index) {
+                      <ng-template ngbSlide [id]="$index.toString()">
+                        <img
+                          [src]="slide.img"
+                          alt="product-img"
+                          class="img-fluid"
+                        />
+                      </ng-template>
+                    }
+                  </ngb-carousel>
+                  <ol
+                    class="carousel-indicators product-carousel-indicators mt-2"
+                  >
+                    @for (slide of slides; track $index) {
+                      <li
+                        data-bs-target="#product-carousel"
+                        [attr.data-bs-slide-to]="$index"
+                        [ngClass]="{ active: $index == activeSlide }"
+                        (click)="carousel.select($index.toString())"
+                        class="active"
+                      >
+                        <img
+                          [src]="slide.thumb"
+                          alt="product-img"
+                          class="img-fluid product-nav-img"
+                        />
+                      </li>
+                    }
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <product-info />
+          </div>
+        </div>
+
+        <h5 class="mt-5 mb-3">Available Stocks & Outlets</h5>
+        <product-stock />
+      </div>
+    </div>
+  </div>
+</div>

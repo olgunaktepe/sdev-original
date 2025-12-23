@@ -1,0 +1,72 @@
+<div class="card">
+  <div class="card-body">
+    <div ngbDropdown class="dropdown float-end">
+      <a ngbDropdownToggle class="dropdown-toggle arrow-none card-drop">
+        <i class="mdi mdi-dots-horizontal"></i>
+      </a>
+      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Settings</a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Download</a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Upload</a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+      </div>
+    </div>
+    <h4 class="header-title mb-3">Revenue History</h4>
+
+    <div class="table-responsive">
+      <table class="table table-borderless table-hover table-centered m-0">
+        <thead class="table-light">
+          <tr>
+            <th>Marketplaces</th>
+            <th>Date</th>
+            <th>US Tax Hold</th>
+            <th>Payouts</th>
+            <th>Status</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of historyList; track $index) {
+            <tr>
+              <td>
+                <h5 class="m-0 fw-normal">{{ item.marketplaces }}</h5>
+              </td>
+
+              <td>
+                {{ item.date }}
+              </td>
+
+              <td>{{ currency }}{{ item.US_tax_hold }}</td>
+
+              <td>{{ currency }}{{ item.payouts }}</td>
+
+              <td>
+                <span
+                  class="badge"
+                  [ngClass]="{
+                    'badge-soft-warning': item.status == 'Upcoming',
+                    'badge-soft-success': item.status == 'Paid',
+                    'badge-soft-danger': item.status == 'Overdue',
+                  }"
+                  >{{ item.status }}</span
+                >
+              </td>
+
+              <td>
+                <a href="javascript: void(0);" class="btn btn-xs btn-secondary"
+                  ><i class="mdi mdi-pencil"></i
+                ></a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <!-- end .table-responsive-->
+  </div>
+</div>
+<!-- end card-->

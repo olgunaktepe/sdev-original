@@ -1,0 +1,58 @@
+<div class="card">
+  <div class="card-body">
+    <div ngbDropdown class="dropdown float-end">
+      <a ngbDropdownToggle class="dropdown-toggle arrow-none card-drop">
+        <i class="mdi mdi-dots-horizontal"></i>
+      </a>
+      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Settings</a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Download</a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Upload</a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+      </div>
+    </div>
+    <h4 class="header-title">Marketing Reports</h4>
+    <p class="text-muted mb-0">1 Mar - 31 Mar Showing Data</p>
+
+    <div dir="ltr">
+      <div
+        id="marketing-reports"
+        class="apex-charts"
+        data-colors="#3bafda,#1abc9c,#f7b84b"
+      >
+        <apx-chart
+          [chart]="marketingChart.chart!"
+          [series]="marketingChart.series!"
+          [stroke]="marketingChart.stroke!"
+          [fill]="marketingChart.fill!"
+          [markers]="marketingChart.markers!"
+          [colors]="marketingChart.colors!"
+          [legend]="marketingChart.legend!"
+          [labels]="marketingChart.labels!"
+        />
+      </div>
+    </div>
+
+    <div class="row text-center">
+      <div class="col-6">
+        <p class="text-muted mb-1">This Month</p>
+        <h3 class="mt-0 font-20">
+          <span class="align-middle">{{ currency }}120,254</span>
+          <small class="badge badge-soft-success font-12">+15%</small>
+        </h3>
+      </div>
+
+      <div class="col-6">
+        <p class="text-muted mb-1">Last Month</p>
+        <h3 class="mt-0 font-20">
+          <span class="align-middle">{{ currency }}98,741</span>
+          <small class="badge badge-soft-danger font-12">-5%</small>
+        </h3>
+      </div>
+    </div>
+  </div>
+</div>

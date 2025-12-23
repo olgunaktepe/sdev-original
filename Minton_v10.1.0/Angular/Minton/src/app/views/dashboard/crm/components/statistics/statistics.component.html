@@ -1,0 +1,61 @@
+<div class="row">
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-widget
+      title="Campaign Sent"
+      [stats]="865"
+      [counterOptions]="{ startVal: '0' }"
+      [trend]="{
+        value: '5.27%',
+        title: 'Since last month',
+        icon: 'mdi mdi-arrow-up-bold',
+        variant: 'success',
+      }"
+      icon="ri-stack-line"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-widget
+      title="New Leads"
+      [stats]="384"
+      [counterOptions]="{ startVal: '0' }"
+      [trend]="{
+        value: '3.27%',
+        title: 'Since last month',
+        icon: 'mdi mdi-arrow-down-bold',
+        variant: 'danger',
+      }"
+      icon="ri-slideshow-2-line"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-widget
+      title="Deals"
+      [stats]="34521"
+      [counterOptions]="{ startVal: '0' }"
+      [trend]="{
+        value: '8.58%',
+        title: 'Since last month',
+        icon: 'mdi mdi-arrow-up-bold',
+        variant: 'success',
+      }"
+      icon="ri-hand-heart-line"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-widget
+      title="Booked Revenue"
+      [stats]="89357"
+      [counterOptions]="{ startVal: '0', prefix: '$' }"
+      [trend]="{
+        value: '34.61%',
+        title: 'Since last month',
+        icon: 'mdi mdi-arrow-up-bold',
+        variant: 'success',
+      }"
+      icon="ri-money-dollar-box-line"
+    />
+  </div>
+</div>

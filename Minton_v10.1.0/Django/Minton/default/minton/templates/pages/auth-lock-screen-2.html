@@ -1,0 +1,53 @@
+{% extends "layouts/auth-2.html" %}
+
+{% load static i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans "Lock Screen 2" %}{% endblock %}
+
+{% block content %}
+<div class="card-body">
+
+    <!-- Logo -->
+    <div class="auth-brand text-center text-lg-start">
+        <div class="auth-logo">
+            <a href="{% url 'pages:dynamic_pages' template_name='index' %}" class="logo logo-dark text-center">
+                <span class="logo-lg">
+                    <img src="{% static 'images/logo-dark.png' %}" alt="" height="22">
+                </span>
+            </a>
+
+            <a href="{% url 'pages:dynamic_pages' template_name='index' %}" class="logo logo-light text-center">
+                <span class="logo-lg">
+                    <img src="{% static 'images/logo-light.png' %}" alt="" height="22">
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="text-center w-75 m-auto">
+        <img src="{% static 'images/users/avatar-1.jpg' %}" alt="user-image" class="rounded-circle avatar-lg img-thumbnail">
+        <h4 class="text-dark-50 text-center mt-3">Hi ! Nik Patel </h4>
+        <p class="text-muted mb-4">Enter your password to access the admin.</p>
+    </div>
+
+    <form action="#">
+
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input class="form-control" type="password" required="" id="password" placeholder="Enter your password">
+        </div>
+
+        <div class="d-grid text-center">
+            <button class="btn btn-primary" type="submit"> Log In </button>
+        </div>
+
+    </form>
+
+    <!-- Footer-->
+    <footer class="footer footer-alt">
+        <p class="text-muted">Not you? return <a href="{% url 'pages:dynamic_pages' template_name='auth-login' %}" class="text-primary fw-medium ms-1">Sign In</a></p>
+    </footer>
+
+</div> <!-- end .card-body -->
+{% endblock %}

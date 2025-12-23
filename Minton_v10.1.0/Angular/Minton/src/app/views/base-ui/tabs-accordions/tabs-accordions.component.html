@@ -1,0 +1,964 @@
+<app-page-title title="Tabs & Accordions" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-4">Default Tabs</h4>
+
+        <ul ngbNav #nav="ngbNav" [activeId]="2" class="nav nav-tabs">
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-home-variant"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Home</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Vakal text here dolor sit amet, consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                natoque penatibus et magnis dis parturient montes, nascetur
+                ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                pretium quis, sem. Nulla consequat massa quis enim.
+              </p>
+              <p class="mb-0">
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-account"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Profile</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+              <p class="mb-0">
+                Vakal text here dolor sit amet, consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                natoque penatibus et magnis dis parturient montes, nascetur
+                ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                pretium quis, sem. Nulla consequat massa quis enim.
+              </p>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-email-variant"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Messages</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Vakal text here dolor sit amet, consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                natoque penatibus et magnis dis parturient montes, nascetur
+                ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                pretium quis, sem. Nulla consequat massa quis enim.
+              </p>
+              <p class="mb-0">
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="4">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-cog"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Settings</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+              <p class="mb-0">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus
+                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+                quis, sem. Nulla consequat massa quis enim.
+              </p>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="nav"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-4">Tabs Justified</h4>
+
+        <ul
+          ngbNav
+          #justifyNav="ngbNav"
+          [activeId]="2"
+          class="nav nav-pills navtab-bg nav-justified"
+        >
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-home-variant"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Home</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Vakal text here dolor sit amet, consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                natoque penatibus et magnis dis parturient montes, nascetur
+                ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                pretium quis, sem. Nulla consequat massa quis enim.
+              </p>
+              <p class="mb-0">
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-account"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Profile</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+              <p class="mb-0">
+                Vakal text here dolor sit amet, consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                natoque penatibus et magnis dis parturient montes, nascetur
+                ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                pretium quis, sem. Nulla consequat massa quis enim.
+              </p>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-email-variant"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Messages</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Vakal text here dolor sit amet, consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                natoque penatibus et magnis dis parturient montes, nascetur
+                ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                pretium quis, sem. Nulla consequat massa quis enim.
+              </p>
+              <p class="mb-0">
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="4">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-cog"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Settings</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+              <p class="mb-0">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus
+                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+                quis, sem. Nulla consequat massa quis enim.
+              </p>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="justifyNav"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-4">Tabs Vertical Left</h4>
+
+        <div class="row">
+          <div class="col-sm-3">
+            <div
+              ngbNav
+              #verticalNav="ngbNav"
+              class="nav flex-column nav-pills nav-pills-tab"
+              id="v-pills-tab"
+              role="tablist"
+              aria-orientation="vertical"
+            >
+              <div ngbNavItem>
+                <a
+                  ngbNavLink
+                  class="mb-1"
+                  id="v-pills-home-tab"
+                  aria-controls="v-pills-home"
+                  aria-selected="true"
+                >
+                  Home</a
+                >
+                <ng-template ngbNavContent>
+                  <p>
+                    Cillum ad ut irure tempor velit nostrud occaecat ullamco
+                    aliqua anim Lorem sint. Veniam sint duis incididunt do esse
+                    magna mollit excepteur laborum qui. Id id reprehenderit sit
+                    est eu aliqua occaecat quis et velit excepteur laborum
+                    mollit dolore eiusmod. Ipsum dolor in occaecat commodo et
+                    voluptate minim reprehenderit mollit pariatur. Deserunt non
+                    laborum enim et cillum eu deserunt excepteur ea incididunt
+                    minim occaecat.
+                  </p>
+                </ng-template>
+              </div>
+              <div ngbNavItem>
+                <a
+                  ngbNavLink
+                  class="mb-1"
+                  id="v-pills-profile-tab"
+                  aria-controls="v-pills-profile"
+                  aria-selected="false"
+                >
+                  Profile</a
+                >
+                <ng-template ngbNavContent>
+                  <p>
+                    Culpa dolor voluptate do laboris laboris irure reprehenderit
+                    id incididunt duis pariatur mollit aute magna pariatur
+                    consectetur. Eu veniam duis non ut dolor deserunt commodo et
+                    minim in quis laboris ipsum velit id veniam. Quis ut
+                    consectetur adipisicing officia excepteur non sit. Ut et
+                    elit aliquip labore Lorem enim eu. Ullamco mollit occaecat
+                    dolore ipsum id officia mollit qui esse anim eiusmod do sint
+                    minim consectetur qui.
+                  </p>
+                </ng-template>
+              </div>
+              <div ngbNavItem>
+                <a
+                  ngbNavLink
+                  class="mb-1"
+                  id="v-pills-messages-tab"
+                  aria-controls="v-pills-messages"
+                  aria-selected="false"
+                >
+                  Messages</a
+                >
+                <ng-template ngbNavContent>
+                  <p>
+                    Fugiat id quis dolor culpa eiusmod anim velit excepteur
+                    proident dolor aute qui magna. Ad proident laboris ullamco
+                    esse anim Lorem Lorem veniam quis Lorem irure occaecat velit
+                    nostrud magna nulla. Velit et et proident Lorem do ea tempor
+                    officia dolor. Reprehenderit Lorem aliquip labore est magna
+                    commodo est ea veniam consectetur.
+                  </p>
+                </ng-template>
+              </div>
+              <div ngbNavItem>
+                <a
+                  ngbNavLink
+                  class="mb-1"
+                  id="v-pills-settings-tab"
+                  aria-controls="v-pills-settings"
+                  aria-selected="false"
+                >
+                  Settings</a
+                >
+                <ng-template ngbNavContent>
+                  <p>
+                    Eu dolore ea ullamco dolore Lorem id cupidatat excepteur
+                    reprehenderit consectetur elit id dolor proident in
+                    cupidatat officia. Voluptate excepteur commodo labore nisi
+                    cillum duis aliqua do. Aliqua amet qui mollit consectetur
+                    nulla mollit velit aliqua veniam nisi id do Lorem deserunt
+                    amet. Culpa ullamco sit adipisicing labore officia magna
+                    elit nisi in aute tempor commodo eiusmod.
+                  </p>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+          <!-- end col-->
+          <div class="col-sm-9">
+            <div [ngbNavOutlet]="verticalNav" class="pt-0"></div>
+          </div>
+          <!-- end col-->
+        </div>
+        <!-- end row-->
+      </div>
+    </div>
+    <!-- end card-box-->
+  </div>
+
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-4">Tabs Vertical Right</h4>
+
+        <div class="row">
+          <div class="col-sm-9">
+            <div
+              [ngbNavOutlet]="rightNav"
+              class="pt-0"
+              id="v-pills-tabContent"
+            ></div>
+          </div>
+          <div class="col-sm-3">
+            <div
+              ngbNav
+              #rightNav="ngbNav"
+              class="nav flex-column nav-pills nav-pills-tab"
+              id="v-pills-tab2"
+              role="tablist"
+              aria-orientation="vertical"
+            >
+              <div ngbNavItem>
+                <a ngbNavLink class="mb-1" id="v-pills-home-tab2"> Home</a>
+                <ng-template ngbNavContent>
+                  <p>
+                    Cillum ad ut irure tempor velit nostrud occaecat ullamco
+                    aliqua anim Lorem sint. Veniam sint duis incididunt do esse
+                    magna mollit excepteur laborum qui. Id id reprehenderit sit
+                    est eu aliqua occaecat quis et velit excepteur laborum
+                    mollit dolore eiusmod. Ipsum dolor in occaecat commodo et
+                    voluptate minim reprehenderit mollit pariatur. Deserunt non
+                    laborum enim et cillum eu deserunt excepteur ea incididunt
+                    minim occaecat.
+                  </p>
+                </ng-template>
+              </div>
+              <div ngbNavItem>
+                <a ngbNavLink class="mb-1" id="v-pills-profile-tab2">
+                  Profile</a
+                >
+                <ng-template ngbNavContent>
+                  <p>
+                    Culpa dolor voluptate do laboris laboris irure reprehenderit
+                    id incididunt duis pariatur mollit aute magna pariatur
+                    consectetur. Eu veniam duis non ut dolor deserunt commodo et
+                    minim in quis laboris ipsum velit id veniam. Quis ut
+                    consectetur adipisicing officia excepteur non sit. Ut et
+                    elit aliquip labore Lorem enim eu. Ullamco mollit occaecat
+                    dolore ipsum id officia mollit qui esse anim eiusmod do sint
+                    minim consectetur qui.
+                  </p>
+                </ng-template>
+              </div>
+              <div ngbNavItem>
+                <a ngbNavLink class="mb-1" id="v-pills-messages-tab2">
+                  Messages</a
+                >
+                <ng-template ngbNavContent>
+                  <p>
+                    Fugiat id quis dolor culpa eiusmod anim velit excepteur
+                    proident dolor aute qui magna. Ad proident laboris ullamco
+                    esse anim Lorem Lorem veniam quis Lorem irure occaecat velit
+                    nostrud magna nulla. Velit et et proident Lorem do ea tempor
+                    officia dolor. Reprehenderit Lorem aliquip labore est magna
+                    commodo est ea veniam consectetur.
+                  </p>
+                </ng-template>
+              </div>
+              <div ngbNavItem>
+                <a ngbNavLink class="mb-1" id="v-pills-settings-tab2">
+                  Settings</a
+                >
+                <ng-template ngbNavContent>
+                  <p>
+                    Eu dolore ea ullamco dolore Lorem id cupidatat excepteur
+                    reprehenderit consectetur elit id dolor proident in
+                    cupidatat officia. Voluptate excepteur commodo labore nisi
+                    cillum duis aliqua do. Aliqua amet qui mollit consectetur
+                    nulla mollit velit aliqua veniam nisi id do Lorem deserunt
+                    amet. Culpa ullamco sit adipisicing labore officia magna
+                    elit nisi in aute tempor commodo eiusmod.
+                  </p>
+                </ng-template>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end row-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-4">Tabs Bordered</h4>
+
+        <ul
+          ngbNav
+          #borderedNav="ngbNav"
+          [activeId]="2"
+          class="nav nav-tabs nav-bordered"
+        >
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-home-variant"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Home</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Vakal text here dolor sit amet, consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                natoque penatibus et magnis dis parturient montes, nascetur
+                ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                pretium quis, sem. Nulla consequat massa quis enim.
+              </p>
+              <p class="mb-0">
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-account"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Profile</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+              <p class="mb-0">
+                Vakal text here dolor sit amet, consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                natoque penatibus et magnis dis parturient montes, nascetur
+                ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                pretium quis, sem. Nulla consequat massa quis enim.
+              </p>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-email-variant"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Messages</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Vakal text here dolor sit amet, consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                natoque penatibus et magnis dis parturient montes, nascetur
+                ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                pretium quis, sem. Nulla consequat massa quis enim.
+              </p>
+              <p class="mb-0">
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="4">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-cog"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Settings</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+              <p class="mb-0">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus
+                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+                quis, sem. Nulla consequat massa quis enim.
+              </p>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="borderedNav"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-4">Tabs Bordered Justified</h4>
+
+        <ul
+          ngbNav
+          #justifyBorder="ngbNav"
+          [activeId]="2"
+          class="nav nav-tabs nav-bordered nav-justified"
+        >
+          <li [ngbNavItem]="1">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-home-variant"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Home</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Vakal text here dolor sit amet, consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                natoque penatibus et magnis dis parturient montes, nascetur
+                ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                pretium quis, sem. Nulla consequat massa quis enim.
+              </p>
+              <p class="mb-0">
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-account"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Profile</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+              <p class="mb-0">
+                Vakal text here dolor sit amet, consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                natoque penatibus et magnis dis parturient montes, nascetur
+                ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                pretium quis, sem. Nulla consequat massa quis enim.
+              </p>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="3">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-email-variant"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Messages</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Vakal text here dolor sit amet, consectetuer adipiscing elit.
+                Aenean commodo ligula eget dolor. Aenean massa. Cum sociis
+                natoque penatibus et magnis dis parturient montes, nascetur
+                ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                pretium quis, sem. Nulla consequat massa quis enim.
+              </p>
+              <p class="mb-0">
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+            </ng-template>
+          </li>
+          <li [ngbNavItem]="4">
+            <a ngbNavLink>
+              <span class="d-inline-block d-sm-none"
+                ><i class="mdi mdi-cog"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">Settings</span>
+            </a>
+            <ng-template ngbNavContent>
+              <p>
+                Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
+                arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae,
+                justo. Nullam dictum felis eu pede mollis pretium. Integer
+                tincidunt.Cras dapibus. Vivamus elementum semper nisi. Aenean
+                vulputate eleifend tellus. Aenean leo ligula, porttitor eu,
+                consequat vitae, eleifend ac, enim.
+              </p>
+              <p class="mb-0">
+                Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean
+                commodo ligula eget dolor. Aenean massa. Cum sociis natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus
+                mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
+                quis, sem. Nulla consequat massa quis enim.
+              </p>
+            </ng-template>
+          </li>
+        </ul>
+        <div [ngbNavOutlet]="justifyBorder"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">Accordion Example</h4>
+
+        <div ngbAccordion [closeOthers]="true" id="accordionExample">
+          <div ngbAccordionItem [collapsed]="false">
+            <h2 ngbAccordionHeader id="headingOne">
+              <button
+                ngbAccordionButton
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseOne"
+                aria-expanded="true"
+                aria-controls="collapseOne"
+              >
+                <i class="mdi mdi-help-circle me-1 text-primary"></i> Can I use
+                this template for my client?
+              </button>
+            </h2>
+            <div
+              ngbAccordionCollapse
+              id="collapseOne"
+              aria-labelledby="headingOne"
+              data-bs-parent="#accordionExample"
+            >
+              <div ngbAccordionBody class="accordion-body">
+                <strong>This is the first item's accordion body.</strong> It is
+                hidden by default, until the collapse plugin adds the
+                appropriate classes that we use to style each element. These
+                classes control the overall appearance, as well as the showing
+                and hiding via CSS transitions. You can modify any of this with
+                custom CSS or overriding our default variables. It's also worth
+                noting that just about any HTML can go within the
+                <code>.accordion-body</code>, though the transition does limit
+                overflow.
+              </div>
+            </div>
+          </div>
+          <div ngbAccordionItem>
+            <h2 ngbAccordionHeader id="headingTwo">
+              <button
+                ngbAccordionButton
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseTwo"
+                aria-expanded="false"
+                aria-controls="collapseTwo"
+              >
+                <i class="mdi mdi-help-circle me-1 text-primary"></i>
+                Why use Vakal text here?
+              </button>
+            </h2>
+            <div
+              ngbAccordionCollapse
+              id="collapseTwo"
+              aria-labelledby="headingTwo"
+              data-bs-parent="#accordionExample"
+            >
+              <div ngbAccordionBody>
+                <strong>This is the second item's accordion body.</strong> It is
+                hidden by default, until the collapse plugin adds the
+                appropriate classes that we use to style each element. These
+                classes control the overall appearance, as well as the showing
+                and hiding via CSS transitions. You can modify any of this with
+                custom CSS or overriding our default variables. It's also worth
+                noting that just about any HTML can go within the
+                <code>.accordion-body</code>, though the transition does limit
+                overflow.
+              </div>
+            </div>
+          </div>
+          <div ngbAccordionItem>
+            <h2 ngbAccordionHeader id="headingThree">
+              <button
+                ngbAccordionButton
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseThree"
+                aria-expanded="false"
+                aria-controls="collapseThree"
+              >
+                <i class="mdi mdi-help-circle me-1 text-primary"></i>
+                How many variations exist?
+              </button>
+            </h2>
+            <div
+              ngbAccordionCollapse
+              id="collapseThree"
+              aria-labelledby="headingThree"
+              data-bs-parent="#accordionExample"
+            >
+              <div ngbAccordionBody>
+                <strong>This is the third item's accordion body.</strong> It is
+                hidden by default, until the collapse plugin adds the
+                appropriate classes that we use to style each element. These
+                classes control the overall appearance, as well as the showing
+                and hiding via CSS transitions. You can modify any of this with
+                custom CSS or overriding our default variables. It's also worth
+                noting that just about any HTML can go within the
+                <code>.accordion-body</code>, though the transition does limit
+                overflow.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">Accordion Flush Example</h4>
+
+        <div
+          ngbAccordion
+          [closeOthers]="true"
+          class="accordion-flush"
+          id="accordionFlushExample"
+        >
+          <div ngbAccordionItem [collapsed]="false">
+            <h2 ngbAccordionHeader id="flush-headingOne">
+              <button ngbAccordionButton type="button">
+                Q. Can I use this template for my client?
+              </button>
+            </h2>
+            <div ngbAccordionCollapse id="flush-collapseOne">
+              <div ngbAccordionBody>
+                Yup, the marketplace license allows you to use this theme in any
+                end products. For more information on licenses, please refere
+                <a href="javascript:void(0);" target="_blank">here</a>.
+              </div>
+            </div>
+          </div>
+          <div ngbAccordionItem>
+            <h2 ngbAccordionHeader id="flush-headingTwo">
+              <button
+                ngbAccordionButton
+                type="button"
+                data-bs-toggle="collapse"
+              >
+                Q. Can this theme work with WordPress?
+              </button>
+            </h2>
+            <div
+              ngbAccordionCollapse
+              id="flush-collapseTwo"
+              aria-labelledby="flush-headingTwo"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div ngbAccordionBody>
+                No. This is a HTML template. It won't directly with WordPress,
+                though you can convert this into WordPress compatible theme
+              </div>
+            </div>
+          </div>
+          <div ngbAccordionItem>
+            <h2 ngbAccordionHeader id="flush-headingThree">
+              <button
+                ngbAccordionButton
+                type="button"
+                data-bs-toggle="collapse"
+                aria-expanded="false"
+                aria-controls="flush-collapseThree"
+              >
+                Q. How do I get help with the theme?
+              </button>
+            </h2>
+            <div
+              ngbAccordionCollapse
+              id="flush-collapseThree"
+              aria-labelledby="flush-headingThree"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div ngbAccordionBody>
+                Use our dedicated support email (support&#64;coderthemes.com) to
+                send your issues or feedback. We are here to help anytime
+              </div>
+            </div>
+          </div>
+
+          <div ngbAccordionItem>
+            <h2 ngbAccordionHeader id="flush-headingFour">
+              <button
+                ngbAccordionButton
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#flush-collapseFour"
+                aria-expanded="false"
+                aria-controls="flush-collapseFour"
+              >
+                Q. Will you regularly give updates of Minton ?
+              </button>
+            </h2>
+            <div
+              ngbAccordionCollapse
+              id="flush-collapseFour"
+              aria-labelledby="flush-headingFour"
+              data-bs-parent="#accordionFlushExample"
+            >
+              <div ngbAccordionBody>
+                Yes, We will update the Minton regularly. All the future updates
+                would be available without any cost
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6">
+    <div class="d-flex gap-2 mb-2">
+      <a
+        class="btn btn-primary waves-effect waves-light"
+        (click)="collapse.toggle()"
+        data-bs-toggle="collapse"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Link with href
+      </a>
+      <button
+        class="btn btn-primary waves-effect waves-light"
+        (click)="isCollapsed = !isCollapsed"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseExample"
+        aria-expanded="false"
+        aria-controls="collapseExample"
+      >
+        Button with data-target
+      </button>
+    </div>
+    <div
+      #collapse="ngbCollapse"
+      [(ngbCollapse)]="isCollapsed"
+      class="collapse show"
+      id="collapseExample"
+    >
+      <div class="card">
+        <div class="card-body">
+          Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus
+          terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer
+          labore wes anderson cred nesciunt sapiente ea proident.
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end col-->
+
+  <div class="col-lg-6">
+    <p class="mb-2">
+      <button
+        class="btn btn-primary"
+        type="button"
+        (click)="collapse2.toggle()"
+        data-bs-toggle="collapse"
+        aria-expanded="false"
+        aria-controls="collapseWidthExample"
+      >
+        Toggle width collapse
+      </button>
+    </p>
+    <div style="min-height: 120px">
+      <div
+        #collapse2="ngbCollapse"
+        [(ngbCollapse)]="isCollapsed2"
+        [horizontal]="true"
+        class="collapse collapse-horizontal"
+        id="collapseWidthExample"
+      >
+        <div class="card card-body mb-0" style="width: 450px">
+          This is some placeholder content for a horizontal collapse. It's
+          hidden by default and shown when triggered.
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end col-->
+</div>

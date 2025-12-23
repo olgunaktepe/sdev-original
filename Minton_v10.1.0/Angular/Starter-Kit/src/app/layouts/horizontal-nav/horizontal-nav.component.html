@@ -1,0 +1,116 @@
+<div class="topnav">
+  <div class="container-fluid">
+    <nav class="navbar navbar-light navbar-expand-lg topnav-menu">
+      <div class="collapse navbar-collapse" id="topnav-menu-content">
+        <ul class="navbar-nav">
+          @for (item of menuItems; track $index) {
+            <ng-container
+              *ngTemplateOutlet="
+                MenuItemWithChildren;
+                context: {
+                  menu: item,
+                  linkClassName: 'nav-link nav-link-ref arrow-none',
+                  subMenuClassNames: 'dropdown-menu',
+                }
+              "
+            >
+            </ng-container>
+          }
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>
+
+<ng-template
+  #MenuItemWithChildren
+  let-menu="menu"
+  let-itemClassName="itemClassName"
+  let-linkClassName="linkClassName"
+  let-subMenuClassNames="subMenuClassNames"
+>
+  <li
+    ngbDropdown
+    autoClose="outside"
+    class="nav-item dropdown"
+    [ngClass]="{ active: activeMenuItems.includes(menu.key) }"
+  >
+    <a
+      ngbDropdownToggle
+      [class]="linkClassName"
+      [ngClass]="{ active: activeMenuItems.includes(menu.key) }"
+      [attr.data-menu-key]="menu.key"
+      role="button"
+    >
+      <i class="{{ menu.icon }} me-1"></i> {{ menu.label }}
+      <div class="arrow-down"></div>
+    </a>
+    <div
+      ngbDropdownMenu
+      [class]="subMenuClassNames"
+      [ngClass]="{
+        'mega-dropdown-menu dropdown-mega-menu-xl': menu.children?.length > 15,
+      }"
+      aria-labelledby="topnav-dashboard"
+    >
+      @if (menu.children?.length > 15) {
+        <div class="row">
+          @for (chunk of getChunks(menu); track chunk) {
+            <div class="col-lg-4">
+              <div>
+                @for (sub of chunk!; track sub) {
+                  <ng-container
+                    *ngTemplateOutlet="
+                      MenuItemLink;
+                      context: {
+                        menu: sub,
+                        className: 'dropdown-item nav-link-ref',
+                      }
+                    "
+                  ></ng-container>
+                }
+              </div>
+            </div>
+          }
+        </div>
+      } @else {
+        @for (sub of menu.children; track sub) {
+          @if (sub.children) {
+            <ng-container
+              *ngTemplateOutlet="
+                MenuItemWithChildren;
+                context: {
+                  menu: sub,
+                  linkClassName: 'dropdown-item nav-link-ref arrow-none',
+                  subMenuClassNames: 'dropdown-menu',
+                }
+              "
+            >
+            </ng-container>
+          } @else {
+            <ng-container
+              *ngTemplateOutlet="
+                MenuItemLink;
+                context: { menu: sub, className: 'dropdown-item nav-link-ref' }
+              "
+            ></ng-container>
+          }
+        }
+      }
+    </div>
+  </li>
+</ng-template>
+
+<ng-template #MenuItemLink let-menu="menu" let-className="className">
+  <a
+    [routerLink]="menu.url"
+    [class]="className"
+    [ngClass]="{ active: activeMenuItems.includes(menu.key) }"
+    [attr.data-menu-key]="menu.key"
+  >
+    @if (menu.icon) {
+      <i class="{{ menu.icon }} align-middle me-1"></i>
+    }
+    {{ menu.label }}
+  </a>
+</ng-template>

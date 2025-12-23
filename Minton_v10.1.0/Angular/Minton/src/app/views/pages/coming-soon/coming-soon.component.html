@@ -1,0 +1,45 @@
+<div class="my-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-10">
+        <div class="text-center">
+          <img
+            src="assets/images/animat-rocket-color.gif"
+            alt=""
+            height="160"
+          />
+
+          <h3 class="mt-4">Stay tunned, we're launching very soon</h3>
+          <p class="text-muted">We're making the system more awesome.</p>
+
+          <div class="row mt-5 justify-content-center">
+            <div class="col-md-8">
+              <div class="counter-number">
+                <div class="coming-box">
+                  {{ countdown.days }} <span>Days</span>
+                </div>
+                <div class="coming-box">
+                  {{ countdown.hours }} <span>Hours</span>
+                </div>
+                <div class="coming-box">
+                  {{ countdown.minutes }} <span>Minutes</span>
+                </div>
+                <div class="coming-box">
+                  {{ countdown.seconds }} <span>Seconds</span>
+                </div>
+              </div>
+            </div>
+            <!-- end col-->
+          </div>
+          <!-- end row-->
+        </div>
+        <!-- end /.text-center-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer footer-alt">
+  {{ year }} &copy; Minton theme by
+  <a href="javascript:void(0);">{{ credits.name }}</a>
+</footer>

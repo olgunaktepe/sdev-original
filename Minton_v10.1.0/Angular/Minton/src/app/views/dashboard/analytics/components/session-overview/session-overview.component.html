@@ -1,0 +1,58 @@
+<div class="card">
+  <div class="card-body">
+    <ul class="nav float-end d-none d-lg-flex">
+      <li class="nav-item">
+        <a class="nav-link text-muted" href="javascript:void(0);">Today</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-muted" href="javascript:void(0);">7d</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link active" href="javascript:void(0);">15d</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-muted" href="javascript:void(0);">1m</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link text-muted" href="javascript:void(0);">1y</a>
+      </li>
+    </ul>
+    <h4 class="header-title mb-3">Sessions Overview</h4>
+
+    <div class="row align-items-center">
+      <div class="col-xl-8">
+        <div id="usa-vectormap" style="height: 363px" data-colors="#3bafda">
+          <app-world-vector-map
+            mapId="usa-vector-map"
+            type="us_merc_en"
+            [options]="usaMapConfig"
+            height="363px"
+            width="100%"
+          ></app-world-vector-map>
+        </div>
+      </div>
+      <div class="col-xl-4">
+        @for (item of sessionList; track $index) {
+          <h5 class="mb-1 mt-0">
+            {{ item.stats }}
+            <small class="text-muted ms-2">{{ item.website }}</small>
+          </h5>
+          <div class="row align-items-center g-0 mb-2 pb-1">
+            <div class="col">
+              <ngb-progressbar
+                [type]="item.progressVariant"
+                [value]="item.progressValue"
+                class="progress-sm"
+              />
+            </div>
+            <div class="col-auto">
+              <div class="fw-medium ms-2">{{ item.progressValue }}%</div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+  <!-- end card-body-->
+</div>
+<!-- end card-->

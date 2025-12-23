@@ -1,0 +1,383 @@
+<app-page-title title="Form Advanced" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Selectize</h4>
+        <p class="sub-header">
+          Selectize is the hybrid of a textbox and
+          <code>&lt;select&gt;</code> box. It's jQuery-based and it's useful for
+          tagging, contact lists, country selectors, and so on.
+        </p>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="mb-3">
+              <label class="form-label">Default</label>
+              <input
+                type="text"
+                id="selectize-tags"
+                value="Awesome, Admin, Dashboard"
+                appSelectize
+                [selectizeOptions]="selectizeTagsOptions"
+              />
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="mb-3">
+              <label class="form-label">Select</label> <br />
+              <select
+                id="selectize-select"
+                appSelectize
+                [selectizeOptions]="selectizeSelectOptions"
+              >
+                <option data-display="Select">Nothing</option>
+                <option value="1">Some option</option>
+                <option value="2">Another option</option>
+                <option value="3" disabled>A disabled option</option>
+                <option value="4">Potato</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="mb-3">
+              <label class="form-label">Maximum Allow</label>
+              <select
+                id="selectize-maximum"
+                appSelectize
+                [selectizeOptions]="selectizeMaximumOptions"
+              >
+                <option value="">Select a state...</option>
+                <option value="AL">Alabama</option>
+                <option value="AK">Alaska</option>
+                <option value="AZ">Arizona</option>
+                <option value="AR">Arkansas</option>
+                <option value="CA" selected>California</option>
+                <option value="CO">Colorado</option>
+                <option value="CT">Connecticut</option>
+                <option value="DE">Delaware</option>
+                <option value="DC">District of Columbia</option>
+                <option value="FL">Florida</option>
+                <option value="GA">Georgia</option>
+                <option value="HI">Hawaii</option>
+                <option value="ID">Idaho</option>
+                <option value="IL">Illinois</option>
+                <option value="IN">Indiana</option>
+                <option value="IA">Iowa</option>
+                <option value="KS">Kansas</option>
+                <option value="KY">Kentucky</option>
+                <option value="LA">Louisiana</option>
+                <option value="ME">Maine</option>
+                <option value="MD">Maryland</option>
+                <option value="MA">Massachusetts</option>
+                <option value="MI">Michigan</option>
+                <option value="MN">Minnesota</option>
+                <option value="MS">Mississippi</option>
+                <option value="MO">Missouri</option>
+                <option value="MT">Montana</option>
+                <option value="NE">Nebraska</option>
+                <option value="NV">Nevada</option>
+                <option value="NH">New Hampshire</option>
+                <option value="NJ">New Jersey</option>
+                <option value="NM">New Mexico</option>
+                <option value="NY">New York</option>
+                <option value="NC">North Carolina</option>
+                <option value="ND">North Dakota</option>
+                <option value="OH">Ohio</option>
+                <option value="OK">Oklahoma</option>
+                <option value="OR">Oregon</option>
+                <option value="PA">Pennsylvania</option>
+                <option value="RI">Rhode Island</option>
+                <option value="SC">South Carolina</option>
+                <option value="SD">South Dakota</option>
+                <option value="TN">Tennessee</option>
+                <option value="TX">Texas</option>
+                <option value="UT">Utah</option>
+                <option value="VT">Vermont</option>
+                <option value="VA">Virginia</option>
+                <option value="WA">Washington</option>
+                <option value="WV">West Virginia</option>
+                <option value="WI">Wisconsin</option>
+                <option value="WY" selected>Wyoming</option>
+              </select>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <div class="mb-3">
+              <label class="form-label">Links</label>
+              <select
+                id="selectize-links"
+                appSelectize
+                [selectizeOptions]="selectizeLinksOptions"
+              ></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="mb-3">
+              <label class="form-label">Confirm Delete Alert</label>
+              <input
+                type="text"
+                id="selectize-confirm"
+                value="awesome,neat,yeah"
+                appSelectize
+                [selectizeOptions]="selectizeConfirmOptions"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="mb-3">
+              <label class="form-label">Basic Optgroups</label>
+              <select
+                id="selectize-optgroup"
+                appSelectize
+                [selectizeOptions]="selectizeOptgroupOptions"
+              >
+                <option value="">Select gear...</option>
+                <optgroup label="Climbing">
+                  <option value="pitons">Pitons</option>
+                  <option value="cams">Cams</option>
+                  <option value="nuts">Nuts</option>
+                  <option value="bolts">Bolts</option>
+                  <option value="stoppers">Stoppers</option>
+                  <option value="sling">Sling</option>
+                </optgroup>
+                <optgroup label="Skiing">
+                  <option value="skis">Skis</option>
+                  <option value="skins">Skins</option>
+                  <option value="poles">Poles</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="mb-3">
+              <label class="form-label">Programmatic Optgroups</label>
+              <select
+                id="selectize-programmatic"
+                appSelectize
+                [selectizeOptions]="selectizeProgrammaticOptions"
+                placeholder="Select animal..."
+              ></select>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="mb-3">
+              <label class="form-label">Optgroup Columns</label>
+              <input
+                type="text"
+                id="selectize-optgroup-column"
+                appSelectize
+                [selectizeOptions]="selectizeOptgroupColumnOptions"
+                placeholder="Select cars..."
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="mb-3 mb-lg-0">
+              <label class="form-label">Remove Button</label>
+              <input
+                type="text"
+                class="selectize-close-btn"
+                appSelectize
+                value="awesome,neat"
+                [selectizeOptions]="selectizeCloseBtnOptions"
+              />
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div>
+              <label class="form-label" for="select-code-language"
+                >Dropdown Header</label
+              >
+              <select
+                id="select-code-language"
+                class="selectize-drop-header"
+                appSelectize
+                [selectizeOptions]="selectizeDropHeaderOptions"
+                placeholder="Select a language..."
+              >
+                <option value="txt">Text</option>
+                <option value="md">Markdown</option>
+                <option value="html">HTML</option>
+                <option value="php">PHP</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="js" selected>JavaScript</option>
+                <option value="ruby">Ruby</option>
+                <option value="vhdl">VHDL</option>
+                <option value="verilog">Verilog</option>
+                <option value="c#">C#</option>
+                <option value="c++">C/C++</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end card-->
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Switchery</h4>
+        <p class="sub-header">iOS 7 style switches for your checkboxes</p>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <label class="mb-1">Basic</label>
+            <p class="text-muted font-13">
+              use <code>ui-switch</code> element and Add an attribute
+              <code>color="&#64;colors"</code>
+              to your input element and it will be converted into switch.
+            </p>
+
+            <div class="switchery-demo">
+              <ui-switch
+                [color]="'#039cfd'"
+                [checked]="true"
+                class="me-1"
+              ></ui-switch>
+              <ui-switch
+                [color]="'#f1b53d'"
+                [checked]="true"
+                class="me-1"
+              ></ui-switch>
+              <ui-switch
+                [color]="'#1bb99a'"
+                [checked]="true"
+                class="me-1"
+              ></ui-switch>
+              <ui-switch
+                [color]="'#ff5d48'"
+                [checked]="true"
+                class="me-1"
+              ></ui-switch>
+              <ui-switch
+                [color]="'#3db9dc'"
+                [checked]="true"
+                class="me-1"
+              ></ui-switch>
+              <ui-switch
+                [color]="'#2b3d51'"
+                [checked]="true"
+                class="me-1"
+              ></ui-switch>
+              <ui-switch
+                [color]="'#9261c6'"
+                [checked]="true"
+                class="me-1"
+              ></ui-switch>
+              <ui-switch
+                [color]="'#ff7aa3'"
+                [checked]="true"
+                class="me-1"
+              ></ui-switch>
+              <ui-switch [color]="'#98a6ad'" [checked]="true"></ui-switch>
+            </div>
+          </div>
+
+          <div class="col-lg-6">
+            <label class="mb-1 mt-3 mt-lg-0">Sizes & Secondary color</label>
+            <p class="text-muted font-13">
+              Add an attribute <code> size="small",size="large"</code> to your
+              input element and it will be converted into switch. Add an
+              attribute
+              <code> color="&#64;color" defaultBgColor="&#64;color"</code>
+              to your input element and it will be converted into switch.
+            </p>
+
+            <div class="switchery-demo">
+              <ui-switch
+                [color]="'#64b0f2'"
+                [checked]="true"
+                [size]="'small'"
+                class="me-1"
+              ></ui-switch>
+              <ui-switch
+                [color]="'#ff7aa3'"
+                [checked]="true"
+                class="me-1"
+              ></ui-switch>
+              <ui-switch
+                [color]="'#2b3d51'"
+                [checked]="true"
+                [size]="'large'"
+                class="me-1"
+              ></ui-switch>
+              <ui-switch
+                [color]="'#1bb99a'"
+                [defaultBgColor]="'#ff5d48'"
+                class="me-1"
+              ></ui-switch>
+              <ui-switch
+                [color]="'#9261c6'"
+                [checked]="true"
+                [defaultBgColor]="'#ff7aa3'"
+                class="me-1"
+              ></ui-switch>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end card-->
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Select2</h4>
+        <p class="sub-header">The jQuery replacement for select boxes</p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <p class="mb-1 fw-medium">Single Select</p>
+            <p class="text-muted font-13">
+              Select2 can take a regular select box like this...
+            </p>
+            <select2 [data]="items" resettable="false"> </select2>
+          </div>
+
+          <div class="col-md-6">
+            <p class="mb-1 fw-medium mt-3 mt-md-0">Multiple Select</p>
+            <p class="text-muted font-13">
+              Select2 can take a regular select box like this...
+            </p>
+            <select2
+              class="select2 select2-multiple"
+              [multiple]="true"
+              [data]="items"
+              id="selec2-1"
+            >
+            </select2>
+          </div>
+        </div>
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+  <!-- end col-->
+</div>
+<!-- end row-->

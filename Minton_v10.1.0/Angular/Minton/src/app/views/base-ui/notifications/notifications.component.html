@@ -1,0 +1,511 @@
+<app-page-title title="Notifications" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Bootstrap Toasts</h4>
+        <p class="text-muted">
+          Push notifications to your visitors with a toast, a lightweight and
+          easily customizable alert message.
+        </p>
+
+        <div class="row">
+          <div class="col-md-6">
+            <h5 class="font-14 mb-1">Basic</h5>
+            <p class="text-muted">
+              Toasts are as flexible as you need and have very little required
+              markup. At a minimum, we require a single element to contain your
+              “toasted” content and strongly encourage a dismiss button.
+            </p>
+            <div class="p-3">
+              <ngb-toast
+                [autohide]="false"
+                class="fade d-block opacity-100"
+                role="alert"
+                aria-live="assertive"
+                aria-atomic="true"
+              >
+                <ng-template ngbToastHeader class="d-block">
+                  <img
+                    src="assets/images/users/avatar-2.jpg"
+                    alt="user-image"
+                    height="28"
+                    class="me-1 rounded"
+                  />
+                  <strong class="me-auto">Alfredo</strong>
+                  <small>11 mins ago</small>
+                </ng-template>
+                Hello, world! This is a toast message.
+              </ngb-toast>
+            </div>
+          </div>
+          <!-- end col-->
+          <div class="col-md-6">
+            <h5 class="font-14 mb-1">Translucent</h5>
+            <p class="text-muted">
+              Toasts are slightly translucent, too, so they blend over whatever
+              they might appear over. For browsers that support the
+              backdrop-filter CSS property, we’ll also attempt to blur the
+              elements under a toast.
+            </p>
+
+            <div class="p-3 bg-light">
+              @if (translucent) {
+                <ngb-toast
+                  [autohide]="false"
+                  (hidden)="translucent = false"
+                  class="toast fade show"
+                  role="alert"
+                  aria-live="assertive"
+                  aria-atomic="true"
+                >
+                  <ng-template ngbToastHeader class="d-block">
+                    <img
+                      src="assets/images/users/avatar-2.jpg"
+                      alt="user-image"
+                      height="28"
+                      class="me-1 rounded"
+                    />
+                    <strong class="me-auto">Andrew</strong>
+                    <small>11 mins ago</small>
+                  </ng-template>
+                  Hello, world! This is a toast message.
+                </ngb-toast>
+              }
+            </div>
+          </div>
+          <!-- end col-->
+        </div>
+        <!-- end row-->
+
+        <div class="row">
+          <div class="col-md-6 mt-4">
+            <h5 class="font-14 mb-1">Stacking</h5>
+            <p class="text-muted">
+              When you have multiple toasts, we default to vertiaclly stacking
+              them in a readable manner.
+            </p>
+            <div class="p-3">
+              <div
+                aria-live="polite"
+                aria-atomic="true"
+                style="position: relative; min-height: 200px"
+              >
+                <div
+                  class="toast-container"
+                  style="position: absolute; top: 0; right: 0"
+                >
+                  <ngb-toast [autohide]="false">
+                    <ng-template ngbToastHeader class="toast-header">
+                      <img
+                        src="assets/images/users/avatar-4.jpg"
+                        alt="user-image"
+                        height="28"
+                        class="me-1 rounded"
+                      />
+                      <strong class="me-auto">Richard</strong>
+                      <small class="text-muted">just now</small>
+                    </ng-template>
+                    See? Just like this.
+                  </ngb-toast>
+
+                  <ngb-toast [autohide]="false">
+                    <ng-template ngbToastHeader class="toast-header">
+                      <img
+                        src="assets/images/users/avatar-5.jpg"
+                        alt="user-image"
+                        height="28"
+                        class="me-1 rounded"
+                      />
+                      <strong class="me-auto">Edward</strong>
+                      <small class="text-muted">2 seconds ago</small>
+                    </ng-template>
+                    Heads up, toasts will stack automatically
+                  </ngb-toast>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end col-->
+          <div class="col-md-6 mt-4">
+            <h5 class="font-14 mb-1">Placement</h5>
+            <p class="text-muted">
+              Place toasts with custom CSS as you need them. The top right is
+              often used for notifications, as is the top middle. If you’re only
+              ever going to show one toast at a time, put the positioning styles
+              right on the <code>.toast</code>.
+            </p>
+            <div class="p-3">
+              <div
+                aria-live="polite"
+                aria-atomic="true"
+                class="d-flex justify-content-center align-items-center"
+                style="min-height: 200px"
+              >
+                <ngb-toast [autohide]="false">
+                  <ng-template ngbToastHeader class="toast-header">
+                    <img
+                      src="assets/images/users/avatar-6.jpg"
+                      alt="user-image"
+                      height="28"
+                      class="me-1 rounded"
+                    />
+                    <strong class="me-auto">Ronnie</strong>
+                    <small>11 mins ago</small>
+                  </ng-template>
+                  Hello, world! This is a toast message.
+                </ngb-toast>
+              </div>
+            </div>
+          </div>
+          <!-- end col-->
+        </div>
+        <!-- end row-->
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+  <!-- end col-->
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Custom content</h4>
+        <p class="text-muted">
+          Alternatively, you can also add additional controls and components to
+          toasts.
+        </p>
+        @if (show) {
+          <ngb-toast
+            [autohide]="false"
+            class="toast fade show align-items-center mb-3"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            <div class="d-flex">
+              Hello, world! This is a toast message.
+              <button
+                (click)="close()"
+                type="button"
+                class="btn-close me-2 m-auto"
+                data-bs-dismiss="toast"
+                aria-label="Close"
+              ></button>
+            </div>
+          </ngb-toast>
+        }
+
+        @if (show1) {
+          <ngb-toast
+            [autohide]="false"
+            class="toast show align-items-center text-white bg-primary border-0 mb-4"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            <div class="d-flex">
+              Hello, world! This is a toast message.
+              <button
+                type="button"
+                class="btn-close btn-close-white me-2 m-auto"
+                data-bs-dismiss="toast"
+                aria-label="Close"
+                (click)="show1 = false"
+              ></button>
+            </div>
+          </ngb-toast>
+        }
+
+        @if (show2) {
+          <ngb-toast
+            [autohide]="false"
+            class="toast fade show mb-3 mb-md-0"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            Hello, world! This is a toast message.
+            <div class="mt-2 pt-2 border-top">
+              <button type="button" class="btn btn-primary btn-sm">
+                Take action
+              </button>
+              <button
+                type="button"
+                class="btn btn-secondary btn-sm ms-1"
+                data-bs-dismiss="toast"
+                (click)="show2 = false"
+              >
+                Close
+              </button>
+            </div>
+          </ngb-toast>
+        }
+
+        @if (show3) {
+          <ngb-toast
+            [autohide]="false"
+            class="toast fade show bg-primary mt-4"
+            role="alert"
+            aria-live="assertive"
+            aria-atomic="true"
+          >
+            <div class="text-white">
+              Hello, world! This is a toast message.
+              <div class="mt-2 pt-2 border-top">
+                <button type="button" class="btn btn-light btn-sm me-1">
+                  Take action
+                </button>
+                <button
+                  (click)="show3 = false"
+                  type="button"
+                  class="btn btn-secondary btn-sm"
+                  data-bs-dismiss="toast"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </ngb-toast>
+        }
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+  <!-- end col-->
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Placement</h4>
+        <p class="text-muted">
+          Place toasts with custom CSS as you need them. The top right is often
+          used for notifications, as is the top middle. If you’re only ever
+          going to show one toast at a time, put the positioning styles right on
+          the <code>.toast</code>.
+        </p>
+        <div class="mt-4">
+          <div class="mb-3">
+            <label for="selectToastPlacement">Toast placement</label>
+            <select
+              [(ngModel)]="toastPlacement"
+              class="form-select mt-2"
+              id="selectToastPlacement"
+            >
+              <option value="" selected>Select a position...</option>
+              <option value="top-0 start-0">Top left</option>
+              <option value="top-0 start-50 translate-middle-x">
+                Top center
+              </option>
+              <option value="top-0 end-0">Top right</option>
+              <option value="top-50 start-0 translate-middle-y">
+                Middle left
+              </option>
+              <option value="top-50 start-50 translate-middle">
+                Middle center
+              </option>
+              <option value="top-50 end-0 translate-middle-y">
+                Middle right
+              </option>
+              <option value="bottom-0 start-0">Bottom left</option>
+              <option value="bottom-0 start-50 translate-middle-x">
+                Bottom center
+              </option>
+              <option value="bottom-0 end-0">Bottom right</option>
+            </select>
+          </div>
+        </div>
+        <div
+          aria-live="polite"
+          aria-atomic="true"
+          class="bg-light position-relative bd-example-toasts"
+          style="min-height: 290px"
+        >
+          @if (placement) {
+            <ngb-toast
+              [autohide]="false"
+              (hidden)="placement = false"
+              class="position-absolute m-3 {{ toastPlacement }}"
+            >
+              <ng-template ngbToastHeader class="d-block">
+                <div class="auth-logo">
+                  <img
+                    class="logo-dark me-1"
+                    src="assets/images/logo-dark.png"
+                    alt="logo-dark"
+                    height="18"
+                  />
+                  <img
+                    class="logo-light"
+                    src="assets/images/logo-light.png"
+                    alt="logo-light"
+                    height="18"
+                  />
+                </div>
+                <div class="ms-auto">
+                  <small>11 mins ago</small>
+                </div>
+              </ng-template>
+              Hello, world! This is a toast message.
+            </ngb-toast>
+          }
+        </div>
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+  <!-- end col-->
+</div>
+<!-- end row-->
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Default Alert</h4>
+        <p class="sub-header">
+          Alerts are available for any length of text, as well as an optional
+          dismiss button. For proper styling, use one of the eight
+          <strong>required</strong> contextual classes (e.g.,
+          <code>.alert-success</code>).
+        </p>
+
+        <ngb-alert type="primary" [dismissible]="false" role="alert">
+          This is a <strong>primary</strong> alert—check it out!
+        </ngb-alert>
+        <ngb-alert type="secondary" [dismissible]="false" role="alert">
+          This is a <strong>secondary</strong> alert—check it out!
+        </ngb-alert>
+        <ngb-alert type="success" [dismissible]="false" role="alert">
+          <i class="mdi mdi-check-all me-2"></i> This is a
+          <strong>success</strong> alert—check it out!
+        </ngb-alert>
+        <ngb-alert type="danger" [dismissible]="false" role="alert">
+          <i class="mdi mdi-block-helper me-2"></i> This is a
+          <strong>danger</strong> alert—check it out!
+        </ngb-alert>
+        <ngb-alert type="warning" [dismissible]="false" role="alert">
+          <i class="mdi mdi-alert-outline me-2"></i> This is a
+          <strong>warning</strong> alert—check it out!
+        </ngb-alert>
+        <ngb-alert type="info" [dismissible]="false" role="alert">
+          <i class="mdi mdi-alert-circle-outline me-2"></i> A simple info alert
+          with
+          <a href="javascript:void(0);" class="alert-link">an example link</a>.
+          Give it a click if you like.
+        </ngb-alert>
+        <ngb-alert type="light" [dismissible]="false" role="alert">
+          A simple light alert with
+          <a href="javascript:void(0);" class="alert-link">an example link</a>.
+          Give it a click if you like.
+        </ngb-alert>
+        <ngb-alert type="dark" [dismissible]="false" class="mb-0" role="alert">
+          A simple dark alert with
+          <a href="javascript:void(0);" class="alert-link">an example link</a>.
+          Give it a click if you like.
+        </ngb-alert>
+      </div>
+    </div>
+    <!-- end card-->
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Dismissing Alerts</h4>
+        <p class="sub-header">
+          Add a dismiss button and the <code>.alert-dismissible</code> class,
+          which adds extra padding to the right of the alert and positions the
+          <code>.close</code> button.
+        </p>
+
+        @for (alert of defaultAlertData; track $index) {
+          <ngb-alert
+            [dismissible]="false"
+            [type]="alert.variant"
+            class="alert alert-primary alert-dismissible fade show"
+            role="alert"
+          >
+            <button
+              type="button"
+              class="btn-close"
+              (click)="closeAlert($index)"
+            ></button>
+            {{ alert.subtitle }}
+          </ngb-alert>
+        }
+      </div>
+    </div>
+    <!-- end card-->
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Custom Outline Alert</h4>
+        <p class="sub-header">
+          Use <code>.bg-transparent</code>,<code>.text-*</code> classes.
+        </p>
+
+        @for (alert of defaultAlertData; track $index) {
+          <ngb-alert
+            [dismissible]="false"
+            [type]="alert.variant"
+            class="alert alert-primary alert-dismissible bg-transparent fade show"
+            [ngClass]="
+              alert.variant == 'light' ? 'text-dark' : 'text-' + alert.variant
+            "
+            role="alert"
+          >
+            <button
+              type="button"
+              class="btn-close"
+              (click)="closeAlert($index)"
+            ></button>
+            {{ alert.subtitle }}
+          </ngb-alert>
+        }
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Custom Background Alert</h4>
+        <p class="sub-header">
+          Use <code>.bg-*</code>,<code>.border-0</code> classes.
+        </p>
+
+        @for (alert of defaultAlertData; track $index) {
+          <ngb-alert
+            [dismissible]="false"
+            [type]="alert.variant"
+            [class]="
+              'alert alert-primary alert-dismissible bg-' +
+              alert.variant +
+              ' border-0 fade show ' +
+              (alert.variant == 'light' ? 'text-dark' : 'text-light')
+            "
+            role="alert"
+          >
+            {{ alert.subtitle }}
+            <button
+              type="button"
+              class="btn-close"
+              (click)="closeAlert($index)"
+            ></button>
+          </ngb-alert>
+        }
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,165 @@
+<app-page-title title="Orders" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row mb-2">
+          <div class="col-lg-8">
+            <form class="d-flex flex-wrap align-items-center">
+              <div class="d-flex flex-wrap align-items-center mb-2">
+                <label for="inputPassword2" class="visually-hidden"
+                  >Search</label
+                >
+                <input
+                  type="search"
+                  class="form-control"
+                  id="inputPassword2"
+                  placeholder="Search..."
+                />
+              </div>
+              <div class="d-flex flex-wrap align-items-center mx-sm-3 mb-2">
+                <label for="status-select" class="me-2">Status</label>
+                <div>
+                  <select class="form-select" id="status-select">
+                    <option selected>Choose...</option>
+                    <option value="1">Paid</option>
+                    <option value="2">Awaiting Authorization</option>
+                    <option value="3">Payment failed</option>
+                    <option value="4">Cash On Delivery</option>
+                    <option value="5">Fulfilled</option>
+                    <option value="6">Unfulfilled</option>
+                  </select>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-4">
+            <div class="text-lg-end">
+              <button type="button" class="btn btn-danger mb-2 me-2">
+                <i class="mdi mdi-basket me-1"></i> Add New Order
+              </button>
+              <button type="button" class="btn btn-light mb-2">Export</button>
+            </div>
+          </div>
+          <!-- end col-->
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-centered table-nowrap mb-0">
+            <thead class="table-light">
+              <tr>
+                <th style="width: 20px">
+                  <div class="form-check font-16">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="orderlistCheck"
+                    />
+                    <label class="form-check-label" for="orderlistCheck"
+                      >&nbsp;</label
+                    >
+                  </div>
+                </th>
+                <th>Order ID</th>
+                <th>Billing Name</th>
+                <th>Date</th>
+                <th>Payment Status</th>
+                <th>Total</th>
+                <th>Payment Method</th>
+                <th>Order Status</th>
+                <th style="width: 125px">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of orders$ | async; track $index) {
+                <tr>
+                  <td>
+                    <div class="form-check font-16">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="orderlistCheck01"
+                      />
+                      <label class="form-check-label" for="orderlistCheck01"
+                        >&nbsp;</label
+                      >
+                    </div>
+                  </td>
+                  <td>
+                    <a
+                      routerLink="/ecommerce/orders-detail"
+                      class="text-body fw-medium"
+                      >#{{ item.order_id }}</a
+                    >
+                  </td>
+                  <td>{{ item.billing_name }}</td>
+                  <td>
+                    {{ item.order_date }}
+                    <small class="text-muted">{{ item.order_time }}</small>
+                  </td>
+                  <td>
+                    <div>
+                      <span
+                        class="badge"
+                        [ngClass]="{
+                          'badge-soft-success': item.payment_status == 'Paid',
+                          'badge-soft-warning':
+                            item.payment_status == 'Awaiting Authorization',
+                          'badge-soft-danger':
+                            item.payment_status == 'Payment Failed',
+                        }"
+                        >{{ item.payment_status }}</span
+                      >
+                    </div>
+                  </td>
+                  <td>{{ currency }}{{ item.total }}</td>
+                  <td>
+                    {{ item.payment_method }}
+                  </td>
+                  <td>
+                    <div>
+                      <span
+                        class="badge"
+                        [ngClass]="{
+                          'bg-info': item.order_status == 'Shipped',
+                          'bg-warning': item.order_status == 'Processing',
+                          'bg-success': item.order_status == 'Delivered',
+                          'bg-danger': item.order_status == 'Cancelled',
+                        }"
+                        >{{ item.order_status }}</span
+                      >
+                    </div>
+                  </td>
+                  <td>
+                    <ul class="list-inline mb-0">
+                      <li class="list-inline-item">
+                        <a href="javascript:void(0);" class="action-icon">
+                          <i class="mdi mdi-eye"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="javascript:void(0);" class="action-icon">
+                          <i class="mdi mdi-square-edit-outline"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="javascript:void(0);" class="action-icon">
+                          <i class="mdi mdi-delete"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <div class="row mt-4">
+          <app-table-footer [total]="total$" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

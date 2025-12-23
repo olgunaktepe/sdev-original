@@ -1,0 +1,195 @@
+<app-page-title title="Tickets" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-12">
+    <ticket-statistics />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <app-table-header />
+        <table
+          class="table table-hover m-0 table-centered dt-responsive nowrap w-100 dataTable"
+          cellspacing="0"
+          id="tickets-table"
+        >
+          <thead class="bg-light">
+            <tr>
+              <th
+                sortable="id"
+                (sort)="onSort($event)"
+                class="sorting fw-medium"
+              >
+                ID
+              </th>
+              <th
+                sortable="requested_by"
+                (sort)="onSort($event)"
+                class="sorting fw-medium"
+              >
+                Requested By
+              </th>
+              <th
+                sortable="subject"
+                (sort)="onSort($event)"
+                class="sorting fw-medium"
+              >
+                Subject
+              </th>
+              <th
+                sortable="assignee"
+                (sort)="onSort($event)"
+                class="sorting fw-medium"
+              >
+                Assignee
+              </th>
+              <th
+                sortable="priority"
+                (sort)="onSort($event)"
+                class="sorting fw-medium"
+              >
+                Priority
+              </th>
+              <th
+                sortable="status"
+                (sort)="onSort($event)"
+                class="sorting fw-medium"
+              >
+                Status
+              </th>
+              <th
+                sortable="created_date"
+                (sort)="onSort($event)"
+                class="sorting fw-medium"
+              >
+                Created Date
+              </th>
+              <th
+                sortable="due_date"
+                (sort)="onSort($event)"
+                class="sorting fw-medium"
+              >
+                Due Date
+              </th>
+              <th class="fw-medium">Action</th>
+            </tr>
+          </thead>
+
+          <tbody class="font-14">
+            @for (item of ticket$ | async; track $index) {
+              <tr>
+                <td>
+                  <b>{{ item.id }}</b>
+                </td>
+                <td>
+                  <a href="javascript: void(0);" class="text-dark">
+                    <img
+                      [src]="item.requested_by.image"
+                      alt="contact-img"
+                      title="contact-img"
+                      class="avatar-sm rounded-circle img-thumbnail"
+                    />
+                    <span class="ms-2">{{ item.requested_by.name }}</span>
+                  </a>
+                </td>
+
+                <td>
+                  {{ item.subject }}
+                </td>
+
+                <td>
+                  <a href="javascript: void(0);">
+                    <img
+                      [src]="item.assignee"
+                      alt="contact-img"
+                      title="contact-img"
+                      class="avatar-sm rounded-circle img-thumbnail"
+                    />
+                  </a>
+                </td>
+
+                <td>
+                  <span
+                    class="badge text-light"
+                    [ngClass]="{
+                      'bg-secondary': item.priority == 'Low',
+                      'bg-warning': item.priority == 'Medium',
+                      'bg-danger': item.priority == 'High',
+                    }"
+                    >{{ item.priority }}</span
+                  >
+                </td>
+
+                <td>
+                  <span
+                    class="badge"
+                    [ngClass]="
+                      item.status == 'Open'
+                        ? 'bg-success'
+                        : 'bg-secondary text-light'
+                    "
+                    >{{ item.status }}</span
+                  >
+                </td>
+
+                <td>
+                  {{ item.created_date }}
+                </td>
+
+                <td>
+                  {{ item.due_date }}
+                </td>
+
+                <td>
+                  <div ngbDropdown class="btn-group dropdown">
+                    <a
+                      ngbDropdownToggle
+                      class="dropdown-toggle arrow-none btn btn-light btn-sm"
+                      role="button"
+                      ><i class="mdi mdi-dots-horizontal"></i
+                    ></a>
+                    <div
+                      ngbDropdownMenu
+                      class="dropdown-menu dropdown-menu-end"
+                    >
+                      <a class="dropdown-item" href="javascript:void(0);"
+                        ><i
+                          class="mdi mdi-pencil me-2 text-muted font-18 vertical-middle"
+                        ></i
+                        >Edit Ticket</a
+                      >
+                      <a class="dropdown-item" href="javascript:void(0);"
+                        ><i
+                          class="mdi mdi-check-all me-2 text-muted font-18 vertical-middle"
+                        ></i
+                        >Close</a
+                      >
+                      <a class="dropdown-item" href="javascript:void(0);"
+                        ><i
+                          class="mdi mdi-delete me-2 text-muted font-18 vertical-middle"
+                        ></i
+                        >Remove</a
+                      >
+                      <a class="dropdown-item" href="javascript:void(0);"
+                        ><i
+                          class="mdi mdi-star me-2 font-18 text-muted vertical-middle"
+                        ></i
+                        >Mark as Unread</a
+                      >
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        <div class="row mt-2">
+          <app-table-footer [total]="total$" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,1035 @@
+<app-page-title title="Form Wizard" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">Basic Wizard</h4>
+
+        <form [formGroup]="basicWizardForm" #basicForm="ngForm">
+          <div id="basicwizard">
+            <ul
+              ngbNav
+              #basicWizard="ngbNav"
+              [(activeId)]="activeWizard1"
+              class="nav nav-pills nav-justified form-wizard-header mb-4"
+            >
+              <li [ngbNavItem]="1" class="nav-item">
+                <a ngbNavLink>
+                  <span class="number">1</span>
+                  <span class="d-none d-sm-inline">Account</span>
+                </a>
+                <ng-template ngbNavContent>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="userName"
+                          >User name</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="userName"
+                            name="userName"
+                            value="Coderthemes"
+                          />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="password">
+                          Password</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            class="form-control"
+                            value="123456789"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="confirm"
+                          >Re Password</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="password"
+                            id="confirm"
+                            name="confirm"
+                            class="form-control"
+                            value="123456789"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul class="pager wizard mb-0 list-inline text-end mt-2">
+                    <li class="next list-inline-item">
+                      <button
+                        type="button"
+                        class="btn btn-success"
+                        (click)="activeWizard1 = activeWizard1 + 1"
+                      >
+                        Add More Info <i class="mdi mdi-arrow-right ms-1"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="2" class="nav-item">
+                <a ngbNavLink>
+                  <span class="number">2</span>
+                  <span class="d-none d-sm-inline">Profile</span>
+                </a>
+                <ng-template ngbNavContent>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="name">
+                          First name</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            class="form-control"
+                            value="Francis"
+                          />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="surname">
+                          Last name</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="text"
+                            id="surname"
+                            name="surname"
+                            class="form-control"
+                            value="Brinkman"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="email"
+                          >Email</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            class="form-control"
+                            value="cory1979@hotmail.com"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="pager wizard mb-0 list-inline mt-2">
+                    <li class="previous list-inline-item">
+                      <button
+                        type="button"
+                        (click)="activeWizard1 = activeWizard1 - 1"
+                        class="btn btn-light"
+                      >
+                        <i class="mdi mdi-arrow-left me-1"></i> Back to Account
+                      </button>
+                    </li>
+                    <li class="next list-inline-item float-end">
+                      <button
+                        type="button"
+                        (click)="activeWizard1 = activeWizard1 + 1"
+                        class="btn btn-success"
+                      >
+                        Add More Info <i class="mdi mdi-arrow-right ms-1"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="3" class="nav-item">
+                <a ngbNavLink>
+                  <span class="number">3</span>
+                  <span class="d-none d-sm-inline">Finish</span>
+                </a>
+                <ng-template ngbNavContent>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="text-center">
+                        <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
+                        <h3 class="mt-0">Thank you !</h3>
+
+                        <p class="w-75 mb-2 mx-auto">
+                          Quisque nec turpis at urna dictum luctus. Suspendisse
+                          convallis dignissim eros at volutpat. In egestas
+                          mattis dui. Aliquam mattis dictum aliquet.
+                        </p>
+
+                        <div class="mb-3">
+                          <div class="form-check d-inline-block">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id="terms-conditions-basicwizard"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="terms-conditions-basicwizard"
+                            >
+                              I agree with the Terms and Conditions
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <ul class="pager wizard mb-0 list-inline mt-2">
+                    <li class="previous list-inline-item">
+                      <button
+                        type="button"
+                        (click)="activeWizard1 = activeWizard1 - 1"
+                        class="btn btn-light"
+                      >
+                        <i class="mdi mdi-arrow-left me-1"></i> Back to Profile
+                      </button>
+                    </li>
+                    <li class="next list-inline-item float-end">
+                      <button type="button" class="btn btn-primary">
+                        Submit
+                      </button>
+                    </li>
+                  </ul>
+                </ng-template>
+              </li>
+            </ul>
+
+            <div
+              [ngbNavOutlet]="basicWizard"
+              class="tab-content b-0 mb-0"
+            ></div>
+          </div>
+          <!-- end #basicwizard-->
+        </form>
+      </div>
+    </div>
+    <!-- end card-->
+  </div>
+
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">Button Wizard</h4>
+
+        <div id="btnwizard">
+          <ul
+            ngbNav
+            #btnWizard="ngbNav"
+            [(activeId)]="activeWizard2"
+            class="nav nav-pills nav-justified form-wizard-header mb-4"
+          >
+            <li [ngbNavItem]="1" class="nav-item">
+              <a ngbNavLink class="nav-link pt-2 pb-2">
+                <span class="number">1</span>
+                <span class="d-none d-sm-inline">Account</span>
+              </a>
+              <ng-template ngbNavContent>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="row mb-3">
+                      <label class="col-md-3 col-form-label" for="userName2"
+                        >User name</label
+                      >
+                      <div class="col-md-9">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="userName2"
+                          name="userName2"
+                          value="Coderthemes"
+                        />
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label class="col-md-3 col-form-label" for="password2">
+                        Password</label
+                      >
+                      <div class="col-md-9">
+                        <input
+                          type="password"
+                          id="password2"
+                          name="password2"
+                          class="form-control"
+                          value="123456789"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label class="col-md-3 col-form-label" for="confirm2"
+                        >Re Password</label
+                      >
+                      <div class="col-md-9">
+                        <input
+                          type="password"
+                          id="confirm2"
+                          name="confirm2"
+                          class="form-control"
+                          value="123456789"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="float-end">
+                  <input
+                    type="button"
+                    (click)="activeWizard2 = activeWizard2 + 1"
+                    class="btn btn-success button-next"
+                    name="next"
+                    value="Next"
+                  />
+                  <input
+                    type="button"
+                    (click)="activeWizard2 = 3"
+                    class="btn btn-secondary button-last ms-1"
+                    name="last"
+                    value="Last"
+                  />
+                </div>
+                <div class="float-start">
+                  <input
+                    type="button"
+                    (click)="activeWizard2 = 1"
+                    class="btn btn-secondary button-first"
+                    name="first"
+                    value="First"
+                  />
+                </div>
+
+                <div class="clearfix"></div>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="2" class="nav-item">
+              <a ngbNavLink class="nav-link pt-2 pb-2">
+                <span class="number">2</span>
+                <span class="d-none d-sm-inline">Profile</span>
+              </a>
+              <ng-template ngbNavContent>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="row mb-3">
+                      <label class="col-md-3 col-form-label" for="name2">
+                        First name</label
+                      >
+                      <div class="col-md-9">
+                        <input
+                          type="text"
+                          id="name2"
+                          name="name2"
+                          class="form-control"
+                          value="Francis"
+                        />
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label class="col-md-3 col-form-label" for="surname2">
+                        Last name</label
+                      >
+                      <div class="col-md-9">
+                        <input
+                          type="text"
+                          id="surname2"
+                          name="surname2"
+                          class="form-control"
+                          value="Brinkman"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="row mb-3">
+                      <label class="col-md-3 col-form-label" for="email2"
+                        >Email</label
+                      >
+                      <div class="col-md-9">
+                        <input
+                          type="email"
+                          id="email2"
+                          name="email2"
+                          class="form-control"
+                          value="cory1979@hotmail.com"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="float-end">
+                  <input
+                    type="button"
+                    (click)="activeWizard2 = activeWizard2 + 1"
+                    class="btn btn-success button-next"
+                    name="next"
+                    value="Next"
+                  />
+                  <input
+                    type="button"
+                    (click)="activeWizard2 = 3"
+                    class="btn btn-secondary button-last ms-1"
+                    name="last"
+                    value="Last"
+                  />
+                </div>
+                <div class="float-start">
+                  <input
+                    type="button"
+                    (click)="activeWizard2 = 1"
+                    class="btn btn-secondary button-first"
+                    name="first"
+                    value="First"
+                  />
+                  <input
+                    type="button"
+                    (click)="activeWizard2 = activeWizard2 - 1"
+                    class="btn btn-danger button-previous ms-1"
+                    name="previous"
+                    value="Previous"
+                  />
+                </div>
+
+                <div class="clearfix"></div>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="3" class="nav-item">
+              <a ngbNavLink class="nav-link pt-2 pb-2">
+                <span class="number">3</span>
+                <span class="d-none d-sm-inline">Finish</span>
+              </a>
+              <ng-template ngbNavContent>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="text-center">
+                      <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
+                      <h3 class="mt-0">Thank you !</h3>
+
+                      <p class="w-75 mb-2 mx-auto">
+                        Quisque nec turpis at urna dictum luctus. Suspendisse
+                        convallis dignissim eros at volutpat. In egestas mattis
+                        dui. Aliquam mattis dictum aliquet.
+                      </p>
+
+                      <div class="mb-3">
+                        <div class="form-check d-inline-block">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value=""
+                            id="terms-conditions-buttonswizard"
+                          />
+                          <label
+                            class="form-check-label"
+                            for="terms-conditions-buttonswizard"
+                          >
+                            I agree with the Terms and Conditions
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="float-end">
+                  <input
+                    type="button"
+                    class="btn btn-success button-next"
+                    name="next"
+                    value="Next"
+                  />
+                  <input
+                    type="button"
+                    class="btn btn-secondary button-last ms-1"
+                    name="last"
+                    value="Last"
+                  />
+                </div>
+                <div class="float-start">
+                  <input
+                    type="button"
+                    (click)="activeWizard2 = 1"
+                    class="btn btn-secondary button-first"
+                    name="first"
+                    value="First"
+                  />
+                  <input
+                    type="button"
+                    (click)="activeWizard2 = activeWizard2 - 1"
+                    class="btn btn-danger button-previous ms-1"
+                    name="previous"
+                    value="Previous"
+                  />
+                </div>
+
+                <div class="clearfix"></div>
+              </ng-template>
+            </li>
+          </ul>
+
+          <div [ngbNavOutlet]="btnWizard" class="tab-content mb-0 b-0"></div>
+        </div>
+        <!-- end #btnwizard-->
+      </div>
+    </div>
+    <!-- end card-->
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">Wizard With Progress Bar</h4>
+
+        <form [formGroup]="progressWizardForm" #progressForm="ngForm">
+          <div id="progressbarwizard">
+            <ul
+              ngbNav
+              #progressWizard="ngbNav"
+              [(activeId)]="activeWizard3"
+              class="nav nav-pills nav-justified form-wizard-header mb-3"
+            >
+              <li [ngbNavItem]="1" class="nav-item">
+                <a ngbNavLink class="nav-link">
+                  <span class="number">1</span>
+                  <span class="d-none d-sm-inline">Account</span>
+                </a>
+                <ng-template ngbNavContent>
+                  <p>
+                    <ngb-progressbar
+                      type="success"
+                      [value]="33.3"
+                      [striped]="true"
+                      [animated]="true"
+                      class="mb-3"
+                      height="7px"
+                    ></ngb-progressbar>
+                  </p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="userName1"
+                          >User name</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="text"
+                            class="form-control"
+                            id="userName1"
+                            name="userName1"
+                            value="Coderthemes"
+                          />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="password1">
+                          Password</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="password"
+                            id="password1"
+                            name="password1"
+                            class="form-control"
+                            value="123456789"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="confirm1"
+                          >Re Password</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="password"
+                            id="confirm1"
+                            name="confirm1"
+                            class="form-control"
+                            value="123456789"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul class="pager wizard mb-0 list-inline text-end mt-2">
+                    <li class="next list-inline-item">
+                      <button
+                        type="button"
+                        (click)="activeWizard3 = activeWizard3 + 1"
+                        class="btn btn-success"
+                      >
+                        Add More Info <i class="mdi mdi-arrow-right ms-1"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="2" class="nav-item">
+                <a ngbNavLink class="nav-link">
+                  <span class="number">2</span>
+                  <span class="d-none d-sm-inline">Profile</span>
+                </a>
+                <ng-template ngbNavContent>
+                  <p>
+                    <ngb-progressbar
+                      type="success"
+                      [value]="66.6"
+                      [striped]="true"
+                      [animated]="true"
+                      class="mb-3"
+                      height="7px"
+                    >
+                    </ngb-progressbar>
+                  </p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="name1">
+                          First name</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="text"
+                            id="name1"
+                            name="name1"
+                            class="form-control"
+                            value="Francis"
+                          />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="surname1">
+                          Last name</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="text"
+                            id="surname1"
+                            name="surname1"
+                            class="form-control"
+                            value="Brinkman"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="email1"
+                          >Email</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="email"
+                            id="email1"
+                            name="email1"
+                            class="form-control"
+                            value="cory1979@hotmail.com"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul class="pager wizard mb-0 list-inline mt-2">
+                    <li class="previous list-inline-item">
+                      <button
+                        type="button"
+                        (click)="activeWizard3 = activeWizard3 - 1"
+                        class="btn btn-light"
+                      >
+                        <i class="mdi mdi-arrow-left me-1"></i> Back to Account
+                      </button>
+                    </li>
+                    <li class="next list-inline-item float-end">
+                      <button
+                        type="button"
+                        (click)="activeWizard3 = activeWizard3 + 1"
+                        class="btn btn-success"
+                      >
+                        Add More Info <i class="mdi mdi-arrow-right ms-1"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </ng-template>
+              </li>
+              <li [ngbNavItem]="3" class="nav-item">
+                <a ngbNavLink class="nav-link">
+                  <span class="number">3</span>
+                  <span class="d-none d-sm-inline">Finish</span>
+                </a>
+                <ng-template ngbNavContent>
+                  <p>
+                    <ngb-progressbar
+                      type="success"
+                      [value]="100"
+                      [striped]="true"
+                      [animated]="true"
+                      class="mb-3"
+                      height="7px"
+                    >
+                    </ngb-progressbar>
+                  </p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="text-center">
+                        <h2 class="mt-0"><i class="mdi mdi-check-all"></i></h2>
+                        <h3 class="mt-0">Thank you !</h3>
+
+                        <p class="w-75 mb-2 mx-auto">
+                          Quisque nec turpis at urna dictum luctus. Suspendisse
+                          convallis dignissim eros at volutpat. In egestas
+                          mattis dui. Aliquam mattis dictum aliquet.
+                        </p>
+
+                        <div class="mb-3">
+                          <div class="form-check d-inline-block">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              value=""
+                              id="terms-conditions-progresswizard"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="terms-conditions-progresswizard"
+                            >
+                              I agree with the Terms and Conditions
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul class="pager wizard mb-0 list-inline mt-2">
+                    <li class="previous list-inline-item">
+                      <button
+                        type="button"
+                        (click)="activeWizard3 = activeWizard3 - 1"
+                        class="btn btn-light"
+                      >
+                        <i class="mdi mdi-arrow-left me-1"></i> Back to Profile
+                      </button>
+                    </li>
+                    <li class="next list-inline-item float-end">
+                      <button type="button" class="btn btn-primary">
+                        Submit
+                      </button>
+                    </li>
+                  </ul>
+                </ng-template>
+              </li>
+            </ul>
+
+            <div
+              [ngbNavOutlet]="progressWizard"
+              class="tab-content b-0 pt-0 mb-0"
+            ></div>
+          </div>
+          <!-- end #progressbarwizard-->
+        </form>
+      </div>
+    </div>
+    <!-- end card-->
+  </div>
+
+  <div class="col-xl-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">Wizard With Form Validation</h4>
+
+        <div id="rootwizard">
+          <ul
+            ngbNav
+            #validationWizard="ngbNav"
+            [(activeId)]="activeWizard4"
+            class="nav nav-pills nav-justified form-wizard-header mb-3"
+          >
+            <li
+              [ngbNavItem]="1"
+              class="nav-item"
+              data-target-form="#accountForm"
+            >
+              <a ngbNavLink class="nav-link">
+                <span class="number">1</span>
+                <span class="d-none d-sm-inline">Account</span>
+              </a>
+              <ng-template ngbNavContent>
+                <form
+                  [formGroup]="accountForm"
+                  #accountWizard="ngForm"
+                  (ngSubmit)="gotoNext()"
+                  class="form-horizontal"
+                >
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="userName3"
+                          >User name</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="text"
+                            class="form-control"
+                            formControlName="userName"
+                            [ngClass]="{
+                              'is-invalid':
+                                accountWizard.submitted &&
+                                form1['userName'].invalid,
+                            }"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="password3">
+                          Password</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="password"
+                            id="password3"
+                            formControlName="password"
+                            class="form-control"
+                            [ngClass]="{
+                              'is-invalid':
+                                accountWizard.submitted &&
+                                form1['password'].invalid,
+                            }"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="confirm3"
+                          >Re Password</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="password"
+                            id="confirm3"
+                            formControlName="rePassword"
+                            [ngClass]="{
+                              'is-invalid':
+                                accountWizard.submitted &&
+                                form1['rePassword'].invalid,
+                            }"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul class="pager wizard mb-0 list-inline text-end mt-2">
+                    <li class="next list-inline-item">
+                      <button type="submit" class="btn btn-success">
+                        Submit <i class="mdi mdi-arrow-right ms-1"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </form>
+              </ng-template>
+            </li>
+            <li
+              [ngbNavItem]="2"
+              class="nav-item"
+              data-target-form="#profileForm"
+            >
+              <a ngbNavLink class="nav-link">
+                <span class="number">2</span>
+                <span class="d-none d-sm-inline">Profile</span>
+              </a>
+              <ng-template ngbNavContent>
+                <form
+                  [formGroup]="profileForm"
+                  #profileWizard="ngForm"
+                  (ngSubmit)="gotoNext()"
+                  class="form-horizontal"
+                >
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="name3">
+                          First name</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="text"
+                            id="name3"
+                            formControlName="firstName"
+                            [ngClass]="{
+                              'is-invalid':
+                                profileWizard.submitted &&
+                                form2['firstName'].invalid,
+                            }"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="surname3">
+                          Last name</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="text"
+                            id="surname3"
+                            formControlName="lastName"
+                            [ngClass]="{
+                              'is-invalid':
+                                profileWizard.submitted &&
+                                form2['lastName'].invalid,
+                            }"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div class="row mb-3">
+                        <label class="col-md-3 col-form-label" for="email3"
+                          >Email</label
+                        >
+                        <div class="col-md-9">
+                          <input
+                            type="email"
+                            id="email3"
+                            formControlName="email"
+                            [ngClass]="{
+                              'is-invalid':
+                                profileWizard.submitted &&
+                                form2['email'].invalid,
+                            }"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul class="pager wizard mb-0 list-inline mt-2">
+                    <li class="previous list-inline-item">
+                      <button
+                        type="button"
+                        (click)="activeWizard4 = activeWizard4 - 1"
+                        class="btn btn-light"
+                      >
+                        <i class="mdi mdi-arrow-left me-1"></i> Back to Account
+                      </button>
+                    </li>
+                    <li class="next list-inline-item float-end">
+                      <button type="submit" class="btn btn-success">
+                        Add More Info <i class="mdi mdi-arrow-right ms-1"></i>
+                      </button>
+                    </li>
+                  </ul>
+                </form>
+              </ng-template>
+            </li>
+            <li [ngbNavItem]="3" class="nav-item" data-target-form="#otherForm">
+              <a ngbNavLink class="nav-link">
+                <span class="number">3</span>
+                <span class="d-none d-sm-inline">Finish</span>
+              </a>
+              <ng-template ngbNavContent>
+                <form
+                  [formGroup]="validationWizardForm"
+                  #validationWizard="ngForm"
+                  class="form-horizontal"
+                >
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="text-center">
+                        <h2 class="mt-0">
+                          <i class="mdi mdi-check-all"></i>
+                        </h2>
+                        <h3 class="mt-0">Thank you !</h3>
+
+                        <p class="w-75 mb-2 mx-auto">
+                          Quisque nec turpis at urna dictum luctus. Suspendisse
+                          convallis dignissim eros at volutpat. In egestas
+                          mattis dui. Aliquam mattis dictum aliquet.
+                        </p>
+
+                        <div class="mb-3">
+                          <div class="form-check d-inline-block">
+                            <input
+                              class="form-check-input"
+                              type="checkbox"
+                              formControlName="acceptTerms"
+                              [ngClass]="{
+                                'is-invalid':
+                                  validationWizard.submitted &&
+                                  form3['acceptTerms'].invalid,
+                              }"
+                              value=""
+                              id="terms-conditions-validationwizard"
+                            />
+                            <label
+                              class="form-check-label"
+                              for="terms-conditions-validationwizard"
+                            >
+                              I agree with the Terms and Conditions
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul class="pager wizard mb-0 list-inline mt-2">
+                    <li class="previous list-inline-item">
+                      <button
+                        type="button"
+                        (click)="activeWizard4 = activeWizard4 - 1"
+                        class="btn btn-light"
+                      >
+                        <i class="mdi mdi-arrow-left me-1"></i> Back to Profile
+                      </button>
+                    </li>
+                    <li class="next list-inline-item float-end">
+                      <button type="submit" class="btn btn-primary">
+                        Submit
+                      </button>
+                    </li>
+                  </ul>
+                </form>
+              </ng-template>
+            </li>
+          </ul>
+
+          <div
+            [ngbNavOutlet]="validationWizard"
+            class="tab-content mb-0 b-0"
+          ></div>
+        </div>
+        <!-- end #rootwizard-->
+      </div>
+    </div>
+    <!-- end card-->
+  </div>
+</div>

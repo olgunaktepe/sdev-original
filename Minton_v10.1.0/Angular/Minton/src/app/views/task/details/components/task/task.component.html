@@ -1,0 +1,141 @@
+<div class="card">
+  <div class="card-body">
+    <div ngbDropdown class="dropdown float-end">
+      <a
+        ngbDropdownToggle
+        class="dropdown-toggle arrow-none text-muted"
+        role="button"
+      >
+        <i class="mdi mdi-dots-horizontal font-18"></i>
+      </a>
+
+      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">
+          <i class="mdi mdi-attachment me-1"></i>Attachment
+        </a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">
+          <i class="mdi mdi-pencil-outline me-1"></i>Edit
+        </a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">
+          <i class="mdi mdi-content-copy me-1"></i>Mark as Duplicate
+        </a>
+        <div class="dropdown-divider"></div>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item text-danger">
+          <i class="mdi mdi-delete-outline me-1"></i>Delete
+        </a>
+      </div>
+    </div>
+    <p class="text-primary">{{ task.id }}</p>
+    <h4 class="mb-1">{{ task.title }}</h4>
+    <p class="text-muted mb-1">{{ task.description }}</p>
+
+    <div class="text-muted">
+      <div class="row">
+        <div class="col-lg-4 col-sm-6">
+          <div class="d-flex align-items-start mt-3">
+            <div class="me-2 align-self-center">
+              <i class="ri-hashtag h2 m-0 text-muted"></i>
+            </div>
+            <div class="flex-1 overflow-hidden">
+              <p class="mb-1">Task ID</p>
+              <h5 class="mt-0 text-truncate">
+                {{ task.id }}
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <div class="d-flex align-items-start mt-3">
+            <div class="me-2 align-self-center">
+              <img
+                [src]="task.assignee_avatar"
+                alt=""
+                class="avatar-sm rounded-circle"
+              />
+            </div>
+            <div class="flex-1 overflow-hidden">
+              <p class="mb-1">Assign to</p>
+              <h5 class="mt-0 text-truncate">
+                {{ task.assigned_to }}
+              </h5>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-sm-6">
+          <div class="d-flex align-items-start mt-3">
+            <div class="me-2 align-self-center">
+              <i class="ri-calendar-event-line h2 m-0 text-muted"></i>
+            </div>
+            <div class="flex-1 overflow-hidden">
+              <p class="mb-1">Due Date</p>
+              <h5 class="mt-0 text-truncate">
+                {{ task.due_date }}
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-4">
+      <div>
+        <h5>Overview:</h5>
+        <p class="text-muted">
+          This is a wider card with supporting text below as a natural lead-in
+          to additional content. This content is a little bit longer. Some quick
+          example text to build on the card title and make up the bulk of the
+          card's content. Some quick example text to build on the card title and
+          make up.
+        </p>
+        <div class="mt-3">
+          <h5>Tags :</h5>
+          <div>
+            <a
+              href="javascript:void(0);"
+              class="badge badge-soft-primary p-1 m-1"
+              >Photoshop</a
+            >
+            <a
+              href="javascript:void(0);"
+              class="badge badge-soft-primary p-1 m-1"
+              >Html</a
+            >
+            <a
+              href="javascript:void(0);"
+              class="badge badge-soft-primary p-1 m-1"
+              >Css</a
+            >
+            <a
+              href="javascript:void(0);"
+              class="badge badge-soft-primary p-1 m-1"
+              >Bootstrap</a
+            >
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <h5>Checklists/Sub-tasks</h5>
+        @for (checklist of task.checklists; track $index) {
+          <div class="form-check mt-1">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              [id]="'checklistcheck' + checklist.id"
+            />
+            <label
+              class="form-check-label strikethrough"
+              [for]="'checklistcheck' + checklist.id"
+            >
+              {{ checklist.title }}
+            </label>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

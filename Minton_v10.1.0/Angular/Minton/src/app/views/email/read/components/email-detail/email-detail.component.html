@@ -1,0 +1,105 @@
+<div class="mt-4">
+  <h5 class="font-18">{{ email.subject }}</h5>
+
+  <hr />
+
+  <div class="d-flex align-items-start mb-3 mt-1">
+    <img
+      class="me-2 rounded-circle"
+      [src]="email.avatar"
+      alt="placeholder image"
+      height="32"
+    />
+    <div class="flex-1">
+      <small class="float-end">{{ email.recieved_on }}</small>
+      <h6 class="m-0 font-14">{{ email.from_name }}</h6>
+      <small class="text-muted">From: {{ email.from_email }}</small>
+    </div>
+  </div>
+
+  <p>Hi {{ credits.name }}!</p>
+  <p>
+    Clicking ‘Order Service’ on the right-hand side of the above page will
+    present you with an order page. This service has the following Briefing
+    Guidelines that will need to be filled before placing your order:
+  </p>
+  <ol>
+    <li>Your design preferences (Color, style, shapes, Fonts, others)</li>
+    <li>Tell me, why is your item different?</li>
+    <li>
+      Do you want to bring up a specific feature of your item? If yes, please
+      tell me
+    </li>
+    <li>
+      Do you have any preference or specific thing you would like to change or
+      improve on your item page?
+    </li>
+    <li>
+      Do you want to include your item's or your provider's logo on the page? if
+      yes, please send it to me in vector format (Ai or EPS)
+    </li>
+    <li>Please provide me with the copy or text to display</li>
+  </ol>
+
+  <p>
+    Filling in this form with the above information will ensure that they will
+    be able to start work quickly.
+  </p>
+  <p>
+    You can complete your order by putting your coupon code into the Promotional
+    code box and clicking ‘Apply Coupon’.
+  </p>
+  <p>
+    <b>Best,</b> <br />
+    Graphic Studio
+  </p>
+  <hr />
+
+  <h5 class="mb-3">Attachments</h5>
+
+  <div class="row">
+    @for (attach of email.attachments; track $index) {
+      <div class="col-xl-4">
+        <div class="card mb-1 shadow-none border">
+          <div class="p-2">
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <div class="avatar-sm">
+                  <span
+                    class="avatar-title bg-soft-primary text-primary rounded"
+                  >
+                    {{ attach.ext }}
+                  </span>
+                </div>
+              </div>
+              <div class="col ps-0">
+                <a href="javascript:void(0);" class="text-muted fw-semibold">{{
+                  attach.name
+                }}</a>
+                <p class="mb-0">{{ attach.size }}</p>
+              </div>
+              <div class="col-auto">
+                <a
+                  href="javascript:void(0);"
+                  class="btn btn-link btn-lg text-muted"
+                >
+                  <i class="ri-download-2-line"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+  <!-- end row-->
+
+  <div class="mt-5">
+    <a href="javascript:void(0);" class="btn btn-secondary me-2"
+      ><i class="mdi mdi-reply me-1"></i> Reply</a
+    >
+    <a href="javascript:void(0);" class="btn btn-light"
+      >Forward <i class="mdi mdi-forward ms-1"></i
+    ></a>
+  </div>
+</div>

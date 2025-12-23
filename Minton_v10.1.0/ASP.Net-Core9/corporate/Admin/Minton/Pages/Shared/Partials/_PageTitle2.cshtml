@@ -1,0 +1,21 @@
+@{
+    var title = ViewBag.Title;
+    var subtitle = ViewBag.Subtitle;
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box page-title-box-alt">
+            <h4 class="page-title">@title</h4>
+            <div class="page-title-right">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">@subtitle</a></li>
+                        <li class="breadcrumb-item active">@title</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

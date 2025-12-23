@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Setup | Minton - Bootstrap 5 Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      content="A fully featured admin theme which can be used to build CRM, CMS, etc."
+      name="description"
+    />
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico" />
+
+    <!-- App css -->
+    <link
+      href="assets/css/bootstrap.min.css"
+      rel="stylesheet"
+      type="text/css"
+      id="bs-default-stylesheet"
+    />
+    <link
+      href="assets/css/app.min.css"
+      rel="stylesheet"
+      type="text/css"
+      id="app-default-stylesheet"
+    />
+
+    <!-- icons -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body class="loading">
+    <!-- Begin page -->
+    <div id="wrapper">
+      <!-- ========== Left Sidebar Start ========== -->
+      <div class="left-side-menu">
+        <!-- LOGO -->
+        <div class="logo-box">
+          <a href="index.html" class="logo logo-light">
+            <span class="logo-sm">
+              <img src="assets/images/logo-sm.png" alt="" height="24" />
+            </span>
+            <span class="logo-lg">
+              <img src="assets/images/logo-light.png" alt="" height="20" />
+            </span>
+          </a>
+        </div>
+
+        <div class="h-100" data-simplebar>
+          <!--- Sidemenu -->
+          <div id="sidebar-menu">
+            <ul id="side-menu">
+              <li class="menu-title">Docs</li>
+
+              <li>
+                <a href="index.html">
+                  <i class="ri-honour-line"></i>
+                  <span> Introduction </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="setup.html">
+                  <i class="ri-tools-fill"></i>
+                  <span> Setup </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="customization.html">
+                  <i class="ri-paint-line"></i>
+                  <span> Customization </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="plugins-uses.html">
+                  <i class="ri-artboard-2-line"></i>
+                  <span> How to use plugins </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="rtl.html">
+                  <i class="ri-global-line"></i>
+                  <span> RTL Version </span>
+                </a>
+              </li>
+
+              <li>
+                <a href="changelog.html">
+                  <i class="ri-book-open-line"></i>
+                  <span> Changelog </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <!-- End Sidebar -->
+
+          <div class="clearfix"></div>
+        </div>
+        <!-- Sidebar -left -->
+      </div>
+      <!-- Left Sidebar End -->
+
+      <!-- ============================================================== -->
+      <!-- Start Page Content here -->
+      <!-- ============================================================== -->
+
+      <div class="content-page">
+        <div class="content">
+          <!-- Topbar Start -->
+          <div class="navbar-custom">
+            <div class="container-fluid">
+              <ul class="list-unstyled topnav-menu float-right mb-0">
+                <li class="d-none d-sm-inline-block">
+                  <div class="nav-link">
+                    <span class="badge badge-danger font-14">v7.2.0</span>
+                  </div>
+                </li>
+              </ul>
+
+              <!-- LOGO -->
+              <div class="logo-box">
+                <a href="index.html" class="logo logo-light">
+                  <span class="logo-sm">
+                    <img src="assets/images/logo-sm.png" alt="" height="24" />
+                  </span>
+                  <span class="logo-lg">
+                    <img
+                      src="assets/images/logo-light.png"
+                      alt=""
+                      height="20"
+                    />
+                  </span>
+                </a>
+              </div>
+
+              <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+                <li>
+                  <button class="button-menu-mobile waves-effect waves-light">
+                    <i class="fe-menu"></i>
+                  </button>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+          <!-- end Topbar -->
+
+          <!-- Start Content-->
+          <div class="container-fluid">
+            <div class="card">
+              <div class="card-body">
+
+                  <p>
+                      We utilize
+                      <a href="https://gulpjs.com/" target="_blank">Gulp</a> to
+                      automate our build flow, allowing for complete automation
+                      of our development workflows. Gulp is a powerful toolkit
+                      designed to help developers eliminate time-consuming
+                      tasks, allowing them to focus on what really matters:
+                      building great products. If you're not familiar with Gulp,
+                      you can learn more about it
+                      <a href="https://gulpjs.com/" target="_blank">here</a>.
+                  </p>
+                  <h4 class="mt-3">Prerequisites</h4>
+                  <p>
+                      To get started with Minton, please follow the steps below
+                      to install and set up all the necessary prerequisites:
+                  </p>
+                  <ul>
+                      <li class="mb-2">
+                          <h5>Nodejs</h5>
+                          <p class="mb-0">
+                              Make sure to have the Node.js installed & running in your computer. If you
+                              already have installed Node on your computer, you can skip this step if your
+                              existing node version is greater than 16.
+                          
+                          <a href="https://nodejs.org/" target="_blank">Download Node.js</a></p>
+                      </li>
+                      <li class="mb-2">
+                          <h5>Gulp</h5>
+                          <p class="mb-0">
+                              Make sure to have the Gulp installed & running in your computer. If you already
+                              have installed gulp on run command npm install -g gulp from your terminal.
+                          
+                          <a href="https://gulpjs.com/" target="_blank">Download gulp</a></p>
+                      </li>
+                      <li class="mb-2">
+                          <h5>PHP</h5>
+                          <p class="mb-0">
+
+                              Make sure to have latest version of PHP
+                              installed & running on your computer. If you already have installed PHP on your
+                              computer, you can skip this step.
+                          <a href="https://www.php.net/" target="_blank">Download PHP</a></p>
+                      </li>
+                      <li>
+                          <h5>Xampp (For Windows)</h5>
+                          <p class="mb-0">
+
+                              Xampp (For Windows)
+                              Make sure to have the latest version of xampp
+                              or installed & running on your computer. If you already have installed Xampp on
+                              your computer, you can skip this step.
+                          </p>
+                          <a href="https://www.apachefriends.org/" target="_blank"> Download xampp</a>
+                      </li>
+                  </ul>
+                  
+                  <h4 class="mt-4">Installation: For Windows OS</h4>
+                  <p class="ms-2">
+                      1. Unzip your project and place it inside the
+                      <code>xampp/htdocs</code>folder
+                  </p class="ms-2">
+                  <p class="ms-2">
+                      2. Changes terminal's directory to move inside the <code>src</code> directory.
+                  </p>
+                  <p class="ms-2">
+                      3. You can use any following package manager: Bun, Yarn or NPM
+                  </p>
+                  <div class="ms-3 mb-3">
+                      <h5 class="mt-3">
+                          Bun
+                      </h5>
+                      <p>
+                          If you don't have <strong>bun</strong> installed on
+                          your PC, use the
+                          <code>npm i
+                                  -g bun</code> or <code>sudo npm i -g
+                                  bun </code> to install
+                      </p>
+                      <table class="table table-bordered m-0">
+                          <thead>
+                              <tr>
+                                  <th style="width:20%"><i class="ti-file"></i> Command</th>
+                                  <th>Description</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td><code>bun i</code></td>
+                                  <td> This would install all the required dependencies in the
+                                      <code>node_modules</code>
+                                      folder.
+                                  </td>
+                              </tr>
+
+                              <tr>
+                                  <td><code> gulp</code></td>
+                                  <td>This would compile all the resources in
+                                      assets
+                                      folder.</td>
+                              </tr>
+                              <tr>
+                                  <td><code> gulp build</code></td>
+                                  <td> It bundles with production mode. Your app is now ready to be deployed.
+                                  </td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+                      <h5 class="mt-3">
+                          Yarn
+                      </h5>
+                      <p>
+                          If you don't have <strong>yarn</strong> installed on
+                          your PC, use the
+                          <code>npm i
+                                  -g yarn</code> or <code>sudo npm i -g
+                                  yarn </code> to install
+                      </p>
+                      <table class="table table-bordered m-0">
+                          <thead>
+                              <tr>
+                                  <th style="width:20%"><i class="ti-file"></i> Command</th>
+                                  <th>Description</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td><code>yarn</code></td>
+                                  <td> This would install all the required dependencies in the
+                                      <code>node_modules</code>
+                                      folder.
+                                  </td>
+                              </tr>
+
+                              <tr>
+                                  <td><code> gulp</code></td>
+                                  <td>This would compile all the resources in
+                                      assets
+                                      folder.</td>
+                              </tr>
+                              <tr>
+                                  <td><code> gulp build</code></td>
+                                  <td> It bundles with production mode. Your app is now ready to be deployed.
+                                  </td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+                      <h5 class="mt-3">
+                          NPM
+                      </h5>
+                      <p>
+                          <strong>npm</strong>
+                          comes preinstalled when you install Nodejs
+                      </p>
+                      <table class="table table-bordered m-0">
+                          <thead>
+                              <tr>
+                                  <th style="width:20%"><i class="ti-file"></i> Command</th>
+                                  <th>Description</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <tr>
+                                  <td><code>npm  i </code></td>
+                                  <td> This would install all the required dependencies in the
+                                      <code>node_modules</code>
+                                      folder.
+                                  </td>
+                              </tr>
+
+                              <tr>
+                                  <td><code> gulp</code></td>
+                                  <td>This would compile all the resources in
+                                      assets
+                                      folder.</td>
+                              </tr>
+                              <tr>
+                                  <td><code> gulp build</code></td>
+                                  <td> It bundles with production mode. Your app is now ready to be deployed.
+                                  </td>
+                              </tr>
+
+                          </tbody>
+                      </table>
+                  </div>
+
+                  <p class="ms-2">
+                      4. Start the Apache server from Xampp panel.
+                  </p>
+                  <p class="ms-2">
+                      5. Visit <code>localhost/project_name/src</code> after running Apache server locally.
+                  </p>
+                  <h4 class="mt-4">Installation: For Linux or macOS</h4>
+                  <p>
+
+                      You can run this app using any following package manager: Bun, Yarn or NPM
+                  </p>
+                  <h5 class="mt-3">
+                      Bun
+                  </h5>
+                  <p>
+                      If you don't have <strong>bun</strong> installed on
+                      your PC, use the
+                      <code>npm i
+                              -g bun</code> or <code>sudo npm i -g
+                              bun </code> to install
+                  </p>
+                  <table class="table table-bordered m-0">
+                      <thead>
+                          <tr>
+                              <th style="width:20%"><i class="ti-file"></i> Command</th>
+                              <th>Description</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td><code>bun i</code></td>
+                              <td> This would install all the required dependencies in the
+                                  <code>node_modules</code>
+                                  folder.
+                              </td>
+                          </tr>
+
+                          <tr>
+                              <td><code> gulp</code></td>
+                              <td>This would compile all the resources in
+                                  assets
+                                  folder.</td>
+                          </tr>
+                          <tr>
+                              <td><code> cd src</code></td>
+                              <td> Changes terminal's directory to move inside the src directory.</td>
+                          </tr>
+                          <tr>
+                              <td><code> php -S 127.0.0.1:8000</code></td>
+                              <td> Starts the PHP server on 127.0.0.1:8000 address</td>
+                          </tr>
+                          <tr>
+                              <td><code> gulp build</code></td>
+                              <td> It bundles with production mode. Your app is now ready to be deployed.</td>
+                          </tr>
+
+
+                      </tbody>
+                  </table>
+                  <h5 class="mt-3">
+                      Yarn
+                  </h5>
+                  <p>
+                      If you don't have <strong>yarn</strong> installed on
+                      your PC, use the
+                      <code>npm i
+                              -g yarn</code> or <code>sudo npm i -g
+                              yarn </code> to install
+                  </p>
+                  <table class="table table-bordered m-0">
+                      <thead>
+                          <tr>
+                              <th style="width:20%"><i class="ti-file"></i> Command</th>
+                              <th>Description</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td><code>yarn</code></td>
+                              <td> This would install all the required dependencies in the
+                                  <code>node_modules</code>
+                                  folder.
+                              </td>
+                          </tr>
+
+                          <tr>
+                              <td><code> gulp</code></td>
+                              <td>This would compile all the resources in
+                                  assets
+                                  folder.</td>
+                          </tr>
+                          <tr>
+                              <td><code> cd src</code></td>
+                              <td> Changes terminal's directory to move inside the src directory.</td>
+                          </tr>
+                          <tr>
+                              <td><code> php -S 127.0.0.1:8000</code></td>
+                              <td> Starts the PHP server on 127.0.0.1:8000 address</td>
+                          </tr>
+                          <tr>
+                              <td><code> gulp build</code></td>
+                              <td> It bundles with production mode. Your app is now ready to be deployed.</td>
+                          </tr>
+
+
+                      </tbody>
+                  </table>
+                  <h5 class="mt-3">
+                      NPM
+                  </h5>
+                  <p>
+                      <strong>npm</strong>
+                      comes preinstalled when you install Nodejs
+                  </p>
+                  <table class="table table-bordered m-0">
+                      <thead>
+                          <tr>
+                              <th style="width:20%"><i class="ti-file"></i> Command</th>
+                              <th>Description</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td><code>npm i</code></td>
+                              <td> This would install all the required dependencies in the
+                                  <code>node_modules</code>
+                                  folder.
+                              </td>
+                          </tr>
+
+                          <tr>
+                              <td><code> gulp</code></td>
+                              <td>This would compile all the resources in
+                                  assets
+                                  folder.</td>
+                          </tr>
+                          <tr>
+                              <td><code> cd src</code></td>
+                              <td> Changes terminal's directory to move inside the src directory.</td>
+                          </tr>
+                          <tr>
+                              <td><code> php -S 127.0.0.1:8000</code></td>
+                              <td> Starts the PHP server on 127.0.0.1:8000 address</td>
+                          </tr>
+                          <tr>
+                              <td><code> gulp build</code></td>
+                              <td> It bundles with production mode. Your app is now ready to be deployed.</td>
+                          </tr>
+
+
+                      </tbody>
+                  </table>
+
+              </div>
+          </div>
+          </div>
+          <!-- container -->
+        </div>
+        <!-- content -->
+
+        <!-- Footer Start -->
+        <footer class="footer">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-6">
+                <script>
+                  document.write(new Date().getFullYear());
+                </script>
+                &copy; Minton theme by
+                <a href="https://coderthemes.com/" target="_blank"
+                  >Coderthemes</a
+                >
+              </div>
+              <div class="col-md-6">
+                <div class="text-md-right footer-links d-none d-sm-block">
+                  <a href="https://coderthemes.com/">About Us</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </footer>
+        <!-- end Footer -->
+      </div>
+
+      <!-- ============================================================== -->
+      <!-- End Page content -->
+      <!-- ============================================================== -->
+    </div>
+    <!-- END wrapper -->
+
+    <!-- Vendor js -->
+    <script src="assets/js/vendor.min.js"></script>
+
+    <!-- App js -->
+    <script src="assets/js/app.min.js"></script>
+  </body>
+</html>

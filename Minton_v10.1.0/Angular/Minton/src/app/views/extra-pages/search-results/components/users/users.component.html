@@ -1,0 +1,40 @@
+@for (item of userList; track $index) {
+  <div class="search-item">
+    <div class="d-flex align-self-start">
+      <img
+        class="d-flex me-3 rounded-circle"
+        [src]="item.avatar"
+        alt="Generic placeholder image"
+        height="54"
+      />
+      <div class="flex-1">
+        <h5 class="mt-0">
+          <a href="javascript:void(0);" class="text-dark">{{
+            item.userName
+          }}</a>
+        </h5>
+        <p class="font-13">
+          <b>Email:</b>
+          <span
+            ><a href="javascript:void(0);" class="text-muted">
+              {{ item.email }}</a
+            ></span
+          >
+        </p>
+        <p class="mb-0 font-13">
+          <b>Bio:</b>
+          <br />
+          <span class="text-muted">{{ item.bio }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+}
+
+<ngb-pagination
+  [collectionSize]="50"
+  [page]="2"
+  class="pagination justify-content-end pagination-rounded mt-0"
+></ngb-pagination>
+
+<div class="clearfix"></div>

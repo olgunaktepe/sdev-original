@@ -1,0 +1,99 @@
+<app-page-title title="FAQs" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-12">
+    <div class="text-center">
+      <i class="h1 mdi mdi-comment-multiple-outline text-muted"></i>
+      <h3 class="mb-3">Frequently Asked Questions</h3>
+      <p class="text-muted">
+        Nisi praesentium similique totam odio obcaecati, reprehenderit,
+        dignissimos rem temporibus ea inventore alias!<br />
+        Beatae animi nemo ea tempora, temporibus laborum facilis ut!
+      </p>
+
+      <div class="d-flex flex-wrap justify-content-center gap-2">
+        <button
+          type="button"
+          class="btn btn-success waves-effect waves-light mt-2"
+        >
+          <i class="mdi mdi-email-outline me-1"></i> Email us your question
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary waves-effect waves-light mt-2"
+        >
+          <i class="mdi mdi-twitter me-1"></i> Send us a tweet
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row mt-4">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <ul ngbNav #nav="ngbNav" class="nav nav-pills navtab-bg">
+          <li ngbNavItem class="nav-item">
+            <a ngbNavLink class="nav-link px-3 py-2">
+              <span class="me-1"
+                ><i class="mdi mdi-help-circle-outline"></i
+              ></span>
+              <span class="d-none d-sm-inline-block">General Questions</span>
+            </a>
+            <ng-template ngbNavContent>
+              <ng-container
+                *ngTemplateOutlet="faqData; context: { item: faqList }"
+              ></ng-container>
+            </ng-template>
+          </li>
+          <li ngbNavItem class="nav-item">
+            <a ngbNavLink class="nav-link px-3 py-2">
+              <span class="me-1"><i class="mdi mdi-shield-half-full"></i></span>
+              <span class="d-none d-sm-inline-block">Privacy Policy</span>
+            </a>
+            <ng-template ngbNavContent>
+              <ng-container
+                *ngTemplateOutlet="faqData; context: { item: privacyFaqs }"
+              ></ng-container>
+            </ng-template>
+          </li>
+          <li ngbNavItem class="nav-item">
+            <a ngbNavLink class="nav-link px-3 py-2">
+              <span class="me-1"><i class="mdi mdi-headset"></i></span>
+              <span class="d-none d-sm-inline-block">Support</span>
+            </a>
+            <ng-template ngbNavContent>
+              <ng-container
+                *ngTemplateOutlet="faqData; context: { item: supportFaqs }"
+              ></ng-container>
+            </ng-template>
+          </li>
+        </ul>
+        <div class="tab-content" [ngbNavOutlet]="nav"></div>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #faqData let-items="item">
+    <div class="row pt-2 mb-2 mt-2">
+      @for (item of items; track $index) {
+        <div class="col-lg-6">
+          <div class="px-2">
+            <ng-container
+              *ngTemplateOutlet="faqs; context: { item: item }"
+            ></ng-container>
+          </div>
+        </div>
+      }
+    </div>
+  </ng-template>
+
+  <ng-template #faqs let-item="item">
+    <div>
+      <div class="faq-question-q-box">Q.</div>
+      <h4 class="faq-question" data-wow-delay=".1s">{{ item.question }}</h4>
+      <p class="faq-answer mb-4">{{ item.answer }}</p>
+    </div>
+  </ng-template>
+</div>

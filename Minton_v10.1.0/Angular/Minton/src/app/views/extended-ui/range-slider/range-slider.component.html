@@ -1,0 +1,109 @@
+<app-page-title title="Range Slider" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Default</h4>
+        <p class="sub-header">Start without params</p>
+        <div dir="ltr">
+          <nouislider
+            [connect]="true"
+            [min]="0"
+            [max]="50"
+            [behaviour]="'drag'"
+            [ngModel]="25"
+          ></nouislider>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Range with config</h4>
+        <p class="sub-header">Set min value, max value and start point</p>
+        <div dir="ltr">
+          <nouislider
+            [config]="someRange2config"
+            [(ngModel)]="someRange2"
+          ></nouislider>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Keyboard support</h4>
+        <p class="sub-header">Showing grid and adding prefix "$"</p>
+        <div dir="ltr">
+          <nouislider
+            [config]="someKeyboardConfig"
+            [(ngModel)]="someKeyboard"
+          ></nouislider>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Range</h4>
+        <p class="sub-header">Set up range with negative values</p>
+        <div dir="ltr">
+          <nouislider
+            [connect]="true"
+            [min]="0"
+            [max]="1000"
+            [step]="1"
+            [(ngModel)]="range"
+          ></nouislider>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Tooltips</h4>
+        <p class="sub-header">Using step 250</p>
+        <div dir="ltr">
+          <nouislider
+            [connect]="true"
+            [min]="0"
+            [max]="100"
+            [(ngModel)]="someRange3"
+            [tooltips]="[true, true]"
+          ></nouislider>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Disable</h4>
+        <p class="sub-header">Using any strings as values</p>
+        <div dir="ltr">
+          <nouislider
+            [min]="0"
+            [max]="100"
+            [step]="1"
+            [(ngModel)]="someRange"
+            [disabled]="true"
+          ></nouislider>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

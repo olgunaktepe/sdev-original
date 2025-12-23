@@ -1,0 +1,98 @@
+<div class="card">
+  <div class="card-body">
+    <div ngbDropdown class="float-end">
+      <a
+        ngbDropdownToggle
+        href="javascript:void(0);"
+        class="arrow-none card-drop"
+      >
+        <i class="mdi mdi-dots-vertical"></i>
+      </a>
+      <div ngbDropdownMenu class="dropdown-menu-end">
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Settings</a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+      </div>
+    </div>
+    <h4 class="header-title mb-3">Chat</h4>
+
+    <div class="chat-conversation">
+      <ngx-simplebar style="height: 370px">
+        <ul class="conversation-list">
+          <li class="clearfix">
+            <div class="chat-avatar">
+              <img src="assets/images/users/avatar-5.jpg" alt="male" />
+              <i>10:00</i>
+            </div>
+            <div class="conversation-text">
+              <div class="ctext-wrap">
+                <i>Smith</i>
+                <p>Hello!</p>
+              </div>
+            </div>
+          </li>
+          <li class="clearfix odd">
+            <div class="chat-avatar">
+              <img src="assets/images/users/avatar-1.jpg" alt="Female" />
+              <i>10:01</i>
+            </div>
+            <div class="conversation-text">
+              <div class="ctext-wrap">
+                <i>Nik</i>
+                <p>Hi, How are you? What about our next meeting?</p>
+              </div>
+            </div>
+          </li>
+          <li class="clearfix">
+            <div class="chat-avatar">
+              <img src="assets/images/users/avatar-5.jpg" alt="male" />
+              <i>10:01</i>
+            </div>
+            <div class="conversation-text">
+              <div class="ctext-wrap">
+                <i>Smith</i>
+                <p>Yeah everything is fine</p>
+              </div>
+            </div>
+          </li>
+          <li class="clearfix odd">
+            <div class="chat-avatar">
+              <img src="assets/images/users/avatar-1.jpg" alt="male" />
+              <i>10:02</i>
+            </div>
+            <div class="conversation-text">
+              <div class="ctext-wrap">
+                <i>Nik</i>
+                <p>Wow that's great</p>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </ngx-simplebar>
+      <form class="needs-validation" novalidate name="chat-form" id="chat-form">
+        <div class="row">
+          <div class="col">
+            <input
+              type="text"
+              class="form-control chat-input"
+              placeholder="Enter your text"
+              required
+            />
+            <div class="invalid-feedback">Please enter your messsage</div>
+          </div>
+          <div class="col-auto">
+            <button
+              type="submit"
+              class="btn btn-primary chat-send width-sm waves-effect waves-light"
+            >
+              Send
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- end .chat-conversation-->
+  </div>
+</div>
+<!-- end card-->

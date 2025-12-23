@@ -1,0 +1,53 @@
+<app-page-title title="Quilljs Editor" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Snow Editor</h4>
+        <p class="sub-header">Snow is a clean, flat toolbar theme.</p>
+
+        <div id="snow-editor" style="height: 340px">
+          <quill-editor
+            id="snow-editor"
+            [(ngModel)]="content"
+            #quillEditor
+            theme="snow"
+            [modules]="editorConfig"
+            style="height: 300px"
+            class="w-100 mb-3"
+          ></quill-editor>
+        </div>
+        <!-- end Snow-editor-->
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Bubble Editor</h4>
+        <p class="sub-header">Bubble is a simple tooltip based theme.</p>
+
+        <div id="bubble-editor" style="height: 300px">
+          <quill-editor
+            id="bubble-editor"
+            [(ngModel)]="content"
+            #quillEditor
+            theme="bubble"
+            [modules]="editorConfig"
+            style="height: 300px"
+            class="w-100 mb-3"
+          ></quill-editor>
+        </div>
+        <!-- end Snow-editor-->
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+</div>

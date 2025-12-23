@@ -1,0 +1,55 @@
+{% extends "layouts/auth-2.html" %}
+
+{% load static i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% trans "Forgot Password 2" %}{% endblock %}
+
+{% block content %}
+
+<div class="card-body">
+
+    <!-- Logo -->
+    <div class="auth-brand text-center text-lg-start">
+        <div class="auth-logo">
+            <a href="{% url 'pages:dynamic_pages' template_name='index' %}" class="logo logo-dark text-center">
+                <span class="logo-lg">
+                    <img src="{% static 'images/logo-dark.png' %}" alt="" height="22">
+                </span>
+            </a>
+
+            <a href="{% url 'pages:dynamic_pages' template_name='index' %}" class="logo logo-light text-center">
+                <span class="logo-lg">
+                    <img src="{% static 'images/logo-light.png' %}" alt="" height="22">
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <!-- title-->
+    <h4 class="mt-0">Recover Password</h4>
+    <p class="text-muted mb-4">Enter your email address and we'll send you an email with instructions to reset your password.</p>
+
+    <!-- form -->
+    <form action="#">
+
+        <div class="mb-3">
+            <label for="emailaddress" class="form-label">Email address</label>
+            <input class="form-control" type="email" id="emailaddress" required="" placeholder="Enter your email">
+        </div>
+
+        <div class="d-grid text-center">
+            <button class="btn btn-primary waves-effect waves-light" type="submit"> Reset Password </button>
+        </div>
+
+    </form>
+    <!-- end form-->
+
+    <!-- Footer-->
+    <footer class="footer footer-alt">
+        <p class="text-muted">Back to <a href="{% url 'pages:dynamic_pages' template_name='auth-login-2' %}" class="text-primary fw-medium ms-1">Log in</a></p>
+    </footer>
+
+</div> <!-- end .card-body -->
+
+{% endblock %}

@@ -1,0 +1,54 @@
+<app-page-title title="Search Results" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="search-result-box card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-8 offset-md-2">
+            <div class="pt-3 pb-4">
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  value="Admin Dashboard"
+                />
+
+                <button
+                  type="button"
+                  class="btn waves-effect waves-light btn-purple"
+                >
+                  <i class="fa fa-search me-1"></i> Search
+                </button>
+              </div>
+              <div class="mt-3 text-center">
+                <h4>Search Results For "Admin Dashboard"</h4>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <ul ngbNav #nav="ngbNav" class="nav nav-tabs nav-bordered">
+          <li ngbNavItem class="nav-item">
+            <a ngbNavLink class="nav-link">
+              All results <span class="badge bg-success ms-1">325</span>
+            </a>
+            <ng-template ngbNavContent>
+              <search-all-result />
+            </ng-template>
+          </li>
+          <li ngbNavItem class="nav-item">
+            <a ngbNavLink class="nav-link">
+              Users <span class="badge bg-danger ms-1">89</span>
+            </a>
+            <ng-template ngbNavContent>
+              <search-users />
+            </ng-template>
+          </li>
+        </ul>
+
+        <div [ngbNavOutlet]="nav" class="tab-content"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,173 @@
+<app-page-title title="Products List" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <a
+              routerLink="/ecommerce/product-create"
+              class="btn btn-danger mb-2"
+              ><i class="mdi mdi-plus-circle me-1"></i> Add Products</a
+            >
+          </div>
+          <div class="col-sm-6">
+            <div class="float-sm-end">
+              <button type="button" class="btn btn-success mb-2 mb-sm-0">
+                <i class="mdi mdi-cog"></i>
+              </button>
+            </div>
+          </div>
+          <!-- end col-->
+        </div>
+
+        <app-table-header />
+        <div class="table-responsive">
+          <table
+            class="table table-centered w-100 dt-responsive nowrap dataTable"
+            id="products-datatable"
+            style="border-collapse: collapse; border-spacing: 0; width: 100%"
+          >
+            <thead class="table-light">
+              <tr>
+                <th class="all" style="width: 20px">
+                  <div class="form-check font-16 mb-0">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="productlistCheck"
+                    />
+                    <label class="form-check-label" for="productlistCheck"
+                      >&nbsp;</label
+                    >
+                  </div>
+                </th>
+                <th
+                  class="all sorting"
+                  sortable="product"
+                  (sort)="onSort($event)"
+                >
+                  Product
+                </th>
+                <th class="sorting" sortable="rating" (sort)="onSort($event)">
+                  Rating
+                </th>
+                <th class="sorting" sortable="category" (sort)="onSort($event)">
+                  Category
+                </th>
+                <th
+                  class="sorting"
+                  sortable="added_date"
+                  (sort)="onSort($event)"
+                >
+                  Added Date
+                </th>
+                <th class="sorting" sortable="price" (sort)="onSort($event)">
+                  Price
+                </th>
+                <th class="sorting" sortable="quantity" (sort)="onSort($event)">
+                  Quantity
+                </th>
+                <th class="sorting" sortable="status" (sort)="onSort($event)">
+                  Status
+                </th>
+                <th style="width: 85px">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of products$ | async; track $index) {
+                <tr>
+                  <td>
+                    <div class="form-check font-16 mb-0">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="productlistCheck1"
+                      />
+                      <label class="form-check-label" for="productlistCheck1"
+                        >&nbsp;</label
+                      >
+                    </div>
+                  </td>
+                  <td>
+                    <img
+                      [src]="item.image"
+                      alt="contact-img"
+                      title="contact-img"
+                      class="rounded me-3"
+                      height="48"
+                    />
+
+                    <h5 class="m-0 d-inline-block align-middle">
+                      <a href="javascript:void(0);" class="text-dark">{{
+                        item.product
+                      }}</a>
+                    </h5>
+                  </td>
+                  <td>
+                    <span
+                      class="badge"
+                      [ngClass]="{
+                        'bg-success': item.rating >= 4,
+                        'bg-warning': item.rating < 4,
+                        'bg-danger': item.rating < 3,
+                      }"
+                      ><i class="mdi mdi-star"></i>
+                      {{ item.rating | number: '1.1' }}</span
+                    >
+                  </td>
+                  <td>
+                    {{ item.category }}
+                  </td>
+                  <td>
+                    {{ item.added_date }}
+                  </td>
+                  <td>
+                    <div>$ {{ item.price }}</div>
+                  </td>
+
+                  <td>
+                    {{ item.quantity }}
+                  </td>
+                  <td>
+                    <span
+                      class="badge"
+                      [ngClass]="
+                        item.status == 'Active'
+                          ? 'badge-soft-success'
+                          : 'badge-soft-danger'
+                      "
+                      >{{ item.status }}</span
+                    >
+                  </td>
+
+                  <td>
+                    <ul class="list-inline table-action m-0">
+                      <li class="list-inline-item">
+                        <a href="javascript:void(0);" class="action-icon">
+                          <i class="mdi mdi-eye"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="javascript:void(0);" class="action-icon">
+                          <i class="mdi mdi-square-edit-outline"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="javascript:void(0);" class="action-icon">
+                          <i class="mdi mdi-delete"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <app-table-footer [total]="total$" />
+      </div>
+    </div>
+  </div>
+</div>

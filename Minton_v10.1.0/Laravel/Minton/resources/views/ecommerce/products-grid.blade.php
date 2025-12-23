@@ -1,0 +1,336 @@
+@extends('layouts.vertical', ['page_title' => 'Ecommerce Products', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+
+@section('content')
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Products Grid</h4>
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
+                        <li class="breadcrumb-item active">Products Grid</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row mb-2">
+        <div class="col-sm-4">
+            <a href="{{ route('second', ['ecommerce', 'product-create']) }}" class="btn btn-danger mb-2"><i class="mdi mdi-plus-circle me-1"></i> Add Products</a>
+        </div>
+        <div class="col-sm-8">
+            <div class="float-sm-end">
+                <form class="d-flex align-items-center flex-wrap">
+                    <div class="me-2">
+                        <label for="productssearch-input" class="visually-hidden">Search</label>
+                        <input type="search" class="form-control border-light" id="productssearch-input" placeholder="Search...">
+                    </div>
+                    <button type="button" class="btn btn-success mb-2 mb-sm-0"><i class="mdi mdi-cog"></i></button>
+                </form>
+            </div>
+        </div><!-- end col-->
+    </div>
+    <!-- end row -->
+
+
+    <div class="row">
+        <div class="col-md-6 col-xl-3">
+            <div class="card product-box">
+
+                <div class="product-img">
+                    <div class="p-3">
+                        <img src="/images/products/product-1.png" alt="product-pic" class="img-fluid" />
+                    </div>
+                    <div class="product-action">
+                        <div class="d-flex">
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-edit-2-fill align-middle"></i> Edit</a>
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-delete-bin-fill align-middle"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info border-top p-3">
+
+                    <div>
+                        <h5 class="font-16 mt-0 mb-1"><a href="{{ route('second', ['ecommerce', 'product-detail']) }}" class="text-dark">Blue color T-shirt</a> </h5>
+                        <p class="text-muted">
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                        </p>
+                        <h4 class="m-0"> <span class="text-muted"> Price : $ 41</span></h4>
+                    </div>
+
+                </div> <!-- end product info-->
+
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card product-box">
+
+                <div class="product-img">
+                    <div class="p-3">
+                        <img src="/images/products/product-2.png" alt="product-pic" class="img-fluid" />
+                    </div>
+                    <div class="product-action">
+                        <div class="d-flex">
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-edit-2-fill align-middle"></i> Edit</a>
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-delete-bin-fill align-middle"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info border-top p-3">
+
+                    <div>
+                        <h5 class="font-16 mt-0 mb-1"><a href="{{ route('second', ['ecommerce', 'product-detail']) }}" class="text-dark">Half sleeve maroon T-shirt</a> </h5>
+                        <p class="text-muted">
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star"></i>
+                        </p>
+                        <h4 class="m-0"> <span class="text-muted"> Price : $ 37</span></h4>
+                    </div>
+
+                </div> <!-- end product info-->
+
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card product-box">
+
+                <div class="product-img">
+                    <div class="p-3">
+                        <img src="/images/products/product-3.png" alt="product-pic" class="img-fluid" />
+                    </div>
+                    <div class="product-action">
+                        <div class="d-flex">
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-edit-2-fill align-middle"></i> Edit</a>
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-delete-bin-fill align-middle"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info border-top p-3">
+
+                    <div>
+                        <h5 class="font-16 mt-0 mb-1"><a href="{{ route('second', ['ecommerce', 'product-detail']) }}" class="text-dark">Cream color T-shirt</a> </h5>
+                        <p class="text-muted">
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                        </p>
+                        <h4 class="m-0"> <span class="text-muted"> Price : $ 38</span></h4>
+                    </div>
+
+                </div> <!-- end product info-->
+
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card product-box">
+
+                <div class="product-img">
+                    <div class="p-3">
+                        <img src="/images/products/product-4.png" alt="product-pic" class="img-fluid" />
+                    </div>
+                    <div class="product-action">
+                        <div class="d-flex">
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-edit-2-fill align-middle"></i> Edit</a>
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-delete-bin-fill align-middle"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info border-top p-3">
+
+                    <div>
+                        <h5 class="font-16 mt-0 mb-1"><a href="{{ route('second', ['ecommerce', 'product-detail']) }}" class="text-dark">Blue color T-shirt</a> </h5>
+                        <p class="text-muted">
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star"></i>
+                        </p>
+                        <h4 class="m-0"> <span class="text-muted"> Price : $ 37</span></h4>
+                    </div>
+
+                </div> <!-- end product info-->
+
+            </div>
+        </div>
+
+    </div>
+    <!-- end row -->
+
+    <div class="row">
+        <div class="col-md-6 col-xl-3">
+            <div class="card product-box">
+
+                <div class="product-img">
+                    <div class="p-3">
+                        <img src="/images/products/product-5.png" alt="product-pic" class="img-fluid" />
+                    </div>
+                    <div class="product-action">
+                        <div class="d-flex">
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-edit-2-fill align-middle"></i> Edit</a>
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-delete-bin-fill align-middle"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info border-top p-3">
+
+                    <div>
+                        <h5 class="font-16 mt-0 mb-1"><a href="{{ route('second', ['ecommerce', 'product-detail']) }}" class="text-dark">Half sleeve T-shirt</a> </h5>
+                        <p class="text-muted">
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star"></i>
+                        </p>
+                        <h4 class="m-0"> <span class="text-muted"> Price : $ 37</span></h4>
+                    </div>
+
+                </div> <!-- end product info-->
+
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card product-box">
+
+                <div class="product-img">
+                    <div class="p-3">
+                        <img src="/images/products/product-6.png" alt="product-pic" class="img-fluid" />
+                    </div>
+                    <div class="product-action">
+                        <div class="d-flex">
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-edit-2-fill align-middle"></i> Edit</a>
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-delete-bin-fill align-middle"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info border-top p-3">
+
+                    <div>
+                        <h5 class="font-16 mt-0 mb-1"><a href="{{ route('second', ['ecommerce', 'product-detail']) }}" class="text-dark">Blue Hoodie for men</a> </h5>
+                        <p class="text-muted">
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                        </p>
+                        <h4 class="m-0"> <span class="text-muted"> Price : $ 45</span></h4>
+                    </div>
+
+                </div> <!-- end product info-->
+
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card product-box">
+
+                <div class="product-img">
+                    <div class="p-3">
+                        <img src="/images/products/product-7.png" alt="product-pic" class="img-fluid" />
+                    </div>
+                    <div class="product-action">
+                        <div class="d-flex">
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-edit-2-fill align-middle"></i> Edit</a>
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-delete-bin-fill align-middle"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info border-top p-3">
+
+                    <div>
+                        <h5 class="font-16 mt-0 mb-1"><a href="{{ route('second', ['ecommerce', 'product-detail']) }}" class="text-dark">Vneck green T-shirt</a> </h5>
+                        <p class="text-muted">
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star"></i>
+                        </p>
+                        <h4 class="m-0"> <span class="text-muted"> Price : $ 38</span></h4>
+                    </div>
+
+                </div> <!-- end product info-->
+
+            </div>
+        </div>
+        <div class="col-md-6 col-xl-3">
+            <div class="card product-box">
+
+                <div class="product-img">
+                    <div class="p-3">
+                        <img src="/images/products/product-8.png" alt="product-pic" class="img-fluid" />
+                    </div>
+                    <div class="product-action">
+                        <div class="d-flex">
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-edit-2-fill align-middle"></i> Edit</a>
+                            <a href="javascript: void(0);" class="btn btn-white d-block w-100 action-btn m-2"><i class="ri-delete-bin-fill align-middle"></i> Delete</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="product-info border-top p-3">
+
+                    <div>
+                        <h5 class="font-16 mt-0 mb-1"><a href="{{ route('second', ['ecommerce', 'product-detail']) }}" class="text-dark">Full sleeve Pink T-shirt</a> </h5>
+                        <p class="text-muted">
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                            <i class="mdi mdi-star text-warning"></i>
+                        </p>
+                        <h4 class="m-0"> <span class="text-muted"> Price : $ 45</span></h4>
+                    </div>
+
+                </div> <!-- end product info-->
+
+            </div>
+        </div>
+
+    </div>
+    <!-- end row -->
+
+    <div class="row">
+        <div class="col-12">
+            <ul class="pagination pagination-rounded justify-content-end mb-3">
+                <li class="page-item">
+                    <a class="page-link" href="javascript: void(0);" aria-label="Previous">
+                        <span aria-hidden="true">«</span>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="javascript: void(0);">1</a></li>
+                <li class="page-item"><a class="page-link" href="javascript: void(0);">2</a></li>
+                <li class="page-item"><a class="page-link" href="javascript: void(0);">3</a></li>
+                <li class="page-item"><a class="page-link" href="javascript: void(0);">4</a></li>
+                <li class="page-item"><a class="page-link" href="javascript: void(0);">5</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="javascript: void(0);" aria-label="Next">
+                        <span aria-hidden="true">»</span>
+                    </a>
+                </li>
+            </ul>
+        </div> <!-- end col-->
+    </div>
+    <!-- end row-->
+@endsection

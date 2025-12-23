@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+
+import { PortletsComponent } from './portlets.component'
+
+describe('PortletsComponent', () => {
+  let component: PortletsComponent
+  let fixture: ComponentFixture<PortletsComponent>
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [PortletsComponent],
+    }).compileComponents()
+
+    fixture = TestBed.createComponent(PortletsComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
+
+  it('should create', () => {
+    expect(component).toBeTruthy()
+  })
+})

@@ -1,0 +1,19 @@
+<custom-card-portlet
+  cardTitle="Simple Pie Chart"
+  cardTitleClass="header-title mb-0"
+>
+  <div
+    id="apex-pie-1"
+    class="apex-charts"
+    data-colors="#3bafda,#1abc9c,#f7b84b,#6559cc,#f672a7"
+  >
+    <apx-chart
+      [chart]="apexpie1Chart.chart!"
+      [series]="apexpie1Chart.series!"
+      [legend]="apexpie1Chart.legend!"
+      [colors]="apexpie1Chart.colors!"
+      [labels]="apexpie1Chart.labels!"
+      [responsive]="apexpie1Chart.responsive!"
+    />
+  </div>
+</custom-card-portlet>

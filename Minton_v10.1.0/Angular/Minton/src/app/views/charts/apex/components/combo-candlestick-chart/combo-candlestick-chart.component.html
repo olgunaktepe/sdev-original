@@ -1,0 +1,34 @@
+<custom-card-portlet
+  cardTitle="Combo Candlestick Chart"
+  cardTitleClass="header-title mb-0"
+>
+  <div
+    id="apex-candlestick-2"
+    class="apex-charts"
+    data-colors="#3bafda,#f7b84b"
+  >
+    <apx-chart
+      [chart]="apexcandlestick2Chart.chart!"
+      [colors]="apexcandlestick2Chart.colors!"
+      [series]="apexcandlestick2Chart.series!"
+      [plotOptions]="apexcandlestick2Chart.plotOptions!"
+      [xaxis]="apexcandlestick2Chart.xaxis!"
+      [grid]="apexcandlestick2Chart.grid!"
+    />
+  </div>
+  <div
+    id="apex-candlestick-3"
+    class="apex-charts"
+    data-colors="#f45454,#37cde6"
+  >
+    <apx-chart
+      [chart]="apexcandlestick3Chart.chart!"
+      [dataLabels]="apexcandlestick3Chart.dataLabels!"
+      [plotOptions]="apexcandlestick3Chart.plotOptions!"
+      [series]="apexcandlestick3Chart.series!"
+      [xaxis]="apexcandlestick3Chart.xaxis!"
+      [yaxis]="apexcandlestick3Chart.yaxis!"
+      [grid]="apexcandlestick3Chart.grid!"
+    />
+  </div>
+</custom-card-portlet>

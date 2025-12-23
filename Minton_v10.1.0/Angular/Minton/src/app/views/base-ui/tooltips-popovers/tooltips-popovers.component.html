@@ -1,0 +1,126 @@
+<app-page-title
+  title="Tooltips & Popovers"
+  [breadCrumbItems]="breadCrumbItems"
+/>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Popovers</h4>
+        <p class="sub-header">
+          Add small overlays of content, like those on the iPad, to any element
+          for housing secondary information.
+        </p>
+
+        <div class="button-list" id="popover-container">
+          <button
+            type="button"
+            autoClose="inside"
+            class="btn btn-light"
+            placement="top auto"
+            ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+          >
+            Popover on top
+          </button>
+
+          <button
+            type="button"
+            autoClose="inside"
+            class="btn btn-light"
+            placement="bottom"
+            ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+          >
+            Popover on bottom
+          </button>
+
+          <button
+            type="button"
+            autoClose="inside"
+            class="btn btn-light"
+            placement="right"
+            ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+          >
+            Popover on right
+          </button>
+
+          <button
+            type="button"
+            autoClose="inside"
+            class="btn btn-light"
+            placement="left"
+            ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
+          >
+            Popover on left
+          </button>
+
+          <button
+            type="button"
+            autoClose="inside"
+            tabindex="0"
+            placement="auto"
+            class="btn btn-primary"
+            triggers="focus"
+            ngbPopover="And here's some amazing content. It's very engaging. Right?"
+            popoverTitle="Dismissible popover"
+          >
+            Dismissible popover
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end col-->
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Tooltips</h4>
+        <p class="sub-header">
+          Four options are available: top, right, bottom, and left aligned.
+        </p>
+
+        <div class="button-list" id="tooltip-container">
+          <button
+            type="button"
+            class="btn btn-light"
+            placement="top"
+            ngbTooltip="Tooltip on top"
+          >
+            Tooltip on top
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-light"
+            placement="bottom"
+            ngbTooltip="Tooltip on bottom"
+          >
+            Tooltip on bottom
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-light"
+            placement="left"
+            ngbTooltip="Tooltip on left"
+          >
+            Tooltip on left
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-light"
+            placement="right"
+            ngbTooltip="Tooltip on right"
+          >
+            Tooltip on right
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end col-->
+</div>

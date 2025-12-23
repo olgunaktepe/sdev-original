@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Title -->
+  <title>Minton Angular - Responsive Bootstrap 5 and Angular Admin Dashboard</title>
+
+  <!-- Required Meta Tags Always Come First -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="favicon.ico">
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="assets/vendor/font-awesome/css/fontawesome-all.min.css">
+  <link rel="stylesheet" href="assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+  <link rel="stylesheet" href="assets/vendor/jquery-ui/themes/base/jquery-ui.min.css">
+  <link rel="stylesheet" href="assets/vendor/prism/prism.css">
+
+  <!-- CSS Template -->
+  <link rel="stylesheet" href="assets/css/theme.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+</head>
+
+<body class="bg-white">
+  <!-- Header -->
+  <header class="duik-header">
+    <nav class="navbar navbar-dark fixed-top bg-primary flex-nowrap p-0">
+      <a class="navbar-brand bg-md-primary-darker col-md-3 col-xl-2 mr-0 py-3" href="index.html">
+        <span>
+          <img src="./assets/img/logo-light.png" alt="" height="20">
+        </span>
+      </a>
+
+      <!-- Responsive Toggle Button -->
+      <div class="d-flex d-md-none">
+        <button class="btn btn-link pl-0" type="button" data-toggle="collapse" data-target="#sidebar-nav"
+          aria-controls="sidebar-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <svg xmlns="http://www.w3.org/2000/svg" class="text-light" viewbox="0 0 30 30" width="30" height="30"
+            focusable="false">
+            <path stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10"
+              d="M4 7h22M4 15h22M4 23h22" />
+          </svg>
+        </button>
+      </div>
+      <!-- End Responsive Toggle Button -->
+
+      <div class="ms-auto mr-3">
+        <span class="badge badge-light">v10.1.0</span>
+      </div>
+
+    </nav>
+  </header>
+  <!-- End Header -->
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Sidebar -->
+      <nav class="col-md-3 col-xl-2 bg-light duik-sidebar navbar-expand-md">
+
+        <!-- Sidebar Nav -->
+        <div class="collapse navbar-collapse" id="sidebar-nav">
+          <div class="js-scrollbar duik-sidebar-sticky">
+            <h5 class="duik-sidebar__heading">Getting Started</h5>
+            <ul class="duik-sidebar__nav">
+              <li class="duik-sidebar__item">
+                <a class="duik-sidebar__link active" href="./index.html"> Introduction </a>
+              </li>
+              <li class="duik-sidebar__item"><a class="duik-sidebar__link" href="./pages-installation.html">Getting
+                  Started</a></li>
+              <li class="duik-sidebar__item"><a class="duik-sidebar__link" href="./pages-strcuture.html">File
+                  Strcuture</a></li>
+              <li class="duik-sidebar__item"><a class="duik-sidebar__link" href="./pages-routing.html">Routing</a></li>
+              <li class="duik-sidebar__item"><a class="duik-sidebar__link" href="./pages-spliting.html">Code
+                  Spliting</a></li>
+            </ul>
+            <h5 class="duik-sidebar__heading">Customization</h5>
+            <ul class="duik-sidebar__nav">
+              <li class="duik-sidebar__item"><a class="duik-sidebar__link" href="./pages-customization.html">Layouts</a>
+              </li>
+              <li class="duik-sidebar__item"><a class="duik-sidebar__link" href="./pages-themes.html">Themes
+                  & Others</a></li>
+            </ul>
+
+            <h5 class="duik-sidebar__heading">Other</h5>
+            <ul class="duik-sidebar__nav">
+              <li class="duik-sidebar__item">
+                <a class="duik-sidebar__link" href="./pages-changelog.html">Change log</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <!-- End Sidebar Nav -->
+      </nav>
+      <!-- End Sidebar -->
+
+      <main class="ml-md-auto col-md-9 col-xl-10 px-4 pt-0 pt-md-11">
+        <div>
+
+          <!-- Content -->
+          <div class="duik-content border-bottom">
+            <div class="p-lg-3">
+              <h2 class="h3">Introduction</h2>
+
+              <p>Minton Angular is a Angular with Typescript based admin template created using
+                <strong class="text-danger">Angular v19</strong>, <strong class="text-danger">NGRX</strong> &
+                <strong class="text-danger">Bootstrap v5.3.5</strong>.
+                Minton Angular is crafted by following the best industry standards
+                in order to provide speed and scalability. The clean code structure allows you to
+                build any Angular-based web application without any hustle. The theme includes
+                beautiful dashboards, many ready-to-use hand-crafted components, widgets, pages,
+                etc. The components can be used very easily on any page. It is fully responsive and
+                customizable.
+              </p>
+             
+              <p>This documentation guide is for all users who can even be beginners or
+                experienced angular developers.</p>
+              <p>We really care for our buyers and so in case if you are having any question or
+                feedback, please feel free to get back to us via email
+                <code>support@coderthemes.com</code> or by filling out the contact form on our <a
+                  href="http://coderthemes.com/#contact" target="_blank">website</a>.
+              </p>
+            </div>
+
+
+            <div class="p-lg-3">
+              <h5 class="mt-0 mb-2">Credits/Plugins</h5>
+              <p>Here is the list of plugins with the official documentation. Minton Angular would
+                not
+                have been easy to build without using them and we are thankful to the open-source
+                community.</p>
+              <div class="table-responsive">
+                <table class="table mb-0 font-14">
+                  <thead>
+                    <tr>
+                      <th>Plugins</th>
+                      <th>Url</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Bootstrap</td>
+                      <td><a href="http://getbootstrap.com/" target="_blank">http://getbootstrap.com/</a></td>
+                    </tr>
+                    <tr>
+                      <td>Angular & Angular Cli</td>
+                      <td><a href="https://cli.angular.io/"
+                          target="_blank">https://cli.angular.io/</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Angular</td>
+                      <td><a href="https://angular.io//" target="_blank">https://angular.io//</a></td>
+                    </tr>
+                    <tr>
+                      <td>Typescript</td>
+                      <td><a href="https://www.typescriptlang.org/" target="_blank">https://www.typescriptlang.org/</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Ng-bootstrap (Bootstrap 5 components in angular)</td>
+                      <td><a href="https://ng-bootstrap.github.io/#/home"
+                          target="_blank">https://ng-bootstrap.github.io/#/home</a></td>
+                    </tr>
+                    <tr>
+                      <td>NGRX</td>
+                      <td><a href="https://ngrx.io/guide/store" target="_blank">https://ngrx.io/guide/store</a></td>
+                    </tr>
+                    <tr>
+                      <td>Ng-select2-component</td>
+                      <td><a href="https://www.npmjs.com/package/ng-select2-component"
+                          target="_blank">https://www.npmjs.com/package/ng-select2-component</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Ngx-dropzone-wrapper</td>
+                      <td><a href="https://www.npmjs.com/package/ngx-dropzone-wrapper"
+                          target="_blank">https://www.npmjs.com/package/ngx-dropzone-wrapper</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Chartjs</td>
+                      <td><a href="http://www.chartjs.org/"
+                          target="_blank">http://www.chartjs.org/</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Ng2-charts</td>
+                      <td><a href="https://www.npmjs.com/package/ng2-charts" target="_blank">https://www.npmjs.com/package/ng2-charts</a></td>
+                    </tr>
+                    <tr>
+                      <td>Apex Charts</td>
+                      <td><a href="https://apexcharts.com/" target="_blank">https://apexcharts.com/</a></td>
+                    </tr>
+                    <tr>
+                      <td>Ng-apexcharts</td>
+                      <td><a href="https://www.npmjs.com/package/ng-apexcharts"
+                          target="_blank">https://www.npmjs.com/package/ng-apexcharts</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Simplebar Angular</td>
+                      <td><a href="https://github.com/Grsmto/simplebar"
+                          target="_blank">https://github.com/Grsmto/simplebar</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Calendar</td>
+                      <td><a href="https://fullcalendar.io/"
+                          target="_blank">https://fullcalendar.io/</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Google Maps</td>
+                      <td><a href="https://www.npmjs.com/package/@angular/google-maps"
+                          target="_blank">https://www.npmjs.com/package/@angular/google-maps</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Jsvectormap</td>
+                      <td><a href="https://www.npmjs.com/package/jsvectormap"
+                          target="_blank">https://www.npmjs.com/package/jsvectormap</a></td>
+                    </tr>
+                    <tr>
+                      <td>Quill Editor</td>
+                      <td><a href="https://www.npmjs.com/package/quill"
+                          target="_blank">https://www.npmjs.com/package/quill</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Ngx-quill</td>
+                      <td><a href="https://www.npmjs.com/package/ngx-quill"
+                          target="_blank">https://www.npmjs.com/package/ngx-quill</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Ngx-Lightbox</td>
+                      <td><a href="	https://www.npmjs.com/package/ngx-lightbox" target="_blank">	https://www.npmjs.com/package/ngx-lightbox</a></td>
+                    </tr>
+                    <tr>
+                      <td>Ngx-countup</td>
+                      <td><a href="https://github.com/inorganik/ngx-countUp" target="_blank">https://github.com/inorganik/ngx-countUp</a></td>
+                    </tr>
+
+                    <tr>
+                      <td>Angular Stepper</td>
+                      <td><a href="https://www.npmjs.com/package/angular-ng-stepper"
+                          target="_blank">https://www.npmjs.com/package/angular-ng-stepper</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Dragula</td>
+                      <td><a href="https://www.npmjs.com/package/dragula" target="_blank">https://www.npmjs.com/package/dragula</a></td>
+                    </tr>
+                    <tr>
+                      <td>NG2 Dragula</td>
+                      <td><a href="https://www.npmjs.com/package/ng2-dragula"
+                          target="_blank">https://www.npmjs.com/package/ng2-dragula</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Hopscotch</td>
+                      <td><a href="https://www.npmjs.com/package/hopscotch"
+                          target="_blank">https://www.npmjs.com/package/hopscotch</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>ng2-nouislider</td>
+                      <td><a href="https://www.npmjs.com/package/ng2-nouislider"
+                          target="_blank">https://www.npmjs.com/package/ng2-nouislider</a>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td>Selectize</td>
+                      <td><a href="https://www.npmjs.com/package/selectize?activeTab=readme"
+                          target="_blank">https://www.npmjs.com/package/selectize?activeTab=readme</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>NGX Mask</td>
+                      <td><a href="https://www.npmjs.com/package/ngx-mask"
+                          target="_blank">https://www.npmjs.com/package/ngx-mask</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>NGX Progressbar</td>
+                      <td><a href="https://www.npmjs.com/package/ngx-progressbar"
+                          target="_blank">https://www.npmjs.com/package/ngx-progressbar</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>Angular UI Switch</td>
+                      <td><a href="https://www.npmjs.com/package/ngx-ui-switch" target="_blank">https://www.npmjs.com/package/ngx-ui-switch</a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>NGX Cookie Service</td>
+                      <td><a href="https://www.npmjs.com/package/ngx-cookie-service"
+                          target="_blank">https://www.npmjs.com/package/ngx-cookie-service</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+          <!-- End Content -->
+        </div>
+
+        <!-- Footer -->
+        <footer class="small py-4">
+          <div class="row">
+            <!-- Copyright -->
+            <div class="col-md-6 text-center text-dark text-md-left mb-3 mb-md-0">
+              <script>document.write(new Date().getFullYear())</script> &copy; Minton theme by <a
+                href="">Coderthemes</a>
+            </div>
+            <!-- End Copyright -->
+
+            <!-- Social Icons -->
+            <div class="col-md-6 col-xl-4 align-self-center">
+              <div class="text-md-right footer-links d-none d-sm-block">
+                <a href="https://coderthemes.com/" target="_blank" class="text-dark mx-2">About Us</a>
+                <a href="https://coderthemes.com/#contact" target="_blank" class="text-dark mx-2">Contact Us</a>
+              </div>
+            </div>
+            <!-- End Social Icons -->
+          </div>
+        </footer>
+        <!-- End Footer -->
+      </main>
+    </div>
+  </div>
+
+  <!-- Go to Top -->
+  <a class="js-go-to duik-go-to" href="javascript:;">
+    <span class="fa fa-arrow-up duik-go-to__inner"></span>
+  </a>
+  <!-- End Go to Top -->
+
+  <!-- JS Global Compulsory -->
+  <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+  <script src="assets/vendor/popper.js/dist/umd/popper.min.js"></script>
+  <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+  <!-- JS Implementing Plugins -->
+  <script src="assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="assets/vendor/jquery-ui/jquery-ui.core.min.js"></script>
+  <script src="assets/vendor/jquery-ui/ui/widgets/menu.js"></script>
+  <script src="assets/vendor/jquery-ui/ui/widgets/mouse.js"></script>
+  <script src="assets/vendor/jquery-ui/ui/widgets/autocomplete.js"></script>
+  <script src="assets/vendor/prism/prism.js"></script>
+
+  <!-- JS -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/autocomplete.js"></script>
+  <script src="assets/js/custom-scrollbar.js"></script>
+</body>
+
+</html>

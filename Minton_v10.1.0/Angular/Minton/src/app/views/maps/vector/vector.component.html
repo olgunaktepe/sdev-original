@@ -1,0 +1,151 @@
+<app-page-title title="Vector Maps" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">World Vector Map</h4>
+        <div id="world-map-markers" style="height: 420px">
+          <app-world-vector-map
+            mapId="world-map-markers"
+            type="world"
+            [options]="worldMapConfig"
+          ></app-world-vector-map>
+        </div>
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+  <!-- end col-->
+</div>
+<!-- end row-->
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">USA Vector Map</h4>
+        <div id="usa-vectormap" style="height: 350px">
+          <app-world-vector-map
+            mapId="usa-vector-map"
+            type="us_merc_en"
+            [options]="usaMapConfig"
+            height="300px"
+            width="100%"
+          ></app-world-vector-map>
+        </div>
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+  <!-- end col-->
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">Russia Vector Map</h4>
+        <div id="russia-vector-map" style="height: 350px">
+          <app-world-vector-map
+            mapId="russia-map-markers"
+            type="russia"
+            [options]="russiaMapConfig"
+            height="300px"
+            width="100%"
+          ></app-world-vector-map>
+        </div>
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+  <!-- end col-->
+</div>
+<!-- end row-->
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">Italy Vector Map</h4>
+        <div id="italy-vectormap" style="height: 350px">
+          <app-world-vector-map
+            mapId="italy-map-markers"
+            type="italy"
+            [options]="italyMapConfig"
+            height="300px"
+            width="100%"
+          ></app-world-vector-map>
+        </div>
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+  <!-- end col-->
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">Canada Vector Map</h4>
+        <div id="canada-vectormap" style="height: 350px">
+          <app-world-vector-map
+            mapId="canada-map-markers"
+            type="canada"
+            [options]="canadaMapConfig"
+            height="300px"
+            width="100%"
+          ></app-world-vector-map>
+        </div>
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+  <!-- end col-->
+</div>
+<!-- end row-->
+
+<div class="row">
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">Iraq Vector Map</h4>
+        <div id="iraq-vectormap" style="height: 350px">
+          <app-world-vector-map
+            mapId="iraq-map-markers"
+            type="iraq"
+            [options]="iraqMapConfig"
+            height="300px"
+            width="100%"
+          ></app-world-vector-map>
+        </div>
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+  <!-- end col-->
+
+  <div class="col-lg-6">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">Spain Vector Map</h4>
+        <div id="spain-vectormap" style="height: 350px">
+          <app-world-vector-map
+            mapId="spain-map-markers"
+            type="spain"
+            [options]="spainMapConfig"
+            height="300px"
+            width="100%"
+          ></app-world-vector-map>
+        </div>
+      </div>
+      <!-- end card-body-->
+    </div>
+    <!-- end card-->
+  </div>
+  <!-- end col-->
+</div>
+<!-- end row-->

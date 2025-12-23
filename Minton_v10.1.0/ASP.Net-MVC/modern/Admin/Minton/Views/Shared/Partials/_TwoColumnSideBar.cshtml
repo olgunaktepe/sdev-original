@@ -1,0 +1,668 @@
+<!-- ========== Left Sidebar Start ========== -->
+<div class="left-side-menu">
+
+    <div class="h-100">
+
+        <div class="sidebar-content">
+            <div class="sidebar-icon-menu h-100" data-simplebar>
+                <!-- LOGO -->
+                <a href=@Url.Action("Index", "Dashboard") class="logo">
+                    <span>
+                        <img src="~/images/logo-sm.png" alt="" height="28">
+                    </span>
+                </a>
+                <nav class="nav flex-column" id="two-col-sidenav-main">
+                    <a class="nav-link active" href="#dashboard" title="Dashboard">
+                        <i class="ri-dashboard-line"></i>
+                    </a>
+                    <a class="nav-link" href="#apps" title="Apps">
+                        <i class="ri-apps-2-line"></i>
+                    </a>
+                    <a class="nav-link" href="#pages" title="Pages">
+                        <i class="ri-pages-line"></i>
+                    </a>
+                    <a class="nav-link" href="#layouts" title="Layouts">
+                        <i class="ri-layout-line"></i>
+                    </a>
+                    <a class="nav-link" href="#uielements" title="UI Elements">
+                        <i class="ri-pencil-ruler-2-line"></i>
+                    </a>
+                    <a class="nav-link" href="#components" title="Components">
+                        <i class="ri-stack-line"></i>
+                    </a>
+                    <a class="nav-link" href=@Url.Action("Index", "Widgets") title="Widgets">
+                        <i class="ri-honour-line align-middle"></i>
+                    </a>
+                </nav>
+            </div>
+            <!--- Sidemenu -->
+            <div class="sidebar-main-menu">
+                <!-- LOGO -->
+                <div class="logo-box">
+                    <a href=@Url.Action("Index", "Dashboard") class="logo logo-dark text-center">
+                        <span class="logo-sm">
+                            <img src="~/images/logo-sm-dark.png" alt="" height="24">
+                            <!-- <span class="logo-lg-text-light">Minton</span> -->
+                        </span>
+                        <span class="logo-lg">
+                            <img src="~/images/logo-dark.png" alt="" height="20">
+                            <!-- <span class="logo-lg-text-light">M</span> -->
+                        </span>
+                    </a>
+
+                    <a href=@Url.Action("Index", "Dashboard") class="logo logo-light text-center">
+                        <span class="logo-sm">
+                            <img src="~/images/logo-sm.png" alt="" height="24">
+                        </span>
+                        <span class="logo-lg">
+                            <img src="~/images/logo-light.png" alt="" height="20">
+                        </span>
+                    </a>
+                </div>
+
+                
+                <div id="two-col-menu" class="h-100" data-simplebar>
+                    <!-- User box -->
+                    <div class="user-box text-center">
+                        <img src="~/images/users/avatar-1.jpg" alt="user-img" title="Mat Helme" class="rounded-circle avatar-md">
+                        <div class="dropdown">
+                            <a href="#" class="text-reset dropdown-toggle h5 mt-2 mb-1 d-block" data-bs-toggle="dropdown">Nik Patel</a>
+                            <div class="dropdown-menu user-pro-dropdown">
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fe-user me-1"></i>
+                                    <span>My Account</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fe-settings me-1"></i>
+                                    <span>Settings</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fe-lock me-1"></i>
+                                    <span>Lock Screen</span>
+                                </a>
+
+                                <!-- item-->
+                                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                                    <i class="fe-log-out me-1"></i>
+                                    <span>Logout</span>
+                                </a>
+
+                            </div>
+                        </div>
+                        <p class="text-reset">Admin Head</p>
+                    </div>
+
+                    <div class="twocolumn-menu-item d-block" id="dashboard">
+                        <div class="title-box">
+                            <h5 class="menu-title">Dashboards</h5>
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Index", "Dashboard")>Sales</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Crm", "Dashboard")>CRM</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Analytics", "Dashboard")>Analytics</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="twocolumn-menu-item" id="apps">
+                        <h5 class="menu-title">Apps</h5>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href=@Url.Action("Calendar", "Apps")>Calendar</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href=@Url.Action("Chat", "Apps")>Chat</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#sidebarEcommerce" data-bs-toggle="collapse" class="nav-link">
+                                    <span> Ecommerce </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarEcommerce">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href=@Url.Action("Products", "Ecommerce")>Products List</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("ProductsGrid", "Ecommerce")>Products Grid</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("ProductDetail", "Ecommerce")>Product Detail</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("ProductCreate", "Ecommerce")>Create Product</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("Customers", "Ecommerce")>Customers</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("Orders", "Ecommerce")>Orders</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("OrdersDetail", "Ecommerce")>Order Detail</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("Sellers", "Ecommerce")>Sellers</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("Cart", "Ecommerce")>Shopping Cart</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("Checkout", "Ecommerce")>Checkout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="#sidebarEmail" data-bs-toggle="collapse" class="nav-link">
+                                    <span> Email </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarEmail">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href=@Url.Action("Inbox", "Email")>Inbox</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("Read", "Email")>Read Email</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("Index", "EmailTemplates")>Email Templates</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href=@Url.Action("Companies", "Apps")>Companies</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#sidebarTasks" data-bs-toggle="collapse" class="nav-link">
+                                    <span> Tasks </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarTasks">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href=@Url.Action("List", "Task")>List</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("Details", "Task")>Details</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("Kanban", "Task")>Kanban Board</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="nav-item">
+                                <a href="#sidebarContacts" data-bs-toggle="collapse" class="nav-link">
+                                    <span> Contacts </span>
+                                    <span class="menu-arrow"></span>
+                                </a>
+                                <div class="collapse" id="sidebarContacts">
+                                    <ul class="nav-second-level">
+                                        <li>
+                                            <a href=@Url.Action("List", "Contacts")>Members List</a>
+                                        </li>
+                                        <li>
+                                            <a href=@Url.Action("Profile", "Contacts")>Profile</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href=@Url.Action("FileManager", "Apps")>File Manager</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link" href=@Url.Action("Tickets", "Apps")>Tickets</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="twocolumn-menu-item" id="pages">
+                        <div class="title-box">
+                            <h5 class="menu-title">Pages</h5>
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Starter", "Pages")>Starter</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Timeline", "Pages")>Timeline</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Sitemap", "Pages")>Sitemap</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Invoice", "Pages")>Invoice</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Faqs", "Pages")>FAQs</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Search", "Pages")>Search Results</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Pricing", "Pages")>Pricing</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Maintenance", "Pages")>Maintenance</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("ComingSoon", "Pages")>Coming Soon</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Gallery", "Pages")>Gallery</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sidebarAuth" data-bs-toggle="collapse" class="nav-link">
+                                        <span> Auth Pages </span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="collapse" id="sidebarAuth">
+                                        <ul class="nav-second-level">
+                                            <li>
+                                                <a href=@Url.Action("Login", "Auth")>Log In</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Login2", "Auth")>Log In 2</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Register", "Auth")>Register</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Register2", "Auth")>Register 2</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("SigninSignup", "Auth")>Signin - Signup</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("SigninSignup2", "Auth")>Signin - Signup 2</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("RecoverPassword", "Auth")>Recover Password</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("RecoverPassword2", "Auth")>Recover Password 2</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("LockScreen", "Auth")>Lock Screen</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("LockScreen2", "Auth")>Lock Screen 2</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Logout", "Auth")>Logout</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Logout2", "Auth")>Logout 2</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("ConfirmMail", "Auth")>Confirm Mail</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("ConfirmMail2", "Auth")>Confirm Mail 2</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sidebarErrors" data-bs-toggle="collapse" class="nav-link">
+                                        Error Pages <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="collapse" id="sidebarErrors">
+                                        <ul class="nav-second-level">
+                                            <li>
+                                                <a href=@Url.Action("Error404", "Error")>Error 404</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Error404Alt", "Error")>Error 404-alt</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Error500", "Error")>Error 500</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="twocolumn-menu-item" id="layouts">
+                        <div class="title-box">
+                            <h5 class="menu-title">Layouts</h5>
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Vertical", "Layouts")
+                                        target="_blank">Vertical</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Horizontal", "Layouts") target="_blank">Horizontal</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Detached", "Layouts") target="_blank">Detached</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("TwoColumn", "Layouts") target="_blank">Two Column Menu</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Preloader", "Layouts") target="_blank">Preloader</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="twocolumn-menu-item" id="uielements">
+                        <div class="title-box">
+                            <h5 class="menu-title">UI Elements</h5>
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Avatars", "Ui")>Avatars</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Buttons", "Ui")>Buttons</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Cards", "Ui")>Cards</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Carousel", "Ui")>Carousel</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Dropdowns", "Ui")>Dropdowns</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Video", "Ui")>Embed Video</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("General", "Ui")>General UI</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Grid", "Ui")>Grid</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Images", "Ui")>Images</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("ListGroup", "Ui")>List Group</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Modals", "Ui")>Modals</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Notifications", "Ui")>Notifications</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Offcanvas", "Ui")>Offcanvas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Placeholders", "Ui")>Placeholders</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Portlets", "Ui")>Portlets</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Progress", "Ui")>Progress</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Ribbons", "Ui")>Ribbons</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Spinners", "Ui")>Spinners</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Tabs", "Ui")>Tabs & Accordions</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Tooltips", "Ui")>Tooltips & Popovers</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href=@Url.Action("Typography", "Ui")>Typography</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="twocolumn-menu-item" id="components">
+                        <div class="title-box">
+                            <h5 class="menu-title">Components</h5>
+                            <ul class="nav flex-column">
+                                <li class="nav-item">
+                                    <a href="#sidebarExtendedui" data-bs-toggle="collapse" class="nav-link">
+                                        <span class="badge bg-info float-end">Hot</span>
+                                        <span> Extended UI </span>
+                                    </a>
+                                    <div class="collapse" id="sidebarExtendedui">
+                                        <ul class="nav-second-level">
+                                            <li>
+                                                <a href=@Url.Action("Nestable", "Extended")>Nestable List</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("RangeSlider", "Extended")>Range Slider</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("SweetAlert", "Extended")>Sweet Alert</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Tour", "Extended")>Tour Page</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Treeview", "Extended")>Treeview</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Scrollspy", "Extended")>Scrollspy</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sidebarIcons" data-bs-toggle="collapse" class="nav-link">
+                                        <span> Icons </span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="collapse" id="sidebarIcons">
+                                        <ul class="nav-second-level">
+                                            <li>
+                                                <a href=@Url.Action("Feather", "Icons")>Feather</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Remix", "Icons")>Remix</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Boxicons", "Icons")>Boxicons</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Mdi", "Icons")>Material Design</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("FontAwesome", "Icons")>Font Awesome 5</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Weather", "Icons")>Weather</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sidebarForms" data-bs-toggle="collapse" class="nav-link">
+                                        <span> Forms </span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="collapse" id="sidebarForms">
+                                        <ul class="nav-second-level">
+                                            <li>
+                                                <a href=@Url.Action("Elements", "Forms")>General Elements</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Advanced", "Forms")>Advanced</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Validation", "Forms")>Validation</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Pickers", "Forms")>Pickers</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Wizard", "Forms")>Wizard</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Masks", "Forms")>Masks</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Quilljs", "Forms")>Quilljs Editor</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("FileUploads", "Forms")>File Uploads</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("XEditable", "Forms")>X Editable</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sidebarTables" data-bs-toggle="collapse" class="nav-link">
+                                        <span> Tables </span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="collapse" id="sidebarTables">
+                                        <ul class="nav-second-level">
+                                            <li>
+                                                <a href=@Url.Action("Basic", "Tables")>Basic Tables</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Datatables", "Tables")>Data Tables</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Editable", "Tables")>Editable Tables</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Responsive", "Tables")>Responsive Tables</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Footables", "Tables")>FooTable</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Tablesaw", "Tables")>Tablesaw Tables</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sidebarCharts" data-bs-toggle="collapse" class="nav-link">
+                                        <span> Charts </span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="collapse" id="sidebarCharts">
+                                        <ul class="nav-second-level">
+                                            <li>
+                                                <a href=@Url.Action("Flot", "Charts")>Flot Charts</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Apex", "Charts")>Apex Charts</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Morris", "Charts")>Morris Charts</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Chartjs", "Charts")>Chartjs Charts</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("C3", "Charts")>C3 Charts</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Peity", "Charts")>Peity Charts</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Chartist", "Charts")>Chartist Charts</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Sparklines", "Charts")>Sparklines Charts</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Knob", "Charts")>Jquery Knob Charts</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sidebarMaps" data-bs-toggle="collapse" class="nav-link">
+                                        <span> Maps </span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="collapse" id="sidebarMaps">
+                                        <ul class="nav-second-level">
+                                            <li>
+                                                <a href=@Url.Action("Google", "Maps")>Google Maps</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Vector", "Maps")>Vector Maps</a>
+                                            </li>
+                                            <li>
+                                                <a href=@Url.Action("Mapael", "Maps")>Mapael Maps</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#sidebarMultilevel" data-bs-toggle="collapse" class="nav-link">
+                                        <span> Multi Level </span>
+                                        <span class="menu-arrow"></span>
+                                    </a>
+                                    <div class="collapse" id="sidebarMultilevel">
+                                        <ul class="nav-second-level">
+                                            <li>
+                                                <a href="#sidebarMultilevel2" data-bs-toggle="collapse">
+                                                    Second Level <span class="menu-arrow"></span>
+                                                </a>
+                                                <div class="collapse" id="sidebarMultilevel2">
+                                                    <ul class="nav-second-level">
+                                                        <li>
+                                                            <a href="javascript: void(0);">Item 1</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript: void(0);">Item 2</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+
+                                            <li>
+                                                <a href="#sidebarMultilevel3" data-bs-toggle="collapse">
+                                                    Second Level 1
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <!-- End Sidebar -->
+
+    </div>
+    <!-- Sidebar -left -->
+
+</div>
+<!-- Left Sidebar End -->

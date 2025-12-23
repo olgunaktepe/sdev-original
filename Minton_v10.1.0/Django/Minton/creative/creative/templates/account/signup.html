@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% load static i18n crispy_forms_tags %}
+
+{% block title %}Sign Up{% endblock title %}
+
+{% block page_content %}
+
+<div class="passwordBox animated fadeInDown">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="ibox-content">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-4 mx-auto">
+                            <div class="card">
+                                <div class="card-body p-0 bg-black auth-header-box rounded-top">
+                                    <div class="text-center p-3">
+                                        <a href="{% url 'pages:dynamic_pages' template_name='index' %}" class="logo logo-admin">
+                                            <img src="{% static 'images/logo-sm.png' %}" height="50" alt="logo"
+                                                class="auth-logo">
+                                        </a>
+                                        <h4 class="mt-3 mb-1 fw-semibold text-white fs-18">Create an account</h4>
+                                        <p class="text-muted fw-medium mb-0">Enter your detail to Create your account
+                                            today.</p>
+                                    </div>
+                                </div>
+                                <div class="card-body pt-3">
+                                    <form id="signup_form" method="post" action="{% url 'account_signup' %}"
+                                        class="authentication-form">
+
+                                        {% csrf_token %}
+                                        {{ form|crispy }}
+                                        {% if redirect_field_value %}
+                                        <input type="hidden" name="{{ redirect_field_name }}"
+                                            value="{{ redirect_field_value }}" />
+                                        {% endif %}
+
+                                        <div class="mb-1 text-center d-grid">
+                                            <button class="btn btn-primary" type="submit">
+                                                Sign Up
+                                            </button>
+                                        </div>
+                                    </form>
+
+                                    <div class="text-center">
+                                        <p class="text-muted">Already have an account ? <a href="{{ login_url }}"
+                                                class="text-primary ms-2">Log in</a>
+                                        </p>
+                                    </div>
+                                </div><!--end card-body-->
+                            </div><!--end card-->
+                        </div><!--end col-->
+                    </div><!--end row-->
+                </div><!--end card-body-->
+            </div><!--end col-->
+        </div><!--end row-->
+    </div><!-- container -->
+</div>
+
+{% endblock %}

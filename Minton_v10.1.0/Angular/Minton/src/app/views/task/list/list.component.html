@@ -1,0 +1,125 @@
+<app-page-title title="Tasks List" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <a
+                  href="javascript:void(0);"
+                  class="btn btn-primary waves-effect waves-light"
+                  ><i class="fe-plus me-1"></i>Add New</a
+                >
+              </div>
+              <div class="col-sm-9">
+                <div class="float-sm-end mt-3 mt-sm-0">
+                  <div class="d-flex align-items-start flex-wrap">
+                    <div class="mb-3 mb-sm-0 me-sm-2">
+                      <form>
+                        <div class="position-relative">
+                          <input
+                            type="text"
+                            class="form-control"
+                            placeholder="Search..."
+                          />
+                        </div>
+                      </form>
+                    </div>
+                    <div ngbDropdown class="dropdown">
+                      <button
+                        ngbDropdownToggle
+                        class="btn btn-light dropdown-toggle"
+                        type="button"
+                      >
+                        <i class="mdi mdi-filter-variant"></i>
+                      </button>
+                      <div
+                        ngbDropdownMenu
+                        class="dropdown-menu dropdown-menu-end"
+                      >
+                        <a class="dropdown-item" href="javascript:void(0);"
+                          >Due Date</a
+                        >
+                        <a class="dropdown-item" href="javascript:void(0);"
+                          >Added Date</a
+                        >
+                        <a class="dropdown-item" href="javascript:void(0);"
+                          >Assignee</a
+                        >
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="custom-accordion">
+              <div class="mt-4">
+                <h5 class="position-relative mb-0">
+                  <a
+                    class="text-dark d-block"
+                    data-bs-toggle="collapse"
+                    (click)="collapse.toggle()"
+                    >Today Tasks <span class="text-muted">(08)</span>
+                    <i class="mdi mdi-chevron-down accordion-arrow"></i
+                  ></a>
+                </h5>
+                <div
+                  #collapse="ngbCollapse"
+                  [(ngbCollapse)]="isCollapsed"
+                  class="collapse show"
+                  id="taskcollapse1"
+                >
+                  <task-section [task]="todayTasks" />
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <h5 class="position-relative mb-0">
+                  <a
+                    class="text-dark d-block"
+                    data-bs-toggle="collapse"
+                    (click)="collapse1.toggle()"
+                    >Upcoming Tasks <span class="text-muted">(05)</span>
+                    <i class="mdi mdi-chevron-down accordion-arrow"></i
+                  ></a>
+                </h5>
+                <div
+                  #collapse1="ngbCollapse"
+                  [(ngbCollapse)]="isCollapsed1"
+                  class="collapse show"
+                  id="taskcollapse2"
+                >
+                  <task-section [task]="upcomingTasks" />
+                </div>
+              </div>
+
+              <div class="mt-4">
+                <h5 class="position-relative mb-0">
+                  <a
+                    class="text-dark d-block"
+                    data-bs-toggle="collapse"
+                    (click)="collapse2.toggle()"
+                    >Other Tasks <span class="text-muted">(03)</span>
+                    <i class="mdi mdi-chevron-down accordion-arrow"></i
+                  ></a>
+                </h5>
+                <div
+                  #collapse2="ngbCollapse"
+                  [(ngbCollapse)]="isCollapsed2"
+                  class="collapse show"
+                  id="taskcollapse3"
+                >
+                  <task-section [task]="otherTasks" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

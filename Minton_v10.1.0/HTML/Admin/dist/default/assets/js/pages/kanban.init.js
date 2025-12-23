@@ -1,0 +1,1 @@
+(n=>{function o(){this.$body=n("body")}o.prototype.init=function(){n(".tasklist").each(function(){Sortable.create(n(this)[0],{group:"shared",animation:150,ghostClass:"bg-ghost"})})},n.KanbanBoard=new o,n.KanbanBoard.Constructor=o})(window.jQuery),window.jQuery.KanbanBoard.init();

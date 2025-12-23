@@ -1,0 +1,84 @@
+<div class="card">
+  <div class="card-body">
+    <div class="d-flex align-items-start align-items-start mb-3">
+      <img
+        src="assets/images/users/avatar-1.jpg"
+        class="me-2 rounded-circle"
+        height="42"
+        alt="Brandon Smith"
+      />
+      <div class="flex-1">
+        <h5 class="mt-0 mb-0 font-15">
+          <a routerLink="/contacts/profile" class="text-reset">Nik Patel</a>
+        </h5>
+        <p class="mt-1 mb-0 text-muted font-14">
+          <small class="mdi mdi-circle text-success"></small> Online
+        </p>
+      </div>
+      <div>
+        <a href="javascript: void(0);" class="text-reset font-20">
+          <i class="mdi mdi-cog-outline"></i>
+        </a>
+      </div>
+    </div>
+
+    <form class="search-bar mb-3">
+      <div class="position-relative">
+        <input
+          type="text"
+          class="form-control form-control-light"
+          placeholder="People, groups & messages..."
+        />
+        <span class="mdi mdi-magnify"></span>
+      </div>
+    </form>
+
+    <h6 class="font-13 text-muted text-uppercase mb-2">Contacts</h6>
+
+    <div class="row">
+      <div class="col">
+        <ngx-simplebar data-simplebar style="max-height: 498px">
+          @for (item of contactList; track $index) {
+            <a
+              href="javascript:void(0);"
+              (click)="getDetail(item)"
+              class="text-body"
+            >
+              <div class="d-flex align-items-start p-2">
+                <div class="position-relative">
+                  <span class="user-status {{ item.status }}"></span>
+                  <img
+                    [src]="item.avatar"
+                    class="me-2 rounded-circle"
+                    height="42"
+                    alt="user"
+                  />
+                </div>
+                <div class="flex-1">
+                  <h5 class="mt-0 mb-0 font-14">
+                    <span class="float-end text-muted fw-normal font-12">{{
+                      item.lastMessageOn
+                    }}</span>
+                    {{ item.name }}
+                  </h5>
+                  <p class="mt-1 mb-0 text-muted font-14">
+                    @if (item.totalUnread) {
+                      <span class="w-25 float-end text-end"
+                        ><span class="badge badge-soft-danger">{{
+                          item.totalUnread
+                        }}</span></span
+                      >
+                    }
+                    <span class="w-75">{{ item.lastMessage }}</span>
+                  </p>
+                </div>
+              </div>
+            </a>
+          }
+        </ngx-simplebar>
+        <!-- end slimscroll-->
+      </div>
+    </div>
+  </div>
+  <!-- end card-body-->
+</div>

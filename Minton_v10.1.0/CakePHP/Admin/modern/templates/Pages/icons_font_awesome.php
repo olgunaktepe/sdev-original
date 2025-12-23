@@ -1,0 +1,89 @@
+<?= $this->element('html') ?>
+
+<head>
+    <?= $this->element('title-meta', array('title' => 'Font Awesome Icons')) ?>
+
+    <?= $this->element('head-css') ?>
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <?= $this->element('menu') ?>
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <div class="content-page">
+            <div class="content">
+
+                <!-- Start Content-->
+                <div class="container-fluid">
+
+                    <?= $this->element('page-title', array('subTitle' => 'Icons', 'title' => 'Font Awesome')) ?>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Solid</h4>
+                                    <p class="sub-header">Use <code>&lt;i class="fas fa-ad"&gt;&lt;/i&gt;</code> <span class="badge bg-success">v 5.13.0</span>.</p>
+
+                                    <div class="row icons-list-demo" id="solid">
+                                    </div>
+                                </div> <!-- end card-body -->
+                            </div> <!-- end card -->
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Regular</h4>
+                                    <p class="sub-header">Use <code>&lt;i class="far fa-address-book"&gt;&lt;/i&gt;</code> <span class="badge bg-success">v 5.13.0</span>.</p>
+
+                                    <div class="row icons-list-demo" id="regular">
+                                    </div>
+                                </div> <!-- end card-body -->
+                            </div> <!-- end card -->
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Brands</h4>
+                                    <p class="sub-header">Use <code>&lt;i class="fab fa-500px"&gt;&lt;/i&gt;</code> <span class="badge bg-success">v 5.13.0</span>.</p>
+
+                                    <div class="row icons-list-demo" id="brand">
+                                    </div>
+                                </div> <!-- end card-body -->
+                            </div> <!-- end card -->
+                        </div> <!-- end col -->
+                    </div> <!-- end row -->
+
+                </div> <!-- container -->
+
+            </div> <!-- content -->
+
+            <?= $this->element('footer') ?>
+
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+
+    </div>
+    <!-- END wrapper -->
+
+    <?= $this->element('right-sidebar') ?>
+
+    <!-- Vendor js -->
+    <script src="/js/vendor.min.js"></script>
+
+    <!-- custom dmeo js-->
+    <script src="/js/pages/fontawesome.init.js"></script>
+
+    <?= $this->element('footer-scripts') ?>
+
+</body>
+
+</html>

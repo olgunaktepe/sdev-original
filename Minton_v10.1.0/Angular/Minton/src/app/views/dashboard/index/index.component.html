@@ -1,0 +1,77 @@
+<app-page-title [breadCrumbItems]="breadCrumbItems" title="Welcome !" />
+
+<div class="row">
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-chart-widget
+      [data]="58"
+      [color]="'#1abc9c'"
+      [stats]="268"
+      description="New Customers"
+      [counterOptions]="{ startVal: 0, useGrouping: false }"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-chart-widget
+      [data]="80"
+      [color]="'#3bafda'"
+      [stats]="8574"
+      description="Online Orders"
+      [counterOptions]="{ startVal: 0, useGrouping: false }"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-chart-widget
+      [data]="77"
+      [color]="'#f672a7'"
+      [stats]="958.25"
+      description="Revenue"
+      [counterOptions]="{ prefix: '$', decimalPlaces: 2, useGrouping: false }"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-chart-widget
+      [data]="35"
+      [color]="'#6c757d'"
+      [stats]="89.25"
+      description="Daily Average"
+      [counterOptions]="{ prefix: '$', decimalPlaces: 2, useGrouping: false }"
+    />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-4 col-lg-6">
+    <sales-revenue-report />
+  </div>
+
+  <div class="col-xl-4 col-lg-6">
+    <sales-product-sale />
+  </div>
+
+  <div class="col-xl-4">
+    <sales-marketing-report />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-6">
+    <sales-location />
+  </div>
+
+  <div class="col-xl-6">
+    <sales-top-selling />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-8">
+    <sales-history />
+  </div>
+
+  <div class="col-xl-4">
+    <sales-projections />
+  </div>
+</div>

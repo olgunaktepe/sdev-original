@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+// Themes
+// For Icons
+@import "jsvectormap/dist/css/jsvectormap.css";
+@import "quill/dist/quill.snow.css";
+@import "quill/dist/quill.bubble.css";
+@import "selectize/dist/css/selectize.css";
+@import "nouislider/dist/nouislider.css";
+@import "hopscotch/dist/css/hopscotch.css";
+@import "ngx-lightbox/lightbox.css";
+
+@import '../public/assets/scss/icons.scss';
+
+// For Default import Default.scss
+@import '../public/assets/scss/config/default/bootstrap.scss';
+@import '../public/assets/scss/config/default/app.scss';
+
+// For Default import Corporate.scss
+// @import '../public/assets/scss/config/corporate/bootstrap.scss'
+// @import '../public/assets/scss/config/corporate/app.scss'
+
+// For Default import Creative.scss
+// @import '../public/assets/scss/config/creative/bootstrap.scss'
+// @import '../public/assets/scss/config/creative/app.scss'
+
+// For Default import Material.scss
+// @import '../public/assets/scss/config/material/bootstrap.scss'
+// @import '../public/assets/scss/config/material/app.scss'
+
+// For Default import Modern.scss
+// @import '../public/assets/scss/config/modern/bootstrap.scss'
+// @import '../public/assets/scss/config/modern/app.scss'
+
+// For Default import Saas.scss
+// @import '../public/assets/scss/config/saas/bootstrap.scss'
+// @import '../public/assets/scss/config/saas/app.scss'
+
+.apex-charts {
+  div {
+    min-height: 0 !important;
+  }
+}
+
+ngb-rating {
+  i {
+    position: relative;
+    display: inline-block;
+    color: rgba(var(--bs-secondary-color));
+  }
+}
+
+.filled {
+  color: rgba(var(--bs-warning-rgb)) !important;
+  overflow: hidden;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+}

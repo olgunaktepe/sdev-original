@@ -1,0 +1,19 @@
+<div class="widget-rounded-circle card">
+  <div class="card-body">
+    <div class="row align-items-center">
+      <div class="col-auto">
+        <div class="avatar-lg">
+          <img [src]="avatar" class="img-fluid rounded-circle" alt="user" />
+        </div>
+      </div>
+
+      <div class="col">
+        <h5 class="mt-0 mb-1">{{ name }}</h5>
+        <p class="text-muted mb-2 font-13 text-truncate">{{ email }}</p>
+        <small [ngClass]="'text-' + variant"
+          ><b>{{ role }}</b></small
+        >
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% load static i18n crispy_forms_tags %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body_extra %}class="gray-bg"{% endblock %}
+
+{% block page_content %}
+
+<div class="account-pages mt-5 mb-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-4">
+                <div class="card">
+
+                    <div class="card-body p-4">
+
+                        <div class="text-center w-75 m-auto">
+                            <div class="auth-logo">
+                                <a href="{% url 'pages:dynamic_pages' template_name='index' %}" class="logo logo-dark text-center">
+                                    <span class="logo-lg">
+                                        <img src="{% static '/images/logo-dark.png' %}" alt="" height="22">
+                                    </span>
+                                </a>
+
+                                <a href="{% url 'pages:dynamic_pages' template_name='index' %}" class="logo logo-light text-center">
+                                    <span class="logo-lg">
+                                        <img src="{% static '/images/logo-light.png' %}" alt="" height="22">
+                                    </span>
+                                </a>
+                            </div>
+                            <p class="text-muted mb-4 mt-3">Enter your email address and password to access admin
+                                panel.</p>
+                        </div>
+
+                        <form class="m-t" method="POST" action="{% url 'account_login' %}" role="form">
+
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            {% if redirect_field_value %}
+                            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                            {% endif %}
+
+                            <button type="submit" class="btn btn-primary d-block w-100 mb-2">Login</button>
+
+                        </form>
+
+                    </div>
+                </div>
+
+
+                <div class="row mt-3">
+                    <div class="col-12 text-center">
+                        <p> <a href="{% url 'pages:dynamic_pages' template_name='auth-recoverpw' %}" class="text-muted ms-1">Forgot your password?</a></p>
+                        <p class="text-muted">Don't have an account? <a href="{% url 'pages:dynamic_pages' template_name='auth-register' %}" class="text-primary fw-medium ms-1">Sign Up</a></p>
+                    </div> <!-- end col -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_javascript %}
+<script>
+    document.getElementById('id_login').value = "minton@user.com"
+    document.getElementById('id_password').value = "password"
+</script>
+{% endblock extra_javascript %}

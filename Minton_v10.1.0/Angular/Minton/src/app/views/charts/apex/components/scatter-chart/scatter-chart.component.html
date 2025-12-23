@@ -1,0 +1,21 @@
+<custom-card-portlet
+  cardTitle="Scatter (XY) Chart"
+  cardTitleClass="header-title mb-0"
+>
+  <div
+    id="apex-scatter-1"
+    class="apex-charts"
+    data-colors="#1abc9c,#f672a7,#6c757d"
+  >
+    <apx-chart
+      [chart]="apexscatter1Chart.chart!"
+      [series]="apexscatter1Chart.series!"
+      [xaxis]="apexscatter1Chart.xaxis!"
+      [yaxis]="apexscatter1Chart.yaxis!"
+      [colors]="apexscatter1Chart.colors!"
+      [grid]="apexscatter1Chart.grid!"
+      [legend]="apexscatter1Chart.legend!"
+      [responsive]="apexscatter1Chart.responsive!"
+    />
+  </div>
+</custom-card-portlet>

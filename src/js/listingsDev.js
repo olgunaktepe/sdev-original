@@ -1305,6 +1305,9 @@ $(document).ready(function () {
 			// Preserve sort order from server response
 			sortedListingsIndex = listingIds.map(function(id){ return [id]; });
 
+			// Store totalInRange in listingsStats so filterListings preserves it
+			listingsStats.totalInRange = json.totalInRange;
+
 			var sc = container.find(selectors.statsContainer);
 			var html = Handlebars.compile(container.find(selectors.templates.stats).html());
 			sc.html(html({total: json.formatted.length, totalInRange: json.totalInRange, speed: 0, elapsed: 0}));
@@ -1509,17 +1512,20 @@ $(document).ready(function () {
 				});				
 				*/
 				$.each(json.formatted,function(k,el){
-					listingIds.push(el.id);		
-					//if(newListings.indexOf(el.id)>=0)el.new = 1;										
+					listingIds.push(el.id);
+					//if(newListings.indexOf(el.id)>=0)el.new = 1;
 					listings[el.id] = el;
 				});
 				newListings = [];
 
+				// Store totalInRange in listingsStats so filterListings preserves it
+				listingsStats.totalInRange = json.totalInRange;
+
 				var sc = container.find(selectors.statsContainer);
 				var html = Handlebars.compile(container.find(selectors.templates.stats).html());
-				sc.html(html({'total':json.formatted.length,'speed':0, 'elapsed': 0}));
+				sc.html(html({'total':json.formatted.length,'totalInRange':json.totalInRange,'speed':0, 'elapsed': 0}));
 				c.html('No filters applied...');
-				
+
 				sortListings('default');
 				createMarkers();
 				filterListings();				

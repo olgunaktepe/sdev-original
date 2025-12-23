@@ -1,0 +1,59 @@
+<div class="mt-3">
+  <ul class="message-list">
+    @for (email of emails; track $index) {
+      <li [class]="{ unread: !email.is_read }">
+        <div class="col-mail col-mail-1">
+          <div class="checkbox-wrapper-mail">
+            <input type="checkbox" [id]="'mail' + email.id" />
+            <label [for]="'mail' + email.id" class="toggle"></label>
+          </div>
+          <span
+            class="star-toggle far fa-star"
+            [ngClass]="{ 'text-warning': email.is_important }"
+          ></span>
+          <a routerLink="/email/read" class="title"
+            >{{ email.from_name }}
+            @if (email.number_of_reply > 1) {
+              <span> ({{ email.number_of_reply }})</span>
+            }
+          </a>
+        </div>
+        <div class="col-mail col-mail-2">
+          <a routerLink="/email/read" class="subject"
+            >{{ email.subject }} &nbsp;&ndash;&nbsp;
+            <span class="teaser">&#64;{{ email.teaser }}</span>
+          </a>
+          <div class="date">{{ email.time }}</div>
+        </div>
+      </li>
+    }
+  </ul>
+</div>
+
+<div class="row">
+  <div class="col-7 mt-1">
+    Showing {{ startIndex }} - {{ endIndex }} of {{ totalEmails }}
+  </div>
+  <!-- end col-->
+  <div class="col-5">
+    <div class="btn-group float-end">
+      <button
+        type="button"
+        class="btn btn-light btn-sm"
+        [disabled]="page === 1"
+        (click)="getPrevPage()"
+      >
+        <i class="mdi mdi-chevron-left"></i>
+      </button>
+      <button
+        type="button"
+        class="btn btn-light btn-sm"
+        [disabled]="page >= totalPages"
+        (click)="getNextPage()"
+      >
+        <i class="mdi mdi-chevron-right"></i>
+      </button>
+    </div>
+  </div>
+  <!-- end col-->
+</div>

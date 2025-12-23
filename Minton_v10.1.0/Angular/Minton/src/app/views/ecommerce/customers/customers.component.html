@@ -1,0 +1,159 @@
+<app-page-title title="Customers" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row mb-2">
+          <div class="col-sm-4">
+            <a href="javascript:void(0);" class="btn btn-danger mb-2"
+              ><i class="mdi mdi-plus-circle me-1"></i> Add Customers</a
+            >
+          </div>
+          <div class="col-sm-8">
+            <div class="text-sm-end">
+              <button type="button" class="btn btn-success mb-2 me-1">
+                <i class="mdi mdi-cog"></i>
+              </button>
+              <button type="button" class="btn btn-light mb-2 me-1 ms-1">
+                Import
+              </button>
+              <button type="button" class="btn btn-light mb-2 ms-1">
+                Export
+              </button>
+            </div>
+          </div>
+          <!-- end col-->
+        </div>
+
+        <app-table-header />
+        <div class="table-responsive">
+          <table
+            class="table table-centered dt-responsive nowrap w-100 dataTable"
+            id="products-datatable"
+          >
+            <thead class="table-light">
+              <tr>
+                <th style="width: 20px">
+                  <div class="form-check font-16 mb-0">
+                    <input
+                      class="form-check-input"
+                      type="checkbox"
+                      id="customerlist"
+                    />
+                    <label class="form-check-label" for="customerlist"
+                      >&nbsp;</label
+                    >
+                  </div>
+                </th>
+                <th class="sorting" sortable="name" (sort)="onSort($event)">
+                  Customer
+                </th>
+                <th class="sorting" sortable="phone" (sort)="onSort($event)">
+                  Phone
+                </th>
+                <th class="sorting" sortable="balance" (sort)="onSort($event)">
+                  Balance
+                </th>
+                <th class="sorting" sortable="orders" (sort)="onSort($event)">
+                  Orders
+                </th>
+                <th
+                  class="sorting"
+                  sortable="last_order"
+                  (sort)="onSort($event)"
+                >
+                  Last Order
+                </th>
+                <th class="sorting" sortable="status" (sort)="onSort($event)">
+                  Status
+                </th>
+                <th class="sorting" style="width: 75px">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of customer$ | async; track $index) {
+                <tr>
+                  <td>
+                    <div class="form-check font-16 mb-0">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        id="customerlist01"
+                      />
+                      <label class="form-check-label" for="customerlist01"
+                        >&nbsp;</label
+                      >
+                    </div>
+                  </td>
+                  <td>
+                    <div class="d-flex">
+                      @if (item.avatar) {
+                        <img
+                          [src]="item.avatar"
+                          alt="table-user"
+                          class="me-3 rounded-circle avatar-sm"
+                        />
+                      } @else {
+                        <div class="avatar-sm me-3">
+                          <div
+                            class="avatar-title rounded-circle bg-soft-primary fw-medium text-primary"
+                          >
+                            {{ item.name.charAt(0) }}
+                          </div>
+                        </div>
+                      }
+                      <div class="flex-1">
+                        <h5 class="mt-0 mb-1">
+                          <a href="javascript:void(0);" class="text-dark">{{
+                            item.name
+                          }}</a>
+                        </h5>
+                        <p class="mb-0 font-13">ID : {{ item.id }}</p>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{{ item.phone }}</td>
+                  <td>{{ currency }}{{ item.balance }}</td>
+                  <td>
+                    {{ item.orders }}
+                  </td>
+                  <td>
+                    {{ item.last_order }}
+                  </td>
+                  <td>
+                    <span
+                      class="badge badge-soft-success"
+                      [ngClass]="
+                        item.status == 'Active'
+                          ? 'badge-soft-success'
+                          : 'badge-soft-danger'
+                      "
+                      >{{ item.status }}</span
+                    >
+                  </td>
+
+                  <td>
+                    <ul class="list-inline mb-0">
+                      <li class="list-inline-item">
+                        <a href="javascript:void(0);" class="action-icon">
+                          <i class="mdi mdi-square-edit-outline"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="javascript:void(0);" class="action-icon">
+                          <i class="mdi mdi-delete"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+        <app-table-footer [total]="total$" />
+      </div>
+    </div>
+  </div>
+</div>

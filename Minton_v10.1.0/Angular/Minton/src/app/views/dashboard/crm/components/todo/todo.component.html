@@ -1,0 +1,109 @@
+<div class="card">
+  <div class="card-body">
+    <div ngbDropdown class="dropdown float-end">
+      <a
+        ngbDropdownToggle
+        class="dropdown-toggle arrow-none card-drop"
+        role="button"
+      >
+        <i class="mdi mdi-dots-vertical"></i>
+      </a>
+      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Settings</a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+      </div>
+    </div>
+    <h4 class="header-title mb-3">Todo</h4>
+
+    <div class="todoapp">
+      <div class="row">
+        <div class="col">
+          <h5 id="todo-message">
+            <span id="todo-remaining">{{ remainingTodos }}</span> of
+            <span id="todo-total">{{ todoData.length }}</span> remaining
+          </h5>
+        </div>
+        <div class="col-auto">
+          <a
+            role="button"
+            class="float-end btn btn-light btn-sm"
+            id="btn-archive"
+            (click)="archiveTodos()"
+            >Archive</a
+          >
+        </div>
+      </div>
+
+      <ngx-simplebar style="max-height: 292px" data-simplebar>
+        <ul class="list-group list-group-flush todo-list" id="todo-list">
+          @for (todo of todoData; track $index) {
+            <li class="list-group-item border-0 ps-0">
+              <div class="form-check mb-0">
+                <input
+                  type="checkbox"
+                  class="form-check-input"
+                  [checked]="todo.done"
+                  (change)="toggleTodo(todo)"
+                  id="{{ todo.id }}"
+                />
+                <label class="form-check-label" [for]="todo.id">
+                  @if (todo.done) {
+                    <span>
+                      <s>{{ todo.text }}</s>
+                    </span>
+                  } @else {
+                    {{ todo.text }}
+                  }
+                </label>
+              </div>
+            </li>
+          }
+        </ul>
+      </ngx-simplebar>
+
+      <form
+        [formGroup]="todoForm"
+        (ngSubmit)="saveTodo()"
+        name="todo-form"
+        id="todo-form"
+        class="needs-validation mt-3"
+        novalidate
+      >
+        <div class="row">
+          <div class="col">
+            <input
+              type="text"
+              id="todo-input-text"
+              name="todo-input-text"
+              formControlName="newTodo"
+              class="form-control"
+              placeholder="Add new todo"
+              required
+            />
+
+            @if (
+              todoForm.get('newTodo')?.invalid &&
+              todoForm.get('newTodo')?.touched
+            ) {
+              <div class="invalid-feedback">Please enter your task name</div>
+            }
+          </div>
+          <div class="col-auto d-grid">
+            <button
+              class="btn btn-primary btn-md width-sm waves-effect waves-light"
+              type="submit"
+              id="todo-btn-submit"
+              [disabled]="todoForm.invalid"
+            >
+              Add
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <!-- end .todoapp-->
+  </div>
+</div>
+<!-- end card-->

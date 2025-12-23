@@ -1,0 +1,64 @@
+<app-page-title title="Pricing" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row justify-content-center">
+  <div class="col-xl-12">
+    <!-- Pricing Title-->
+    <div class="text-center pb-2">
+      <h3 class="mb-2">Our <span class="text-primary">Plans</span></h3>
+      <p class="text-muted w-50 m-auto">
+        We have plans and prices that fit your business perfectly. Make your
+        client site a success with our products.
+      </p>
+    </div>
+
+    <div class="row my-3">
+      @for (plan of pricingPlans; track $index) {
+        <div class="col-xl-3 col-md-6">
+          <div
+            class="card card-pricing"
+            [ngClass]="{ 'ribbon-box': plan.isPopular }"
+          >
+            @if (plan.isPopular) {
+              <div class="ribbon-two ribbon-two-danger">
+                <span>Popular</span>
+              </div>
+            }
+            <div class="card-body text-center">
+              <p class="card-pricing-plan-name fw-bold text-uppercase">
+                {{ plan.name }}
+              </p>
+              <span
+                class="card-pricing-icon"
+                [ngClass]="
+                  plan.isPopular ? 'bg-danger text-white' : 'text-primary'
+                "
+              >
+                <i [class]="plan.icon"></i>
+              </span>
+              <h2 class="card-pricing-price">
+                {{ currency }}{{ plan.price }}
+                <span>/ {{ plan.duration }}</span>
+              </h2>
+              <ul class="card-pricing-features">
+                @for (feature of plan.features; track feature) {
+                  <li>{{ feature }}</li>
+                }
+              </ul>
+              <div class="d-grid">
+                <button
+                  class="btn waves-effect mt-4"
+                  [ngClass]="
+                    plan.isPopular ? 'btn-danger' : 'btn-primary waves-light'
+                  "
+                >
+                  Sign Up
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+  <!-- end col-->
+</div>

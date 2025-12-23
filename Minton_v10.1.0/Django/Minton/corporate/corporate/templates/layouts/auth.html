@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block body_extra %}
+class="loading"
+{% endblock %}
+
+{% block page_content %}
+<div class="account-pages mt-5 mb-5">
+  <div class="container">
+    {% block content %}{% endblock content %}
+  </div>
+  <!-- end container -->
+</div>
+<!-- end page -->
+
+<footer class="footer footer-alt">
+  <script>document.write(new Date().getFullYear())</script> &copy; Minton theme by <a href="" class="text-dark">Coderthemes</a>
+</footer>
+
+{% endblock %}

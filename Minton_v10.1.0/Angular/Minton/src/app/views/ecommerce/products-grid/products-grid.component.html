@@ -1,0 +1,103 @@
+<app-page-title title="Products Grid" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row mb-2">
+  <div class="col-sm-4">
+    <a routerLink="/ecommerce/product-create" class="btn btn-danger mb-2"
+      ><i class="mdi mdi-plus-circle me-1"></i> Add Products</a
+    >
+  </div>
+  <div class="col-sm-8">
+    <div class="float-sm-end">
+      <form class="d-flex align-items-center flex-wrap">
+        <div class="me-2">
+          <label for="productssearch-input" class="visually-hidden"
+            >Search</label
+          >
+          <input
+            type="search"
+            class="form-control border-light"
+            id="productssearch-input"
+            placeholder="Search..."
+          />
+        </div>
+        <button type="button" class="btn btn-success mb-2 mb-sm-0">
+          <i class="mdi mdi-cog"></i>
+        </button>
+      </form>
+    </div>
+  </div>
+  <!-- end col-->
+</div>
+
+<div class="row">
+  @for (item of productGrid.slice(0, 8) || []; track $index) {
+    <div class="col-md-6 col-xl-3">
+      <div class="card product-box">
+        <div class="product-img">
+          <div class="p-3">
+            <img [src]="item.image" alt="product-pic" class="img-fluid" />
+          </div>
+          <div class="product-action">
+            <div class="d-flex">
+              <a
+                href="javascript: void(0);"
+                class="btn btn-white d-block w-100 action-btn m-2"
+                ><i class="ri-edit-2-fill align-middle"></i> Edit</a
+              >
+              <a
+                href="javascript: void(0);"
+                class="btn btn-white d-block w-100 action-btn m-2"
+                ><i class="ri-delete-bin-fill align-middle"></i> Delete</a
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="product-info border-top p-3">
+          <div>
+            <h5 class="font-16 mt-0 mb-1">
+              <a routerLink="/ecommerce/product-detail" class="text-dark">{{
+                item.product
+              }}</a>
+            </h5>
+            <p class="text-muted">
+              <ng-template #t let-fill="fill" let-index="index">
+                <i class="mdi mdi-star" [ngClass]="{ 'me-1': index < 4 }">
+                  @if (fill > 0) {
+                    <i
+                      class="mdi mdi-star text-warning filled"
+                      [style.width.%]="fill"
+                    ></i>
+                  }
+                </i>
+              </ng-template>
+
+              <ngb-rating
+                [(rate)]="item.rating"
+                [starTemplate]="t"
+                [readonly]="true"
+                [max]="5"
+              />
+            </p>
+            <h4 class="m-0">
+              <span class="text-muted"> Price : $ {{ item.price }}</span>
+            </h4>
+          </div>
+        </div>
+        <!-- end product info-->
+      </div>
+    </div>
+  }
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <ngb-pagination
+      [collectionSize]="50"
+      [page]="1"
+      class="pagination pagination-rounded justify-content-end"
+    ></ngb-pagination>
+  </div>
+  <!-- end col-->
+</div>
+<!-- end row-->

@@ -1,0 +1,1 @@
+(e=>{function o(){}o.prototype.init=function(){e(".table-rep-plugin").responsiveTable("update"),e(".btn-toolbar [data-toggle=dropdown]").attr("data-bs-toggle","dropdown")},e.ResponsiveTable=new o,e.ResponsiveTable.Constructor=o})(window.jQuery),window.jQuery.ResponsiveTable.init();

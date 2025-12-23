@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-body">
+    @if (hasHeader) {
+      <div ngbDropdown class="dropdown float-end">
+        <a
+          ngbDropdownToggle
+          href="javascript:void(0);"
+          class="arrow-none card-drop"
+        >
+          <i class="mdi mdi-dots-horizontal"></i>
+        </a>
+        <div ngbDropdownMenu class="dropdown-menu-end">
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item">Action</a>
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item">Another action</a>
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item">Something else</a>
+          <!-- item-->
+          <a href="javascript:void(0);" class="dropdown-item">Separated link</a>
+        </div>
+      </div>
+      <h4 class="header-title mt-0 mb-3">{{ title }}</h4>
+    }
+
+    <div class="d-flex justify-content-between align-items-center">
+      <div dir="ltr">
+        <apx-chart
+          [series]="apexData"
+          [chart]="apexOpts.chart"
+          [plotOptions]="apexOpts.plotOptions"
+          [dataLabels]="apexOpts.dataLabels"
+          [colors]="apexOpts.colors"
+          class="apex-charts"
+          [width]="72"
+          [height]="hasHeader ? 75 : 82"
+        ></apx-chart>
+      </div>
+      <div class="text-end">
+        <h3 class="mb-1 mt-0">
+          <span [countUp]="stats" [options]="counterOptions!"></span>
+        </h3>
+        <p class="text-muted mb-0">{{ description }}</p>
+      </div>
+    </div>
+  </div>
+</div>

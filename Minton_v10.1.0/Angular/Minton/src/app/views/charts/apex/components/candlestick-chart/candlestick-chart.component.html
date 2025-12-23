@@ -1,0 +1,19 @@
+<custom-card-portlet
+  cardTitle="Simple Candlestick Chart"
+  cardTitleClass="header-title mb-0"
+>
+  <div
+    id="apex-candlestick-1"
+    class="apex-charts"
+    data-colors="#3bafda,#1abc9c"
+  >
+    <apx-chart
+      [chart]="apexcandlestick1Chart.chart!"
+      [plotOptions]="apexcandlestick1Chart.plotOptions!"
+      [series]="apexcandlestick1Chart.series!"
+      [stroke]="apexcandlestick1Chart.stroke!"
+      [xaxis]="apexcandlestick1Chart.xaxis!"
+      [grid]="apexcandlestick1Chart.grid!"
+    />
+  </div>
+</custom-card-portlet>

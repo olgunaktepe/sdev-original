@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing'
+
+import { TabsAccordionsComponent } from './tabs-accordions.component'
+
+describe('TabsAccordionsComponent', () => {
+  let component: TabsAccordionsComponent
+  let fixture: ComponentFixture<TabsAccordionsComponent>
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [TabsAccordionsComponent],
+    }).compileComponents()
+
+    fixture = TestBed.createComponent(TabsAccordionsComponent)
+    component = fixture.componentInstance
+    fixture.detectChanges()
+  })
+
+  it('should create', () => {
+    expect(component).toBeTruthy()
+  })
+})

@@ -1,0 +1,94 @@
+<app-page-title title="Sitemap" [breadCrumbItems]="breadCrumbItems" />
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-4">
+            <ul class="sitemap">
+              <li>
+                <ng-container
+                  *ngTemplateOutlet="
+                    menuTitle;
+                    context: { label: sitemap1.label }
+                  "
+                ></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="menu; context: { item: sitemap1 }"
+                ></ng-container>
+              </li>
+            </ul>
+          </div>
+          <!-- end col-->
+
+          <div class="col-lg-4">
+            <ul class="sitemap">
+              <li>
+                <ng-container
+                  *ngTemplateOutlet="
+                    menuTitle;
+                    context: { label: sitemap2.label }
+                  "
+                ></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="menu; context: { item: sitemap2 }"
+                ></ng-container>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-lg-4">
+            <ul class="sitemap">
+              <li>
+                <ng-container
+                  *ngTemplateOutlet="
+                    menuTitle;
+                    context: { label: sitemap3.label }
+                  "
+                ></ng-container>
+                <ng-container
+                  *ngTemplateOutlet="menu; context: { item: sitemap3 }"
+                ></ng-container>
+              </li>
+            </ul>
+          </div>
+          <!-- end col-->
+        </div>
+        <!-- end row-->
+      </div>
+    </div>
+    <!-- end card-box-->
+  </div>
+  <!-- end col-->
+</div>
+
+<ng-template #menuTitle let-label="label">
+  <a href="javascript:void(0);" class="text-uppercase fw-bold">
+    <img src="assets/images/logo-sm-dark.png" alt="" height="12" class="me-1" />
+    {{ label }}
+  </a>
+</ng-template>
+
+<ng-template #menu let-item="item">
+  <ul>
+    @for (child of item.children; track $index) {
+      <li>
+        <a href="javascript:void(0);" [ngClass]="child.className">
+          @if (child.icon) {
+            <i [ngClass]="child.icon + ' me-1'"></i>
+          }
+          @if (child.level === 1) {
+            <b>{{ child.label }}</b>
+          } @else {
+            {{ child.label }}
+          }
+        </a>
+        @if (hasChildren(child)) {
+          <ng-container
+            *ngTemplateOutlet="menu; context: { item: child }"
+          ></ng-container>
+        }
+      </li>
+    }
+  </ul>
+</ng-template>

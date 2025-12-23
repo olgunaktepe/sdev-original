@@ -1,0 +1,23 @@
+<div class="row">
+  <div class="col-md-12">
+    @for (item of safeResults; track $index) {
+      <div class="search-item">
+        <h4 class="mb-1">
+          <a href="javascript:void(0);">{{ item.title }}</a>
+        </h4>
+        <div class="font-13 text-success mb-2 text-truncate">
+          {{ item.url }}
+        </div>
+        <p class="mb-0 text-muted" [innerHTML]="item.safeContent"></p>
+      </div>
+    }
+
+    <ngb-pagination
+      [collectionSize]="50"
+      [page]="2"
+      class="pagination justify-content-end pagination-rounded mt-0"
+    ></ngb-pagination>
+
+    <div class="clearfix"></div>
+  </div>
+</div>

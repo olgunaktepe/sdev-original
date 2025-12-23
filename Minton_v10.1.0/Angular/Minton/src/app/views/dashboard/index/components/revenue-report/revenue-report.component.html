@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="card-body">
+    <div ngbDropdown class="dropdown float-end">
+      <a ngbDropdownToggle class="dropdown-toggle arrow-none card-drop">
+        <i class="mdi mdi-dots-horizontal"></i>
+      </a>
+      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Settings</a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Download</a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Upload</a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+      </div>
+    </div>
+
+    <h4 class="header-title">Revenue Report</h4>
+
+    <div class="mt-3 text-center">
+      <div class="row pt-2">
+        <div class="col-4">
+          <p class="text-muted font-15 mb-1 text-truncate">Target</p>
+          <h4>{{ currency }}12,365</h4>
+        </div>
+        <div class="col-4">
+          <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
+          <h4><i class="fe-arrow-down text-danger"></i> {{ currency }}365</h4>
+        </div>
+        <div class="col-4">
+          <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
+          <h4><i class="fe-arrow-up text-success"></i> {{ currency }}8,501</h4>
+        </div>
+      </div>
+
+      <div dir="ltr">
+        <div
+          id="revenue-report"
+          class="apex-charts"
+          data-colors="#3bafda,#e3eaef"
+        >
+          <apx-chart
+            [series]="revenueChart.series!"
+            [chart]="revenueChart.chart!"
+            [plotOptions]="revenueChart.plotOptions!"
+            [dataLabels]="revenueChart.dataLabels!"
+            [stroke]="revenueChart.stroke!"
+            [legend]="revenueChart.legend!"
+            [colors]="revenueChart.colors!"
+            [xaxis]="revenueChart.xaxis!"
+            [fill]="revenueChart.fill!"
+            [tooltip]="revenueChart.tooltip!"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

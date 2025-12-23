@@ -1,0 +1,188 @@
+<app-page-title title="Shopping Cart" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-8">
+            <div>
+              <div class="table-responsive">
+                <table class="table table-centered mb-0 table-nowrap">
+                  <thead class="table-light">
+                    <tr>
+                      <th style="width: 80px">Product</th>
+                      <th>Product Desc</th>
+                      <th>Price</th>
+                      <th>Quantity</th>
+                      <th colspan="2">Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (item of cartList; track $index) {
+                      <tr>
+                        <td>
+                          <img
+                            [src]="item.image"
+                            alt="product-img"
+                            title="product-img"
+                            class="avatar-lg"
+                          />
+                        </td>
+                        <td>
+                          <h5 class="mt-0 mb-1 text-truncate">
+                            <a
+                              routerLink="/ecommerce/product-detail"
+                              class="text-body"
+                              >{{ item.name }}</a
+                            >
+                          </h5>
+                          <p class="mb-0">
+                            Size :
+                            <span class="fw-medium">{{ item.size }}</span>
+                          </p>
+                        </td>
+                        <td>$ {{ item.price }}</td>
+                        <td>
+                          <div
+                            style="width: 120px"
+                            class="product-cart-touchspin"
+                          >
+                            <div
+                              class="input-group bootstrap-touchspin bootstrap-touchspin-injected"
+                            >
+                              <span class="input-group-btn input-group-prepend">
+                                <button
+                                  class="btn btn-primary bootstrap-touchspin-down"
+                                  type="button"
+                                  (click)="
+                                    changeQuantity(item.qty, '0', $index)
+                                  "
+                                >
+                                  -
+                                </button>
+                              </span>
+                              <input
+                                data-toggle="touchspin"
+                                type="text"
+                                [value]="item.qty"
+                                class="form-control"
+                              />
+                              <span class="input-group-btn input-group-append">
+                                <button
+                                  class="btn btn-primary bootstrap-touchspin-up"
+                                  type="button"
+                                  (click)="
+                                    changeQuantity(item.qty, '1', $index)
+                                  "
+                                >
+                                  +
+                                </button>
+                              </span>
+                            </div>
+                          </div>
+                        </td>
+                        <td>$ {{ item.total }}</td>
+                        <td>
+                          <a
+                            href="javascript:void(0);"
+                            class="action-icon text-danger"
+                          >
+                            <i class="mdi mdi-trash-can"></i
+                          ></a>
+                        </td>
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+              <!-- end table-responsive-->
+
+              <!-- Add note input-->
+              <div class="mt-3">
+                <label for="example-textarea" class="form-label"
+                  >Add a Note:</label
+                >
+                <textarea
+                  class="form-control"
+                  id="example-textarea"
+                  rows="3"
+                  placeholder="Write some note.."
+                ></textarea>
+              </div>
+
+              <!-- action buttons-->
+              <div class="row mt-4">
+                <div class="col-sm-6">
+                  <a
+                    routerLink="/ecommerce/products"
+                    class="btn text-muted d-none d-sm-inline-block btn-link fw-semibold"
+                  >
+                    <i class="mdi mdi-arrow-left"></i> Continue Shopping
+                  </a>
+                </div>
+                <div class="col-sm-6">
+                  <div class="text-sm-end">
+                    <a routerLink="/ecommerce/products" class="btn btn-danger"
+                      ><i class="mdi mdi-cart-plus me-1"></i> Checkout
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- end row-->
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="border p-3 mt-4 mt-lg-0 rounded">
+              <h4 class="header-title mb-3">Order Summary</h4>
+
+              <div class="table-responsive">
+                <table class="table mb-0">
+                  <tbody>
+                    <tr>
+                      <td>Grand Total :</td>
+                      <td>$ {{ subtotal }}</td>
+                    </tr>
+                    <tr>
+                      <td>Discount :</td>
+                      <td>-$ 26</td>
+                    </tr>
+                    <tr>
+                      <td>Shipping Charge :</td>
+                      <td>$ 24</td>
+                    </tr>
+                    <tr>
+                      <td>Estimated Tax :</td>
+                      <td>$ 18.22</td>
+                    </tr>
+                    <tr>
+                      <th>Total :</th>
+                      <th>$ {{ totalprice }}</th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div class="alert alert-warning mt-3" role="alert">
+              Use coupon code <strong>MNTF25</strong> and get 25% discount !
+            </div>
+
+            <div class="input-group mt-3">
+              <input
+                type="text"
+                class="form-control form-control-light"
+                placeholder="Coupon code"
+                aria-label="Recipient's username"
+              />
+              <button class="input-group-text btn btn-light" type="button">
+                Apply
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

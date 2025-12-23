@@ -1,0 +1,50 @@
+<custom-card-portlet
+  cardTitle="Sparkline Charts"
+  cardTitleClass="header-title mb-0"
+>
+  <div class="row">
+    <div class="col-md-4">
+      <div id="spark1" class="apex-charts" data-colors="#3bafda">
+        <apx-chart
+          [chart]="spark1Chart.chart!"
+          [stroke]="spark1Chart.stroke!"
+          [fill]="spark1Chart.fill!"
+          [series]="spark1Chart.series!"
+          [yaxis]="spark1Chart.yaxis!"
+          [colors]="spark1Chart.colors!"
+          [title]="spark1Chart.title!"
+          [subtitle]="spark1Chart.subtitle!"
+        />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div id="spark2" class="apex-charts" data-colors="#DCE6EC">
+        <apx-chart
+          [chart]="spark2Chart.chart!"
+          [series]="spark2Chart.series!"
+          [stroke]="spark2Chart.stroke!"
+          [fill]="spark2Chart.fill!"
+          [yaxis]="spark2Chart.yaxis!"
+          [colors]="spark2Chart.colors!"
+          [title]="spark2Chart.title!"
+          [subtitle]="spark2Chart.subtitle!"
+        />
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div id="spark3" class="apex-charts" data-colors="#1abc9c">
+        <apx-chart
+          [chart]="spark3Chart.chart!"
+          [stroke]="spark3Chart.stroke!"
+          [fill]="spark3Chart.fill!"
+          [series]="spark3Chart.series!"
+          [xaxis]="spark3Chart.xaxis!"
+          [yaxis]="spark3Chart.yaxis!"
+          [colors]="spark3Chart.colors!"
+          [title]="spark3Chart.title!"
+          [subtitle]="spark3Chart.subtitle!"
+        />
+      </div>
+    </div>
+  </div>
+</custom-card-portlet>

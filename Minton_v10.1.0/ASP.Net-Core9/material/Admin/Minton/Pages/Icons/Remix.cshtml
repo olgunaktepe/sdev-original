@@ -1,0 +1,25 @@
+@page "/icons-remix"
+@model Minton.Pages.Icons.RemixModel
+
+@{
+    ViewBag.Title = "Remix Icons";
+    ViewBag.SubTitle = "Icons";
+}
+
+@section styles
+{
+
+}
+
+@await Html.PartialAsync("~/Pages/Shared/Partials/_PageTitle1.cshtml")
+
+<div class="row">
+    <div class="col-12" id="icons">
+
+    </div> <!-- end col-->
+</div> <!-- end row-->
+
+@section scripts
+{
+    <script src="~/js/pages/remix-icons.init.js"></script>
+}

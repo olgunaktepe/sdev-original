@@ -1,0 +1,217 @@
+@extends('layouts.vertical', ['page_title' => 'Cart', 'mode' => $mode ?? '', 'demo' => $demo ?? ''])
+
+@section('css')
+    @vite(['node_modules/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.css'])
+@endsection
+
+@section('content')
+    <!-- start page title -->
+    <div class="row">
+        <div class="col-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Shopping Cart</h4>
+                <div class="page-title-right">
+                    <ol class="breadcrumb m-0">
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">Minton</a></li>
+                        <li class="breadcrumb-item"><a href="javascript: void(0);">eCommerce</a></li>
+                        <li class="breadcrumb-item active">Shopping Cart</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end page title -->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div>
+                                <div class="table-responsive">
+                                    <table class="table table-centered mb-0 table-nowrap">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th style="width: 80px;">Product</th>
+                                                <th>Product Desc</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th colspan="2">Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <img src="/images/products/product-1.png" alt="product-img" title="product-img" class="avatar-lg" />
+                                                </td>
+                                                <td>
+                                                    <h5 class="mt-0 mb-1 text-truncate"><a href="{{ route('second', ['ecommerce', 'product-detail']) }}" class="text-body">Blue
+                                                            color T-shirt</a></h5>
+                                                    <p class="mb-0">Size : <span class="fw-medium">Large</span></p>
+                                                </td>
+                                                <td>
+                                                    $ 41
+                                                </td>
+                                                <td>
+                                                    <div style="width: 120px;" class="product-cart-touchspin">
+                                                        <input data-toggle="touchspin" type="text" value="02">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    $ 92
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="action-icon text-danger"> <i class="mdi mdi-trash-can"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="/images/products/product-2.png" alt="product-img" title="product-img" class="avatar-lg" />
+                                                </td>
+                                                <td>
+                                                    <h5 class="mt-0 mb-1 text-truncate"><a href="{{ route('second', ['ecommerce', 'product-detail']) }}" class="text-body">Half
+                                                            sleeve maroon T-shirt</a></h5>
+                                                    <p class="mb-0">Size : <span class="fw-medium">medium</span></p>
+                                                </td>
+                                                <td>
+                                                    $ 37
+                                                </td>
+                                                <td>
+                                                    <div style="width: 120px;" class="product-cart-touchspin">
+                                                        <input data-toggle="touchspin" type="text" value="01">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    $ 37
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="action-icon text-danger"> <i class="mdi mdi-trash-can"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="/images/products/product-6.png" alt="product-img" title="product-img" class="avatar-lg" />
+                                                </td>
+                                                <td>
+                                                    <h5 class="mt-0 mb-1 text-truncate"><a href="{{ route('second', ['ecommerce', 'product-detail']) }}" class="text-body">Blue
+                                                            Hoodie for men</a></h5>
+                                                    <p class="mb-0">Size : <span class="fw-medium">Large</span></p>
+                                                </td>
+                                                <td>
+                                                    $ 45
+                                                </td>
+                                                <td>
+                                                    <div style="width: 120px;" class="product-cart-touchspin">
+                                                        <input data-toggle="touchspin" type="text" value="02">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    $ 90
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="action-icon text-danger"> <i class="mdi mdi-trash-can"></i></a>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <img src="/images/products/product-8.png" alt="product-img" title="product-img" class="avatar-lg" />
+                                                </td>
+                                                <td>
+                                                    <h5 class="mt-0 mb-1 text-truncate"><a href="{{ route('second', ['ecommerce', 'product-detail']) }}" class="text-body">Full
+                                                            sleeve Pink T-shirt</a></h5>
+                                                    <p class="mb-0">Size : <span class="fw-medium">medium</span></p>
+                                                </td>
+                                                <td>
+                                                    $ 45
+                                                </td>
+                                                <td>
+                                                    <div style="width: 120px;" class="product-cart-touchspin">
+                                                        <input data-toggle="touchspin" type="text" value="01">
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    $ 45
+                                                </td>
+                                                <td>
+                                                    <a href="javascript:void(0);" class="action-icon text-danger"> <i class="mdi mdi-trash-can"></i></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div> <!-- end table-responsive-->
+
+                                <!-- Add note input-->
+                                <div class="mt-3">
+                                    <label for="example-textarea" class="form-label">Add a Note:</label>
+                                    <textarea class="form-control" id="example-textarea" rows="3" placeholder="Write some note.."></textarea>
+                                </div>
+
+                                <!-- action buttons-->
+                                <div class="row mt-4">
+                                    <div class="col-sm-6">
+                                        <a href="{{ route('second', ['ecommerce', 'products']) }}" class="btn text-muted d-none d-sm-inline-block btn-link fw-semibold">
+                                            <i class="mdi mdi-arrow-left"></i> Continue Shopping </a>
+                                    </div> <!-- end col -->
+                                    <div class="col-sm-6">
+                                        <div class="text-sm-end">
+                                            <a href="{{ route('second', ['ecommerce', 'checkout']) }}" class="btn btn-danger"><i class="mdi mdi-cart-plus me-1"></i> Checkout </a>
+                                        </div>
+                                    </div> <!-- end col -->
+                                </div> <!-- end row-->
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="border p-3 mt-4 mt-lg-0 rounded">
+                                <h4 class="header-title mb-3">Order Summary</h4>
+
+                                <div class="table-responsive">
+                                    <table class="table mb-0">
+                                        <tbody>
+                                            <tr>
+                                                <td>Grand Total :</td>
+                                                <td>$ 264</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Discount : </td>
+                                                <td>-$ 26</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Shipping Charge :</td>
+                                                <td>$ 24</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Estimated Tax : </td>
+                                                <td>$ 18.22</td>
+                                            </tr>
+                                            <tr>
+                                                <th>Total :</th>
+                                                <th>$ 280.22</th>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- end table-responsive -->
+                            </div>
+
+                            <div class="alert alert-warning mt-3" role="alert">
+                                Use coupon code <strong>MNTF25</strong> and get 25% discount !
+                            </div>
+
+                            <div class="input-group mt-3">
+                                <input type="text" class="form-control form-control-light" placeholder="Coupon code" aria-label="Recipient's username">
+                                <button class="input-group-text btn btn-light" type="button">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+@endsection
+
+@section('script')
+    @vite('resources/js/pages/ecommerce-cart.init.js')
+@endsection

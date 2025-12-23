@@ -1,0 +1,205 @@
+<app-page-title title="Form Pickers" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title">Date Picker</h4>
+        <p class="sub-header font-13">
+          The datepicker is tied to a standard form input field. Click on the
+          input to open an interactive calendar in a small overlay. Click
+          elsewhere on the page or hit the Esc key to close. If a date is
+          chosen, feedback is shown as the input's value.
+        </p>
+
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="p-2">
+              <form action="#" class="form-horizontal">
+                <div class="row mb-3">
+                  <label class="col-form-label col-sm-3"
+                    >Default Functionality</label
+                  >
+                  <div class="col-sm-9">
+                    <div class="input-group position-relative" id="datepicker1">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="dp"
+                        [(ngModel)]="model"
+                        ngbDatepicker
+                        #d="ngbDatepicker"
+                        (click)="d.toggle()"
+                      />
+                      <span class="input-group-text"
+                        ><i class="ri-calendar-event-fill"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-form-label col-sm-3">Auto Close</label>
+                  <div class="col-sm-9">
+                    <div class="input-group position-relative" id="datepicker2">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="dp"
+                        ngbDatepicker
+                        #auto="ngbDatepicker"
+                        [autoClose]="'outside'"
+                        (click)="auto.toggle()"
+                      />
+                      <span class="input-group-text"
+                        ><i class="ri-calendar-event-fill"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-form-label col-sm-3">Outside Days</label>
+                  <div class="col-sm-9">
+                    <div class="input-group position-relative" id="datepicker3">
+                      <input
+                        type="text"
+                        class="form-control"
+                        ngbDatepicker
+                        #m="ngbDatepicker"
+                        [outsideDays]="'hidden'"
+                        (click)="m.toggle()"
+                      />
+                      <span class="input-group-text"
+                        ><i class="ri-calendar-event-fill"></i
+                      ></span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row mb-3">
+                  <label class="col-form-label col-sm-3"
+                    >Multi Month Datepicker</label
+                  >
+                  <div class="col-sm-9">
+                    <div class="input-group position-relative" id="datepicker4">
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="dp"
+                        ngbDatepicker
+                        [displayMonths]="4"
+                        outsideDays="hidden"
+                        navigation="none"
+                        [weekdays]="false"
+                        #month="ngbDatepicker"
+                        (click)="month.toggle()"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col-form-label col-sm-3"
+                    >Show Week Number</label
+                  >
+                  <div class="col-sm-9">
+                    <div class="input-group position-relative" id="datepicker5">
+                      <input
+                        type="text"
+                        class="form-control"
+                        ngbDatepicker
+                        #w="ngbDatepicker"
+                        [showWeekNumbers]="true"
+                        (click)="w.toggle()"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="p-2">
+              <label>Display Inline</label>
+              <div class="input-group">
+                <div data-provide="datepicker-inline">
+                  <ngb-datepicker #dp />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="header-title mb-3">Date Range Picker</h4>
+
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="p-2">
+              <form class="form-horizontal">
+                <div class="mb-3 row">
+                  <label class="col-lg-3 col-form-label">Date Range Pick</label>
+                  <div class="col-lg-9">
+                    <input
+                      class="form-control input-daterange-datepicker"
+                      type="text"
+                      ngbDatepicker
+                      #datepicker="ngbDatepicker"
+                      [navigation]="'arrows'"
+                      [autoClose]="'outside'"
+                      [footerTemplate]="footerTemplate"
+                      (click)="datepicker.toggle()"
+                      (dateSelect)="onDateSelection($event)"
+                      [displayMonths]="2"
+                      [dayTemplate]="t"
+                      outsideDays="hidden"
+                      [startDate]="fromDate!"
+                      tabindex="-1"
+                    />
+                    <ng-template #t let-date let-focused="focused">
+                      <span
+                        class="custom-day"
+                        [class.focused]="focused"
+                        [class.range]="isRange(date)"
+                        [class.faded]="isHovered(date) || isInside(date)"
+                        (mouseenter)="hoveredDate = date"
+                        (mouseleave)="hoveredDate = null"
+                      >
+                        {{ date.day }}
+                      </span>
+                    </ng-template>
+                    <ng-template #footerTemplate>
+                      <hr class="my-0" />
+                      <span class="mt-2">{{ selectDate }}</span>
+                      <button
+                        class="btn btn-sm btn-success mt-2 float-end me-2"
+                        (click)="datepicker.close()"
+                      >
+                        Apply
+                      </button>
+                      <button
+                        class="btn btn-sm btn-warning m-2 float-end"
+                        (click)="datepicker.close()"
+                      >
+                        Cancel
+                      </button>
+                    </ng-template>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

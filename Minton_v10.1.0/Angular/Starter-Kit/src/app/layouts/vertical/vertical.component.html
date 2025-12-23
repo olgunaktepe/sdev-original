@@ -1,0 +1,16 @@
+<div id="wrapper">
+  <app-topbar
+    (settingButtonClicked)="onSettingsButtonClicked()"
+    (mobileMenuButtonClicked)="onToggleMobileMenu()"
+  />
+  <app-sidebar />
+  <div class="content-page">
+    <div class="content">
+      <!-- Start Content-->
+      <div class="container-fluid">
+        <router-outlet />
+      </div>
+    </div>
+    <app-footer />
+  </div>
+</div>

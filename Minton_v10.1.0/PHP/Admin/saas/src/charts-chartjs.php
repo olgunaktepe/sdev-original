@@ -1,0 +1,144 @@
+<?php include 'partials/html.php'; ?>
+
+<head>
+    <?php
+    $title = "Chartjs";
+    include 'partials/title-meta.php'; ?>
+
+    <?php include 'partials/head-css.php'; ?>
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <?php include 'partials/menu.php'; ?>
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <div class="content-page">
+            <div class="content">
+
+                <!-- Start Content-->
+                <div class="container-fluid">
+
+                    <?php $page_title = "Chartjs";
+                    $sub_title = "Chartjs";
+                    include 'partials/page-title.php'; ?>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Line Chart</h4>
+                                    <div class="mt-4 chartjs-chart">
+                                        <canvas id="line-chart-example" height="350" data-colors="#6559cc,#f672a7"></canvas>
+                                    </div>
+                                </div> <!-- end card-body-->
+                            </div> <!-- end card-->
+                        </div> <!-- end col -->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Bar Chart</h4>
+
+                                    <div class="mt-4 chartjs-chart">
+                                        <canvas id="bar-chart-example" height="350" data-colors="#37cde6,#e3eaef"></canvas>
+                                    </div>
+                                </div> <!-- end card-body-->
+                            </div> <!-- end card-->
+                        </div> <!-- end col -->
+                    </div>
+                    <!-- end row -->
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Pie Chart</h4>
+
+                                    <div class="mt-4 chartjs-chart">
+                                        <canvas id="pie-chart-example" height="350" class="mt-4" data-colors="#6559cc,#37cde6,#f7b84b,#e3eaef"></canvas>
+                                    </div>
+
+                                </div> <!-- end card-body-->
+                            </div> <!-- end card-->
+                        </div> <!-- end col -->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Donut Chart</h4>
+
+                                    <div class="mt-4 chartjs-chart">
+                                        <canvas id="donut-chart-example" height="350" data-colors="#6559cc,#37cde6,#e3eaef"></canvas>
+                                    </div>
+
+                                </div> <!-- end card-body-->
+                            </div> <!-- end card-->
+                        </div> <!-- end col -->
+                    </div>
+                    <!-- end row -->
+
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Polar area Chart</h4>
+
+                                    <div class="mt-4 chartjs-chart">
+                                        <canvas id="polar-chart-example" height="350" data-colors="#6559cc,#f7b84b,#37cde6,#e3eaef"> </canvas>
+                                    </div>
+
+                                </div> <!-- end card-body-->
+                            </div> <!-- end card-->
+                        </div> <!-- end col -->
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4 class="header-title">Radar Chart</h4>
+
+                                    <div class="mt-4 chartjs-chart">
+                                        <canvas id="radar-chart-example" height="350" data-colors="#6559cc,#f672a7"></canvas>
+                                    </div>
+                                </div> <!-- end card-body-->
+                            </div> <!-- end card-->
+                        </div> <!-- end col -->
+                    </div>
+                    <!-- end row -->
+
+                </div> <!-- container -->
+
+            </div> <!-- content -->
+
+            <?php include 'partials/footer.php'; ?>
+
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+
+    </div>
+    <!-- END wrapper -->
+
+    <?php include 'partials/right-sidebar.php'; ?>
+
+    <!-- Vendor js -->
+    <script src="assets/js/vendor.min.js"></script>
+
+    <!-- Chart JS -->
+    <script src="assets/libs/chart.js/Chart.bundle.min.js"></script>
+
+    <!-- Init js -->
+    <script src="assets/js/pages/chartjs.init.js"></script>
+
+    <!-- App js -->
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>

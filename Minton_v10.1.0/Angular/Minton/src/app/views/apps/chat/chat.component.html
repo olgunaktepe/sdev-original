@@ -1,0 +1,15 @@
+<app-page-title title="Chat" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <!-- start chat users-->
+  <div class="col-xl-3 col-lg-4">
+    <chat-contact (selectedUser)="receiveDataFromChild($event)" />
+  </div>
+  <!-- end chat users-->
+
+  <div class="col-xl-9 col-lg-8">
+    <chat-messages [selectedUser]="selectedUser" />
+  </div>
+  <!-- end chat area-->
+</div>
+<!-- end row-->

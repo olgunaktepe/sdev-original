@@ -1,0 +1,71 @@
+<app-page-title title="File Manager" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="fileupload btn btn-success waves-effect waves-light mb-3">
+          <span><i class="mdi mdi-cloud-upload me-1"></i> Upload Files</span>
+          <input type="file" class="upload" />
+        </div>
+        <div class="table-responsive">
+          <table class="table table-centered table-nowrap mb-0">
+            <thead class="table-light">
+              <tr>
+                <th scope="col">File Name</th>
+                <th scope="col">Date Modified</th>
+                <th scope="col">Size</th>
+                <th scope="col">Contributors</th>
+                <th scope="col" class="text-center" style="width: 125px">
+                  Action
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (item of fileList; track $index) {
+                <tr>
+                  <td>
+                    <img
+                      [src]="item.file_icon"
+                      height="30"
+                      alt="icon"
+                      class="me-2"
+                    />
+                    <a href="javascript:void(0);" class="text-dark">
+                      {{ item.file_name }}</a
+                    >
+                  </td>
+                  <td class="font-13">{{ item.modified_date }}</td>
+                  <td>{{ item.size }}</td>
+                  <td>
+                    @for (image of item.contributors; track image) {
+                      <img
+                        [src]="image"
+                        alt="task-user"
+                        class="avatar-sm img-thumbnail rounded-circle me-1"
+                      />
+                    }
+                  </td>
+                  <td>
+                    <ul class="list-inline table-action m-0">
+                      <li class="list-inline-item">
+                        <a href="javascript:void(0);" class="action-icon px-1">
+                          <i class="mdi mdi-pencil"></i
+                        ></a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a href="javascript:void(0);" class="action-icon px-1">
+                          <i class="mdi mdi-delete"></i
+                        ></a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

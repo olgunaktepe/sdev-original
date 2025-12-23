@@ -1,0 +1,43 @@
+@if (!isClosed) {
+  <div class="card {{ cardClass }}">
+    <div [class]="{ 'card-body': !headerClass }">
+      <div [class]="headerClass">
+        <div class="card-widgets">
+          <a href="javascript:void(0);" (click)="reloadContent()"
+            ><i class="mdi mdi-refresh"></i
+          ></a>
+          <a
+            data-bs-toggle="collapse"
+            (click)="collapse.toggle()"
+            role="button"
+            [attr.aria-expanded]="!isCollapsed"
+            aria-controls="cardCollpase5"
+          >
+            <i [class]="isCollapsed ? 'mdi mdi-plus' : 'mdi mdi-minus'"></i>
+          </a>
+          <a href="javascript:void(0);" (click)="removeCard()"
+            ><i class="mdi mdi-close"></i
+          ></a>
+        </div>
+        <h5 class="mb-0" [class]="cardTitleClass">{{ cardTitle }}</h5>
+      </div>
+
+      <div
+        id="weeklysales-collapse"
+        class="collapse show"
+        [ngClass]="{ 'pt-3': !headerClass }"
+        #collapse="ngbCollapse"
+        [(ngbCollapse)]="isCollapsed"
+      >
+        <ng-content></ng-content>
+      </div>
+    </div>
+    @if (refreshRequsted) {
+      <div class="card-disabled">
+        <div class="card-portlets-loader">
+          <div class="spinner-border text-primary m-2" role="status"></div>
+        </div>
+      </div>
+    }
+  </div>
+}

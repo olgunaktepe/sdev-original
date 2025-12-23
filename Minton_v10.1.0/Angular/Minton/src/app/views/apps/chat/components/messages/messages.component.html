@@ -1,0 +1,196 @@
+<div class="card">
+  <div class="card-body py-2 px-3 border-bottom border-light">
+    <div class="d-flex py-1">
+      <img
+        [src]="selectedUser.avatar"
+        class="me-2 rounded-circle"
+        height="36"
+        alt="Brandon Smith"
+      />
+      <div class="flex-1">
+        <h5 class="mt-0 mb-0 font-15">
+          <a routerLink="/contacts/profile" class="text-reset">{{
+            selectedUser.name
+          }}</a>
+        </h5>
+        <p class="mt-1 mb-0 text-muted font-12">
+          <small class="mdi mdi-circle text-success"></small> Online
+        </p>
+      </div>
+      <div id="tooltip-container">
+        <a
+          href="javascript: void(0);"
+          class="text-reset font-19 py-1 px-2 d-inline-block"
+        >
+          <i
+            class="fe-phone-call"
+            data-bs-container="#tooltip-container"
+            placement="top"
+            ngbTooltip="Voice Call"
+          ></i>
+        </a>
+        <a
+          href="javascript: void(0);"
+          class="text-reset font-19 py-1 px-2 d-inline-block"
+        >
+          <i
+            class="fe-video"
+            data-bs-container="#tooltip-container"
+            placement="top"
+            ngbTooltip="Video Call"
+          ></i>
+        </a>
+        <a
+          href="javascript: void(0);"
+          class="text-reset font-19 py-1 px-2 d-inline-block"
+        >
+          <i
+            class="fe-user-plus"
+            data-bs-container="#tooltip-container"
+            placement="top"
+            ngbTooltip="Add Users"
+          ></i>
+        </a>
+        <a
+          href="javascript: void(0);"
+          class="text-reset font-19 py-1 px-2 d-inline-block"
+        >
+          <i
+            class="fe-trash-2"
+            data-bs-container="#tooltip-container"
+            placement="top"
+            ngbTooltip="Delete Chat"
+          ></i>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <ngx-simplebar
+      class="conversation-list chat-app-conversation"
+      style="max-height: 460px"
+      #scrollRef
+    >
+      @for (chat of userMessages; track $index) {
+        <li class="clearfix" [ngClass]="{ odd: chat.from.id === toUser.id }">
+          <div class="chat-avatar">
+            <img
+              [src]="
+                chat.from.id === toUser.id
+                  ? chat.from.avatar
+                  : selectedUser.avatar
+              "
+              class="rounded"
+              alt="James Z"
+            />
+            <i>{{ chat.sendOn }}</i>
+          </div>
+          <div class="conversation-text">
+            @if (chat.message.type == 'text') {
+              <div class="ctext-wrap">
+                <i>{{ chat.from.name }}</i>
+                <p>
+                  {{ chat.message.value }}
+                </p>
+              </div>
+            }
+            @if (chat.message.type == 'file') {
+              <div class="card mt-2 mb-1 shadow-none border text-start">
+                <div class="p-2">
+                  <div class="row align-items-center">
+                    <div class="col-auto">
+                      <div class="avatar-sm">
+                        <span class="avatar-title bg-primary rounded">
+                          PDF
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col ps-0">
+                      <a
+                        href="javascript:void(0);"
+                        class="text-muted fw-medium"
+                        >{{ chat.message.value.file }}</a
+                      >
+                      <p class="mb-0">{{ chat.message.value.size }}</p>
+                    </div>
+                    <div class="col-auto">
+                      <a
+                        href="javascript:void(0);"
+                        class="btn btn-link btn-lg text-muted"
+                      >
+                        <i class="ri-download-fill"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            }
+          </div>
+          <div ngbDropdown class="conversation-actions">
+            <button ngbDropdownToggle class="btn btn-sm btn-link text-reset">
+              <i class="mdi mdi-dots-vertical font-18"></i>
+            </button>
+
+            <div
+              ngbDropdownMenu
+              [ngClass]="{ 'dropdown-menu-end': chat.from.id != toUser.id }"
+            >
+              <a class="dropdown-item" href="javascript:void(0);"
+                >Copy Message</a
+              >
+              <a class="dropdown-item" href="javascript:void(0);">Edit</a>
+              <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+            </div>
+          </div>
+        </li>
+      }
+    </ngx-simplebar>
+
+    <div class="row">
+      <div class="col">
+        <div class="mt-2 bg-light p-3 rounded">
+          <form
+            [formGroup]="chatForm"
+            (ngSubmit)="sendChatMessage()"
+            class="needs-validation"
+            novalidate=""
+            name="chat-form"
+            id="chat-form"
+          >
+            <div class="row">
+              <div class="col mb-2 mb-sm-0">
+                <input
+                  type="text"
+                  class="form-control border-0"
+                  formControlName="newMessage"
+                  [ngClass]="{
+                    'is-invalid': submitted && form['newMessage'].errors,
+                  }"
+                  placeholder="Enter your text"
+                  required=""
+                />
+                <div class="invalid-feedback mt-2">
+                  Please enter your messsage
+                </div>
+              </div>
+              <div class="col-sm-auto">
+                <div class="btn-group">
+                  <a href="javascript:void(0);" class="btn btn-light"
+                    ><i class="fe-paperclip"></i
+                  ></a>
+                  <div class="d-grid">
+                    <button type="submit" class="btn btn-success chat-send">
+                      <i class="fe-send"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- end row-->
+          </form>
+        </div>
+      </div>
+      <!-- end col-->
+    </div>
+  </div>
+</div>

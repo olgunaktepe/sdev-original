@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Introduction | Minton - Bootstrap 5 Admin Dashboard Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+    <meta content="Coderthemes" name="author"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+
+    <!-- App css -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bs-default-stylesheet"/>
+    <link href="assets/css/app.min.css" rel="stylesheet" type="text/css" id="app-default-stylesheet"/>
+
+    <!-- icons -->
+    <link href="assets/css/icons.min.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body class="loading">
+
+<!-- Begin page -->
+<div id="wrapper">
+
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="left-side-menu">
+
+        <!-- LOGO -->
+        <div class="logo-box">
+
+            <a href="index.html" class="logo logo-light">
+                        <span class="logo-sm">
+                            <img src="assets/images/logo-sm.png" alt="" height="24">
+                        </span>
+                <span class="logo-lg">
+                            <img src="assets/images/logo-light.png" alt="" height="20">
+                        </span>
+            </a>
+        </div>
+
+        <div class="h-100" data-simplebar>
+
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+
+                <ul id="side-menu">
+
+                    <li class="menu-title">Docs</li>
+
+                    <li>
+                        <a href="index.html">
+                            <i class="ri-honour-line"></i>
+                            <span> Introduction </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="setup.html">
+                            <i class="ri-tools-fill"></i>
+                            <span> Setup </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="customization.html">
+                            <i class="ri-paint-line"></i>
+                            <span> Customization </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="plugins-uses.html">
+                            <i class="ri-artboard-2-line"></i>
+                            <span> How to use plugins </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="rtl.html">
+                            <i class="ri-global-line"></i>
+                            <span> RTL Version </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="changelog.html">
+                            <i class="ri-book-open-line"></i>
+                            <span> Changelog </span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- End Sidebar -->
+
+            <div class="clearfix"></div>
+
+        </div>
+        <!-- Sidebar -left -->
+
+    </div>
+    <!-- Left Sidebar End -->
+
+    <!-- ============================================================== -->
+    <!-- Start Page Content here -->
+    <!-- ============================================================== -->
+
+    <div class="content-page">
+        <div class="content">
+
+            <!-- Topbar Start -->
+            <div class="navbar-custom">
+                <div class="container-fluid">
+
+                    <ul class="list-unstyled topnav-menu float-right mb-0">
+
+
+                        <li class="d-none d-sm-inline-block">
+                            <div class="nav-link">
+                                <span class="badge badge-danger font-14">v10.1.0</span>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <!-- LOGO -->
+                    <div class="logo-box">
+
+                        <a href="index.html" class="logo logo-light">
+                                    <span class="logo-sm">
+                                        <img src="assets/images/logo-sm.png" alt="" height="24">
+                                    </span>
+                            <span class="logo-lg">
+                                        <img src="assets/images/logo-light.png" alt="" height="20">
+                                    </span>
+                        </a>
+                    </div>
+
+                    <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+                        <li>
+                            <button class="button-menu-mobile waves-effect waves-light">
+                                <i class="fe-menu"></i>
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!-- end Topbar -->
+
+            <!-- Start Content-->
+            <div class="container-fluid">
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="p-lg-1">
+                            <h4 class="mb-2 mt-0 font-weight-semibold">In-built Demos (Skins)</h4>
+
+                            <p>Minton comes with multiple demos (skins). I.e. 'corporate', 'creative', 'default', 'material', 'modern', 'saas'.
+                                Each of these skins are having respective dark mode available as well. You can easily use any of them by simply
+                                changing the css file reference in your  file.</p>
+
+                            <h4 class="mt-0 mb-2 font-weight-semibold">Customizing Color Palette
+                            </h4>
+
+                            <p>You can change the color palette of any demo very easily by
+                                simply changing the few scss variables value.</p>
+                            <p class="mb-0">In order to modify the colors in existing
+                                themes, open the <code>_variables.scss</code> file from
+                                <code>webroot/scss/config/&lt;DEMO_NAME&gt;</code> and
+                                change any variable in it. Your changes would get reflected
+                                automatically in any bootstrap based components or elements.
+                                Note that, this requires you to setup and run gulp flow
+                                provided in installation steps earlier.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="p-lg-1">
+                            <h4 class="mb-2 mt-0 font-weight-semibold">In-built Layouts</h4>
+
+                            <p>Minton provides multiple choices when it comes to layouting. There
+                                are multiple layout choices available. I.e. Vertical
+                                (main navigation on "Left") and Horizontal (main navigation on
+                                "Top"). You can easily use any of them by simply
+                                changing the few partials and using data attributes on
+                                <code>html</code> element.</p>
+
+                            <p class="mb-0">Check out the pages
+                                <code>layouts_horizontal.php</code> files available in folder
+                                <code>templates/Pages/</code> to see how the
+                                respective layout can be activated.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="p-lg-1">
+                            <h4 class="mb-2 mt-0 font-weight-semibold">Customizing Color Mode, Sidebar, Topbar, and
+                                Layout Width</h4>
+                            <p>Minton allows you to have customized left sidebar, overall layout
+                                width or topbar menu. You could turn the left sidebar to
+                                different size, theme (look) and size. You can customize it by
+                                specifying the layout data attribute (<code>data-*={}</code>) on <code>html</code>
+                                element in your code. The config object properties accept the
+                                following values:</p>
+                            <div class="table-responsive">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Type</th>
+                                        <th>Options</th>
+                                        <th>Description</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><code class="text-nowrap">data-bs-theme</code></td>
+                                        <td>String</td>
+                                        <td>"dark" | "light"</td>
+                                        <td>Changes overall color scheme to dark</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="text-nowrap">data-layout-width</code></td>
+                                        <td>String</td>
+                                        <td>"fluid" | "boxed"</td>
+                                        <td>Changes the Content width of overall layout</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="text-nowrap">data-layout-position</code></td>
+                                        <td>String</td>
+                                        <td>"fixed" | "scrollable"</td>
+                                        <td>Changes the Content position of overall layout</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="text-nowrap">data-topbar-color</code></td>
+                                        <td>String</td>
+                                        <td>"dark" | "light" | "brand"</td>
+                                        <td>Changes topbar color scheme to dark or light</td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="text-nowrap">data-menu-color</code></td>
+                                        <td>String</td>
+                                        <td>"light" | "dark" | "brand" | "gradient"</td>
+                                        <td>the Menu color scheme. By default, it would be set to default
+                                            (light)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="text-nowrap">data-sidebar-size</code></td>
+                                        <td>String</td>
+                                        <td>"default" | "compact" | "condensed"</td>
+                                        <td>Changes overall Sidebar Width. <br> (<code>*</code> Only available in
+                                            Sidebar Menu)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><code class="text-nowrap">data-sidebar-user</code></td>
+                                        <td>Boolean</td>
+                                        <td>"true" | "false"</td>
+                                        <td>Indicates whether to show Sidebar on opening up the page. <br>
+                                            (<code>*</code> Only available in Sidebar Menu)
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><code class="text-nowrap">data-layout-mode</code></td>
+                                        <td>String</td>
+                                        <td>"default" | "horizontal" | "two-column" | "detached"</td>
+                                        <td>Changes overall layout mode <br> <span
+                                            class="h5 text-danger">(Manually) </span> (<code>*</code> Available in
+                                            Sidebar & Tow Colum Sidebar Menu)
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><code class="text-nowrap">data-two-column-color</code></td>
+                                        <td>String</td>
+                                        <td>"dark" | "brand" | "gradient"</td>
+                                        <td>the Two Colum Icon Menu color scheme. By default, it would be set to default
+                                            (light) <br> <span class="h5 text-danger">(Manually Add) </span>
+                                            (<code>*</code> Only available in Two Column Sidebar Menu)
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="p-lg-1">
+                            <h4 class="mb-2 mt-0 font-weight-semibold">Customizing Theme via config.js (path: <code>webroot/js/config.js</code>)
+                            </h4>
+                            <p>You can override default theme via <code>defaultConfig</code> in <code>config.js</code>
+                            </p>
+
+                            <pre>
+<span class="text-danger">
+<span class="text-dark">//  Default Config Value</span>
+var defaultConfig = {
+    theme: "light",          <span class="text-dark">// "dark" | "light"</span>
+
+    layout: {
+        position: "fixed",     <span class="text-dark">// "fixed" | "scrollable"</span>
+        width: "fluid",      <span class="text-dark">// "fluid" | "boxed"</span>
+    },
+
+    topbar: {
+        color: "light",     <span class="text-dark">// "light" | "dark" | "brand"</span>
+    },
+
+    menu: {
+        color: "light",     <span class="text-dark">// "light" | "dark" | "brand" | "gradient" </span>
+    },
+
+    <span class="text-dark">// This option for only vertical (left Sidebar) layout</span>
+    sidebar: {
+        size: "default",     <span class="text-dark">// "default" | "compact" | "condensed" </span>
+        user: false,         <span class="text-dark">// "true" | "false" </span>
+    },
+};
+</span>
+</pre>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="p-lg-1">
+                            <h4 class="mb-2 mt-0">Adding new page</h4>
+                            <p>We have provided a starter page (check
+                                <code>templates/Pages/pages_starter.php</code>). It allows you to get
+                                started easily and helps you to add new page. Please note
+                                following important points:</p>
+                            <p></p>
+                            <ul>
+                                <li>Make sure you have included <code>css/bootstrap.min.css, css/app.min.css,
+                                    css/icons.min.css</code>, <code>js/vendor.min.js</code> and
+                                    <code>js/app.min.js</code>
+                                    in your file. <br/>
+
+                                <li>Most of default/basic form elements along with few advanced
+                                    elements are available and bundled in above css and js and
+                                    so you don't need to include any css or js separately.
+                                </li>
+                                <li>Few elements e.g. charts, data tables, calendar, maps etc
+                                    requires you to include corresponding css and js files in
+                                    your file. Please check corresponding documentation page for
+                                    the same.
+                                </li>
+                            </ul>
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- container -->
+
+        </div> <!-- content -->
+
+        <!-- Footer Start -->
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <script>document.write(new Date().getFullYear())</script> &copy; Minton theme by <a
+                        href="https://coderthemes.com/" target="_blank">Coderthemes</a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="text-md-right footer-links d-none d-sm-block">
+                            <a href="https://coderthemes.com/">About Us</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- end Footer -->
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- End Page content -->
+    <!-- ============================================================== -->
+
+
+</div>
+<!-- END wrapper -->
+
+<!-- Vendor js -->
+<script src="assets/js/vendor.min.js"></script>
+
+<!-- App js -->
+<script src="assets/js/app.min.js"></script>
+
+</body>
+</html>

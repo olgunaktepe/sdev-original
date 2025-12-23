@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+@{
+    var html_attributes = ViewBag.HTMLAttributes != null ? ViewBag.HTMLAttributes : "";
+}
+
+<html lang="en" data-layout-mode="detached" data-sidebar-user="true" data-topbar-color="dark" @html_attributes>
+
+<head>
+    @await Html.PartialAsync("~/Views/Shared/Partials/_TitleMeta.cshtml")
+    @RenderSection("styles", false)
+    @await Html.PartialAsync("~/Views/Shared/Partials/_HeadCSS.cshtml")
+</head>
+
+
+<body>
+
+    <div id="wrapper">
+
+        @await Html.PartialAsync("~/Views/Shared/Partials/_TopBar.cshtml")
+        @await Html.PartialAsync("~/Views/Shared/Partials/_LeftSideBar.cshtml")
+
+        <div class="content-page">
+            <div class="content">
+                <div class="container-fluid">
+
+                    @RenderBody()
+
+                </div>
+            </div>
+
+            @await Html.PartialAsync("~/Views/Shared/Partials/_Footer.cshtml")
+
+        </div>
+
+    </div>
+
+    @await Html.PartialAsync("~/Views/Shared/Partials/_RightSideBar.cshtml")
+    
+    <script src="~/js/vendors.min.js"></script>
+    @RenderSection("scripts", required: false)
+    <script src="~/js/app.js"></script>
+    <script src="~/js/layout.js"></script>
+    
+</body>
+
+</html>

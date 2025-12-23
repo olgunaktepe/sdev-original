@@ -1,0 +1,139 @@
+<app-page-title title="Kanban Board" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row" cdkDropListGroup>
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <div ngbDropdown class="float-end">
+          <a ngbDropdownToggle class="arrow-none">
+            <i class="mdi mdi-dots-vertical m-0 text-muted h3"></i>
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu-end">
+            <a role="button" ngbDropdownItem>Edit</a>
+            <a role="button" ngbDropdownItem>Delete</a>
+            <a role="button" ngbDropdownItem>Add Members</a>
+            <a role="button" ngbDropdownItem>Add Due Date</a>
+          </div>
+        </div>
+
+        <h4 class="header-title">Upcoming</h4>
+        <p class="sub-header">
+          Your awesome text goes here. Your awesome text goes here.
+        </p>
+
+        <ul
+          class="sortable-list tasklist list-unstyled"
+          id="upcoming"
+          (cdkDropListDropped)="drop($event)"
+          cdkDropList
+          [cdkDropListData]="upcomingTasks"
+        >
+          @for (task of upcomingTasks; track $index) {
+            <li id="task{{ task.id }}" class="task-{{ task.priority }} card card-body overflow-hidden" cdkDrag>
+              <div>
+                <kanban-task-item [task]="task" />
+              </div>
+            </li>
+          }
+        </ul>
+        <div class="d-grid">
+          <a
+            href="javascript: void(0);"
+            class="btn btn-primary mt-3 waves-effect waves-light"
+            ><i class="mdi mdi-plus-circle"></i> Add New</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <div ngbDropdown class="float-end">
+          <a ngbDropdownToggle class="arrow-none">
+            <i class="mdi mdi-dots-vertical m-0 text-muted h3"></i>
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu-end">
+            <a role="button" ngbDropdownItem>Edit</a>
+            <a role="button" ngbDropdownItem>Delete</a>
+            <a role="button" ngbDropdownItem>Add Members</a>
+            <a role="button" ngbDropdownItem>Add Due Date</a>
+          </div>
+        </div>
+
+        <h4 class="header-title">In Progress</h4>
+        <p class="sub-header">Your awesome text goes here.</p>
+
+        <ul
+          class="sortable-list tasklist list-unstyled"
+          id="inprogress"
+          cdkDropList
+          (cdkDropListDropped)="drop($event)"
+          [cdkDropListData]="inprogressTasks"
+        >
+          @for (task of inprogressTasks; track $index) {
+            <li id="task{{ task.id }}" class="task-{{ task.priority }} card card-body overflow-hidden" cdkDrag>
+              <div>
+                <kanban-task-item [task]="task" />
+              </div>
+            </li>
+          }
+        </ul>
+        <div class="d-grid">
+          <a
+            href="javascript: void(0);"
+            class="btn btn-primary mt-3 waves-effect waves-light"
+            ><i class="mdi mdi-plus-circle"></i> Add New</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-4">
+    <div class="card">
+      <div class="card-body">
+        <div ngbDropdown class="float-end">
+          <a ngbDropdownToggle class="arrow-none">
+            <i class="mdi mdi-dots-vertical m-0 text-muted h3"></i>
+          </a>
+          <div ngbDropdownMenu class="dropdown-menu-end">
+            <a role="button" ngbDropdownItem>Edit</a>
+            <a role="button" ngbDropdownItem>Delete</a>
+            <a role="button" ngbDropdownItem>Add Members</a>
+            <a role="button" ngbDropdownItem>Add Due Date</a>
+          </div>
+        </div>
+
+        <h4 class="header-title">Completed</h4>
+        <p class="sub-header">
+          Your awesome text goes here. Your awesome text goes here.
+        </p>
+
+        <ul
+          class="sortable-list tasklist list-unstyled"
+          id="completed"
+          cdkDropList
+          (cdkDropListDropped)="drop($event)"
+          [cdkDropListData]="completedTasks"
+        >
+          @for (task of completedTasks; track $index) {
+            <li id="task{{ task.id }}" class="task-{{ task.priority }} card card-body overflow-hidden" cdkDrag>
+              <div>
+                <kanban-task-item [task]="task" />
+              </div>
+            </li>
+          }
+        </ul>
+        <div class="d-grid">
+          <a
+            href="javascript: void(0);"
+            class="btn btn-primary mt-3 waves-effect waves-light"
+            ><i class="mdi mdi-plus-circle"></i> Add New</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

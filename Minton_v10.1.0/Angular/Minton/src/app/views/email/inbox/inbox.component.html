@@ -1,0 +1,91 @@
+<app-page-title title="Inbox" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <email-leftbar />
+
+        <div class="inbox-rightbar">
+          <div class="btn-group me-1">
+            <button type="button" class="btn btn-sm btn-light waves-effect">
+              <i class="mdi mdi-archive font-18"></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-light waves-effect">
+              <i class="mdi mdi-alert-octagon font-18"></i>
+            </button>
+            <button type="button" class="btn btn-sm btn-light waves-effect">
+              <i class="mdi mdi-delete-variant font-18"></i>
+            </button>
+          </div>
+          <div ngbDropdown class="btn-group me-1">
+            <button
+              ngbDropdownToggle
+              type="button"
+              class="btn btn-sm btn-light dropdown-toggle waves-effect"
+            >
+              <i class="mdi mdi-folder font-18"></i>
+              <i class="mdi mdi-chevron-down"></i>
+            </button>
+            <div ngbDropdownMenu class="dropdown-menu">
+              <span class="dropdown-header">Move to</span>
+              <a class="dropdown-item" href="javascript: void(0);">Social</a>
+              <a class="dropdown-item" href="javascript: void(0);"
+                >Promotions</a
+              >
+              <a class="dropdown-item" href="javascript: void(0);">Updates</a>
+              <a class="dropdown-item" href="javascript: void(0);">Forums</a>
+            </div>
+          </div>
+          <div ngbDropdown class="btn-group me-1">
+            <button
+              ngbDropdownToggle
+              type="button"
+              class="btn btn-sm btn-light dropdown-toggle waves-effect"
+            >
+              <i class="mdi mdi-label font-18"></i>
+              <i class="mdi mdi-chevron-down"></i>
+            </button>
+            <div ngbDropdownMenu class="dropdown-menu">
+              <span class="dropdown-header">Label as:</span>
+              <a class="dropdown-item" href="javascript: void(0);">Updates</a>
+              <a class="dropdown-item" href="javascript: void(0);">Social</a>
+              <a class="dropdown-item" href="javascript: void(0);"
+                >Promotions</a
+              >
+              <a class="dropdown-item" href="javascript: void(0);">Forums</a>
+            </div>
+          </div>
+
+          <div ngbDropdown class="btn-group me-1">
+            <button
+              ngbDropdownToggle
+              type="button"
+              class="btn btn-sm btn-light dropdown-toggle waves-effect"
+            >
+              <i class="mdi mdi-dots-horizontal font-18"></i> More
+              <i class="mdi mdi-chevron-down"></i>
+            </button>
+            <div ngbDropdownMenu class="dropdown-menu">
+              <span class="dropdown-header">More Option :</span>
+              <a class="dropdown-item" href="javascript: void(0);"
+                >Mark as Unread</a
+              >
+              <a class="dropdown-item" href="javascript: void(0);"
+                >Add to Tasks</a
+              >
+              <a class="dropdown-item" href="javascript: void(0);">Add Star</a>
+              <a class="dropdown-item" href="javascript: void(0);">Mute</a>
+            </div>
+          </div>
+
+          <email-list />
+          <!-- end row-->
+        </div>
+        <!-- end inbox-rightbar-->
+
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>

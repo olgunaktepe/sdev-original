@@ -1,0 +1,17 @@
+<custom-card-portlet
+  cardTitle="Stacked Area"
+  cardTitleClass="header-title mb-0"
+>
+  <div id="apex-area" class="apex-charts" data-colors="#3bafda,#1abc9c,#CED4DC">
+    <apx-chart
+      [chart]="stackedAreaChart.chart!"
+      [series]="stackedAreaChart.series!"
+      [colors]="stackedAreaChart.colors!"
+      [dataLabels]="stackedAreaChart.dataLabels!"
+      [stroke]="stackedAreaChart.stroke!"
+      [fill]="stackedAreaChart.fill!"
+      [legend]="stackedAreaChart.legend!"
+      [xaxis]="stackedAreaChart.xaxis!"
+    />
+  </div>
+</custom-card-portlet>

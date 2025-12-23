@@ -1,0 +1,303 @@
+<app-page-title title="Widgets" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-xl-3 col-md-6">
+    <div class="widget-simple text-center card">
+      <div class="card-body">
+        <h3 class="text-success mt-0"><span [countUp]="2562">2562</span></h3>
+        <p class="text-muted mb-0">Total Sales today</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <div class="widget-simple text-center card">
+      <div class="card-body">
+        <h3 class="text-primary mt-0"><span [countUp]="5685">5685</span></h3>
+        <p class="text-muted mb-0">Daily visitors</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <div class="widget-simple text-center card">
+      <div class="card-body">
+        <h3 class="text-pink mt-0">$ <span [countUp]="12480">12480</span></h3>
+        <p class="text-muted mb-0">Total Earning</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <div class="widget-simple text-center card">
+      <div class="card-body">
+        <h3 class="text-purple mt-0"><span [countUp]="62">62</span></h3>
+        <p class="text-muted mb-0">Pending Orders</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<widget-stat2 />
+
+<div class="row">
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-chart-widget
+      [hasHeader]="true"
+      [data]="58"
+      [color]="'#f05050'"
+      [stats]="268"
+      title="New Customers"
+      description="Since last week"
+      [counterOptions]="{ startVal: 0, useGrouping: false }"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-chart-widget
+      [hasHeader]="true"
+      [data]="80"
+      [color]="'#675db7'"
+      [stats]="8715"
+      title="Online Orders"
+      description="Since last month"
+      [counterOptions]="{ startVal: 0, useGrouping: false }"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-chart-widget
+      [hasHeader]="true"
+      [data]="77"
+      [color]="'#23b397'"
+      [stats]="925"
+      title="Revenue"
+      description="This week"
+      [counterOptions]="{ prefix: '$', decimalPlaces: 2, useGrouping: false }"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-chart-widget
+      [hasHeader]="true"
+      [data]="35"
+      [color]="'#ffbd4a'"
+      [stats]="78.58"
+      title="Daily Average"
+      description="Revenue today"
+      [counterOptions]="{ prefix: '$', decimalPlaces: 2, useGrouping: false }"
+    />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-widget
+      title="Campaign Sent"
+      [stats]="865"
+      [counterOptions]="{ startVal: '0' }"
+      [trend]="{
+        value: '5.27%',
+        title: 'Since last month',
+        icon: 'mdi mdi-arrow-up-bold',
+        variant: 'success',
+      }"
+      icon="ri-stack-line"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-widget
+      title="New Leads"
+      [stats]="384"
+      [counterOptions]="{ startVal: '0' }"
+      [trend]="{
+        value: '3.27%',
+        title: 'Since last month',
+        icon: 'mdi mdi-arrow-down-bold',
+        variant: 'danger',
+      }"
+      icon="ri-slideshow-2-line"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-widget
+      title="Deals"
+      [stats]="34521"
+      [counterOptions]="{ startVal: '0' }"
+      [trend]="{
+        value: '8.58%',
+        title: 'Since last month',
+        icon: 'mdi mdi-arrow-up-bold',
+        variant: 'success',
+      }"
+      icon="ri-hand-heart-line"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <app-statistics-widget
+      title="Booked Revenue"
+      [stats]="89357"
+      [counterOptions]="{ startVal: '0', prefix: '$' }"
+      [trend]="{
+        value: '34.61%',
+        title: 'Since last month',
+        icon: 'mdi mdi-arrow-up-bold',
+        variant: 'success',
+      }"
+      icon="ri-money-dollar-box-line"
+    />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-3 col-md-6">
+    <widget-profile-states
+      avatar="assets/images/users/avatar-1.jpg"
+      name="Chadengle"
+      email="coderthemes&#64;gmail.com"
+      role="Admin"
+      variant="warning"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <widget-profile-states
+      avatar="assets/images/users/avatar-2.jpg"
+      name="Tomaslau"
+      email="coderthemes&#64;gmail.com"
+      role="User"
+      variant="success"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <widget-profile-states
+      avatar="assets/images/users/avatar-3.jpg"
+      name="Stillnotdavid"
+      email="coderthemes&#64;gmail.com"
+      role="Admin"
+      variant="pink"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <widget-profile-states
+      avatar="assets/images/users/avatar-4.jpg"
+      name="Arashasghari"
+      email="coderthemes&#64;gmail.com"
+      role="User"
+      variant="info"
+    />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-3 col-md-6">
+    <widget-stat3
+      [variant]="'primary'"
+      [title]="'New User'"
+      [icon]="'mdi mdi-coffee'"
+      [stats]="'8541'"
+      [trend]="{ value: '39% Up', variant: 'success' }"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <widget-stat3
+      [variant]="'warning'"
+      [title]="'New Orders'"
+      [icon]="'mdi mdi-contrast-circle'"
+      [stats]="'6521'"
+      [trend]="{ value: '56% Down', variant: 'danger' }"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <widget-stat3
+      [variant]="'success'"
+      [title]="'Bug Reports'"
+      [icon]="'mdi mdi-crown'"
+      [stats]="'1452'"
+      [trend]="{ value: '0%', variant: 'info' }"
+    />
+  </div>
+
+  <div class="col-xl-3 col-md-6">
+    <widget-stat3
+      [variant]="'pink'"
+      [title]="'Total Downloads'"
+      [icon]="'mdi mdi-download'"
+      [stats]="'562'"
+      [trend]="{ value: '39% Up', variant: 'success' }"
+    />
+  </div>
+</div>
+
+<div class="row">
+  @for (item of weather; track $index) {
+    <div class="col-xl-6">
+      <weather-widget [item]="item" />
+    </div>
+  }
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <h4 class="mb-3">Chart Widgets</h4>
+
+    <div class="row">
+      <div class="col-xl-4">
+        <statistics-chart-widget2 />
+      </div>
+
+      <div class="col-xl-4">
+        <statistics-chart-widget3 />
+      </div>
+
+      <div class="col-xl-4">
+        <statistics-chart-widget4 />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xl-4">
+        <statistics-chart-widget5 />
+      </div>
+
+      <div class="col-xl-4">
+        <statistics-chart-widget6 />
+      </div>
+
+      <div class="col-xl-4">
+        <statistics-chart-widget7 />
+      </div>
+    </div>
+  </div>
+  <!-- end col-->
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <h4 class="mb-3">Other Widgets</h4>
+
+    <div class="row">
+      <div class="col-xl-4">
+        <widget-inbox />
+      </div>
+
+      <div class="col-xl-4">
+        <widget-chat />
+      </div>
+      <!-- end col-->
+
+      <div class="col-xl-4">
+        <!-- Todo-->
+        <widget-todo />
+      </div>
+    </div>
+  </div>
+  <!-- end col-->
+</div>

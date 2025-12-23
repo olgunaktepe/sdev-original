@@ -1,0 +1,28 @@
+{% extends "layouts/horizontal.html" %}
+{% load static i18n %}
+
+{% block title %}
+{% trans "Remix Icons" %}
+{% endblock title %}
+
+{% block content %}
+<!-- Start Content-->
+<div class="container-fluid">
+
+    {% include "partials/page-title.html" with subtitle="Icons" title="Remix Icons" %}
+
+    <div class="row">
+        <div class="col-12" id="icons">
+
+        </div> <!-- end col-->
+    </div> <!-- end row-->
+
+</div> <!-- container -->
+
+{% endblock %}
+
+{% block extra_javascript %}
+
+<!-- Remix icon js-->
+<script src="{% static 'js/pages/remix-icons.init.js'%}"></script>
+{% endblock %}

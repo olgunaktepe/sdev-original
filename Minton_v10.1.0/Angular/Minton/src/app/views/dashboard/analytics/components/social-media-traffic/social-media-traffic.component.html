@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-body">
+    <div class="clearfix">
+      <a href="javascript:void(0);" class="p-0 float-end mb-3"
+        >Export <i class="mdi mdi-download ms-1"></i
+      ></a>
+      <h4 class="header-title">Social Media Traffic</h4>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table table-sm table-centered mb-0 font-14">
+        <thead class="table-light">
+          <tr>
+            <th>Network</th>
+            <th>Visits</th>
+            <th style="width: 40%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of socialList; track $index) {
+            <tr>
+              <td>{{ item.network }}</td>
+              <td>{{ item.visits }}</td>
+              <td>
+                <ngb-progressbar [value]="item.progress" style="height: 3px" />
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <!-- end table-responsive-->
+  </div>
+  <!-- end card-body-->
+</div>
+<!-- end card-->

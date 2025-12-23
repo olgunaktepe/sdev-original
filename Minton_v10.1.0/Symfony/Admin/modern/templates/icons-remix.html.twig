@@ -1,0 +1,20 @@
+{% extends 'layouts/detached.html.twig' %}
+
+{% block title %}
+  Remix Icons
+{% endblock %}
+
+{% block pagetitle %}
+  {{ include('partials/page-title2.html.twig', { sub_title: 'Icons', page_title: 'Remix Icons' }) }}
+{% endblock %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-12" id="icons"></div> <!-- end col -->
+  </div> <!-- end row -->
+{% endblock %}
+
+{% block javascript %}
+  <!-- Remix icon js -->
+  <script src="/js/pages/remix-icons.init.js"></script>
+{% endblock %}

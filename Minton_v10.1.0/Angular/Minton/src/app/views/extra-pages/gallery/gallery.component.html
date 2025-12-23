@@ -1,0 +1,77 @@
+<app-page-title title="Gallery" [breadCrumbItems]="breadCrumbItems" />
+
+<div class="row">
+  <div class="col-12">
+    <div class="text-center filter-menu">
+      <a
+        href="javascript: void(0);"
+        class="filter-menu-item"
+        [class.active]="category == 'all'"
+        (click)="categoryFilter('all')"
+        >All</a
+      >
+      <a
+        href="javascript: void(0);"
+        class="filter-menu-item"
+        [class.active]="category == 'web'"
+        (click)="categoryFilter('web')"
+        >Web Design</a
+      >
+      <a
+        href="javascript: void(0);"
+        class="filter-menu-item"
+        [class.active]="category == 'graphic'"
+        (click)="categoryFilter('graphic')"
+        >Graphic Design</a
+      >
+      <a
+        href="javascript: void(0);"
+        class="filter-menu-item"
+        [class.active]="category == 'illustrator'"
+        (click)="categoryFilter('illustrator')"
+        >Illustrator</a
+      >
+      <a
+        href="javascript: void(0);"
+        class="filter-menu-item"
+        [class.active]="category == 'photography'"
+        (click)="categoryFilter('photography')"
+        >Photography</a
+      >
+    </div>
+  </div>
+</div>
+<!-- end row-->
+
+<div class="row filterable-content">
+  @for (item of galleryList; track $index) {
+    <div
+      class="col-sm-6 col-xl-3 filter-item all web illustrator"
+      (click)="open($index)"
+    >
+      <div class="gal-box">
+        <a class="image-popup" title="Screenshot-1">
+          <img [src]="item.image.src" class="img-fluid" alt="work-thumbnail" />
+        </a>
+        <div class="gall-info">
+          <h4 class="font-16 mt-0">{{ item.title }}</h4>
+          <a href="javascript: void(0);">
+            <img
+              [src]="item.avatar"
+              alt="user-img"
+              class="rounded-circle"
+              height="24"
+            />
+            <span class="text-muted ms-1">{{ item.userName }}</span>
+          </a>
+          <a href="javascript: void(0);" class="gal-like-btn"
+            ><i
+              class="mdi mdi-heart-outline"
+              [ngClass]="item.isLiked ? 'text-danger' : 'text-muted'"
+            ></i
+          ></a>
+        </div>
+      </div>
+    </div>
+  }
+</div>

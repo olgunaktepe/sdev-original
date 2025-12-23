@@ -1,0 +1,31 @@
+<div class="form-check mb-2 float-end">
+  <input class="form-check-input ms-0" type="checkbox" value="" />
+</div>
+<h5 class="mt-0">
+  <a href="javascript: void(0);" class="text-dark">{{ task.title }}</a>
+</h5>
+
+<p>{{ task.description }}</p>
+<div class="clearfix"></div>
+<div class="row">
+  <div class="col-auto">
+    <div>
+      @for (avatar of task.userAvatar; track avatar) {
+      <a href="javascript: void(0);">
+        <img
+          [src]="avatar"
+          alt="task-user"
+          class="avatar-sm img-thumbnail rounded-circle me-1"
+        />
+      </a>
+      }
+    </div>
+  </div>
+  <div class="col">
+    <div class="text-end">
+      <p class="font-13 mt-2 mb-0">
+        <i class="mdi mdi-calendar"></i> {{ task.dueDate }}
+      </p>
+    </div>
+  </div>
+</div>

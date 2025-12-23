@@ -1,0 +1,20 @@
+<custom-card-portlet
+  cardTitle="Gradient Donut Chart"
+  cardTitleClass="header-title mb-0"
+>
+  <div
+    id="apex-pie-2"
+    class="apex-charts"
+    data-colors="#3bafda,#1abc9c,#f7b84b,#6559cc,#f672a7"
+  >
+    <apx-chart
+      [chart]="apexpie2Chart.chart!"
+      [series]="apexpie2Chart.series!"
+      [legend]="apexpie2Chart.legend!"
+      [labels]="apexpie2Chart.labels!"
+      [colors]="apexpie2Chart.colors!"
+      [responsive]="apexpie2Chart.responsive!"
+      [fill]="apexpie2Chart.fill!"
+    />
+  </div>
+</custom-card-portlet>

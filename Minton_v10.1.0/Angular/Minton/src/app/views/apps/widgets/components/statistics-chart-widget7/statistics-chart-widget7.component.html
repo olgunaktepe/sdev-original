@@ -1,0 +1,36 @@
+<div class="card">
+  <div class="card-body">
+    <h4 class="header-title mb-3">Recent Users</h4>
+
+    <div class="widget-chart text-center">
+      <div id="sparkline6" data-colors="#f1556c,#1abc9c" class="text-center">
+        <apx-chart
+          [chart]="sparkline7Chart.chart!"
+          [series]="sparkline7Chart.series!"
+          [plotOptions]="sparkline7Chart.plotOptions!"
+          [grid]="sparkline7Chart.grid!"
+          [xaxis]="sparkline7Chart.xaxis!"
+          [yaxis]="sparkline7Chart.yaxis!"
+          [legend]="sparkline7Chart.legend!"
+          [stroke]="sparkline7Chart.stroke!"
+          [colors]="sparkline7Chart.colors!"
+          [tooltip]="sparkline7Chart.tooltip!"
+        />
+      </div>
+      <div class="row mt-3">
+        <div class="col-4">
+          <p class="text-muted font-15 mb-1 text-truncate">Target</p>
+          <h4>{{ currency }}1022</h4>
+        </div>
+        <div class="col-4">
+          <p class="text-muted font-15 mb-1 text-truncate">Last week</p>
+          <h4>{{ currency }}538</h4>
+        </div>
+        <div class="col-4">
+          <p class="text-muted font-15 mb-1 text-truncate">Last Month</p>
+          <h4>{{ currency }}988</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

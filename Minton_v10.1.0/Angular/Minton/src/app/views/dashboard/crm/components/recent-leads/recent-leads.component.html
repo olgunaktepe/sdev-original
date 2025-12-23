@@ -1,0 +1,43 @@
+<div class="card">
+  <div class="card-body">
+    <div ngbDropdown class="dropdown float-end">
+      <a
+        ngbDropdownToggle
+        class="dropdown-toggle arrow-none card-drop"
+        role="button"
+      >
+        <i class="mdi mdi-dots-vertical"></i>
+      </a>
+      <div ngbDropdownMenu class="dropdown-menu dropdown-menu-end">
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Settings</a>
+        <!-- item-->
+        <a href="javascript:void(0);" class="dropdown-item">Action</a>
+      </div>
+    </div>
+    <h4 class="header-title mb-4">Recent Leads</h4>
+
+    @for (item of leadList; track $index; let first = $first) {
+      <div class="d-flex" [ngClass]="{ 'mt-3': !first }">
+        <img
+          class="avatar-sm align-self-center me-3 rounded-circle"
+          [src]="item.avatar"
+          alt="Generic placeholder image"
+        />
+        <div class="flex-1">
+          <span
+            class="badge float-end"
+            [ngClass]="{
+              'badge-soft-warning': item.status == 'Cold',
+              'badge-soft-danger': item.status == 'Lost',
+              'badge-soft-success': item.status == 'Won',
+            }"
+            >{{ item.status }} lead</span
+          >
+          <h5 class="mt-0 mb-1">{{ item.name }}</h5>
+          <span class="text-muted font-13">{{ item.email }}</span>
+        </div>
+      </div>
+    }
+  </div>
+</div>

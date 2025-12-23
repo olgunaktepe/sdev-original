@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" data-layout-mode="detached" data-sidebar-user="true" data-topbar-color="dark">
+	<head>
+		<meta charset="utf-8"/>
+		<title>
+			{% block title %}{% endblock %}| Minton - Admin & Dashboard Template
+		</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description"/>
+		<meta content="Coderthemes" name="author"/>
+		<meta
+		http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<!-- App favicon -->
+		<link rel="shortcut icon" href="/images/favicon.ico"/> {% block css %}{% endblock %}
+		{{ include('partials/head-css.html.twig') }}
+	</head>
+
+	<body>
+
+		<div id="wrapper">
+
+			{{ include('partials/topbar.html.twig') }}
+			{{ include('partials/left-sidebar.html.twig') }}
+
+			<div class="content-page">
+				<div class="content">
+					<div class="container-fluid"> 
+						{% block pagetitle %}{% endblock %}
+						{% block body %}{% endblock %}
+						</div>
+					</div>
+
+					{{ include('partials/footer.html.twig') }}
+				</div>
+			</div>
+			{{ include('partials/right-sidebar.html.twig') }}
+
+
+			<script src="/js/vendor.min.js"></script>
+			{% block javascript %}{% endblock %}
+			<script src="/js/app.js"></script>
+			<script src="/js/layout.js"></script>
+		</body>
+	</html>

@@ -1,0 +1,298 @@
+<h6 class="fw-medium px-3 m-0 py-2 font-13 text-uppercase bg-light">
+  <span class="d-block py-1">Theme Settings</span>
+</h6>
+
+<div class="p-3">
+  <div class="alert alert-warning" role="alert">
+    <strong>Customize </strong> the overall color scheme, sidebar menu, etc.
+  </div>
+
+  <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Layout</h6>
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-layout-mode"
+      value="vertical"
+      id="vertical-mode-check"
+      (change)="changeLayout('vertical')"
+      [checked]="layout == 'vertical'"
+    />
+    <label class="form-check-label" for="vertical-mode-check">Vertical</label>
+  </div>
+
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-layout-mode"
+      value="horizontal"
+      id="horizontal-mode-check"
+      (change)="changeLayout('horizontal')"
+      [checked]="layout == 'horizontal'"
+    />
+    <label class="form-check-label" for="horizontal-mode-check"
+      >Horizontal</label
+    >
+  </div>
+
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-layout-mode"
+      value="two-column"
+      id="two-column-mode-check"
+      (change)="changeLayout('two-column')"
+      [checked]="layout == 'two-column'"
+    />
+    <label class="form-check-label" for="two-column-mode-check"
+      >Two Column</label
+    >
+  </div>
+
+  <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Color Scheme</h6>
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-bs-theme"
+      value="light"
+      id="light-mode-check"
+      (change)="changeLayoutColor('light')"
+      [checked]="color == 'light'"
+    />
+    <label class="form-check-label" for="light-mode-check">Light Mode</label>
+  </div>
+
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-bs-theme"
+      value="dark"
+      id="dark-mode-check"
+      (change)="changeLayoutColor('dark')"
+      [checked]="color == 'dark'"
+    />
+    <label class="form-check-label" for="dark-mode-check">Dark Mode</label>
+  </div>
+
+  <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Width</h6>
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-layout-width"
+      value="fluid"
+      id="fluid-check"
+      (click)="changeLayoutMode('fluid')"
+      [checked]="width == 'fluid'"
+    />
+    <label class="form-check-label" for="fluid-check">Fluid</label>
+  </div>
+
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-layout-width"
+      value="boxed"
+      id="boxed-check"
+      (click)="changeLayoutMode('boxed')"
+      [checked]="width == 'boxed'"
+    />
+    <label class="form-check-label" for="boxed-check">Boxed</label>
+  </div>
+
+  <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Topbar</h6>
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-topbar-color"
+      value="light"
+      id="lighttopbar-check"
+      (change)="changeLayoutTopbarColor('light')"
+      [checked]="topbarcolor == 'light'"
+    />
+    <label class="form-check-label" for="lighttopbar-check">Light</label>
+  </div>
+
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-topbar-color"
+      value="dark"
+      id="darktopbar-check"
+      (change)="changeLayoutTopbarColor('dark')"
+      [checked]="topbarcolor == 'dark'"
+    />
+    <label class="form-check-label" for="darktopbar-check">Dark</label>
+  </div>
+
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-topbar-color"
+      value="brand"
+      id="brandtopbar-check"
+      (change)="changeLayoutTopbarColor('brand')"
+      [checked]="topbarcolor == 'brand'"
+    />
+    <label class="form-check-label" for="brandtopbar-check">brand</label>
+  </div>
+
+  <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">
+    Menus Positon <small>(Leftsidebar and Topbar)</small>
+  </h6>
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-layout-position"
+      value="fixed"
+      id="fixed-check"
+      (change)="changeLayoutPosition('fixed')"
+      [checked]="position == 'fixed'"
+    />
+    <label class="form-check-label" for="fixed-check">Fixed</label>
+  </div>
+
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-layout-position"
+      value="scrollable"
+      id="scrollable-check"
+      (change)="changeLayoutPosition('scrollable')"
+      [checked]="position == 'scrollable'"
+    />
+    <label class="form-check-label" for="scrollable-check">Scrollable</label>
+  </div>
+
+  <!-- Menu Color-->
+  <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Menu Color</h6>
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-menu-color"
+      value="light"
+      id="light-check"
+      (change)="changeLayoutMenuColor('light')"
+      [checked]="menucolor == 'light'"
+    />
+    <label class="form-check-label" for="light-check">Light</label>
+  </div>
+
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-menu-color"
+      value="dark"
+      id="dark-check"
+      (change)="changeLayoutMenuColor('dark')"
+      [checked]="menucolor == 'dark'"
+    />
+    <label class="form-check-label" for="dark-check">Dark</label>
+  </div>
+
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-menu-color"
+      value="brand"
+      id="brand-check"
+      (change)="changeLayoutMenuColor('brand')"
+      [checked]="menucolor == 'brand'"
+    />
+    <label class="form-check-label" for="brand-check">Brand</label>
+  </div>
+
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-menu-color"
+      value="gradient"
+      id="gradient-check"
+      (change)="changeLayoutMenuColor('gradient')"
+      [checked]="menucolor == 'gradient'"
+    />
+    <label class="form-check-label" for="gradient-check">Gradient</label>
+  </div>
+
+  <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Left Sidebar Size</h6>
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-sidebar-size"
+      value="default"
+      id="default-size-check"
+      (change)="changeLayoutMenuSize('default')"
+      [checked]="menusize == 'default'"
+    />
+    <label class="form-check-label" for="default-size-check">Default</label>
+  </div>
+
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-sidebar-size"
+      value="condensed"
+      id="condensed-check"
+      (change)="changeLayoutMenuSize('condensed')"
+      [checked]="menusize == 'condensed'"
+    />
+    <label class="form-check-label" for="condensed-check"
+      >Condensed <small>(Extra Small size)</small></label
+    >
+  </div>
+
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-sidebar-size"
+      value="compact"
+      id="compact-check"
+      (change)="changeLayoutMenuSize('compact')"
+      [checked]="menusize == 'compact'"
+    />
+    <label class="form-check-label" for="compact-check"
+      >Compact <small>(Small size)</small></label
+    >
+  </div>
+
+  <h6 class="fw-medium font-14 mt-4 mb-2 pb-1">Sidebar User Info</h6>
+  <div class="form-check form-switch mb-1">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      name="data-sidebar-user"
+      value="true"
+      id="sidebaruser-check"
+      (change)="changeSidebarUser($event)"
+      [checked]="user == true"
+    />
+    <label class="form-check-label" for="sidebaruser-check">Enable</label>
+  </div>
+
+  <div class="d-grid mt-4">
+    <button class="btn btn-primary" id="resetBtn" (click)="reset()">
+      Reset to Default
+    </button>
+
+    <a [href]="credits.buyLink" class="btn btn-danger mt-2" target="_blank"
+      ><i class="mdi mdi-basket me-1"></i> Purchase Now</a
+    >
+  </div>
+</div>

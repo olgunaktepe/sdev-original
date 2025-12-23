@@ -1,0 +1,35 @@
+<app-page-title [breadCrumbItems]="breadCrumbItems" title="CRM" />
+
+<crm-statistics />
+
+<div class="row">
+  <div class="col-xl-4">
+    <crm-campaign-chart />
+  </div>
+
+  <div class="col-xl-8">
+    <crm-revenue-chart />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xl-5">
+    <crm-performance-details />
+  </div>
+  <!-- end col-->
+
+  <div class="col-xl-7">
+    <div class="row">
+      <div class="col-lg-6">
+        <crm-recent-leads />
+        <!-- end card-->
+      </div>
+
+      <div class="col-lg-6">
+        <crm-todo />
+      </div>
+    </div>
+    <!-- end row-->
+  </div>
+  <!-- end col-->
+</div>
