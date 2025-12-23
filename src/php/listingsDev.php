@@ -788,10 +788,38 @@ function loadLocations($filter,$limit=0,$offset=0,$orderby=''){
     return $items;
 }
 function getLocationCount($filter){
-    $sql = loadLocationSql($filter,0,0,'');
-    $sql = preg_replace('/SELECT SQL_CALC_FOUND_ROWS.*?FROM/s','SELECT COUNT(*) FROM',$sql);
-    $sql = preg_replace('/ORDER BY.*$/i','',$sql);
-    $sql = preg_replace('/LIMIT.*$/i','',$sql);
+    if($filter['date']){
+        $range = explode(' - ',$filter['date']);
+        $date1 = dbDate($range[0]);
+        $date2 = dbDate($range[1]);
+    }
+    else{
+        $date1 = dbDate('-15 days');
+        $date2 = dbDate('today');
+    }
+
+    $wheresql = [];
+    $wheresql[] = "m.timestamp BETWEEN '{$date1} 00:00:00' AND '{$date2} 23:59:59'";
+    $wheresql[] = "m.last_deal_cache IS NOT NULL";
+    if($filter['type']){
+        switch($filter['type']){
+            case 'sale':
+            case 'lease':
+                $wheresql[] = "m.type='{$filter['type']}'";
+                break;
+            case 'expired_sale':
+                $wheresql[] = "m.type='sale'";
+                $wheresql[] = "m.expired=1";
+                break;
+            case 'expired_lease':
+                $wheresql[] = "m.type='lease'";
+                $wheresql[] = "m.expired=1";
+                break;
+        }
+    }
+    if($filter['source'])$wheresql[] = "m.source IN ('".implode("','",$filter['source'])."')";
+
+    $sql = "SELECT COUNT(*) FROM listings AS m WHERE ".implode(" AND ",$wheresql);
     $q = mysql_query($sql);
     if($q){
         list($count) = mysql_fetch_array($q);
