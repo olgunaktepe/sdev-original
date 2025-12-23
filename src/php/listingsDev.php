@@ -592,8 +592,8 @@ function getLocations(){
     $bm = [];
 
     $filter = $_REQUEST['filter'];
-    $chunkSize = 1000;
-    $resultLimit = 1000;
+    $chunkSize = 500;
+    $resultLimit = 500;
     $filter['box'] = $_REQUEST['box'];
     $filter['center'] = $_REQUEST['center'];
 
