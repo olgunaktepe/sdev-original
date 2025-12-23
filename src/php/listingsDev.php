@@ -592,7 +592,7 @@ function getLocations(){
     $bm = [];
 
     $filter = $_REQUEST['filter'];
-    $limit = 10000;
+    $limit = 5000;
     $offset = 0;
     $resultLimit = 1000;
     $filter['box'] = $_REQUEST['box'];
