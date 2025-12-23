@@ -1302,6 +1302,9 @@ $(document).ready(function () {
 				listings[el.id] = el;
 			});
 
+			// Preserve sort order from server response
+			sortedListingsIndex = listingIds.map(function(id){ return [id]; });
+
 			var sc = container.find(selectors.statsContainer);
 			var html = Handlebars.compile(container.find(selectors.templates.stats).html());
 			sc.html(html({total: json.formatted.length, totalInRange: json.totalInRange, speed: 0, elapsed: 0}));
