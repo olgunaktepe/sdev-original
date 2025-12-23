@@ -840,17 +840,17 @@ function chunkedSort($filter,$orderby,$orderdir,$chunkSize,$resultLimit){
 
         $totalCount += count($chunk);
 
+        // Store raw items by ID directly from chunk keys
+        foreach($chunk as $id=>$item)$allItems[$id] = $item;
+
         $standardized = standerizeListing($chunk);
 
-        foreach($standardized as $item){
-            $sortedBuffer[$item->id] = $item;
-            $allItems[$item->id] = $chunk[$item->id];
-        }
+        foreach($standardized as $item)$sortedBuffer[$item->id] = $item;
 
         $sortedBuffer = sortListingsArray($sortedBuffer,$orderby,$orderdir);
         if(count($sortedBuffer) > $resultLimit){
             $keep = array_slice($sortedBuffer,0,$resultLimit,true);
-            foreach($sortedBuffer as $id=>$item)if(!isset($keep[$id]))unset($allItems[$id]);
+            foreach($allItems as $id=>$item)if(!isset($keep[$id]))unset($allItems[$id]);
             $sortedBuffer = $keep;
         }
 
