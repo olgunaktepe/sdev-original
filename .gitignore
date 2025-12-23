@@ -17,8 +17,12 @@ Thumbs.db
 # Do not commit any sensitive data
 *.env
 *.key
-credentials*
-secrets*
+credentials.json
+credentials.xml
+credentials.yaml
+secrets.json
+secrets.xml
+secrets.yaml
 
 # Source code - sensitive files
 src/settings.php

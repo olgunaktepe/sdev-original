@@ -651,6 +651,96 @@ function getLocations(){
     json(['items'=>$filteredItems, 'formatted'=>$filteredFormatted,'bm'=>$bm]);
     //json(['formatted'=>$filteredFormatted]);
 }
+function getLocationsPaginated(){
+    ini_set('memory_limit', '512M');
+    global $dl;
+
+    $bm = [];
+
+    $filter = $_REQUEST['filter'];
+    $page = (int)$_REQUEST['page'];
+    $perpage = (int)$_REQUEST['perpage'];
+    $sortCol = $_REQUEST['sortCol'];
+    $sortDir = $_REQUEST['sortDir'];
+
+    if(!$page)$page = 0;
+    if(!$perpage)$perpage = 1000;
+    if($perpage>2000)$perpage = 2000;
+    if(!$sortDir || ($sortDir != 'asc' && $sortDir != 'desc'))$sortDir = 'desc';
+
+    $sortMap = [
+        'created_on' => 'm.timestamp',
+        'timestamp' => 'm.timestamp',
+        'title' => 'm.title',
+        'price' => 'm.price',
+        'sqft' => 'm.sqft',
+        'address' => 'm.address',
+        'city' => 'm.city'
+    ];
+    $orderby = ($sortCol && $sortMap[$sortCol])?$sortMap[$sortCol].' '.strtoupper($sortDir):'m.timestamp DESC';
+
+    $offset = $page * $perpage;
+    $limit = $perpage + 1;
+
+    $filter['box'] = $_REQUEST['box'];
+    $filter['center'] = $_REQUEST['center'];
+
+    $start = time();
+    $locations = loadLocations($filter,$limit,$offset,$orderby);
+
+    $hasMore = (count($locations) > $perpage);
+    if($hasMore)array_pop($locations);
+
+    $items = [];
+    foreach($locations as $l)$items[$l->id] = $l;
+
+    $formatted = [];
+    foreach(standerizeListing($items) as $item)$formatted[$item->id] = $item;
+    $bm['query'] = (time()-$start);
+
+    $clusters = [];
+    if(count($items)<2000){
+        $start = time();
+        $clusters = clusterByDistance($formatted, 0.1);
+        $bm['clustering'] = (time()-$start);
+    }
+
+    $start = time();
+    foreach($formatted as $k=>$item){
+        $deal = $dl->formatDeal2((array)$items[$item->id]);
+        $formatted[$k]->advanced = $deal->advanced;
+
+        if($clusters){
+            $cs = $clusters[$item->id];
+            if($cs){
+                $cItems = [];
+                foreach($cs as $cid)$cItems[$cid] = $formatted[$cid];
+                $formatted[$k]->dups = $dl->checkDuplicates($item,$cItems);
+            }
+        }
+    }
+    $bm['formatting'] = (time()-$start);
+
+    $filterOutIds = [];
+    foreach($formatted as $f){
+        if($f->country && $f->country != 'USA')$filterOutIds[] = $f->id;
+    }
+
+    $filteredItems = [];
+    $filteredFormatted = [];
+    foreach($formatted as $item)if(!in_array($item->id,$filterOutIds))$filteredFormatted[] = $item;
+
+    json([
+        'items'=>$filteredItems,
+        'formatted'=>$filteredFormatted,
+        'bm'=>$bm,
+        'page'=>$page,
+        'perpage'=>$perpage,
+        'hasMore'=>$hasMore,
+        'sortCol'=>$sortCol,
+        'sortDir'=>$sortDir
+    ]);
+}
 function getDealStatus(){
     $items = [];
 
